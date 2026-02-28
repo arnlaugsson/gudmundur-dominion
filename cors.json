@@ -1,0 +1,11 @@
+[
+  {
+    "origin": [
+      "https://dominon-1e56c.web.app",
+      "https://dominon-1e56c.firebaseapp.com",
+      "http://localhost:5173"
+    ],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
+]
