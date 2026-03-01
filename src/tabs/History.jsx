@@ -1,21 +1,28 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import GameModal from '../components/GameModal'
 import DATA from '../data'
 
-export default function History() {
+export default function History({ targetGame, onClearTarget }) {
   const { games, players, expansions } = DATA
   const [search, setSearch] = useState('')
-  const [filterPlayer, setFilterPlayer] = useState('')
+  const [filterPlayers, setFilterPlayers] = useState([])
   const [filterExp, setFilterExp] = useState('')
   const [filterVictory, setFilterVictory] = useState('')
   const [selectedGame, setSelectedGame] = useState(null)
 
-  // Most recent first: sort by game_num descending (game_num is always set, unlike date for legacy games)
+  useEffect(() => {
+    if (targetGame != null) {
+      const game = games.find(g => g.game_num === targetGame)
+      if (game) setSelectedGame(game)
+      onClearTarget?.()
+    }
+  }, [targetGame]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const sortedGames = useMemo(() => [...games].sort((a, b) => b.game_num - a.game_num), [games])
 
   const filtered = useMemo(() => {
     let list = sortedGames
-    if (filterPlayer) list = list.filter(g => g.players.includes(filterPlayer))
+    if (filterPlayers.length > 0) list = list.filter(g => filterPlayers.every(p => g.results.some(r => r.name === p)))
     if (filterExp) list = list.filter(g => g.expansions.includes(filterExp))
     if (filterVictory) list = list.filter(g => g.victory_type === filterVictory)
     if (search) {
@@ -27,7 +34,7 @@ export default function History() {
       )
     }
     return list
-  }, [sortedGames, search, filterPlayer, filterExp, filterVictory])
+  }, [sortedGames, search, filterPlayers, filterExp, filterVictory])
 
   const victoryBadgeClass = {
     Province: 'badge-province',
@@ -35,11 +42,28 @@ export default function History() {
     'Supply piles': 'badge-supply',
   }
 
+  const sortedPlayers = useMemo(() => [...players].sort((a, b) => a.name.localeCompare(b.name)), [players])
+
+  const availablePlayers = useMemo(() => {
+    if (filterPlayers.length === 0) return sortedPlayers
+    const sharedGames = games.filter(g => filterPlayers.every(p => g.results.some(r => r.name === p)))
+    const sharedNames = new Set(sharedGames.flatMap(g => g.results.map(r => r.name)))
+    return sortedPlayers.filter(p => !filterPlayers.includes(p.name) && sharedNames.has(p.name))
+  }, [sortedPlayers, filterPlayers, games])
+
+  function addPlayer(name) {
+    if (name && !filterPlayers.includes(name)) setFilterPlayers(prev => [...prev, name])
+  }
+
+  function removePlayer(name) {
+    setFilterPlayers(prev => prev.filter(p => p !== name))
+  }
+
   return (
     <section className="section active">
       <h2 className="section-title">Game History</h2>
 
-      <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginBottom: '1rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginBottom: filterPlayers.length > 0 ? '.5rem' : '1rem', alignItems: 'center' }}>
         <input
           type="text"
           className="search-bar"
@@ -48,9 +72,13 @@ export default function History() {
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
         />
-        <select value={filterPlayer} onChange={e => setFilterPlayer(e.target.value)}>
-          <option value="">All Players</option>
-          {players.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
+        <select
+          value=""
+          onChange={e => { addPlayer(e.target.value); e.target.value = '' }}
+          style={{ minWidth: '130px' }}
+        >
+          <option value="">Filter by player…</option>
+          {availablePlayers.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
         </select>
         <select value={filterExp} onChange={e => setFilterExp(e.target.value)}>
           <option value="">All Expansions</option>
@@ -64,8 +92,39 @@ export default function History() {
         </select>
       </div>
 
+      {filterPlayers.length > 0 && (
+        <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginBottom: '1rem', alignItems: 'center' }}>
+          <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Players:</span>
+          {filterPlayers.map(name => (
+            <button
+              key={name}
+              onClick={() => removePlayer(name)}
+              style={{
+                background: 'rgba(201,168,76,.15)', border: '1px solid var(--gold)',
+                borderRadius: '99px', padding: '.25rem .65rem', fontSize: '.78rem',
+                color: 'var(--gold)', cursor: 'pointer', fontFamily: 'inherit',
+                display: 'flex', alignItems: 'center', gap: '.3rem',
+              }}
+            >
+              {name} <span style={{ fontSize: '.7rem', opacity: .7 }}>✕</span>
+            </button>
+          ))}
+          <button
+            onClick={() => setFilterPlayers([])}
+            style={{
+              background: 'none', border: '1px solid var(--border)', borderRadius: '99px',
+              padding: '.25rem .6rem', fontSize: '.72rem', color: 'var(--dim)',
+              cursor: 'pointer', fontFamily: 'inherit',
+            }}
+          >
+            Clear
+          </button>
+        </div>
+      )}
+
       <div style={{ fontSize: '.82rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
         {filtered.length} game{filtered.length !== 1 ? 's' : ''}
+        {filterPlayers.length > 1 && <span style={{ marginLeft: '.4rem' }}>with all {filterPlayers.length} players</span>}
       </div>
 
       <div>
@@ -85,6 +144,16 @@ export default function History() {
                     {game.victory_type}
                   </span>
                 )}
+                {game.expansions?.includes('Prosperity') && (
+                  <span className="badge badge-prosperity">Colony</span>
+                )}
+                {game.events?.length > 0 && <span className="badge badge-event">Events</span>}
+                {game.landmarks?.length > 0 && <span className="badge badge-landmark">Landmarks</span>}
+                {game.projects?.length > 0 && <span className="badge badge-project">Projects</span>}
+                {game.allies?.length > 0 && <span className="badge badge-ally">Allies</span>}
+                {game.ways?.length > 0 && <span className="badge badge-way">Ways</span>}
+                {game.traits?.length > 0 && <span className="badge badge-trait">Traits</span>}
+                {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
               </div>
               <div className="podium">
                 {game.results.slice(0, 3).map(r => (
@@ -95,7 +164,6 @@ export default function History() {
                 ))}
               </div>
             </div>
-            {/* Kingdom card names only — no images in list */}
             {game.kingdom.length > 0 && (
               <div className="gk">
                 {game.kingdom.map(k => (

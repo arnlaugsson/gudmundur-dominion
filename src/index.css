@@ -178,6 +178,8 @@ tr:hover td { background: rgba(201,168,76,.05); }
 }
 .card-item:hover { border-color: var(--gold); transform: translateY(-2px); }
 .card-art { width: 100%; display: block; background: var(--bg3); height: auto; }
+.card-item-landscape { grid-column: span 2; }
+.card-art-landscape { width: 100%; display: block; background: var(--bg3); height: auto; }
 .card-item .cn { font-size: .88rem; font-weight: 500; margin-bottom: .35rem; }
 .card-item .ce { font-size: .72rem; color: var(--dim); margin-bottom: .5rem; }
 .usage-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: .4rem; }
@@ -363,6 +365,14 @@ select:focus { outline: none; border-color: var(--gold); }
 .badge-province { background: rgba(63,185,80,.15); color: #3fb950; border: 1px solid rgba(63,185,80,.3); }
 .badge-colony { background: rgba(88,166,255,.15); color: #58a6ff; border: 1px solid rgba(88,166,255,.3); }
 .badge-supply { background: rgba(248,81,73,.15); color: #f85149; border: 1px solid rgba(248,81,73,.3); }
+.badge-prosperity { background: rgba(201,168,76,.12); color: var(--gold); border: 1px solid rgba(201,168,76,.3); }
+.badge-event { background: rgba(249,115,22,.12); color: #f97316; border: 1px solid rgba(249,115,22,.3); }
+.badge-landmark { background: rgba(63,185,80,.12); color: #3fb950; border: 1px solid rgba(63,185,80,.3); }
+.badge-project { background: rgba(88,166,255,.12); color: #58a6ff; border: 1px solid rgba(88,166,255,.3); }
+.badge-ally { background: rgba(244,63,94,.12); color: #f43f5e; border: 1px solid rgba(244,63,94,.3); }
+.badge-way { background: rgba(167,139,250,.12); color: #a78bfa; border: 1px solid rgba(167,139,250,.3); }
+.badge-trait { background: rgba(6,182,212,.12); color: #06b6d4; border: 1px solid rgba(6,182,212,.3); }
+.badge-prophecy { background: rgba(232,121,249,.12); color: #e879f9; border: 1px solid rgba(232,121,249,.3); }
 
 /* ── COIN ── */
 .coin {
@@ -490,9 +500,44 @@ select:focus { outline: none; border-color: var(--gold); }
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 640px) {
-  .section { padding: 1rem; }
+@media (max-width: 768px) {
+  .section { padding: 1.25rem; }
+  header { padding: 1rem 1.25rem; }
   .charts-row { grid-template-columns: 1fr; }
+  .chart-box canvas { max-height: 220px; }
+  .stats-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 540px; }
+  .facts-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .kingdom-display { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .modal-box { padding: 1.25rem; border-radius: 12px; }
+  .kingdom-cards-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: .4rem; }
+  .exp-checkboxes { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .mode-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .player-detail { padding: 1rem; }
+  .charts-row[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 1rem; }
+  header { padding: .85rem 1rem; }
+  .tab-btn { padding: .75rem .9rem; font-size: .8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card .value { font-size: 1.6rem; }
+  .facts-grid { grid-template-columns: 1fr; }
+  .cards-filter { gap: .5rem; }
+  .search-bar { max-width: 100%; }
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal-box { border-bottom-left-radius: 0; border-bottom-right-radius: 0; max-height: 92vh; border-radius: 16px 16px 0 0; }
   .modal-card-layout { grid-template-columns: 1fr; }
-  .modal-card-img-wrap { max-width: 200px; margin: 0 auto; }
+  .modal-card-img-wrap { max-width: 160px; margin: 0 auto; }
+  .kingdom-cards-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: .3rem; }
+  .game-row { padding: .75rem 1rem; }
+  .game-row .gh { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .section-title { font-size: 1.2rem; }
+  .gen-btn { width: 100%; }
+  .sug-section { padding: 1rem; }
+  .chips { gap: .35rem; }
+  .chip { padding: .3rem .65rem; font-size: .74rem; }
 }

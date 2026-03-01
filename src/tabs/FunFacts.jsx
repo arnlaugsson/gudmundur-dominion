@@ -4,22 +4,39 @@ import DATA from '../data'
 const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
 function formatMonth(yyyyMM) {
-  const [y, m] = yyyyMM.split('.')
+  const [y, m] = yyyyMM.split(/[-.]/)
   return `${MONTH_NAMES[parseInt(m, 10) - 1]} ${y}`
 }
 
-function Fact({ icon, title, value, desc }) {
+function Fact({ icon, title, value, desc, gameNums, onGameNav }) {
   return (
     <div className="fact-card">
       <div className="fi">{icon}</div>
       <div className="ft">{title}</div>
       {value && <div className="fv">{value}</div>}
       <div className="fd">{desc}</div>
+      {gameNums?.length > 0 && onGameNav && (
+        <div style={{ display: 'flex', gap: '.35rem', flexWrap: 'wrap', marginTop: '.25rem' }}>
+          {gameNums.map(n => (
+            <button
+              key={n}
+              onClick={() => onGameNav(n)}
+              style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: '4px',
+                padding: '.2rem .5rem', fontSize: '.72rem', color: 'var(--gold)', cursor: 'pointer',
+                fontFamily: 'inherit', transition: 'border-color .15s' }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--gold)'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
+            >
+              #{n} →
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
-export default function FunFacts() {
+export default function FunFacts({ onGameNav }) {
   const { games, players, cards } = DATA
 
   const facts = useMemo(() => {
@@ -216,31 +233,37 @@ export default function FunFacts() {
         icon: '🏆', title: 'Highest Score Ever',
         value: `${highScore.score} pts`,
         desc: `${highScore.name} in game #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''} — an all-time points record`,
+        gameNums: [highScore.game],
       },
       maxTotalScore && {
         icon: '💥', title: 'Highest Scoring Game',
         value: `${maxTotalScore.total} pts total`,
         desc: `Game #${maxTotalScore.game}${maxTotalScore.date ? ` (${maxTotalScore.date})` : ''} — the most points ever scored across all players in a single game`,
+        gameNums: [maxTotalScore.game],
       },
       lowScore && {
         icon: '😬', title: 'Lowest Score',
         value: `${lowScore.score} pts`,
         desc: `${lowScore.name} in game #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — we don't talk about this one`,
+        gameNums: [lowScore.game],
       },
       biggestBlowout && {
         icon: '🌊', title: 'Biggest Blowout',
         value: `${biggestBlowout.gap} pts`,
         desc: `Game #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) crushed ${biggestBlowout.loser} (${biggestBlowout.loserScore}). Absolutely dominant.`,
+        gameNums: [biggestBlowout.game],
       },
       tiedGames.length > 0 && {
         icon: '🤝', title: 'Dead Heats',
         value: `${tiedGames.length} tied game${tiedGames.length === 1 ? '' : 's'}`,
         desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1st and 2nd place finished with the exact same score. A tiebreaker had to decide the winner!`,
+        gameNums: tiedGames.map(g => g.game_num),
       },
       nailBiter && nailBiter.gap > 0 && {
         icon: '😰', title: 'Nail-Biter',
         value: `${nailBiter.gap} pt margin`,
         desc: `Game #${nailBiter.game}: ${nailBiter.winner} edged out ${nailBiter.runnerUp} by just ${nailBiter.gap} point${nailBiter.gap === 1 ? '' : 's'}${nailBiter.date ? ` (${nailBiter.date})` : ''}`,
+        gameNums: [nailBiter.game],
       },
       bestScorer && {
         icon: '💰', title: 'Highest Average Score',
@@ -302,11 +325,13 @@ export default function FunFacts() {
         icon: '🎉', title: 'Biggest Game',
         value: `${biggestGame.players.length} players`,
         desc: `Game #${biggestGame.game_num} — ${biggestGame.players.join(', ')}`,
+        gameNums: [biggestGame.game_num],
       },
       biggestKingdom && biggestKingdom.kingdom.length > 10 && {
         icon: '👑', title: 'Largest Kingdom',
         value: `${biggestKingdom.kingdom.length} cards`,
         desc: `Game #${biggestKingdom.game_num} had the most kingdom cards`,
+        gameNums: [biggestKingdom.game_num],
       },
       mostCommonCount && {
         icon: '👥', title: 'Favourite Format',
@@ -329,6 +354,7 @@ export default function FunFacts() {
         icon: '📦', title: 'Most Expansions in a Game',
         value: `${mostExpGame.expansions.length} expansions`,
         desc: `Game #${mostExpGame.game_num}: ${mostExpGame.expansions.join(', ')}`,
+        gameNums: [mostExpGame.game_num],
       },
     ].filter(Boolean)
   }, [games, players, cards])
@@ -338,7 +364,7 @@ export default function FunFacts() {
       <h2 className="section-title">Fun Facts &amp; Club Records</h2>
       <div className="facts-grid">
         {facts.map((f, i) => (
-          <Fact key={i} {...f} />
+          <Fact key={i} {...f} onGameNav={onGameNav} />
         ))}
       </div>
     </section>

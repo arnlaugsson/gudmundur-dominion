@@ -11,8 +11,10 @@ export default function CardModal({ card, onClose }) {
 
   if (!card) return null
 
+  const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
   const gamesWithCard = DATA.games.filter(g =>
-    g.kingdom.some(k => k.card === card.name)
+    g.kingdom.some(k => k.card === card.name) ||
+    EXTRA_FIELDS.some(f => g[f]?.includes(card.name))
   )
 
   function costBadge() {

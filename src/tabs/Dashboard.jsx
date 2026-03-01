@@ -1,7 +1,9 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import useChart from '../hooks/useChart'
 import DATA from '../data'
 import { PALETTE } from '../constants'
+import CardImage from '../components/CardImage'
+import CardModal from '../components/CardModal'
 
 function StatCard({ label, value, sub }) {
   return (
@@ -14,7 +16,13 @@ function StatCard({ label, value, sub }) {
 }
 
 export default function Dashboard() {
-  const { games, players } = DATA
+  const { games, players, cards } = DATA
+  const [selectedCard, setSelectedCard] = useState(null)
+
+  const randomCard = useState(() => {
+    const pool = cards.filter(c => !c.isSupplyCard && !c.removed && c.times_used > 0)
+    return pool[Math.floor(Math.random() * pool.length)] || null
+  })[0]
 
   const stats = useMemo(() => {
     const totalGames = games.length
@@ -47,7 +55,7 @@ export default function Dashboard() {
   const expansionRef = useChart(() => {
     const counts = {}
     games.forEach(g => g.expansions.forEach(e => { counts[e] = (counts[e] || 0) + 1 }))
-    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10)
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1])
     return {
       type: 'bar',
       data: {
@@ -56,10 +64,11 @@ export default function Dashboard() {
       },
       options: {
         indexAxis: 'y',
+        maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
           x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.text, font: { size: 11 } }, grid: { display: false } },
+          y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
         },
       },
     }
@@ -141,6 +150,66 @@ export default function Dashboard() {
 
   return (
     <section className="section active">
+      {randomCard && (() => {
+        const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
+        const cardGames = games.filter(g =>
+          g.kingdom.some(k => k.card === randomCard.name) ||
+          EXTRA_FIELDS.some(f => g[f]?.includes(randomCard.name))
+        )
+        const recentGames = [...cardGames].slice(-5).reverse()
+        const winRate = cardGames.length > 0
+          ? Math.round(cardGames.filter(g => players.find(p => p.name === g.results[0]?.name)).length / cardGames.length * 100)
+          : null
+        return (
+          <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
+            <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.85rem' }}>Random Card</div>
+            <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+              <div
+                style={{ flexShrink: 0, width: 90, borderRadius: 8, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
+                onClick={() => setSelectedCard(randomCard)}
+              >
+                <CardImage name={randomCard.name} style={{ width: '100%', display: 'block' }} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{ fontFamily: 'Cinzel, serif', fontSize: '1.15rem', color: 'var(--gold)', marginBottom: '.2rem', cursor: 'pointer' }}
+                  onClick={() => setSelectedCard(randomCard)}
+                >
+                  {randomCard.name}
+                </div>
+                <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '.6rem' }}>{randomCard.expansion}</div>
+                <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '.75rem', flexWrap: 'wrap' }}>
+                  <div>
+                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em' }}>Times played</div>
+                    <div style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)', lineHeight: 1.2 }}>{randomCard.times_used}</div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em' }}>In % of games</div>
+                    <div style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)', lineHeight: 1.2 }}>
+                      {games.length > 0 ? Math.round(randomCard.times_used / games.length * 100) : 0}%
+                    </div>
+                  </div>
+                </div>
+                {recentGames.length > 0 && (
+                  <div>
+                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.4rem' }}>Recent Games</div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
+                      {recentGames.map(g => (
+                        <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.28rem .6rem', display: 'flex', gap: '.5rem' }}>
+                          <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
+                          <span style={{ color: 'var(--dim)' }}>{g.date}</span>
+                          {g.results[0]?.name && <><span style={{ color: 'var(--dim)' }}>·</span><span>{g.results[0].name} won</span></>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )
+      })()}
+
       <div className="stats-grid">
         <StatCard label="Total Games" value={stats.totalGames} />
         <StatCard label="Active Players" value={stats.totalPlayers} />
@@ -152,13 +221,20 @@ export default function Dashboard() {
 
       <div className="charts-row">
         <div className="chart-box"><h3>VICTORY TYPES</h3><canvas ref={victoryRef} /></div>
-        <div className="chart-box"><h3>MOST USED EXPANSIONS</h3><canvas ref={expansionRef} /></div>
         <div className="chart-box" style={{ gridColumn: 'span 2 / auto' }}><h3>GAMES PER MONTH</h3><canvas ref={monthlyRef} /></div>
+      </div>
+      <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
+        <h3>MOST USED EXPANSIONS</h3>
+        <div style={{ height: '420px', position: 'relative' }}>
+          <canvas ref={expansionRef} />
+        </div>
       </div>
       <div className="charts-row">
         <div className="chart-box"><h3>AVERAGE SCORE PER GAME (trend)</h3><canvas ref={scoresRef} /></div>
         <div className="chart-box"><h3>PLAYER PARTICIPATION</h3><canvas ref={participationRef} /></div>
       </div>
+
+      {selectedCard && <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />}
     </section>
   )
 }

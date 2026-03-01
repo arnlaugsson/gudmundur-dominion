@@ -1,8 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import CardImage from './CardImage'
-import { wikiUrl } from '../constants'
+import CardModal from './CardModal'
+import DATA from '../data'
+
+const EXTRA_COLORS = { event: '#f97316', landmark: '#3fb950', project: '#58a6ff', way: '#a78bfa', ally: '#f43f5e', trait: '#06b6d4', prophecy: '#e879f9' }
 
 export default function GameModal({ game, onClose }) {
+  const [selectedCard, setSelectedCard] = useState(null)
+
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -10,6 +15,11 @@ export default function GameModal({ game, onClose }) {
   }, [onClose])
 
   if (!game) return null
+
+  function openCard(cardName) {
+    const card = DATA.cards.find(c => c.name === cardName) || { name: cardName, expansion: null, cost: null, times_used: 0 }
+    setSelectedCard(card)
+  }
 
   const extras = [
     ...game.events.map(e => ({ label: e, type: 'event' })),
@@ -28,6 +38,7 @@ export default function GameModal({ game, onClose }) {
   }[game.victory_type] || 'badge-province'
 
   return (
+    <>
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box modal-game" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
@@ -69,17 +80,16 @@ export default function GameModal({ game, onClose }) {
             </div>
             <div className="kingdom-cards-grid">
               {game.kingdom.map(k => (
-                <a
+                <div
                   key={k.card}
-                  href={wikiUrl(k.card)}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="kingdom-card-thumb"
                   title={k.card}
+                  onClick={() => openCard(k.card)}
+                  style={{ cursor: 'pointer' }}
                 >
                   <CardImage name={k.card} className="kingdom-card-img" loading="eager" />
                   <div className="kingdom-card-name">{k.card}</div>
-                </a>
+                </div>
               ))}
             </div>
           </div>
@@ -88,15 +98,29 @@ export default function GameModal({ game, onClose }) {
         {/* Extras */}
         {extras.length > 0 && (
           <div>
-            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Extras</div>
-            <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' }}>
+            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Extras ({extras.length})</div>
+            <div className="kingdom-cards-grid">
               {extras.map(ex => (
-                <span key={ex.label} className={`kchip kchip-${ex.type}`}>{ex.label}</span>
+                <div
+                  key={ex.label}
+                  className="kingdom-card-thumb"
+                  title={ex.label}
+                  onClick={() => openCard(ex.label)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <CardImage name={ex.label} className="kingdom-card-img" loading="eager" />
+                  <div className="kingdom-card-name" style={{ color: EXTRA_COLORS[ex.type] || 'var(--dim)' }}>{ex.label}</div>
+                </div>
               ))}
             </div>
           </div>
         )}
       </div>
     </div>
+
+    {selectedCard && (
+      <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />
+    )}
+  </>
   )
 }

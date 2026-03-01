@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from 'react'
+import { useState, Suspense, lazy, useCallback } from 'react'
 import Header from './components/Header'
 import Nav from './components/Nav'
 
@@ -8,15 +8,6 @@ const Cards = lazy(() => import('./tabs/Cards'))
 const History = lazy(() => import('./tabs/History'))
 const FunFacts = lazy(() => import('./tabs/FunFacts'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
-
-const TAB_COMPONENTS = {
-  dashboard: Dashboard,
-  players: Players,
-  cards: Cards,
-  history: History,
-  funfacts: FunFacts,
-  suggester: Suggester,
-}
 
 function Loading() {
   return (
@@ -28,7 +19,14 @@ function Loading() {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard')
-  const TabComponent = TAB_COMPONENTS[activeTab]
+  const [targetGame, setTargetGame] = useState(null)
+
+  const handleGameNav = useCallback((gameNum) => {
+    setTargetGame(gameNum)
+    setActiveTab('history')
+  }, [])
+
+  const clearTarget = useCallback(() => setTargetGame(null), [])
 
   return (
     <>
@@ -36,7 +34,12 @@ export default function App() {
       <Nav active={activeTab} onSelect={setActiveTab} />
       <main>
         <Suspense fallback={<Loading />}>
-          <TabComponent />
+          {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'players' && <Players />}
+          {activeTab === 'cards' && <Cards />}
+          {activeTab === 'history' && <History targetGame={targetGame} onClearTarget={clearTarget} />}
+          {activeTab === 'funfacts' && <FunFacts onGameNav={handleGameNav} />}
+          {activeTab === 'suggester' && <Suggester />}
         </Suspense>
       </main>
     </>
