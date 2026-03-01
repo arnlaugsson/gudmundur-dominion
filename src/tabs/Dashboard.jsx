@@ -104,7 +104,7 @@ export default function Dashboard() {
     return {
       type: 'bar',
       data: {
-        labels: sorted.map(([e]) => EXP_YEAR_LOCAL[e] ? `${e} (${EXP_YEAR_LOCAL[e]})` : e),
+        labels: sorted.map(([e]) => EXP_YEAR[e] ? `${e} (${EXP_YEAR[e]})` : e),
         datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.gold + '99', borderColor: PALETTE.gold, borderWidth: 1 }],
       },
       options: {
