@@ -42,7 +42,7 @@ export default function Dashboard() {
     const opponents = {}
     pgames.forEach(g => {
       g.results.forEach(r => {
-        if (r.name !== p.name && r.name !== 'Mumma') opponents[r.name] = (opponents[r.name] || 0) + 1
+        if (r.name !== p.name && r.name !== 'Mummi') opponents[r.name] = (opponents[r.name] || 0) + 1
       })
     })
     const topOpponent = Object.entries(opponents).sort((a, b) => b[1] - a[1])[0]
