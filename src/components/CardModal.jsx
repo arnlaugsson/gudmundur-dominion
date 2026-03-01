@@ -44,23 +44,23 @@ export default function CardModal({ card, onClose }) {
               {card.isSecondEdition && <span className="tag tag-2nd" style={{ marginLeft: '.5rem' }}>2nd Ed.</span>}
             </div>
             <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center' }}>
-              <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Cost:</span>
+              <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Verð:</span>
               {costBadge()}
             </div>
             <div style={{ marginBottom: '1rem' }}>
-              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.3rem' }}>Times in Kingdom</div>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.3rem' }}>Skipti spiluð</div>
               <div style={{ fontSize: '2rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)' }}>{card.times_used}</div>
             </div>
             {gamesWithCard.length > 0 && (
               <div>
-                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Recent Games</div>
+                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Nýlegir leikir</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem', maxHeight: '160px', overflowY: 'auto' }}>
                   {gamesWithCard.slice(-6).reverse().map(g => (
                     <div key={g.game_num} style={{ fontSize: '.8rem', color: 'var(--text)', background: 'var(--bg3)', borderRadius: '4px', padding: '.3rem .6rem' }}>
                       <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
                       <span style={{ color: 'var(--dim)', marginLeft: '.5rem' }}>{g.date}</span>
                       <span style={{ marginLeft: '.5rem' }}>{g.results[0]?.name}</span>
-                      <span style={{ color: 'var(--dim)', marginLeft: '.25rem' }}>won</span>
+                      <span style={{ color: 'var(--dim)', marginLeft: '.25rem' }}>vann</span>
                     </div>
                   ))}
                 </div>
@@ -73,7 +73,7 @@ export default function CardModal({ card, onClose }) {
               className="wiki-link"
               style={{ marginTop: '1rem', display: 'inline-block' }}
             >
-              Open on Dominion Strategy Wiki ↗
+              Opna á Dominion Strategy Wiki ↗
             </a>
           </div>
         </div>

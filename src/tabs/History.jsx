@@ -61,13 +61,13 @@ export default function History({ targetGame, onClearTarget }) {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Game History</h2>
+      <h2 className="section-title">Leikasaga</h2>
 
       <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginBottom: filterPlayers.length > 0 ? '.5rem' : '1rem', alignItems: 'center' }}>
         <input
           type="text"
           className="search-bar"
-          placeholder="Search by player, card, location..."
+          placeholder="Leita eftir leikmann, korti, stað..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
@@ -77,24 +77,24 @@ export default function History({ targetGame, onClearTarget }) {
           onChange={e => { addPlayer(e.target.value); e.target.value = '' }}
           style={{ minWidth: '130px' }}
         >
-          <option value="">Filter by player…</option>
+          <option value="">Sía eftir leikmann…</option>
           {availablePlayers.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
         </select>
         <select value={filterExp} onChange={e => setFilterExp(e.target.value)}>
-          <option value="">All Expansions</option>
+          <option value="">Allar viðbætur</option>
           {expansions.map(e => <option key={e} value={e}>{e}</option>)}
         </select>
         <select value={filterVictory} onChange={e => setFilterVictory(e.target.value)}>
-          <option value="">All Victory Types</option>
-          <option value="Province">Province</option>
-          <option value="Colony">Colony</option>
-          <option value="Supply piles">Supply Piles</option>
+          <option value="">Allar sigurtegundir</option>
+          <option value="Province">Héraðið</option>
+          <option value="Colony">Nýlendur</option>
+          <option value="Supply piles">Birgðahrúgar</option>
         </select>
       </div>
 
       {filterPlayers.length > 0 && (
         <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginBottom: '1rem', alignItems: 'center' }}>
-          <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Players:</span>
+          <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Leikmenn:</span>
           {filterPlayers.map(name => (
             <button
               key={name}
@@ -117,14 +117,14 @@ export default function History({ targetGame, onClearTarget }) {
               cursor: 'pointer', fontFamily: 'inherit',
             }}
           >
-            Clear
+            Hreinsa
           </button>
         </div>
       )}
 
       <div style={{ fontSize: '.82rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
-        {filtered.length} game{filtered.length !== 1 ? 's' : ''}
-        {filterPlayers.length > 1 && <span style={{ marginLeft: '.4rem' }}>with all {filterPlayers.length} players</span>}
+        {filtered.length} leik{filtered.length !== 1 ? 'ir' : 'ur'}
+        {filterPlayers.length > 1 && <span style={{ marginLeft: '.4rem' }}>með alla {filterPlayers.length} leikendur</span>}
       </div>
 
       <div>
@@ -159,7 +159,7 @@ export default function History({ targetGame, onClearTarget }) {
                 {game.results.slice(0, 3).map(r => (
                   <span key={r.place} className={`p${r.place}`}>
                     {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : '🥉'} {r.name}
-                    {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}pts</span>}
+                    {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
                   </span>
                 ))}
               </div>

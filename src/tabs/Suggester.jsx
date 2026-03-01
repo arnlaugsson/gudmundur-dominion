@@ -4,10 +4,10 @@ import CardModal from '../components/CardModal'
 import DATA from '../data'
 
 const MODES = [
-  { id: 'random', icon: '🎲', name: 'Pure Random', desc: 'Completely random kingdom' },
-  { id: 'least', icon: '🦗', name: 'Forgotten Cards', desc: 'Cards least often in the kingdom' },
-  { id: 'favorites', icon: '⭐', name: 'Fan Favorites', desc: 'Most beloved cards from history' },
-  { id: 'balanced', icon: '⚖️', name: 'Balanced', desc: 'Mix of new and familiar cards' },
+  { id: 'random',    icon: '🎲', name: 'Hrein tilviljun', desc: 'Algjörlega handahófskennt ríki' },
+  { id: 'least',     icon: '🦗', name: 'Gleymdu kortin',  desc: 'Kortin sem eru sjaldnast í ríkinu' },
+  { id: 'favorites', icon: '⭐', name: 'Uppáhald allra',  desc: 'Vinsælustu kortin í sögu klúbbsins' },
+  { id: 'balanced',  icon: '⚖️', name: 'Jafnvægt',        desc: 'Blanda af nýjum og kunnuglegum kortum' },
 ]
 
 function CostBadge({ card }) {
@@ -68,10 +68,10 @@ export default function Suggester() {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Kingdom Suggester</h2>
+      <h2 className="section-title">Ríkistillögur</h2>
 
       <div className="sug-section">
-        <h3>SUGGESTION MODE</h3>
+        <h3>TEGUND TILLÖGU</h3>
         <div className="mode-grid">
           {MODES.map(m => (
             <button key={m.id} className={`mode-card${mode === m.id ? ' selected' : ''}`} onClick={() => setMode(m.id)}>
@@ -84,7 +84,7 @@ export default function Suggester() {
       </div>
 
       <div className="sug-section">
-        <h3>EXPANSIONS <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— leave all unchecked for any</span></h3>
+        <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— skildu eftir ómerkt til að nota allar</span></h3>
         <div className="exp-checkboxes">
           {kingdomExpansions.map(e => (
             <label key={e} className="exp-check">
@@ -99,7 +99,7 @@ export default function Suggester() {
         </div>
       </div>
 
-      <button className="gen-btn" onClick={generate}>Generate Kingdom</button>
+      <button className="gen-btn" onClick={generate}>Búa til ríki</button>
 
       {kingdom.length > 0 && (
         <div>
@@ -120,7 +120,7 @@ export default function Suggester() {
                   <div className="ke">{card.expansion}</div>
                   <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
                     <CostBadge card={card} />
-                    <span className="kt">{card.times_used}x used</span>
+                    <span className="kt">{card.times_used}× notað</span>
                   </div>
                 </div>
               </div>

@@ -211,149 +211,149 @@ export default function FunFacts({ onGameNav }) {
 
     // ── Build facts list ──────────────────────────────────────────────────────
     return [
-      // History & milestones
+      // Saga & tímamörk
       missingCount > 0 && {
-        icon: '📜', title: 'Lost to History',
-        value: `${missingCount} game${missingCount === 1 ? '' : 's'} unrecorded`,
-        desc: `Records begin at game #${firstKnownGame}. The first ${missingCount} game${missingCount === 1 ? ' was' : 's were'} played before anyone thought to start a spreadsheet — lost to legend!`,
+        icon: '📜', title: 'Glatað í sögunni',
+        value: `${missingCount} leik${missingCount === 1 ? 'ur' : 'ir'} óskráðir`,
+        desc: `Færslur hefjast á leik #${firstKnownGame}. Fyrstu ${missingCount} leikirnir voru spilaðir áður en nokkur hugðist halda utan um þá — glataðir í sögunni!`,
       },
       topLocationEntry && {
-        icon: '🏠', title: 'Home Turf',
+        icon: '🏠', title: 'Heimavöllur',
         value: topLocationEntry[0],
-        desc: `The club's go-to venue — ${topLocationEntry[1]} games played there. There's no place like home for Dominion.`,
+        desc: `Uppáhaldsstaðurinn — ${topLocationEntry[1]} leikir spilaðir þar. Ekkert eins og heimavöllur!`,
       },
       busiestMonth && {
-        icon: '📅', title: 'Peak Season',
+        icon: '📅', title: 'Fjölmennastur mánuður',
         value: formatMonth(busiestMonth[0]),
-        desc: `The club's busiest month ever with ${busiestMonth[1]} games. Summer Dominion hits different!`,
+        desc: `Fjölmennasti mánuður klúbbsins með ${busiestMonth[1]} leiki. Sumarleg Dominion er sérstök!`,
       },
 
-      // Score records
+      // Stigamet
       highScore && {
-        icon: '🏆', title: 'Highest Score Ever',
-        value: `${highScore.score} pts`,
-        desc: `${highScore.name} in game #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''} — an all-time points record`,
+        icon: '🏆', title: 'Hæsta skor nokkurnsinm',
+        value: `${highScore.score} stig`,
+        desc: `${highScore.name} í leik #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''} — met í stigafjölda allra tíma`,
         gameNums: [highScore.game],
       },
       maxTotalScore && {
-        icon: '💥', title: 'Highest Scoring Game',
-        value: `${maxTotalScore.total} pts total`,
-        desc: `Game #${maxTotalScore.game}${maxTotalScore.date ? ` (${maxTotalScore.date})` : ''} — the most points ever scored across all players in a single game`,
+        icon: '💥', title: 'Stigaríkasti leikurinn',
+        value: `${maxTotalScore.total} stig alls`,
+        desc: `Leikur #${maxTotalScore.game}${maxTotalScore.date ? ` (${maxTotalScore.date})` : ''} — flestu stig á einum leik`,
         gameNums: [maxTotalScore.game],
       },
       lowScore && {
-        icon: '😬', title: 'Lowest Score',
-        value: `${lowScore.score} pts`,
-        desc: `${lowScore.name} in game #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — we don't talk about this one`,
+        icon: '😬', title: 'Lægsta skor',
+        value: `${lowScore.score} stig`,
+        desc: `${lowScore.name} í leik #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — við tölum ekki um þetta`,
         gameNums: [lowScore.game],
       },
       biggestBlowout && {
-        icon: '🌊', title: 'Biggest Blowout',
-        value: `${biggestBlowout.gap} pts`,
-        desc: `Game #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) crushed ${biggestBlowout.loser} (${biggestBlowout.loserScore}). Absolutely dominant.`,
+        icon: '🌊', title: 'Stærsti sigur',
+        value: `${biggestBlowout.gap} stiga munur`,
+        desc: `Leikur #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) bræðdi ${biggestBlowout.loser} (${biggestBlowout.loserScore}). Algert yfirburðaspil.`,
         gameNums: [biggestBlowout.game],
       },
       tiedGames.length > 0 && {
-        icon: '🤝', title: 'Dead Heats',
-        value: `${tiedGames.length} tied game${tiedGames.length === 1 ? '' : 's'}`,
-        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1st and 2nd place finished with the exact same score. A tiebreaker had to decide the winner!`,
+        icon: '🤝', title: 'Jafnar lokur',
+        value: `${tiedGames.length} jafn${tiedGames.length === 1 ? 'ur leikur' : 'ir leikir'}`,
+        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1. og 2. sæti enduðu með sömu stig. Leikniður þurfti að ráða úrslitum!`,
         gameNums: tiedGames.map(g => g.game_num),
       },
       nailBiter && nailBiter.gap > 0 && {
-        icon: '😰', title: 'Nail-Biter',
-        value: `${nailBiter.gap} pt margin`,
-        desc: `Game #${nailBiter.game}: ${nailBiter.winner} edged out ${nailBiter.runnerUp} by just ${nailBiter.gap} point${nailBiter.gap === 1 ? '' : 's'}${nailBiter.date ? ` (${nailBiter.date})` : ''}`,
+        icon: '😰', title: 'Spennumesti leikurinn',
+        value: `${nailBiter.gap} stiga munur`,
+        desc: `Leikur #${nailBiter.game}: ${nailBiter.winner} vann yfir ${nailBiter.runnerUp} með aðeins ${nailBiter.gap} stigi${nailBiter.gap !== 1 ? 'um' : ''}${nailBiter.date ? ` (${nailBiter.date})` : ''}`,
         gameNums: [nailBiter.game],
       },
       bestScorer && {
-        icon: '💰', title: 'Highest Average Score',
-        value: `${bestScorer.gpa.toFixed(1)} pts`,
-        desc: `${bestScorer.name} averages ${bestScorer.gpa.toFixed(1)} pts per game (min 5 scored games)`,
+        icon: '💰', title: 'Hæsta meðalskor',
+        value: `${bestScorer.gpa.toFixed(1)} stig`,
+        desc: `${bestScorer.name} er með ${bestScorer.gpa.toFixed(1)} meðalstig á leik (min. 5 metin leikir)`,
       },
 
-      // Player records
+      // Leikendamet
       topStreak && topStreak.streak > 1 && {
-        icon: '🔥', title: 'Longest Win Streak',
-        value: `${topStreak.streak} in a row`,
-        desc: `${topStreak.name} went on an unstoppable run — ${topStreak.streak} consecutive wins`,
+        icon: '🔥', title: 'Lengsta sigurröð',
+        value: `${topStreak.streak} í röð`,
+        desc: `${topStreak.name} fór á óstöðvanlegt skrið — ${topStreak.streak} sigurleikar í röð`,
       },
       runnerUp && {
-        icon: '🥈', title: 'Runner-up King',
-        value: `${runnerUp.second}× second place`,
-        desc: `${runnerUp.name} has finished 2nd more than anyone else. So close, so many times — a silver lining legend.`,
+        icon: '🥈', title: 'Smiður á 2. sæti',
+        value: `${runnerUp.second}× í 2. sæti`,
+        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkur annar. Svo nálægt, svo oft — silfursætisgengni!`,
       },
       lastPlaceKing && {
-        icon: '🎯', title: 'Generous Loser',
-        value: `${lastPlaceKing[1]} last places`,
-        desc: `${lastPlaceKing[0]} has generously donated ${lastPlaceKing[1]} last-place finishes to the statistics. Every club needs someone to keep the others' egos in check.`,
+        icon: '🎯', title: 'Hinn góðgjarna taparinn',
+        value: `${lastPlaceKing[1]} síðustu sæti`,
+        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhvern til að halda egói annarra í skefjum.`,
       },
       neverWon.length > 0 && {
-        icon: '🌱', title: 'Still Searching for Glory',
-        value: `${neverWon.length} player${neverWon.length === 1 ? '' : 's'}`,
-        desc: `${neverWon.map(p => `${p.name} (${p.games} games)`).join(', ')} — yet to claim a first win. Every champion was once a beginner!`,
+        icon: '🌱', title: 'Enn í leit að dýrðinni',
+        value: `${neverWon.length} leikmaður${neverWon.length !== 1 ? 'menn' : ''}`,
+        desc: `${neverWon.map(p => `${p.name} (${p.games} leikir)`).join(', ')} — hefur ekki unnið enn. Sérhver meistari var einu sinni byrjandi!`,
       },
       expExplorer && {
-        icon: '🗺️', title: 'Expansion Explorer',
+        icon: '🗺️', title: 'Viðbótar-rannsakandi',
         value: `${expExplorer.name}`,
-        desc: `Has played in games featuring ${expExplorer.count} different expansion sets — the most well-travelled player in the club`,
+        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — fjölbreyttastur leikmanna`,
       },
 
-      // Cards
+      // Spil
       topCard && {
-        icon: '♣', title: 'Most Beloved Card',
+        icon: '♣', title: 'Uppáhaldskortin',
         value: topCard.name,
-        desc: `Appeared in ${topCard.times_used} kingdoms — the club's undisputed favourite`,
+        desc: `Kom fyrir í ${topCard.times_used} ríkjum — uppáhald klúbbsins`,
       },
       topPair && {
-        icon: '🔗', title: 'Power Couple',
+        icon: '🔗', title: 'Kraftapari',
         value: `${topPair.cards[0]} + ${topPair.cards[1]}`,
-        desc: `These two cards have been in the same kingdom ${topPair.count} times — a match made in Dominion heaven`,
+        desc: `Þessi tvö spil hafa verið í sama ríki ${topPair.count} sinnum — skapaðar fyrir hvort annað`,
       },
       leastUsed && {
-        icon: '🦗', title: 'Forgotten Card',
+        icon: '🦗', title: 'Gleymda kortið',
         value: leastUsed.name,
-        desc: `Only appeared ${leastUsed.times_used} time${leastUsed.times_used === 1 ? '' : 's'} — clearly not a crowd-pleaser`,
+        desc: `Kom aðeins fyrir ${leastUsed.times_used} sinni${leastUsed.times_used !== 1 ? 'um' : ''} — greinilega ekki vinsælt`,
       },
       neverUsed.length > 0 && {
-        icon: '👻', title: 'Untouched Cards',
-        value: `${neverUsed.length} cards`,
-        desc: `${neverUsed.slice(0, 3).map(c => c.name).join(', ')}${neverUsed.length > 3 ? `… and ${neverUsed.length - 3} more` : ''} — never made it into a kingdom`,
+        icon: '👻', title: 'Ósnert spil',
+        value: `${neverUsed.length} spil`,
+        desc: `${neverUsed.slice(0, 3).map(c => c.name).join(', ')}${neverUsed.length > 3 ? `… og ${neverUsed.length - 3} til viðbótar` : ''} — hafa aldrei komið í ríki`,
       },
 
-      // Game formats
+      // Leiksnið
       biggestGame && {
-        icon: '🎉', title: 'Biggest Game',
-        value: `${biggestGame.players.length} players`,
-        desc: `Game #${biggestGame.game_num} — ${biggestGame.players.join(', ')}`,
+        icon: '🎉', title: 'Stærsti leikurinn',
+        value: `${biggestGame.players.length} leikmenn`,
+        desc: `Leikur #${biggestGame.game_num} — ${biggestGame.players.join(', ')}`,
         gameNums: [biggestGame.game_num],
       },
       biggestKingdom && biggestKingdom.kingdom.length > 10 && {
-        icon: '👑', title: 'Largest Kingdom',
-        value: `${biggestKingdom.kingdom.length} cards`,
-        desc: `Game #${biggestKingdom.game_num} had the most kingdom cards`,
+        icon: '👑', title: 'Stærsta ríkið',
+        value: `${biggestKingdom.kingdom.length} spil`,
+        desc: `Leikur #${biggestKingdom.game_num} var með flest ríkiskort`,
         gameNums: [biggestKingdom.game_num],
       },
       mostCommonCount && {
-        icon: '👥', title: 'Favourite Format',
-        value: `${mostCommonCount[0]}-player`,
-        desc: `${mostCommonCount[1]} out of ${games.length} games (${Math.round(mostCommonCount[1] / games.length * 100)}%) have been ${mostCommonCount[0]}-player games. The club's sweet spot.`,
+        icon: '👥', title: 'Uppáhalds snið',
+        value: `${mostCommonCount[0]}-manns`,
+        desc: `${mostCommonCount[1]} af ${games.length} leikjum (${Math.round(mostCommonCount[1] / games.length * 100)}%) eru ${mostCommonCount[0]}-manns leikir. Uppáhalds sniðið.`,
       },
       {
-        icon: '📊', title: 'Average Game Size',
-        value: `${avgPlayers} players`,
-        desc: 'Average number of players per game',
+        icon: '📊', title: 'Meðalstærð leiks',
+        value: `${avgPlayers} leikmenn`,
+        desc: 'Meðalfjöldi leikenda á leik',
       },
       provinceGames + colonyGames > 0 && {
-        icon: '🏛️', title: 'Province vs Colony',
+        icon: '🏛️', title: 'Héraðið vs Nýlendur',
         value: `${provinceGames} vs ${colonyGames}`,
         desc: provinceGames > colonyGames
-          ? 'Province victories reign supreme — Prosperity kingdoms are rare!'
-          : 'Colony games are surprisingly common!',
+          ? 'Héraðssigrar eru ríkjandi — Nýlenduríki eru sjaldgæf!'
+          : 'Nýlenduleikir eru óvænt algengir!',
       },
       mostExpGame && mostExpGame.expansions.length > 2 && {
-        icon: '📦', title: 'Most Expansions in a Game',
-        value: `${mostExpGame.expansions.length} expansions`,
-        desc: `Game #${mostExpGame.game_num}: ${mostExpGame.expansions.join(', ')}`,
+        icon: '📦', title: 'Flestar viðbætur í einum leik',
+        value: `${mostExpGame.expansions.length} viðbætur`,
+        desc: `Leikur #${mostExpGame.game_num}: ${mostExpGame.expansions.join(', ')}`,
         gameNums: [mostExpGame.game_num],
       },
     ].filter(Boolean)
@@ -361,7 +361,7 @@ export default function FunFacts({ onGameNav }) {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Fun Facts &amp; Club Records</h2>
+      <h2 className="section-title">Skemmtilegar staðreyndir &amp; met klúbbsins</h2>
       <div className="facts-grid">
         {facts.map((f, i) => (
           <Fact key={i} {...f} onGameNav={onGameNav} />

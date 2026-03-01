@@ -60,18 +60,18 @@ export default function Players() {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Player Rankings</h2>
+      <h2 className="section-title">Röðun leikenda</h2>
 
       <div className="charts-row" style={{ marginBottom: '1.5rem' }}>
-        <div className="chart-box"><h3>WIN RATE COMPARISON</h3><canvas ref={winrateRef} /></div>
-        <div className="chart-box"><h3>PLACEMENT DISTRIBUTION</h3><canvas ref={placementRef} /></div>
+        <div className="chart-box"><h3>SAMANBURÐUR Á SIGURHLUTFALLI</h3><canvas ref={winrateRef} /></div>
+        <div className="chart-box"><h3>DREIFING SÆTA</h3><canvas ref={placementRef} /></div>
       </div>
 
       <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
-        <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Sort by:</span>
+        <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Raða eftir:</span>
         {['games', 'win_rate', 'gpa', 'first'].map(key => (
           <button key={key} className={`sort-btn${sortKey === key ? ' active' : ''}`} onClick={() => setSortKey(key)}>
-            {key === 'win_rate' ? 'Win Rate' : key === 'gpa' ? 'GPA' : key === 'first' ? 'Wins' : 'Games'}
+            {key === 'win_rate' ? 'Sigurhlutfall' : key === 'gpa' ? 'Meðalskor' : key === 'first' ? 'Sigrar' : 'Leikir'}
           </button>
         ))}
       </div>
@@ -80,9 +80,9 @@ export default function Players() {
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Player</th><th>Games</th>
-              <th>1st</th><th>2nd</th><th>3rd</th><th>4th</th>
-              <th>Win Rate</th><th>Avg Score</th>
+              <th>#</th><th>Leikmaður</th><th>Leikir</th>
+              <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
+              <th>Sigurhlutfall</th><th>Meðalskor</th>
             </tr>
           </thead>
           <tbody>
@@ -179,8 +179,8 @@ function PlayerDetail({ name, games }) {
     <div className="player-detail active">
       <h3 className="cinzel gold" style={{ marginBottom: '1rem', fontSize: '1.3rem' }}>{name}</h3>
       <div className="charts-row" style={{ gridTemplateColumns: '1fr 1fr' }}>
-        <div className="chart-box"><h3>SCORE HISTORY</h3><canvas ref={scoresRef} /></div>
-        <div className="chart-box"><h3>FAVOURITE CARDS IN WINNING GAMES</h3><canvas ref={favCardsRef} /></div>
+        <div className="chart-box"><h3>SKOGSAGA</h3><canvas ref={scoresRef} /></div>
+        <div className="chart-box"><h3>UPPÁHALDSKORTIN Í SIGURLEIKUM</h3><canvas ref={favCardsRef} /></div>
       </div>
     </div>
   )

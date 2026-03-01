@@ -25,10 +25,10 @@ export const PALETTE = {
 }
 
 export const TABS = [
-  { id: 'dashboard', label: '📊 Dashboard' },
-  { id: 'players',   label: '🏆 Players' },
-  { id: 'cards',     label: '♣ Cards' },
-  { id: 'history',   label: '📖 History' },
-  { id: 'funfacts',  label: '🌟 Fun Facts' },
-  { id: 'suggester', label: '🎲 Kingdom Suggester' },
+  { id: 'dashboard', label: '📊 Yfirlit' },
+  { id: 'players',   label: '🏆 Leikmenn' },
+  { id: 'cards',     label: '♣ Spil' },
+  { id: 'history',   label: '📖 Leikasaga' },
+  { id: 'funfacts',  label: '🌟 Skemmtilegt' },
+  { id: 'suggester', label: '🎲 Ríkistillögur' },
 ]
