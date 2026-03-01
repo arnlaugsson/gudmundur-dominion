@@ -42,7 +42,7 @@ export default function Dashboard() {
     const opponents = {}
     pgames.forEach(g => {
       g.results.forEach(r => {
-        if (r.name !== p.name) opponents[r.name] = (opponents[r.name] || 0) + 1
+        if (r.name !== p.name && r.name !== 'Mumma') opponents[r.name] = (opponents[r.name] || 0) + 1
       })
     })
     const topOpponent = Object.entries(opponents).sort((a, b) => b[1] - a[1])[0]
@@ -280,7 +280,7 @@ export default function Dashboard() {
                   { label: 'Sigurhlutfall',  value: `${playerOfDay.player.win_rate.toFixed(0)}%` },
                   { label: 'Meðalskor',      value: playerOfDay.player.avg_score ?? '—' },
                   playerOfDay.bestScore != null && { label: 'Besta skor',  value: playerOfDay.bestScore },
-                  playerOfDay.topOpponent && { label: 'Helsti keppinaður', value: `${playerOfDay.topOpponent[0]} (${playerOfDay.topOpponent[1]}×)` },
+                  playerOfDay.topOpponent && { label: 'Mest spilað við', value: `${playerOfDay.topOpponent[0]} (${playerOfDay.topOpponent[1]}×)` },
                   playerOfDay.favExp && { label: 'Uppáhalds viðbót', value: playerOfDay.favExp[0] },
                 ].filter(Boolean).map(({ label, value }) => (
                   <div key={label} style={{ background: 'var(--bg3)', borderRadius: 6, padding: '.4rem .6rem' }}>
