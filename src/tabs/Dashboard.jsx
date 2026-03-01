@@ -221,6 +221,9 @@ export default function Dashboard() {
                   onClick={() => setSelectedCard(randomCard)}
                 >
                   {randomCard.name}
+                  {randomCard.card_type && randomCard.card_type !== 'Kingdom' && (
+                    <span className={`badge badge-${randomCard.card_type.toLowerCase()}`} style={{ marginLeft: '.5rem', fontSize: '.65rem', verticalAlign: 'middle', padding: '.1rem .4rem' }}>{randomCard.card_type}</span>
+                  )}
                 </div>
                 <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '.6rem' }}>{randomCard.expansion}</div>
                 <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '.75rem', flexWrap: 'wrap' }}>
