@@ -94,10 +94,17 @@ export default function Dashboard() {
     const counts = {}
     games.forEach(g => g.expansions.forEach(e => { counts[e] = (counts[e] || 0) + 1 }))
     const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1])
+    const EXP_YEAR = {
+      'Base': 2008, 'Intrigue': 2009, 'Seaside': 2009, 'Alchemy': 2010,
+      'Prosperity': 2010, 'Cornucopia & Guilds': 2011, 'Hinterlands': 2011,
+      'Dark Ages': 2012, 'Adventures': 2015, 'Empires': 2016, 'Nocturne': 2017,
+      'Renaissance': 2018, 'Menagerie': 2020, 'Allies': 2022, 'Plunder': 2022,
+      'Rising Sun': 2024, 'Promo': null,
+    }
     return {
       type: 'bar',
       data: {
-        labels: sorted.map(([e]) => e),
+        labels: sorted.map(([e]) => EXP_YEAR_LOCAL[e] ? `${e} (${EXP_YEAR_LOCAL[e]})` : e),
         datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.gold + '99', borderColor: PALETTE.gold, borderWidth: 1 }],
       },
       options: {
