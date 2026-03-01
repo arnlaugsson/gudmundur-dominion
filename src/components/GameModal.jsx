@@ -45,7 +45,7 @@ export default function GameModal({ game, onClose }) {
 
         <div style={{ marginBottom: '1.25rem' }}>
           <h2 className="cinzel gold" style={{ fontSize: '1.3rem', marginBottom: '.3rem' }}>
-            Game #{game.game_num}
+            Leikur #{game.game_num}
           </h2>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center', fontSize: '.85rem', color: 'var(--dim)' }}>
             <span>{game.date}</span>
@@ -58,7 +58,7 @@ export default function GameModal({ game, onClose }) {
 
         {/* Results */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Results</div>
+          <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Niðurstöður</div>
           <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
             {game.results.map(r => (
               <div key={r.place} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
@@ -66,7 +66,7 @@ export default function GameModal({ game, onClose }) {
                   {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}th`}
                 </span>
                 <span style={{ fontSize: '.88rem' }}>{r.name}</span>
-                {r.score != null && <span style={{ fontSize: '.8rem', color: 'var(--gold)' }}>{r.score}pts</span>}
+                {r.score != null && <span style={{ fontSize: '.8rem', color: 'var(--gold)' }}>{r.score}stig</span>}
               </div>
             ))}
           </div>
@@ -76,7 +76,7 @@ export default function GameModal({ game, onClose }) {
         {game.kingdom.length > 0 && (
           <div style={{ marginBottom: '1.25rem' }}>
             <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-              Kingdom ({game.kingdom.length} cards)
+              Ríki ({game.kingdom.length} spil)
             </div>
             <div className="kingdom-cards-grid">
               {game.kingdom.map(k => (
@@ -98,7 +98,7 @@ export default function GameModal({ game, onClose }) {
         {/* Extras */}
         {extras.length > 0 && (
           <div>
-            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Extras ({extras.length})</div>
+            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Aukaleg ({extras.length})</div>
             <div className="kingdom-cards-grid">
               {extras.map(ex => (
                 <div

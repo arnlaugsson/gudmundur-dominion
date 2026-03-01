@@ -103,45 +103,45 @@ export default function Cards() {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Card Explorer</h2>
+      <h2 className="section-title">Kortaskoðari</h2>
 
       <div className="cards-filter">
         <input
           type="text"
           className="search-bar"
-          placeholder="Search cards..."
+          placeholder="Leita að spili..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
         />
         <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-          <option value="used-desc">Most Used First</option>
-          <option value="used-asc">Least Used First</option>
-          <option value="name">Alphabetical</option>
-          <option value="cost">By Cost</option>
+          <option value="used-desc">Mest notað fyrst</option>
+          <option value="used-asc">Minnst notað fyrst</option>
+          <option value="name">Í stafrófsröð</option>
+          <option value="cost">Eftir verði</option>
         </select>
         <button
           className={`sort-btn${sortReversed ? ' active' : ''}`}
           onClick={() => setSortReversed(v => !v)}
-          title="Reverse sort order"
+          title="Öfug röð"
         >
-          {sortReversed ? '↑ Reversed' : '↓ Normal'}
+          {sortReversed ? '↑ Öfug' : '↓ Venjuleg'}
         </button>
         <select value={filterType} onChange={e => { setFilterType(e.target.value); setActiveChips([]) }}>
-          <option value="">All Types</option>
-          {sortedTypes.map(t => <option key={t} value={t}>{t}s</option>)}
+          <option value="">Allar tegundir</option>
+          {sortedTypes.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
         <select value={filterExp} onChange={e => { setFilterExp(e.target.value); setActiveChips([]) }}>
-          <option value="">All Expansions</option>
+          <option value="">Allar viðbætur</option>
           {expansions.map(e => <option key={e} value={e}>{e}</option>)}
         </select>
         <label style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.82rem', cursor: 'pointer' }}>
           <input type="checkbox" checked={hideRemoved} onChange={e => setHideRemoved(e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
-          Hide removed
+          Fela fjarlægð
         </label>
         <label style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.82rem', cursor: 'pointer' }}>
           <input type="checkbox" checked={hideBaseCards} onChange={e => setHideBaseCards(e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
-          Hide base cards
+          Fela grunnkort
         </label>
       </div>
 
@@ -160,7 +160,7 @@ export default function Cards() {
       )}
 
       <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
-        {filtered.length} cards
+        {filtered.length} spil
       </div>
 
       <div className="cards-grid">
