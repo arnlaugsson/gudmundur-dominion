@@ -2424,8 +2424,7 @@
       "events": [],
       "landmarks": [],
       "projects": [
-        "Fair",
-        "Renaissance"
+        "Fair"
       ],
       "ways": [],
       "allies": [],
@@ -2511,15 +2510,12 @@
       ],
       "events": [
         "Seize the Day",
-        "Menagerie",
-        "Populate",
-        "Menagerie"
+        "Populate"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the Frog",
-        "Menagerie"
+        "Way of the Frog"
       ],
       "allies": [],
       "traits": [],
@@ -2793,12 +2789,10 @@
         }
       ],
       "events": [
-        "Seaway",
-        "Adventures"
+        "Seaway"
       ],
       "landmarks": [
-        "Palace",
-        "Empires"
+        "Palace"
       ],
       "projects": [],
       "ways": [],
@@ -3150,13 +3144,11 @@
         }
       ],
       "events": [
-        "Pursue",
-        "Menagerie"
+        "Pursue"
       ],
       "landmarks": [],
       "projects": [
-        "Exploration",
-        "Renaissance"
+        "Exploration"
       ],
       "ways": [],
       "allies": [],
@@ -3248,17 +3240,14 @@
         }
       ],
       "events": [
-        "Gamble",
-        "Menagerie"
+        "Gamble"
       ],
       "landmarks": [],
       "projects": [
-        "Sewers",
-        "Renaissance"
+        "Sewers"
       ],
       "ways": [
-        "Way of the Horse",
-        "Menagerie"
+        "Way of the Horse"
       ],
       "allies": [],
       "traits": [],
@@ -3615,8 +3604,7 @@
       "projects": [],
       "ways": [],
       "allies": [
-        "Forest Dwellers",
-        "Allies"
+        "Forest Dwellers"
       ],
       "traits": [],
       "prophecy": [],
@@ -4064,16 +4052,14 @@
         }
       ],
       "events": [
-        "Deliver",
-        "Plunder"
+        "Deliver"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Fated",
-        "Plunder"
+        "Fated"
       ],
       "prophecy": [],
       "expansions": [
@@ -4245,20 +4231,17 @@
         }
       ],
       "events": [
-        "Scouting Party",
-        "Adventures"
+        "Scouting Party"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Fawning",
-        "Plunder"
+        "Fawning"
       ],
       "prophecy": [
-        "Fawning",
-        "Plunder"
+        "Fawning"
       ],
       "expansions": [
         "Adventures",
@@ -4333,8 +4316,7 @@
         }
       ],
       "events": [
-        "Mirror",
-        "Plunder"
+        "Mirror"
       ],
       "landmarks": [],
       "projects": [],
@@ -5043,8 +5025,7 @@
         }
       ],
       "events": [
-        "Advance",
-        "Empires"
+        "Advance"
       ],
       "landmarks": [
         "Battlefield"
@@ -5133,9 +5114,7 @@
       "events": [],
       "landmarks": [
         "Arena",
-        "Empires",
-        "Aqueduct",
-        "Empires"
+        "Aqueduct"
       ],
       "projects": [],
       "ways": [],
@@ -5216,9 +5195,7 @@
       ],
       "events": [
         "Seize the Day",
-        "Menagerie",
-        "Enclave",
-        "Menagerie"
+        "Enclave"
       ],
       "landmarks": [],
       "projects": [],
@@ -5405,12 +5382,10 @@
         }
       ],
       "events": [
-        "Tax",
-        "Empires"
+        "Tax"
       ],
       "landmarks": [
-        "Obelisk",
-        "Empires"
+        "Obelisk"
       ],
       "projects": [],
       "ways": [],
@@ -5497,8 +5472,7 @@
       "events": [],
       "landmarks": [],
       "projects": [
-        "Citadel",
-        "Renaissance"
+        "Citadel"
       ],
       "ways": [],
       "allies": [],
@@ -5671,16 +5645,14 @@
         }
       ],
       "events": [
-        "Scrounge",
-        "Plunder"
+        "Scrounge"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Friendly",
-        "Plunder"
+        "Friendly"
       ],
       "prophecy": [],
       "expansions": [
@@ -5769,16 +5741,14 @@
         }
       ],
       "events": [
-        "Journey",
-        "Plunder"
+        "Journey"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Fawning",
-        "Plunder"
+        "Fawning"
       ],
       "prophecy": [],
       "expansions": [
@@ -5867,16 +5837,14 @@
         }
       ],
       "events": [
-        "Bury",
-        "Plunder"
+        "Bury"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Inspiring",
-        "Plunder"
+        "Inspiring"
       ],
       "prophecy": [],
       "expansions": [
@@ -5965,16 +5933,14 @@
         }
       ],
       "events": [
-        "Rush",
-        "Plunder"
+        "Rush"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [],
       "allies": [],
       "traits": [
-        "Rich",
-        "Plunder"
+        "Rich"
       ],
       "prophecy": [],
       "expansions": [
@@ -6318,12 +6284,10 @@
         }
       ],
       "events": [
-        "Ritual",
-        "Empires"
+        "Ritual"
       ],
       "landmarks": [
-        "Basilica",
-        "Empires"
+        "Basilica"
       ],
       "projects": [],
       "ways": [],
@@ -6410,9 +6374,7 @@
       ],
       "events": [
         "Bonfire",
-        "Adventures",
-        "Training",
-        "Adventures"
+        "Training"
       ],
       "landmarks": [],
       "projects": [],
@@ -6500,12 +6462,10 @@
         }
       ],
       "events": [
-        "Banquet",
-        "Empires"
+        "Banquet"
       ],
       "landmarks": [
-        "Orchard",
-        "Empires"
+        "Orchard"
       ],
       "projects": [],
       "ways": [],
@@ -6600,9 +6560,7 @@
       "events": [],
       "landmarks": [
         "Acqueduct",
-        "Empires",
-        "Obelisk",
-        "Empires"
+        "Obelisk"
       ],
       "projects": [],
       "ways": [],
@@ -6695,13 +6653,11 @@
         }
       ],
       "events": [
-        "Wedding",
-        "Empires"
+        "Wedding"
       ],
       "landmarks": [],
       "projects": [
-        "Road Network",
-        "Renaissance"
+        "Road Network"
       ],
       "ways": [],
       "allies": [],
@@ -6793,16 +6749,13 @@
         }
       ],
       "events": [
-        "Delve",
-        "Empires"
+        "Delve"
       ],
       "landmarks": [
-        "Keep",
-        "Empires"
+        "Keep"
       ],
       "projects": [
-        "Canal",
-        "Renaissance"
+        "Canal"
       ],
       "ways": [],
       "allies": [],
@@ -6894,8 +6847,7 @@
         }
       ],
       "events": [
-        "March",
-        "Menagerie"
+        "March"
       ],
       "landmarks": [],
       "projects": [],
@@ -6991,8 +6943,7 @@
         }
       ],
       "events": [
-        "March",
-        "Menagerie"
+        "March"
       ],
       "landmarks": [],
       "projects": [],
@@ -7089,9 +7040,7 @@
       ],
       "events": [
         "Mirror",
-        "Plunder",
-        "Maelstrom",
-        "Plunder"
+        "Maelstrom"
       ],
       "landmarks": [],
       "projects": [],
@@ -7185,16 +7134,13 @@
         }
       ],
       "events": [
-        "Banquet",
-        "Empires"
+        "Banquet"
       ],
       "landmarks": [
-        "Wolf Den",
-        "Empires"
+        "Wolf Den"
       ],
       "projects": [
-        "Fair",
-        "Renaissance"
+        "Fair"
       ],
       "ways": [],
       "allies": [],
@@ -7288,21 +7234,17 @@
         }
       ],
       "events": [
-        "Pilgrimage",
-        "Adventures"
+        "Pilgrimage"
       ],
       "landmarks": [
-        "Basilica",
-        "Empires"
+        "Basilica"
       ],
       "projects": [
-        "Cathedral",
-        "Renaissance"
+        "Cathedral"
       ],
       "ways": [],
       "allies": [
-        "Archictects' guild",
-        "Allies"
+        "Archictects' guild"
       ],
       "traits": [],
       "prophecy": [],
@@ -7669,9 +7611,7 @@
       "events": [],
       "landmarks": [
         "Wall",
-        "Empires",
-        "Mountain Pass",
-        "Empires"
+        "Mountain Pass"
       ],
       "projects": [],
       "ways": [],
@@ -7764,12 +7704,10 @@
         }
       ],
       "events": [
-        "Ritual",
-        "Empires"
+        "Ritual"
       ],
       "landmarks": [
-        "Tower",
-        "Empires"
+        "Tower"
       ],
       "projects": [],
       "ways": [],
