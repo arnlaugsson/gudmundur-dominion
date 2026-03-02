@@ -10,10 +10,50 @@ const MODES = [
   { id: 'balanced',  icon: '⚖️', name: 'Jafnvægt',        desc: 'Blanda af nýjum og kunnuglegum kortum' },
 ]
 
+const SPECIAL_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 'Trait', 'Prophecy'])
+
+const TYPE_COLOR = {
+  Event: '#f97316', Landmark: '#3fb950', Project: '#58a6ff',
+  Way: '#a78bfa', Ally: '#f43f5e', Trait: '#06b6d4', Prophecy: '#e879f9',
+}
+
 function CostBadge({ card }) {
   if (card.debt) return <span className="coin debt">{card.debt}D</span>
   if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
   return <span className="coin">{card.cost ?? 0}</span>
+}
+
+function KingdomCard({ card, onClick }) {
+  return (
+    <div className="kd-card" onClick={onClick} style={{ cursor: 'pointer' }}>
+      <CardImage name={card.name} className="card-art" />
+      <div style={{ padding: '.5rem .6rem' }}>
+        <div className="kn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
+          {card.name}
+          {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
+        </div>
+        <div className="ke">{card.expansion}</div>
+        <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
+          <CostBadge card={card} />
+          <span className="kt">{card.times_used}× notað</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ExtraCard({ card, onClick }) {
+  const color = TYPE_COLOR[card.card_type] || 'var(--dim)'
+  return (
+    <div className="kd-card" onClick={onClick} style={{ cursor: 'pointer' }}>
+      <CardImage name={card.name} className="card-art" />
+      <div style={{ padding: '.5rem .6rem' }}>
+        <div className="kn">{card.name}</div>
+        <div className="ke">{card.expansion}</div>
+        <div style={{ fontSize: '.72rem', fontWeight: 600, color }}>{card.card_type}</div>
+      </div>
+    </div>
+  )
 }
 
 export default function Suggester() {
@@ -21,6 +61,8 @@ export default function Suggester() {
   const [mode, setMode] = useState('random')
   const [selectedExps, setSelectedExps] = useState([])
   const [kingdom, setKingdom] = useState([])
+  const [extras, setExtras] = useState([])
+  const [colonyPlatinum, setColonyPlatinum] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
 
   const toggleExp = (e) => {
@@ -29,25 +71,33 @@ export default function Suggester() {
 
   const kingdomExpansions = useMemo(() => {
     if (!expansions.length) return []
-    // Exclude promo and special expansions from default list
     return expansions.filter(e => e !== 'Promo')
   }, [expansions])
 
   function generate() {
-    const pool = cards.filter(c =>
+    // Kingdom cards only
+    const kingdomPool = cards.filter(c =>
       !c.removed &&
       !c.isSupplyCard &&
+      (!c.card_type || c.card_type === 'Kingdom') &&
       (selectedExps.length === 0 || selectedExps.includes(c.expansion))
     )
 
-    let candidates = [...pool]
+    // Special/landscape cards as extras
+    const extrasPool = cards.filter(c =>
+      !c.removed &&
+      SPECIAL_TYPES.has(c.card_type) &&
+      (selectedExps.length === 0 || selectedExps.includes(c.expansion))
+    )
+
+    let candidates = [...kingdomPool]
 
     if (mode === 'least') {
       candidates.sort((a, b) => a.times_used - b.times_used)
-      candidates = candidates.slice(0, 20) // pick from bottom 20
+      candidates = candidates.slice(0, 20)
     } else if (mode === 'favorites') {
       candidates.sort((a, b) => b.times_used - a.times_used)
-      candidates = candidates.slice(0, 30) // pick from top 30
+      candidates = candidates.slice(0, 30)
     } else if (mode === 'balanced') {
       const half = Math.floor(candidates.length / 2)
       const leastUsed = [...candidates].sort((a, b) => a.times_used - b.times_used).slice(0, half)
@@ -55,16 +105,27 @@ export default function Suggester() {
       candidates = [...leastUsed.slice(0, 15), ...mostUsed.slice(0, 15)]
     }
 
-    // Shuffle and pick 10
-    const shuffled = candidates.sort(() => Math.random() - 0.5)
-    setKingdom(shuffled.slice(0, 10))
+    // Always 10 kingdom cards
+    const newKingdom = [...candidates].sort(() => Math.random() - 0.5).slice(0, 10)
+
+    // 1-2 extras if the pool has any
+    let newExtras = []
+    if (extrasPool.length > 0) {
+      const count = extrasPool.length === 1 ? 1 : Math.random() < 0.5 ? 1 : 2
+      newExtras = [...extrasPool].sort(() => Math.random() - 0.5).slice(0, count)
+    }
+
+    // Colony + Platinum: 10% chance per Prosperity kingdom card
+    const prosperityCount = newKingdom.filter(c => c.expansion === 'Prosperity').length
+    const newColony = Math.random() < prosperityCount / 10
+
+    setKingdom(newKingdom)
+    setExtras(newExtras)
+    setColonyPlatinum(newColony)
   }
 
-  const kingdomExtras = useMemo(() => {
-    if (!kingdom.length) return { events: [], landmarks: [], projects: [] }
-    // Suggest extras with some probability
-    return { events: [], landmarks: [], projects: [] }
-  }, [kingdom])
+  const colonyCard = useMemo(() => cards.find(c => c.name === 'Colony'), [cards])
+  const platinumCard = useMemo(() => cards.find(c => c.name === 'Platinum'), [cards])
 
   return (
     <section className="section active">
@@ -102,30 +163,46 @@ export default function Suggester() {
       <button className="gen-btn" onClick={generate}>Búa til ríki</button>
 
       {kingdom.length > 0 && (
-        <div>
-          <div className="kingdom-display" style={{ marginTop: '1.5rem' }}>
+        <div style={{ marginTop: '1.5rem' }}>
+
+          {/* 10 Kingdom Cards */}
+          <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+            Ríkið — {kingdom.length} spil
+          </div>
+          <div className="kingdom-display">
             {kingdom.map(card => (
-              <div
-                key={card.name}
-                className="kd-card"
-                onClick={() => setSelectedCard(card)}
-                style={{ cursor: 'pointer' }}
-              >
-                <CardImage name={card.name} className="card-art" />
-                <div style={{ padding: '.5rem .6rem' }}>
-                  <div className="kn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
-                    {card.name}
-                    {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
-                  </div>
-                  <div className="ke">{card.expansion}</div>
-                  <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
-                    <CostBadge card={card} />
-                    <span className="kt">{card.times_used}× notað</span>
-                  </div>
-                </div>
-              </div>
+              <KingdomCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
             ))}
           </div>
+
+          {/* Extras */}
+          {extras.length > 0 && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+                Aukaleg — {extras.length} {extras.length === 1 ? 'spil' : 'spil'}
+              </div>
+              <div className="kingdom-display">
+                {extras.map(card => (
+                  <ExtraCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Colony + Platinum */}
+          {colonyPlatinum && colonyCard && platinumCard && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+                Velmegun — Colony &amp; Platinum
+              </div>
+              <div className="kingdom-display">
+                {[colonyCard, platinumCard].map(card => (
+                  <KingdomCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
+                ))}
+              </div>
+            </div>
+          )}
+
         </div>
       )}
 
