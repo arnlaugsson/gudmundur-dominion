@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header>
       <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
-      <p>Tölfræði og gagnvirk úrvinnsla &bull; Statistics &amp; Interactive Insights</p>
+      <p>Tölfræði og gagnvirk úrvinnsla</p>
       <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem' }}>
         {lastUpdated && <span>Gögn uppfærð: {lastUpdated}</span>}
         {upcomingGames > 0 && (
