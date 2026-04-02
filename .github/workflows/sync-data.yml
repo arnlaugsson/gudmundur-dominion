@@ -2,7 +2,7 @@ name: Sync Spreadsheet & Deploy
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # 3:00 UTC daily
+    - cron: '0 */2 * * *'  # Every 2 hours
   workflow_dispatch:       # manual trigger
 
 permissions:
