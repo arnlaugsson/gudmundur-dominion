@@ -70,7 +70,7 @@ export default function Dashboard() {
     const avgScore = allScores.length > 0 ? (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1) : '—'
     const topWinner = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.first - a.first)[0]
     const mummi = players.find(p => p.name === 'Mummi')
-    const mostGames = [...players].sort((a, b) => b.games - a.games)[0]
+    const mostGames = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.games - a.games)[0]
     return { totalGames, totalPlayers, locations, avgScore, topWinner, mummi, mostGames }
   }, [games, players])
 
@@ -265,7 +265,7 @@ export default function Dashboard() {
         <StatCard label="Staðir" value={stats.locations} />
         <StatCard label="Meðalskor" value={stats.avgScore} sub="á leikmann á leik" />
         <StatCard label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
-        <StatCard label="Hollastur" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir`} />
+        <StatCard label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
       </div>
 
       {playerOfDay && (
