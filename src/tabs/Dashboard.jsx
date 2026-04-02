@@ -4,6 +4,7 @@ import DATA from '../data'
 import { PALETTE } from '../constants'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
+import GameModal from '../components/GameModal'
 
 function StatCard({ label, value, sub }) {
   return (
@@ -18,6 +19,7 @@ function StatCard({ label, value, sub }) {
 export default function Dashboard() {
   const { games, players, cards } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
+  const [selectedGame, setSelectedGame] = useState(null)
 
   const randomCard = useState(() => {
     const pool = cards.filter(c => !c.isSupplyCard && !c.removed && c.times_used > 0)
@@ -244,7 +246,7 @@ export default function Dashboard() {
                     <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.4rem' }}>Nýlegir leikir</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
                       {recentGames.map(g => (
-                        <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.28rem .6rem', display: 'flex', gap: '.5rem' }}>
+                        <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.28rem .6rem', display: 'flex', gap: '.5rem', cursor: 'pointer' }} onClick={() => setSelectedGame(g)}>
                           <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
                           <span style={{ color: 'var(--dim)' }}>{g.date}</span>
                           {g.results[0]?.name && <><span style={{ color: 'var(--dim)' }}>·</span><span>{g.results[0].name} vann</span></>}
@@ -300,7 +302,7 @@ export default function Dashboard() {
                 {playerOfDay.pgames.slice(-5).reverse().map(g => {
                   const result = g.results.find(r => r.name === playerOfDay.player.name)
                   return (
-                    <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: 4, padding: '.28rem .6rem', display: 'flex', gap: '.5rem', alignItems: 'center' }}>
+                    <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: 4, padding: '.28rem .6rem', display: 'flex', gap: '.5rem', alignItems: 'center', cursor: 'pointer' }} onClick={() => setSelectedGame(g)}>
                       <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
                       <span style={{ color: 'var(--dim)' }}>{g.date}</span>
                       {result && <span style={{ color: result.place === 1 ? 'var(--gold)' : 'var(--dim)', marginLeft: 'auto' }}>{result.place}. sæti{result.score != null ? ` · ${result.score}stig` : ''}</span>}
@@ -330,6 +332,7 @@ export default function Dashboard() {
 
 
       {selectedCard && <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />}
+      {selectedGame && <GameModal game={selectedGame} onClose={() => setSelectedGame(null)} />}
     </section>
   )
 }
