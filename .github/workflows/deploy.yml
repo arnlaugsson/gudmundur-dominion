@@ -23,10 +23,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DOMINON_1E56C }}
-          channelId: live
-          projectId: dominon-1e56c
+      - name: Deploy to Firebase
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
+          npx firebase-tools deploy --only hosting --project dominon-1e56c
+          rm /tmp/sa.json
