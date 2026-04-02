@@ -230,6 +230,11 @@ export default function Dashboard() {
                 </div>
                 <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.expansion}</span>
                 <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.times_used}× spiluð ({games.length > 0 ? Math.round(randomCard.times_used / games.length * 100) : 0}%)</span>
+                {randomCard.card_text && (
+                  <div style={{ width: '100%', fontSize: '.78rem', color: 'var(--dim)', lineHeight: 1.5, borderLeft: '2px solid var(--gold)', paddingLeft: '.6rem', marginTop: '.1rem' }}>
+                    {randomCard.card_text.length > 150 ? randomCard.card_text.slice(0, 150) + '…' : randomCard.card_text}
+                  </div>
+                )}
                 {recentGames.length > 0 && (
                   <div style={{ width: '100%', display: 'flex', gap: '.35rem', flexWrap: 'wrap' }}>
                     {recentGames.map(g => (

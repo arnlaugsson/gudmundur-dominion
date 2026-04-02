@@ -47,6 +47,11 @@ export default function CardModal({ card, onClose }) {
               <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Verð:</span>
               {costBadge()}
             </div>
+            {card.card_text && (
+              <div style={{ marginBottom: '1rem', background: 'var(--bg3)', borderRadius: 8, padding: '.75rem 1rem', borderLeft: '3px solid var(--gold)' }}>
+                <div style={{ fontSize: '.82rem', color: 'var(--text)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{card.card_text}</div>
+              </div>
+            )}
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.3rem' }}>Skipti spiluð</div>
               <div style={{ fontSize: '2rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)' }}>{card.times_used}</div>

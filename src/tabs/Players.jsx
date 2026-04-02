@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react'
 import useChart from '../hooks/useChart'
 import DATA from '../data'
 import { PALETTE } from '../constants'
+import PlayerModal from '../components/PlayerModal'
+
 
 export default function Players() {
   const { players, games } = DATA
@@ -108,80 +110,8 @@ export default function Players() {
         </table>
       </div>
 
-      {selectedPlayer && <PlayerDetail name={selectedPlayer} games={games} />}
+      {selectedPlayer && <PlayerModal playerName={selectedPlayer} onClose={() => setSelectedPlayer(null)} />}
     </section>
   )
 }
 
-function PlayerDetail({ name, games }) {
-  const playerGames = useMemo(() => {
-    return games
-      .filter(g => g.players.includes(name))
-      .sort((a, b) => a.game_num - b.game_num)
-  }, [name, games])
-
-  const scoresRef = useChart(() => {
-    const pts = playerGames
-      .map(g => ({ label: g.date ?? `#${g.game_num}`, score: g.results.find(r => r.name === name)?.score }))
-      .filter(x => x.score != null)
-
-    if (!pts.length) return null
-
-    return {
-      type: 'line',
-      data: {
-        labels: pts.map(p => p.label),
-        datasets: [{
-          data: pts.map(p => p.score),
-          borderColor: PALETTE.gold,
-          backgroundColor: PALETTE.gold + '22',
-          tension: 0.3,
-          fill: true,
-          pointRadius: 4,
-        }],
-      },
-      options: {
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { ticks: { color: PALETTE.dim, maxRotation: 45, autoSkip: true, maxTicksLimit: 10 }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-        },
-      },
-    }
-  }, [name])
-
-  const favCardsRef = useChart(() => {
-    const wins = playerGames.filter(g => g.results[0]?.name === name)
-    const cardCounts = {}
-    wins.forEach(g => g.kingdom.forEach(k => { cardCounts[k.card] = (cardCounts[k.card] || 0) + 1 }))
-    const top = Object.entries(cardCounts).sort((a, b) => b[1] - a[1]).slice(0, 8)
-
-    if (!top.length) return null
-
-    return {
-      type: 'bar',
-      data: {
-        labels: top.map(([c]) => c),
-        datasets: [{ data: top.map(([, v]) => v), backgroundColor: PALETTE.blue + '88', borderColor: PALETTE.blue, borderWidth: 1 }],
-      },
-      options: {
-        indexAxis: 'y',
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.text, font: { size: 11 } }, grid: { display: false } },
-        },
-      },
-    }
-  }, [name])
-
-  return (
-    <div className="player-detail active">
-      <h3 className="cinzel gold" style={{ marginBottom: '1rem', fontSize: '1.3rem' }}>{name}</h3>
-      <div className="charts-row" style={{ gridTemplateColumns: '1fr 1fr' }}>
-        <div className="chart-box"><h3>SKOGSAGA</h3><canvas ref={scoresRef} /></div>
-        <div className="chart-box"><h3>UPPÁHALDSKORTIN Í SIGURLEIKUM</h3><canvas ref={favCardsRef} /></div>
-      </div>
-    </div>
-  )
-}

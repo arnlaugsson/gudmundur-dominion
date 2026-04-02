@@ -1,4 +1,5 @@
 import rawData from '../data/dominion_data.json'
+import cardTexts from '../data/card_texts.json'
 
 // ── Normalize & parse all games ───────────────────────────────────────────────
 const parsedGames = rawData.games
@@ -60,6 +61,7 @@ const cards = [
   ...rawCards.filter(c => !baseCardNames.has(c.name)).map(c => ({
     ...c,
     times_used: usageCounts[c.name] ?? c.times_used ?? 0,
+    card_text: cardTexts[c.name] || null,
   })),
   ...BASE_SUPPLY_CARDS,
 ]
