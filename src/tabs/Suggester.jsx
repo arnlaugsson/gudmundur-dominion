@@ -18,9 +18,10 @@ const TYPE_COLOR = {
 }
 
 function CostBadge({ card }) {
+  if (card.cost == null && !card.debt && !card.potion) return null
   if (card.debt) return <span className="coin debt">{card.debt}D</span>
   if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
-  return <span className="coin">{card.cost ?? 0}</span>
+  return <span className="coin">{card.cost}</span>
 }
 
 function KingdomCard({ card, onClick }) {

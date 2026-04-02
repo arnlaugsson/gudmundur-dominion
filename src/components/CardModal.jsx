@@ -20,10 +20,12 @@ export default function CardModal({ card: rawCard, onClose }) {
     EXTRA_FIELDS.some(f => g[f]?.includes(card.name))
   )
 
+  const hasCost = card.cost != null || card.debt != null || card.potion
+
   function costBadge() {
     if (card.debt) return <span className="coin debt">{card.debt}D</span>
     if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
-    return <span className="coin">{card.cost ?? 0}</span>
+    return <span className="coin">{card.cost}</span>
   }
 
   return (
@@ -46,10 +48,10 @@ export default function CardModal({ card: rawCard, onClose }) {
               {card.removed && <span className="tag tag-removed" style={{ marginLeft: '.5rem' }}>Removed</span>}
               {card.isSecondEdition && <span className="tag tag-2nd" style={{ marginLeft: '.5rem' }}>2nd Ed.</span>}
             </div>
-            <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center' }}>
+            {hasCost && <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center' }}>
               <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Verð:</span>
               {costBadge()}
-            </div>
+            </div>}
             {card.card_text && (
               <div style={{ marginBottom: '1rem', background: 'var(--bg3)', borderRadius: 8, padding: '.75rem 1rem', borderLeft: '3px solid var(--gold)' }}>
                 <div style={{ fontSize: '.82rem', color: 'var(--text)', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{card.card_text}</div>
