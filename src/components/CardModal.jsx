@@ -2,14 +2,17 @@ import { useEffect } from 'react'
 import { cardImgUrl, wikiUrl } from '../constants'
 import DATA from '../data'
 
-export default function CardModal({ card, onClose }) {
+export default function CardModal({ card: rawCard, onClose }) {
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  if (!card) return null
+  if (!rawCard) return null
+
+  // Resolve full card from DATA to ensure card_text is available
+  const card = DATA.cards.find(c => c.name === rawCard.name) || rawCard
 
   const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
   const gamesWithCard = DATA.games.filter(g =>
