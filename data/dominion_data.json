@@ -16518,24 +16518,24 @@
       "date": "2022-11-10",
       "location": "Rauðalækur",
       "players": [
-        "Kalli",
         "Mummi",
+        "Kalli",
         "Lúlli"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Kalli",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
+          "name": "Kalli",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Lúlli",
+          "place": 3,
           "score": null
         }
       ],
@@ -16604,24 +16604,24 @@
       "date": "2022-11-10",
       "location": "Rauðalækur",
       "players": [
-        "Kalli",
         "Lúlli",
+        "Kalli",
         "Mummi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Kalli",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Lúlli",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
+          "name": "Kalli",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Mummi",
+          "place": 3,
           "score": null
         }
       ],
@@ -16696,23 +16696,23 @@
       "location": null,
       "players": [
         "Mummi",
-        "Fúsi",
-        "Halla"
+        "Halla",
+        "Fúsi"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Fúsi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Halla",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Fúsi",
+          "place": 3,
           "score": null
         }
       ],
@@ -16776,30 +16776,30 @@
       "date": "2023-01-03",
       "location": null,
       "players": [
+        "Ragnheiður",
         "Mummi",
-        "Halla",
         "Fúsi",
-        "Ragnheiður"
+        "Halla"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Halla",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Fúsi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Ragnheiður",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Fúsi",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Halla",
+          "place": 4,
           "score": null
         }
       ],
@@ -16872,30 +16872,30 @@
       "date": "2023-01-06",
       "location": null,
       "players": [
-        "Mummi",
-        "Hallgrímur",
         "Arnlaugur",
-        "Ragnheiður"
+        "Ragnheiður",
+        "Hallgrímur",
+        "Mummi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Hallgrímur",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Arnlaugur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hallgrímur",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 4,
           "score": null
         }
       ],
@@ -16960,24 +16960,24 @@
       "date": "2023-01-15",
       "location": null,
       "players": [
-        "Ragnheiður",
         "Mummi",
-        "Skúli"
+        "Skúli",
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Skúli",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -17046,29 +17046,29 @@
       "location": null,
       "players": [
         "Hjödda",
-        "Mummi",
         "Ragnheiður",
+        "Mummi",
         "Helgi"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Hjödda",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Ragnheiður",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
+          "name": "Mummi",
+          "place": 3,
+          "score": null
+        },
+        {
           "name": "Helgi",
+          "place": 4,
           "score": null
         }
       ],
@@ -17133,30 +17133,30 @@
       "date": "2023-02-14",
       "location": null,
       "players": [
+        "Helena",
         "Mummi",
         "Ragnheiður",
-        "Lúlli",
-        "Helena"
+        "Lúlli"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Lúlli",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Helena",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Lúlli",
+          "place": 4,
           "score": null
         }
       ],
@@ -17221,30 +17221,30 @@
       "date": "2023-02-14",
       "location": "Álfheimar",
       "players": [
-        "Iðunn",
         "Mummi",
         "Ragnheiður",
-        "Skúli"
+        "Skúli",
+        "Iðunn"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Iðunn",
-          "score": null
-        },
-        {
-          "place": 1,
           "name": "Mummi",
-          "score": null
-        },
-        {
           "place": 1,
-          "name": "Ragnheiður",
           "score": null
         },
         {
-          "place": 4,
+          "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Skúli",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Iðunn",
+          "place": 4,
           "score": null
         }
       ],
@@ -17316,30 +17316,30 @@
       "date": "2023-04-09",
       "location": null,
       "players": [
-        "Skúli",
         "Mummi",
         "Ragnheiður",
-        "Iðunn"
+        "Iðunn",
+        "Skúli"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Skúli",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
           "name": "Ragnheiður",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Iðunn",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Skúli",
+          "place": 4,
           "score": null
         }
       ],
@@ -17412,24 +17412,24 @@
       "date": "2023-04-20",
       "location": null,
       "players": [
-        "Ragnheiður",
         "Arnlaugur",
-        "Mummi"
+        "Mummi",
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Arnlaugur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -17494,30 +17494,30 @@
       "date": "2023-04-25",
       "location": "Álfheimar",
       "players": [
+        "Mummi",
         "Krissi",
         "Lúlli",
-        "Mummi",
         "Skúli"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Krissi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Lúlli",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
+          "name": "Krissi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Lúlli",
           "place": 4,
+          "score": null
+        },
+        {
           "name": "Skúli",
+          "place": 4,
           "score": null
         }
       ],
@@ -17588,30 +17588,30 @@
       "date": "2023-04-25",
       "location": "Álfheimar",
       "players": [
-        "Skúli",
+        "Lúlli",
         "Mummi",
-        "Krissi",
-        "Lúlli"
+        "Skúli",
+        "Krissi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Skúli",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Krissi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Lúlli",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Skúli",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Krissi",
+          "place": 4,
           "score": null
         }
       ],
@@ -17683,29 +17683,29 @@
       "location": "Álfheimar",
       "players": [
         "Krissi",
-        "Mummi",
         "Skúli",
-        "Lúlli"
+        "Lúlli",
+        "Mummi"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Krissi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Skúli",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
           "name": "Lúlli",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 4,
           "score": null
         }
       ],
@@ -17779,23 +17779,23 @@
       "location": null,
       "players": [
         "Mummi",
-        "Lúlli",
-        "Krissi"
+        "Krissi",
+        "Lúlli"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Lúlli",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Krissi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Lúlli",
+          "place": 3,
           "score": null
         }
       ],
@@ -17860,24 +17860,24 @@
       "date": "2023-05-10",
       "location": null,
       "players": [
-        "Lúlli",
+        "Krissi",
         "Mummi",
-        "Krissi"
+        "Lúlli"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Lúlli",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Krissi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Lúlli",
+          "place": 3,
           "score": null
         }
       ],
@@ -17942,30 +17942,30 @@
       "date": "2023-06-25",
       "location": null,
       "players": [
-        "Mummi",
-        "Inga María",
         "Jóel",
-        "Kiddi"
+        "Kiddi",
+        "Inga María",
+        "Mummi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Inga María",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Jóel",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Kiddi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Inga María",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 4,
           "score": null
         }
       ],
@@ -18031,30 +18031,30 @@
       "date": "2023-06-25",
       "location": null,
       "players": [
-        "Kiddi",
-        "Jóel",
+        "Mummi",
         "Ragnheiður",
-        "Mummi"
+        "Jóel",
+        "Kiddi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Kiddi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Jóel",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Jóel",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Kiddi",
+          "place": 4,
           "score": null
         }
       ],
@@ -18129,18 +18129,18 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
           "name": "Hjödda",
+          "place": 2,
           "score": null
         },
         {
-          "place": 3,
           "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -18206,23 +18206,23 @@
       "location": "Akureyri - Hamrar úti",
       "players": [
         "Hjödda",
-        "Mummi",
-        "Ragnheiður"
+        "Ragnheiður",
+        "Mummi"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Hjödda",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 3,
           "score": null
         }
       ],
@@ -18287,30 +18287,30 @@
       "date": "2023-07-10",
       "location": "Akureyri - Hamrar",
       "players": [
-        "Hafliði",
-        "Arnlaugur",
+        "Hallgrímur",
         "Mummi",
-        "Hallgrímur"
+        "Hafliði",
+        "Arnlaugur"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Hafliði",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Hallgrímur",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hafliði",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 4,
           "score": null
         }
       ],
@@ -18376,30 +18376,30 @@
       "date": "2023-07-10",
       "location": "Akureyri - Hamrar",
       "players": [
-        "Nói",
-        "Mummi",
+        "Arnlaugur",
         "Hafliði",
-        "Arnlaugur"
+        "Mummi",
+        "Nói"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Nói",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Hafliði",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Arnlaugur",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Hafliði",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Nói",
+          "place": 4,
           "score": null
         }
       ],
@@ -18465,30 +18465,30 @@
       "date": "2023-07-10",
       "location": "Akureyri - Hamrar",
       "players": [
-        "Ragnheiður",
         "Hjödda",
-        "Mummi",
-        "Helgi"
+        "Ragnheiður",
+        "Helgi",
+        "Mummi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Hjödda",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
-          "name": "Mummi",
+          "name": "Ragnheiður",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
           "name": "Helgi",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 4,
           "score": null
         }
       ],
@@ -18554,30 +18554,30 @@
       "date": "2023-07-12",
       "location": "Fossatún, Borgarfirði, H&H fellihýsi",
       "players": [
-        "Addý",
         "Mummi",
+        "Addý",
         "Ragnheiður",
         "Hjödda"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Addý",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
+          "name": "Addý",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Ragnheiður",
+          "place": 3,
           "score": null
         },
         {
-          "place": 4,
           "name": "Hjödda",
+          "place": 4,
           "score": null
         }
       ],
@@ -18643,29 +18643,29 @@
       "location": "Fossatún, Borgarfirði",
       "players": [
         "Hjödda",
+        "Mummi",
         "Ragnheiður",
-        "Addý",
-        "Mummi"
+        "Addý"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Hjödda",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Addý",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Addý",
+          "place": 4,
           "score": null
         }
       ],
@@ -18730,24 +18730,24 @@
       "date": "2023-09-21",
       "location": "Arnarholti",
       "players": [
+        "Hallgrímur",
         "Mummi",
-        "Arnlaugur",
-        "Hallgrímur"
+        "Arnlaugur"
       ],
       "results": [
         {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Hallgrímur",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 3,
           "score": null
         }
       ],
@@ -18812,30 +18812,30 @@
       "date": "2023-07-31",
       "location": "Laugarási",
       "players": [
-        "Arnlaugur",
+        "Mummi",
         "Hallgrímur",
-        "Ragnheiður",
-        "Mummi"
+        "Arnlaugur",
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Hallgrímur",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Hallgrímur",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 4,
           "score": null
         }
       ],
@@ -18901,23 +18901,23 @@
       "location": "Laugarási",
       "players": [
         "Arnlaugur",
-        "Ragnheiður",
-        "Mummi"
+        "Mummi",
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 2,
           "name": "Arnlaugur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -18984,30 +18984,30 @@
       "date": "2023-08-01",
       "location": "Laugarási",
       "players": [
-        "Hafliði",
         "Mummi",
-        "Hjödda",
-        "Ragnheiður"
+        "Hafliði",
+        "Ragnheiður",
+        "Hjödda"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Hafliði",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
-          "name": "Hjödda",
+          "name": "Hafliði",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
           "name": "Ragnheiður",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Hjödda",
+          "place": 4,
           "score": null
         }
       ],
@@ -19084,30 +19084,30 @@
       "date": "2023-08-01",
       "location": "Laugarási",
       "players": [
-        "Arnlaugur",
-        "Ragnheiður",
         "Hallgrímur",
-        "Mummi"
+        "Mummi",
+        "Arnlaugur",
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Hallgrímur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
           "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 4,
           "score": null
         }
       ],
@@ -19177,24 +19177,24 @@
       "date": "2023-08-02",
       "location": "Laugarási",
       "players": [
-        "Ragnheiður",
         "Mummi",
+        "Ragnheiður",
         "Hjödda"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
+          "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Hjödda",
+          "place": 3,
           "score": null
         }
       ],
@@ -19264,24 +19264,24 @@
       "date": "2023-08-02",
       "location": "Laugarási",
       "players": [
-        "Mosi",
+        "Krissi",
         "Mummi",
-        "Krissi"
+        "Mosi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Mosi",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Krissi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Mosi",
+          "place": 3,
           "score": null
         }
       ],
@@ -19355,18 +19355,18 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
           "name": "Krissi",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
           "name": "Mosi",
+          "place": 3,
           "score": null
         }
       ],
@@ -19449,23 +19449,23 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Arnlaugur",
-          "score": null
-        },
-        {
           "place": 1,
+          "score": null
+        },
+        {
           "name": "Mummi",
+          "place": 2,
           "score": null
         },
         {
-          "place": 3,
           "name": "Ragnheiður",
+          "place": 3,
           "score": null
         },
         {
-          "place": 4,
           "name": "Hallgrímur",
+          "place": 4,
           "score": null
         }
       ],
@@ -19534,30 +19534,30 @@
       "date": "2023-08-03",
       "location": "Arnarholt",
       "players": [
-        "Fúsi",
+        "Skúli",
         "Mummi",
         "Halla",
-        "Skúli"
+        "Fúsi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Fúsi",
-          "score": null
-        },
-        {
-          "place": 1,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Halla",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Skúli",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Halla",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Fúsi",
+          "place": 4,
           "score": null
         }
       ],
@@ -19635,28 +19635,28 @@
       "players": [
         "Halla",
         "Mummi",
-        "Fúsi",
-        "Skúli"
+        "Skúli",
+        "Fúsi"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Halla",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
-          "name": "Fúsi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Skúli",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Fúsi",
+          "place": 3,
           "score": null
         }
       ],
@@ -19724,30 +19724,30 @@
       "date": "2023-08-04",
       "location": "Arnarholt",
       "players": [
-        "Halla",
-        "Ragnheiður",
+        "Skúli",
         "Mummi",
-        "Skúli"
+        "Ragnheiður",
+        "Halla"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Halla",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Skúli",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Halla",
+          "place": 4,
           "score": null
         }
       ],
@@ -19822,30 +19822,30 @@
       "date": "2023-08-04",
       "location": "Arnarholt",
       "players": [
-        "Skúli",
-        "Fúsi",
         "Halla",
-        "Mummi"
+        "Skúli",
+        "Mummi",
+        "Fúsi"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Skúli",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Fúsi",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Halla",
+          "place": 1,
           "score": null
         },
         {
-          "place": 4,
+          "name": "Skúli",
+          "place": 2,
+          "score": null
+        },
+        {
           "name": "Mummi",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Fúsi",
+          "place": 4,
           "score": null
         }
       ],
@@ -19920,24 +19920,24 @@
       "date": "2023-08-11",
       "location": "Ljósheimar Skagafirði",
       "players": [
-        "Hjödda",
         "Mummi",
-        "Helgi"
+        "Helgi",
+        "Hjödda"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Hjödda",
-          "score": null
-        },
-        {
-          "place": 2,
           "name": "Mummi",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
           "name": "Helgi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hjödda",
+          "place": 3,
           "score": null
         }
       ],
@@ -20021,18 +20021,18 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Skúli",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
           "name": "Mummi",
+          "place": 2,
           "score": null
         },
         {
-          "place": 3,
           "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -20115,18 +20115,18 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Arnlaugur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 3,
           "name": "Mummi",
+          "place": 2,
           "score": null
         },
         {
-          "place": 4,
           "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -20193,29 +20193,29 @@
       "location": "Selvogsgrunn",
       "players": [
         "Arnlaugur",
+        "Mummi",
         "Hafliði",
-        "Hallgrímur",
-        "Mummi"
+        "Hallgrímur"
       ],
       "results": [
         {
-          "place": 1,
           "name": "Arnlaugur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
-          "name": "Hafliði",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Hallgrímur",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hafliði",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Hallgrímur",
+          "place": 4,
           "score": null
         }
       ],
@@ -20280,24 +20280,24 @@
       "date": "2023-12-27",
       "location": "Selvogsgrunn",
       "players": [
+        "Inga María",
         "Mummi",
-        "Hjalti",
-        "Inga María"
+        "Hjalti"
       ],
       "results": [
         {
-          "place": 2,
-          "name": "Mummi",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Hjalti",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Inga María",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Mummi",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hjalti",
+          "place": 3,
           "score": null
         }
       ],
@@ -20381,23 +20381,23 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Hallgrímur",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
           "name": "Arnlaugur",
+          "place": 2,
           "score": null
         },
         {
-          "place": 3,
           "name": "Mummi",
+          "place": 3,
           "score": null
         },
         {
-          "place": 4,
           "name": "Matthildur",
+          "place": 4,
           "score": null
         }
       ],
@@ -20462,30 +20462,30 @@
       "date": "2023-12-28",
       "location": "Selvogsgrunn",
       "players": [
+        "Mummi",
         "Ragnheiður",
-        "Arnlaugur",
         "Hallgrímur",
-        "Mummi"
+        "Arnlaugur"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 3,
-          "name": "Hallgrímur",
-          "score": null
-        },
-        {
-          "place": 4,
           "name": "Mummi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Hallgrímur",
+          "place": 3,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 4,
           "score": null
         }
       ],
@@ -20551,24 +20551,24 @@
       "date": "2023-12-28",
       "location": "Selvogsgrunn",
       "players": [
+        "Mummi",
         "Arnlaugur",
-        "Ragnheiður",
-        "Mummi"
+        "Ragnheiður"
       ],
       "results": [
         {
-          "place": 1,
-          "name": "Arnlaugur",
-          "score": null
-        },
-        {
-          "place": 2,
-          "name": "Ragnheiður",
-          "score": null
-        },
-        {
-          "place": 3,
           "name": "Mummi",
+          "place": 1,
+          "score": null
+        },
+        {
+          "name": "Arnlaugur",
+          "place": 2,
+          "score": null
+        },
+        {
+          "name": "Ragnheiður",
+          "place": 3,
           "score": null
         }
       ],
@@ -20640,18 +20640,18 @@
       ],
       "results": [
         {
-          "place": 1,
           "name": "Ragnheiður",
+          "place": 1,
           "score": null
         },
         {
-          "place": 2,
           "name": "Mummi",
+          "place": 2,
           "score": null
         },
         {
-          "place": 3,
           "name": "Arnlaugur",
+          "place": 3,
           "score": null
         }
       ],
