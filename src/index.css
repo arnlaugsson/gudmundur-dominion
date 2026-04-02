@@ -79,10 +79,11 @@ nav::-webkit-scrollbar { display: none; }
 /* ── STAT CARDS ── */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
 }
+.stat-card.span-2 { grid-column: span 2; }
 .stat-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -505,7 +506,8 @@ select:focus { outline: none; border-color: var(--gold); }
   header { padding: 1rem 1.25rem; }
   .charts-row { grid-template-columns: 1fr; }
   .chart-box canvas { max-height: 220px; }
-  .stats-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card.span-2 { grid-column: span 2; }
   .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { min-width: 540px; }
   .facts-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
@@ -524,6 +526,7 @@ select:focus { outline: none; border-color: var(--gold); }
   header { padding: .85rem 1rem; }
   .tab-btn { padding: .75rem .9rem; font-size: .8rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card.span-2 { grid-column: span 2; }
   .stat-card .value { font-size: 1.6rem; }
   .facts-grid { grid-template-columns: 1fr; }
   .cards-filter { gap: .5rem; }

@@ -6,9 +6,9 @@ import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import GameModal from '../components/GameModal'
 
-function StatCard({ label, value, sub }) {
+function StatCard({ label, value, sub, className = '' }) {
   return (
-    <div className="stat-card">
+    <div className={`stat-card ${className}`}>
       <div className="label">{label}</div>
       <div className="value">{value}</div>
       {sub && <div className="sub">{sub}</div>}
@@ -209,50 +209,34 @@ export default function Dashboard() {
           ? Math.round(cardGames.filter(g => players.find(p => p.name === g.results[0]?.name)).length / cardGames.length * 100)
           : null
         return (
-          <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.85rem' }}>Handahófskennt spil</div>
-            <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+          <div className="chart-box" style={{ marginBottom: '1.5rem', padding: '1rem 1.25rem' }}>
+            <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Handahófskennt spil</div>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
               <div
-                style={{ flexShrink: 0, width: 90, borderRadius: 8, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
+                style={{ flexShrink: 0, width: 60, borderRadius: 6, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
                 onClick={() => setSelectedCard(randomCard)}
               >
                 <CardImage name={randomCard.name} style={{ width: '100%', display: 'block' }} />
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '.5rem 1.5rem' }}>
                 <div
-                  style={{ fontFamily: 'Cinzel, serif', fontSize: '1.15rem', color: 'var(--gold)', marginBottom: '.2rem', cursor: 'pointer' }}
+                  style={{ fontFamily: 'Cinzel, serif', fontSize: '1rem', color: 'var(--gold)', cursor: 'pointer', whiteSpace: 'nowrap' }}
                   onClick={() => setSelectedCard(randomCard)}
                 >
                   {randomCard.name}
                   {randomCard.card_type && randomCard.card_type !== 'Kingdom' && (
-                    <span className={`badge badge-${randomCard.card_type.toLowerCase()}`} style={{ marginLeft: '.5rem', fontSize: '.65rem', verticalAlign: 'middle', padding: '.1rem .4rem' }}>{randomCard.card_type}</span>
+                    <span className={`badge badge-${randomCard.card_type.toLowerCase()}`} style={{ marginLeft: '.4rem', fontSize: '.6rem', verticalAlign: 'middle', padding: '.1rem .35rem' }}>{randomCard.card_type}</span>
                   )}
                 </div>
-                <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '.6rem' }}>{randomCard.expansion}</div>
-                <div style={{ display: 'flex', gap: '1.25rem', marginBottom: '.75rem', flexWrap: 'wrap' }}>
-                  <div>
-                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em' }}>Skipti spiluð</div>
-                    <div style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)', lineHeight: 1.2 }}>{randomCard.times_used}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em' }}>Í % spila</div>
-                    <div style={{ fontSize: '1.4rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)', lineHeight: 1.2 }}>
-                      {games.length > 0 ? Math.round(randomCard.times_used / games.length * 100) : 0}%
-                    </div>
-                  </div>
-                </div>
+                <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.expansion}</span>
+                <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.times_used}× spiluð ({games.length > 0 ? Math.round(randomCard.times_used / games.length * 100) : 0}%)</span>
                 {recentGames.length > 0 && (
-                  <div>
-                    <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: '.4rem' }}>Nýlegir leikir</div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
-                      {recentGames.map(g => (
-                        <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.28rem .6rem', display: 'flex', gap: '.5rem', cursor: 'pointer' }} onClick={() => setSelectedGame(g)}>
-                          <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
-                          <span style={{ color: 'var(--dim)' }}>{g.date}</span>
-                          {g.results[0]?.name && <><span style={{ color: 'var(--dim)' }}>·</span><span>{g.results[0].name} vann</span></>}
-                        </div>
-                      ))}
-                    </div>
+                  <div style={{ width: '100%', display: 'flex', gap: '.35rem', flexWrap: 'wrap' }}>
+                    {recentGames.map(g => (
+                      <span key={g.game_num} style={{ fontSize: '.72rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.2rem .5rem', cursor: 'pointer', whiteSpace: 'nowrap' }} onClick={() => setSelectedGame(g)}>
+                        <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span> <span style={{ color: 'var(--dim)' }}>{g.date}</span>
+                      </span>
+                    ))}
                   </div>
                 )}
               </div>
@@ -266,8 +250,8 @@ export default function Dashboard() {
         <StatCard label="Virkir leikmenn" value={stats.totalPlayers} />
         <StatCard label="Staðir" value={stats.locations} />
         <StatCard label="Meðalskor" value={stats.avgScore} sub="á leikmann á leik" />
-        <StatCard label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
-        <StatCard label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
+        <StatCard className="span-2" label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
+        <StatCard className="span-2" label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
       </div>
 
       {playerOfDay && (
