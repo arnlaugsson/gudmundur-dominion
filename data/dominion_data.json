@@ -2141,7 +2141,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Harbringer",
+          "card": "Harbinger",
           "expansion": "Base"
         },
         {
@@ -3713,7 +3713,7 @@
         },
         {
           "card": "Harbinger",
-          "expansion": "#N/A"
+          "expansion": "Base"
         },
         {
           "card": "Trade Route",
@@ -4877,7 +4877,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Harbringer",
+          "card": "Harbinger",
           "expansion": "Base"
         },
         {
@@ -9939,6 +9939,656 @@
       "prophecy": [],
       "expansions": [
         "Intrigue",
+        "Nocturne"
+      ],
+      "victory_type": "Province",
+      "avg_score": 20.75
+    },
+    {
+      "game_num": 114,
+      "date": "2026-02-19",
+      "location": "Laugarás",
+      "players": [
+        "Hafliði",
+        "Hallgríur",
+        "Matthildur",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 33.0
+        },
+        {
+          "place": 2,
+          "name": "Hallgríur",
+          "tied_with": null,
+          "score": null
+        },
+        {
+          "place": 3,
+          "name": "Matthildur",
+          "tied_with": null,
+          "score": 24.0
+        },
+        {
+          "place": 4,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 18.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Cellar",
+          "expansion": "Base"
+        },
+        {
+          "card": "Harbinger",
+          "expansion": "Base"
+        },
+        {
+          "card": "Workshop",
+          "expansion": "Base"
+        },
+        {
+          "card": "Gardens",
+          "expansion": "Base"
+        },
+        {
+          "card": "Poacher",
+          "expansion": "Base"
+        },
+        {
+          "card": "Throne room",
+          "expansion": "Base"
+        },
+        {
+          "card": "Council room",
+          "expansion": "Base"
+        },
+        {
+          "card": "Festival",
+          "expansion": "Base"
+        },
+        {
+          "card": "Laboratory",
+          "expansion": "Base"
+        },
+        {
+          "card": "Mine",
+          "expansion": "Base"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Base"
+      ],
+      "victory_type": "Province",
+      "avg_score": 26.0
+    },
+    {
+      "game_num": 115,
+      "date": "2026-02-20",
+      "location": "Laugarás",
+      "players": [
+        "Hafliði",
+        "Hallgrímur",
+        "Matthildur",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 79.0
+        },
+        {
+          "place": 2,
+          "name": "Matthildur",
+          "tied_with": null,
+          "score": 60.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 55.0
+        },
+        {
+          "place": 4,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 48.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Anvil",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Watchtower",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Bishop",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Villa",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Archive",
+          "expansion": "Empires"
+        },
+        {
+          "card": "City",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Collection",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Forum",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Hoard",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Peddler",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [
+        "Triumph",
+        "Dominate"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Prosperity",
+        "Empires"
+      ],
+      "victory_type": "Colony",
+      "avg_score": 60.5
+    },
+    {
+      "game_num": 116,
+      "date": "2026-02-28",
+      "location": "Álfheimum",
+      "players": [
+        "Iðunn",
+        "Skúli",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 36.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 31.0
+        },
+        {
+          "place": 3,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 21.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Bauble",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Augurs",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Clashes",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Forts",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Sentinel",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Carpenter",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Innkeeper",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Guildmaster",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Modify",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Marquis",
+          "expansion": "Allies"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [
+        "Mountain folk"
+      ],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Allies"
+      ],
+      "victory_type": "Province",
+      "avg_score": 29.33
+    },
+    {
+      "game_num": 117,
+      "date": "2026-03-22",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Skúli",
+        "Iðunn",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 32.0
+        },
+        {
+          "place": 2,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 22.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 20.0
+        },
+        {
+          "place": 4,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 14.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Coin of the realm",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Peasant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Ratcatcher",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Magpie",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Port",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Priest",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Ranger",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Giant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Scepter",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Swamp hag",
+          "expansion": "Adventures"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [
+        "Barracks"
+      ],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Adventures",
+        "Renaissance"
+      ],
+      "victory_type": "Province",
+      "avg_score": 22.0
+    },
+    {
+      "game_num": 118,
+      "date": "2026-03-31",
+      "location": "Stigahlíð",
+      "players": [
+        "Skúli",
+        "Krissi",
+        "Mosi",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 47.0
+        },
+        {
+          "place": 2,
+          "name": "Krissi",
+          "tied_with": null,
+          "score": 32.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 30.0
+        },
+        {
+          "place": 4,
+          "name": "Mosi",
+          "tied_with": null,
+          "score": 21.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Artist",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Coin of the realm",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Page",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Caravan guard",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Craftsman",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Riverboat",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Duplicate",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Poet",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Bridge troll",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Tea house",
+          "expansion": "Rising sun"
+        }
+      ],
+      "events": [
+        "Credit",
+        "Pathfinding"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [
+        "Biding time"
+      ],
+      "expansions": [
+        "Adventures",
+        "Rising sun"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 32.5
+    },
+    {
+      "game_num": 119,
+      "date": "2026-03-31",
+      "location": "Stigahlíð",
+      "players": [
+        "Krissi",
+        "Mosi",
+        "Mummi",
+        "Skúli"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 16.0
+        },
+        {
+          "place": 2,
+          "name": "Krissi",
+          "tied_with": null,
+          "score": 3.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 2.0
+        },
+        {
+          "place": 4,
+          "name": "Mosi",
+          "tied_with": null,
+          "score": -9.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "City quarter",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Ratcatcher",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Amulet",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Farmers' market",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Messenger",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Miser",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Archive",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Artificer",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Bridge troll",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Royal carriage",
+          "expansion": "Adventures"
+        }
+      ],
+      "events": [
+        "Pilgrimage"
+      ],
+      "landmarks": [
+        "Wolf den"
+      ],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Adventures",
+        "Empires"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 3.0
+    },
+    {
+      "game_num": 120,
+      "date": "2026-04-01",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Ragnheiður",
+        "Hjödda",
+        "Helgi",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 26.0
+        },
+        {
+          "place": 2,
+          "name": "Helgi",
+          "tied_with": null,
+          "score": 20.0
+        },
+        {
+          "place": 3,
+          "name": "Hjödda",
+          "tied_with": null,
+          "score": 19.0
+        },
+        {
+          "place": 4,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 18.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Tracker",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Ghost town",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Leprechaun",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Night watchman",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Secret cave",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Conclave",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Exorcist",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Sacred grove",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Werewolf",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Raider",
+          "expansion": "Nocturne"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
         "Nocturne"
       ],
       "victory_type": "Province",
