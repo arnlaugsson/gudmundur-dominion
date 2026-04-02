@@ -2,16 +2,28 @@ import rawData from '../data/dominion_data.json'
 import cardTexts from '../data/card_texts.json'
 
 // ── Normalize & parse all games ───────────────────────────────────────────────
+const PLAYER_FIXES = { 'Hallgríur': 'Hallgrímur' }
+const EXP_FIXES = { 'Cornucopia': 'Cornucopia & Guilds', 'Prospoerity': 'Prosperity', 'Rising sun': 'Rising Sun', 'Dark ages': 'Dark Ages' }
+const fixName = n => PLAYER_FIXES[n] || n
+const fixExp = e => EXP_FIXES[e] || e
+
 const parsedGames = rawData.games
   .filter(g => g.date !== 'Sæti' && g.game_num != null && Array.isArray(g.players) && g.players.length > 0)
   .map(g => {
-    if (!g.victory_type) return g
-    const vt = g.victory_type.trim()
     let victory_type = g.victory_type
-    if (/^provinces?$/i.test(vt)) victory_type = 'Province'
-    else if (/^colonies?$/i.test(vt)) victory_type = 'Colony'
-    else if (/^supply/i.test(vt)) victory_type = 'Supply piles'
-    return { ...g, victory_type }
+    if (victory_type) {
+      const vt = victory_type.trim()
+      if (/^provinc(es?|ce)$/i.test(vt)) victory_type = 'Province'
+      else if (/^colon(y|ies)$/i.test(vt)) victory_type = 'Colony'
+      else if (/^supply/i.test(vt)) victory_type = 'Supply piles'
+    }
+    return {
+      ...g,
+      victory_type,
+      players: g.players.map(fixName),
+      results: g.results.map(r => ({ ...r, name: fixName(r.name) })),
+      expansions: (g.expansions || []).map(fixExp),
+    }
   })
 
 // Sort by game number ascending

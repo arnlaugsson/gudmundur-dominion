@@ -134,6 +134,7 @@ def parse_players_and_places(ws, col):
         name = read_string_cell(ws, row, col)
         if name is None:
             continue
+        name = normalize_player_name(name)
         place_val = ws.cell(row=row, column=col + 2).value
         place = int(place_val) if is_valid_place(place_val) else None
         players.append({"name": name, "place": place})
@@ -169,6 +170,7 @@ def parse_scores(ws, col):
         name = read_string_cell(ws, row, col)
         if name is None:
             continue
+        name = normalize_player_name(name)
         score_val = ws.cell(row=row, column=col + 2).value
         score = float(score_val) if isinstance(score_val, (int, float)) else None
         scores.append({"name": name, "score": score})
@@ -183,13 +185,42 @@ def parse_avg_score(ws, col):
     return None
 
 
+PLAYER_NAME_FIXES = {
+    "Hallgríur": "Hallgrímur",
+}
+
+EXPANSION_FIXES = {
+    "Cornucopia": "Cornucopia & Guilds",
+    "Prospoerity": "Prosperity",
+    "Rising sun": "Rising Sun",
+    "Dark ages": "Dark Ages",
+}
+
+
+def normalize_player_name(raw):
+    """Fix known player name typos."""
+    if raw is None:
+        return None
+    return PLAYER_NAME_FIXES.get(raw, raw)
+
+
+def normalize_expansion(raw):
+    """Fix known expansion name typos and inconsistencies."""
+    if raw is None:
+        return None
+    return EXPANSION_FIXES.get(raw, raw)
+
+
 def normalize_victory_type(raw):
     """Normalize victory type string."""
     if raw is None:
         return None
     mapping = {
         "province": "Province",
+        "provinces": "Province",
+        "provincce": "Province",
         "colony": "Colony",
+        "colonies": "Colony",
         "supply piles": "Supply piles",
         "supply": "Supply piles",
     }
@@ -257,7 +288,7 @@ def parse_game(ws, game_num, col):
     allies = parse_string_rows(ws, col, [ROW_ALLY_1, ROW_ALLY_2])
     traits = parse_string_rows(ws, col, [ROW_TRAIT])
     prophecy = parse_string_rows(ws, col, [ROW_PROPHECY])
-    expansions = parse_string_rows(ws, col, range(ROWS_EXPANSIONS[0], ROWS_EXPANSIONS[1] + 1))
+    expansions = [normalize_expansion(e) for e in parse_string_rows(ws, col, range(ROWS_EXPANSIONS[0], ROWS_EXPANSIONS[1] + 1))]
     victory_type = normalize_victory_type(read_string_cell(ws, ROW_VICTORY_TYPE, col))
 
     score_list = parse_scores(ws, col)

@@ -5640,7 +5640,7 @@
       "expansions": [
         "Allies"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 30.67
     },
     {
@@ -5818,7 +5818,7 @@
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 28.5
     },
     {
@@ -5909,7 +5909,7 @@
       "expansions": [
         "Intrigue",
         "Prosperity",
-        "Cornucopia",
+        "Cornucopia & Guilds",
         "Plunder"
       ],
       "victory_type": "Colony",
@@ -6105,7 +6105,7 @@
         "Seaside",
         "Plunder"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 21.0
     },
     {
@@ -6190,7 +6190,7 @@
         "Dark Ages",
         "Hinterlands"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 25.33
     },
     {
@@ -6274,7 +6274,7 @@
         "Adventures",
         "Plunder"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 30.0
     },
     {
@@ -6361,7 +6361,7 @@
         "Adventures",
         "Plunder"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 27.33
     },
     {
@@ -6447,9 +6447,9 @@
         "Kind emperor"
       ],
       "expansions": [
-        "Rising sun"
+        "Rising Sun"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 22.33
     },
     {
@@ -6535,9 +6535,9 @@
         "Progress"
       ],
       "expansions": [
-        "Rising sun"
+        "Rising Sun"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 29.67
     },
     {
@@ -6614,7 +6614,7 @@
       "expansions": [
         "Base"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 29.0
     },
     {
@@ -6706,7 +6706,7 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 40.5
     },
     {
@@ -6798,7 +6798,7 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 17.75
     },
     {
@@ -6885,10 +6885,10 @@
         "Sickness"
       ],
       "expansions": [
-        "Dark ages",
-        "Rising sun"
+        "Dark Ages",
+        "Rising Sun"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 32.67
     },
     {
@@ -6972,10 +6972,10 @@
       "traits": [],
       "prophecy": [],
       "expansions": [
-        "Dark ages",
-        "Rising sun"
+        "Dark Ages",
+        "Rising Sun"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 29.0
     },
     {
@@ -7063,7 +7063,7 @@
       "expansions": [
         "Empires"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 59.33
     },
     {
@@ -7158,7 +7158,7 @@
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 25.25
     },
     {
@@ -7252,7 +7252,7 @@
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 24.75
     },
     {
@@ -7340,7 +7340,7 @@
       "expansions": [
         "Empires"
       ],
-      "victory_type": "Provinces",
+      "victory_type": "Province",
       "avg_score": 43.33
     },
     {
@@ -7428,7 +7428,7 @@
         "Renaissance",
         "Menagerie"
       ],
-      "victory_type": "Colonies",
+      "victory_type": "Colony",
       "avg_score": 70.0
     },
     {
@@ -8161,7 +8161,7 @@
       "traits": [],
       "prophecy": [],
       "expansions": [
-        "Dark ages",
+        "Dark Ages",
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
@@ -8250,7 +8250,7 @@
       "traits": [],
       "prophecy": [],
       "expansions": [
-        "Dark ages",
+        "Dark Ages",
         "Empires"
       ],
       "victory_type": "Province",
@@ -9110,7 +9110,7 @@
       "expansions": [
         "Cornucopia & Guilds",
         "Menagerie",
-        "Prospoerity",
+        "Prosperity",
         "Renaissance"
       ],
       "victory_type": "Province",
@@ -9215,7 +9215,7 @@
       "prophecy": [],
       "expansions": [
         "Prosperity",
-        "Dark ages",
+        "Dark Ages",
         "Allies",
         "Cornucopia & Guilds"
       ],
@@ -9314,7 +9314,7 @@
         "Renaissance",
         "Plunder"
       ],
-      "victory_type": "Provincce",
+      "victory_type": "Province",
       "avg_score": 50.5
     },
     {
@@ -9950,7 +9950,7 @@
       "location": "Laugarás",
       "players": [
         "Hafliði",
-        "Hallgríur",
+        "Hallgrímur",
         "Matthildur",
         "Mummi"
       ],
@@ -9963,9 +9963,9 @@
         },
         {
           "place": 2,
-          "name": "Hallgríur",
+          "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 29.0
         },
         {
           "place": 3,
@@ -10402,7 +10402,7 @@
       ],
       "expansions": [
         "Adventures",
-        "Rising sun"
+        "Rising Sun"
       ],
       "victory_type": "Supply piles",
       "avg_score": 32.5
@@ -18901,6 +18901,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-02 22:13",
+  "last_updated": "2026-04-02 23:49",
   "upcoming_games": 4
 }
