@@ -11,6 +11,7 @@ Usage:
 import datetime
 import json
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -51,7 +52,11 @@ ROW_AVG_SCORE = 39
 def download_spreadsheet(dest):
     """Download the public spreadsheet as XLSX."""
     print(f"Downloading spreadsheet to {dest} ...")
-    urllib.request.urlretrieve(SPREADSHEET_URL, str(dest))
+    try:
+        urllib.request.urlretrieve(SPREADSHEET_URL, str(dest))
+    except urllib.error.URLError as e:
+        print(f"Error: Failed to download spreadsheet: {e}")
+        sys.exit(1)
     print("Download complete.")
     return dest
 
@@ -223,7 +228,7 @@ def build_results(player_places, score_list):
         group = place_groups[r["place"]]
         if len(group) > 1:
             others = [name for name in group if name != r["name"]]
-            r["tied_with"] = others if len(others) > 1 else others[0]
+            r["tied_with"] = others
 
     return results
 
@@ -286,8 +291,9 @@ def parse_spreadsheet(xlsx_path):
     wb = openpyxl.load_workbook(str(xlsx_path), data_only=True)
 
     if SHEET_NAME not in wb.sheetnames:
-        print(f"Error: Sheet '{SHEET_NAME}' not found. Available: {wb.sheetnames}")
-        sys.exit(1)
+        raise RuntimeError(
+            f"Sheet '{SHEET_NAME}' not found. Available: {wb.sheetnames}"
+        )
 
     ws = wb[SHEET_NAME]
     game_columns = find_game_columns(ws)
@@ -317,15 +323,15 @@ def update_json(games):
     else:
         data = {}
 
-    data["games"] = games
+    # Construct a new dict instead of mutating the loaded one
+    new_data = {k: v for k, v in data.items() if k != "legacy_games"}
+    new_data["games"] = games
 
-    # Remove legacy_games key if present
     if "legacy_games" in data:
-        del data["legacy_games"]
         print("Removed 'legacy_games' key")
 
     with open(JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(new_data, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
     print(f"Updated {JSON_FILE} with {len(games)} games")

@@ -1029,13 +1029,17 @@
         {
           "place": 4,
           "name": "Lúlli",
-          "tied_with": "Skúli",
+          "tied_with": [
+            "Skúli"
+          ],
           "score": 23.0
         },
         {
           "place": 4,
           "name": "Skúli",
-          "tied_with": "Lúlli",
+          "tied_with": [
+            "Lúlli"
+          ],
           "score": 24.0
         }
       ],
@@ -3107,13 +3111,17 @@
         {
           "place": 1,
           "name": "Skúli",
-          "tied_with": "Mummi",
+          "tied_with": [
+            "Mummi"
+          ],
           "score": 21.0
         },
         {
           "place": 1,
           "name": "Mummi",
-          "tied_with": "Skúli",
+          "tied_with": [
+            "Skúli"
+          ],
           "score": 27.0
         },
         {
@@ -3204,25 +3212,33 @@
         {
           "place": 1,
           "name": "Halla",
-          "tied_with": "Mummi",
+          "tied_with": [
+            "Mummi"
+          ],
           "score": null
         },
         {
           "place": 1,
           "name": "Mummi",
-          "tied_with": "Halla",
+          "tied_with": [
+            "Halla"
+          ],
           "score": 24.0
         },
         {
           "place": 3,
           "name": "Skúli",
-          "tied_with": "Fúsi",
+          "tied_with": [
+            "Fúsi"
+          ],
           "score": 21.0
         },
         {
           "place": 3,
           "name": "Fúsi",
-          "tied_with": "Skúli",
+          "tied_with": [
+            "Skúli"
+          ],
           "score": null
         }
       ],
@@ -6012,13 +6028,17 @@
         {
           "place": 2,
           "name": "Halla",
-          "tied_with": "Mummi",
+          "tied_with": [
+            "Mummi"
+          ],
           "score": 22.0
         },
         {
           "place": 2,
           "name": "Mummi",
-          "tied_with": "Halla",
+          "tied_with": [
+            "Halla"
+          ],
           "score": 17.0
         },
         {
@@ -7437,13 +7457,17 @@
         {
           "place": 3,
           "name": "Hafliði",
-          "tied_with": "Hallgrímur",
+          "tied_with": [
+            "Hallgrímur"
+          ],
           "score": null
         },
         {
           "place": 3,
           "name": "Hallgrímur",
-          "tied_with": "Hafliði",
+          "tied_with": [
+            "Hafliði"
+          ],
           "score": 18.0
         }
       ],
@@ -9118,13 +9142,17 @@
         {
           "place": 3,
           "name": "Iðunn",
-          "tied_with": "Ragnheiður",
+          "tied_with": [
+            "Ragnheiður"
+          ],
           "score": null
         },
         {
           "place": 3,
           "name": "Ragnheiður",
-          "tied_with": "Iðunn",
+          "tied_with": [
+            "Iðunn"
+          ],
           "score": 37.0
         }
       ],
