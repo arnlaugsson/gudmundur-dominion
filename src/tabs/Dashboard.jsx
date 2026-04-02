@@ -16,7 +16,7 @@ function StatCard({ label, value, sub }) {
 }
 
 export default function Dashboard() {
-  const { games, players, cards, lastUpdated } = DATA
+  const { games, players, cards, lastUpdated, upcomingGames } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
 
   const randomCard = useState(() => {
@@ -68,9 +68,10 @@ export default function Dashboard() {
     const locations = new Set(games.map(g => g.location)).size
     const allScores = games.flatMap(g => g.results.filter(r => r.score != null).map(r => r.score))
     const avgScore = allScores.length > 0 ? (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1) : '—'
-    const topWinner = [...players].sort((a, b) => b.first - a.first)[0]
+    const topWinner = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.first - a.first)[0]
+    const mummi = players.find(p => p.name === 'Mummi')
     const mostGames = [...players].sort((a, b) => b.games - a.games)[0]
-    return { totalGames, totalPlayers, locations, avgScore, topWinner, mostGames }
+    return { totalGames, totalPlayers, locations, avgScore, topWinner, mummi, mostGames }
   }, [games, players])
 
   const victoryRef = useChart(() => {
@@ -263,7 +264,7 @@ export default function Dashboard() {
         <StatCard label="Virkir leikmenn" value={stats.totalPlayers} />
         <StatCard label="Staðir" value={stats.locations} />
         <StatCard label="Meðalskor" value={stats.avgScore} sub="á leikmann á leik" />
-        <StatCard label="Besti sigurvegari" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar`} />
+        <StatCard label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
         <StatCard label="Hollastur" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir`} />
       </div>
 
@@ -327,11 +328,14 @@ export default function Dashboard() {
         <div className="chart-box"><h3>ÞÁTTTAKA LEIKENDA</h3><canvas ref={participationRef} /></div>
       </div>
 
-      {lastUpdated && (
-        <div style={{ textAlign: 'center', fontSize: '.7rem', color: 'var(--dim)', marginTop: '1.5rem', paddingBottom: '.5rem' }}>
-          Gögn uppfærð: {lastUpdated}
-        </div>
-      )}
+      <div style={{ textAlign: 'center', fontSize: '.7rem', color: 'var(--dim)', marginTop: '1.5rem', paddingBottom: '.5rem' }}>
+        {upcomingGames > 0 && (
+          <div style={{ marginBottom: '.3rem', color: 'var(--gold)' }}>
+            {upcomingGames} {upcomingGames === 1 ? 'leikur' : 'leikir'} í bíð
+          </div>
+        )}
+        {lastUpdated && <div>Gögn uppfærð: {lastUpdated}</div>}
+      </div>
 
       {selectedCard && <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />}
     </section>

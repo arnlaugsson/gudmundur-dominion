@@ -312,10 +312,10 @@ def parse_spreadsheet(xlsx_path):
     games.sort(key=lambda g: g["game_num"])
 
     print(f"Parsed {len(games)} games, skipped {skipped} incomplete")
-    return games
+    return games, skipped
 
 
-def update_json(games):
+def update_json(games, upcoming_count):
     """Update dominion_data.json with new games array."""
     if JSON_FILE.exists():
         with open(JSON_FILE, encoding="utf-8") as f:
@@ -327,6 +327,7 @@ def update_json(games):
     new_data = {k: v for k, v in data.items() if k != "legacy_games"}
     new_data["games"] = games
     new_data["last_updated"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    new_data["upcoming_games"] = upcoming_count
 
     if "legacy_games" in data:
         print("Removed 'legacy_games' key")
@@ -348,8 +349,8 @@ def main():
         xlsx_path = DOWNLOAD_PATH
         download_spreadsheet(xlsx_path)
 
-    games = parse_spreadsheet(xlsx_path)
-    update_json(games)
+    games, skipped = parse_spreadsheet(xlsx_path)
+    update_json(games, skipped)
 
 
 if __name__ == "__main__":

@@ -110,6 +110,7 @@ export const DATA = {
   expansions,
   cardTypes,
   lastUpdated: rawData.last_updated || null,
+  upcomingGames: rawData.upcoming_games || 0,
   raw: rawData,
 }
 
