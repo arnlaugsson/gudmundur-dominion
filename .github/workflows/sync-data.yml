@@ -49,13 +49,13 @@ jobs:
           git push
 
       - name: Build
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
         run: npm run build
 
       - name: Deploy to Firebase
-        if: steps.diff.outputs.changed == 'true'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          channelId: live
+        if: steps.diff.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
+          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
+          npx firebase-tools deploy --only hosting --project dominon-1e56c
+          rm /tmp/sa.json
