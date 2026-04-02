@@ -1,0 +1,61 @@
+name: Sync Spreadsheet & Deploy
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 3:00 UTC daily
+  workflow_dispatch:       # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install openpyxl
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Download spreadsheet and sync data
+        run: python3 scripts/sync_spreadsheet.py
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet data/dominion_data.json && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit updated data
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/dominion_data.json
+          git commit -m "chore: sync game data from spreadsheet"
+          git push
+
+      - name: Build
+        if: steps.diff.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Deploy to Firebase
+        if: steps.diff.outputs.changed == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
