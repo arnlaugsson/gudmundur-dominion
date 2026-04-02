@@ -1,12 +1,8 @@
 import rawData from '../data/dominion_data.json'
 
 // ── Normalize & parse all games ───────────────────────────────────────────────
-// Legacy games (#1–49) are pre-parsed from the original Excel sheet and stored
-// in rawData.legacy_games — use those directly instead of the scrambled format.
-const legacyGames = rawData.legacy_games || []
-
-const modernGames = rawData.games
-  .filter(g => g.date !== 'Sæti')
+const parsedGames = rawData.games
+  .filter(g => g.date !== 'Sæti' && g.game_num != null && Array.isArray(g.players) && g.players.length > 0)
   .map(g => {
     if (!g.victory_type) return g
     const vt = g.victory_type.trim()
@@ -16,12 +12,9 @@ const modernGames = rawData.games
     else if (/^supply/i.test(vt)) victory_type = 'Supply piles'
     return { ...g, victory_type }
   })
-  .filter(g => g != null && g.game_num != null && Array.isArray(g.players) && g.players.length > 0)
-
-const allGames = [...legacyGames, ...modernGames]
 
 // Sort by game number ascending
-const games = [...allGames].sort((a, b) => a.game_num - b.game_num)
+const games = [...parsedGames].sort((a, b) => a.game_num - b.game_num)
 
 // ── Cards ─────────────────────────────────────────────────────────────────────
 // Deduplicate cards by name — keep the entry with the best data (non-null cost)
