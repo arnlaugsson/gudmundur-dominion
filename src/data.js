@@ -109,6 +109,7 @@ export const DATA = {
   players,
   expansions,
   cardTypes,
+  lastUpdated: rawData.last_updated || null,
   raw: rawData,
 }
 

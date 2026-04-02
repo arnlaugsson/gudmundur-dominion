@@ -16,7 +16,7 @@ function StatCard({ label, value, sub }) {
 }
 
 export default function Dashboard() {
-  const { games, players, cards } = DATA
+  const { games, players, cards, lastUpdated } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
 
   const randomCard = useState(() => {
@@ -326,6 +326,12 @@ export default function Dashboard() {
         <div className="chart-box"><h3>MEÐALSKOR Á LEIK (þróun)</h3><canvas ref={scoresRef} /></div>
         <div className="chart-box"><h3>ÞÁTTTAKA LEIKENDA</h3><canvas ref={participationRef} /></div>
       </div>
+
+      {lastUpdated && (
+        <div style={{ textAlign: 'center', fontSize: '.7rem', color: 'var(--dim)', marginTop: '1.5rem', paddingBottom: '.5rem' }}>
+          Gögn uppfærð: {lastUpdated}
+        </div>
+      )}
 
       {selectedCard && <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />}
     </section>

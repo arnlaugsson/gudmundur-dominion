@@ -326,6 +326,7 @@ def update_json(games):
     # Construct a new dict instead of mutating the loaded one
     new_data = {k: v for k, v in data.items() if k != "legacy_games"}
     new_data["games"] = games
+    new_data["last_updated"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
     if "legacy_games" in data:
         print("Removed 'legacy_games' key")
