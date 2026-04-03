@@ -7,6 +7,18 @@ const EXP_FIXES = { 'Cornucopia': 'Cornucopia & Guilds', 'Prospoerity': 'Prosper
 const fixName = n => PLAYER_FIXES[n] || n
 const fixExp = e => EXP_FIXES[e] || e
 
+// Build canonical card name map (lowercase → proper case) from card list
+const canonicalCardName = new Map()
+for (const c of rawData.cards) {
+  const lower = c.name.toLowerCase()
+  // Prefer the version with more uppercase letters (proper title case)
+  const existing = canonicalCardName.get(lower)
+  if (!existing || c.name.replace(/[a-z]/g, '').length > existing.replace(/[a-z]/g, '').length) {
+    canonicalCardName.set(lower, c.name)
+  }
+}
+const fixCard = name => canonicalCardName.get(name.toLowerCase()) || name
+
 const parsedGames = rawData.games
   .filter(g => g.date !== 'Sæti' && g.game_num != null && Array.isArray(g.players) && g.players.length > 0)
   .map(g => {
@@ -17,12 +29,19 @@ const parsedGames = rawData.games
       else if (/^colon(y|ies)$/i.test(vt)) victory_type = 'Colony'
       else if (/^supply/i.test(vt)) victory_type = 'Supply piles'
     }
+    const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
+    const extras = {}
+    for (const f of EXTRA_FIELDS) {
+      if (g[f]?.length) extras[f] = g[f].map(fixCard)
+    }
     return {
       ...g,
+      ...extras,
       victory_type,
       players: g.players.map(fixName),
       results: g.results.map(r => ({ ...r, name: fixName(r.name) })),
       expansions: (g.expansions || []).map(fixExp),
+      kingdom: (g.kingdom || []).map(k => ({ ...k, card: fixCard(k.card) })),
     }
   })
 

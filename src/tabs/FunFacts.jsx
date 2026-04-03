@@ -50,9 +50,8 @@ export default function FunFacts({ onGameNav }) {
       ? allScores.reduce((a, b) => (b.score > a.score ? b : a))
       : null
 
-    const positiveScores = allScores.filter(s => s.score > 0)
-    const lowScore = positiveScores.length
-      ? positiveScores.reduce((a, b) => (b.score < a.score ? b : a))
+    const lowScore = allScores.length
+      ? allScores.reduce((a, b) => (b.score < a.score ? b : a))
       : null
 
     // ── Blowout & Nail-biter ────────────────────────────────────────────────
