@@ -167,12 +167,13 @@ export default function Suggester() {
     }
   }
 
-  const updateRatio = (exp, value) => {
-    setCustomRatios(prev => ({ ...prev, [exp]: Math.max(1, Math.min(10, value)) }))
+  const updateRatio = (exp, raw) => {
+    const value = raw === '' ? '' : Math.min(10, parseInt(raw) || 0)
+    setCustomRatios(prev => ({ ...prev, [exp]: value }))
   }
 
   const ratioTotal = useMemo(() =>
-    Object.values(customRatios).reduce((sum, v) => sum + v, 0),
+    Object.values(customRatios).reduce((sum, v) => sum + (parseInt(v) || 0), 0),
     [customRatios]
   )
 
@@ -272,7 +273,7 @@ export default function Suggester() {
     if (hasCustomRatios && ratioTotal === 10) {
       const picked = []
       for (const exp of selectedExps) {
-        const count = customRatios[exp] || 0
+        const count = parseInt(customRatios[exp]) || 0
         if (count === 0) continue
         const pool = candidates.filter(c => c.expansion === exp)
         picked.push(...[...pool].sort(() => Math.random() - 0.5).slice(0, count))
@@ -388,8 +389,8 @@ export default function Suggester() {
                       min={1}
                       max={10}
                       aria-labelledby={`exp-ratio-label-${exp}`}
-                      value={customRatios[exp] ?? 1}
-                      onChange={e => updateRatio(exp, parseInt(e.target.value) || 1)}
+                      value={customRatios[exp] ?? ''}
+                      onChange={e => updateRatio(exp, e.target.value)}
                       style={{
                         width: '2.5rem', textAlign: 'center', background: 'var(--bg)',
                         border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
