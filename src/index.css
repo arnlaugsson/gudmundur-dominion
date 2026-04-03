@@ -627,6 +627,19 @@ select:focus { outline: none; border-color: var(--gold); }
   padding-top: .85rem;
   border-top: 1px solid var(--border);
 }
+.exp-cover-wrap {
+  float: right;
+  margin: 0 0 .75rem .75rem;
+}
+.exp-cover-img {
+  width: 120px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+@media (max-width: 480px) {
+  .exp-cover-wrap { float: none; margin: 0 0 .75rem 0; text-align: center; }
+  .exp-cover-img { width: 160px; }
+}
 .exp-detail-section {
   margin-bottom: .75rem;
 }

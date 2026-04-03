@@ -19,7 +19,7 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
               {exp.name}
               {exp.has2ndEdition && (
                 <span className="tag tag-2nd" style={{ marginLeft: '.5rem', fontSize: '.65rem' }}>
-                  2nd Ed. {exp.secondEditionYear}
+                  2. útg. {exp.secondEditionYear}
                 </span>
               )}
             </h3>
@@ -32,6 +32,18 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
 
         {expanded && (
           <div className="exp-timeline-details" onClick={e => e.stopPropagation()}>
+
+            {exp.coverImg && (
+              <div className="exp-cover-wrap">
+                <img
+                  src={exp.coverImg}
+                  alt={`${exp.name} kassinn`}
+                  className="exp-cover-img"
+                  loading="lazy"
+                />
+              </div>
+            )}
+
             <div className="exp-detail-section">
               <div className="exp-detail-label">Nýjungar</div>
               <ul className="exp-mechanic-list">
@@ -40,13 +52,13 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
             </div>
 
             <div className="exp-detail-section">
-              <div className="exp-detail-label">Skemmtilegt</div>
+              <div className="exp-detail-label">Visste þú?</div>
               <p className="exp-fun-fact">{exp.funFact}</p>
             </div>
 
             {stats.topCards.length > 0 && (
               <div className="exp-detail-section">
-                <div className="exp-detail-label">Vinsælustu spilin</div>
+                <div className="exp-detail-label">Mest notuð spil</div>
                 <div className="exp-top-cards">
                   {stats.topCards.map(c => (
                     <button key={c.name} className="exp-card-chip" onClick={() => onCardClick(c)}>
@@ -60,7 +72,7 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
 
             <div className="exp-detail-actions">
               <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
-                BGG
+                BoardGameGeek
               </a>
               <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
                 Skoða öll spil
@@ -76,6 +88,7 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
 export default function Expansions({ onNavigateCards }) {
   const { cards, games } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
+  const [newestFirst, setNewestFirst] = useState(true)
 
   const expStats = useMemo(() => {
     const stats = {}
@@ -96,15 +109,29 @@ export default function Expansions({ onNavigateCards }) {
     return stats
   }, [cards, games])
 
+  const orderedExpansions = useMemo(
+    () => newestFirst ? [...EXPANSIONS].reverse() : EXPANSIONS,
+    [newestFirst]
+  )
+
   return (
     <section className="section active">
       <h2 className="section-title">Viðbætur</h2>
-      <p style={{ color: 'var(--dim)', marginBottom: '1.5rem', fontSize: '.85rem' }}>
-        Allar Dominion viðbætur frá 2008 til dagsins í dag. Smelltu á viðbót til að sjá nánari upplýsingar.
-      </p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+        <p style={{ color: 'var(--dim)', fontSize: '.85rem', margin: 0 }}>
+          Allar Dominion-viðbætur frá 2008 til dagsins í dag. Smelltu á viðbót til að sjá nánar.
+        </p>
+        <button
+          className="exp-link-btn"
+          style={{ whiteSpace: 'nowrap', flexShrink: 0, marginLeft: '1rem' }}
+          onClick={() => setNewestFirst(v => !v)}
+        >
+          {newestFirst ? 'Elsta fyrst' : 'Nýjasta fyrst'}
+        </button>
+      </div>
 
       <div className="exp-timeline">
-        {EXPANSIONS.map(exp => (
+        {orderedExpansions.map(exp => (
           <ExpansionCard
             key={exp.dataKey}
             exp={exp}
