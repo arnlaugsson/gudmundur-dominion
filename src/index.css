@@ -543,4 +543,160 @@ select:focus { outline: none; border-color: var(--gold); }
   .sug-section { padding: 1rem; }
   .chips { gap: .35rem; }
   .chip { padding: .3rem .65rem; font-size: .74rem; }
+  .exp-timeline-year { font-size: .85rem; min-width: 2.5rem; }
+  .exp-timeline-name { font-size: .95rem; }
+}
+
+/* ── Expansion Timeline ──────────────────────────────────────────────────── */
+.exp-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: .55rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.exp-timeline-card {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.exp-timeline-dot {
+  position: absolute;
+  left: -1.75rem;
+  top: .85rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+  z-index: 1;
+}
+.exp-timeline-year {
+  font-size: .75rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin-bottom: .25rem;
+  min-width: 3rem;
+}
+.exp-timeline-content {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.exp-timeline-content:hover {
+  border-color: var(--gold);
+}
+.exp-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.exp-timeline-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.exp-timeline-stats {
+  font-size: .78rem;
+  color: var(--dim);
+  margin-top: .2rem;
+}
+.exp-timeline-toggle {
+  font-size: 1.2rem;
+  color: var(--dim);
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  padding-left: .5rem;
+}
+.exp-timeline-details {
+  margin-top: .85rem;
+  padding-top: .85rem;
+  border-top: 1px solid var(--border);
+}
+.exp-detail-section {
+  margin-bottom: .75rem;
+}
+.exp-detail-label {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--dim);
+  margin-bottom: .35rem;
+  font-weight: 600;
+}
+.exp-mechanic-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: .82rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+.exp-fun-fact {
+  margin: 0;
+  font-size: .82rem;
+  color: var(--text);
+  line-height: 1.5;
+  font-style: italic;
+  border-left: 2px solid var(--gold);
+  padding-left: .6rem;
+}
+.exp-top-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.exp-card-chip {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .3rem .6rem;
+  font-size: .78rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color .2s;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.exp-card-chip:hover {
+  border-color: var(--gold);
+}
+.exp-card-chip-count {
+  font-size: .68rem;
+  color: var(--dim);
+}
+.exp-detail-actions {
+  display: flex;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+.exp-link-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: .35rem .75rem;
+  font-size: .78rem;
+  color: var(--gold);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  transition: border-color .2s, background .2s;
+}
+.exp-link-btn:hover {
+  border-color: var(--gold);
+  background: var(--bg2);
 }

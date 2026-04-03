@@ -60,16 +60,16 @@ function compareCost(a, b) {
 
 const TYPE_ORDER = ['Kingdom','Event','Landmark','Project','Way','Ally','Trait','Prophecy','Loot']
 
-export default function Cards() {
+export default function Cards({ initialExpansion, onClearExpansion }) {
   const { cards, expansions, cardTypes } = DATA
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState('used-desc')
   const [sortReversed, setSortReversed] = useState(false)
-  const [filterExp, setFilterExp] = useState('')
+  const [filterExp, setFilterExp] = useState(initialExpansion || '')
   const [filterType, setFilterType] = useState('')
   const [hideRemoved, setHideRemoved] = useState(false)
   const [hideBaseCards, setHideBaseCards] = useState(false)
-  const [activeChips, setActiveChips] = useState([])
+  const [activeChips, setActiveChips] = useState(initialExpansion ? [initialExpansion] : [])
   const [selectedCard, setSelectedCard] = useState(null)
 
   const toggleChip = (exp) => {
