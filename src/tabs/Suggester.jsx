@@ -70,7 +70,7 @@ function formatCost(card) {
   return `${card.cost}`
 }
 
-function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard) {
+function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, playerCount) {
   const lines = []
   lines.push('Ríkið:')
   for (const c of [...kingdom].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0))) {
@@ -86,7 +86,9 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
   }
   if (colonyPlatinum && colonyCard && platinumCard) {
     lines.push('')
-    lines.push('Velmegun: Colony & Platinum')
+    const colonyCount = playerCount >= 2 ? (playerCount === 2 ? 8 : 12) : null
+    const colonyLabel = colonyCount != null ? `Colony (${colonyCount})` : 'Colony (2 í leik: 8, 3-4 í leik: 12)'
+    lines.push(`Velmegun: ${colonyLabel} & Platinum (12)`)
   }
   return lines.join('\n')
 }
@@ -554,7 +556,7 @@ export default function Suggester() {
             className="gen-btn"
             style={{ background: copied ? 'var(--green, #3fb950)' : 'var(--bg3)', color: copied ? '#fff' : 'var(--text)' }}
             onClick={() => {
-              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard)
+              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, selectedPlayers.length)
               navigator.clipboard.writeText(text).then(() => {
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
@@ -617,7 +619,9 @@ export default function Suggester() {
           {colonyPlatinum && colonyCard && platinumCard && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Velmegun — Colony &amp; Platinum
+                {selectedPlayers.length >= 2
+                  ? `Velmegun — Colony (${selectedPlayers.length === 2 ? 8 : 12}) & Platinum (12)`
+                  : 'Velmegun — Colony (2 í leik: 8, 3-4 í leik: 12) & Platinum (12)'}
               </div>
               <div className="kingdom-display">
                 {[colonyCard, platinumCard].map(card => (
