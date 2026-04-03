@@ -302,8 +302,6 @@ def parse_game(ws, game_num, col):
         return None
 
     has_places = any(pp["place"] is not None for pp in player_places)
-    if not has_places:
-        return None
 
     kingdom = parse_kingdom(ws, col)
     events = parse_string_rows(ws, col, [ROW_EVENT_1, ROW_EVENT_2])
@@ -317,6 +315,27 @@ def parse_game(ws, game_num, col):
     victory_type = normalize_victory_type(read_string_cell(ws, ROW_VICTORY_TYPE, col))
 
     score_list = parse_scores(ws, col)
+
+    # If no places but we have scores, infer places from scores (highest = 1st)
+    if not has_places and score_list:
+        scored = [s for s in score_list if s["score"] is not None]
+        if scored:
+            scored.sort(key=lambda s: s["score"], reverse=True)
+            score_to_place = {}
+            place = 1
+            for i, s in enumerate(scored):
+                if i > 0 and s["score"] == scored[i - 1]["score"]:
+                    score_to_place[s["name"]] = score_to_place[scored[i - 1]["name"]]
+                else:
+                    score_to_place[s["name"]] = place
+                place += 1
+            for pp in player_places:
+                if pp["name"] in score_to_place:
+                    pp["place"] = score_to_place[pp["name"]]
+            has_places = any(pp["place"] is not None for pp in player_places)
+
+    if not has_places:
+        return None
     avg_score = parse_avg_score(ws, col)
 
     results = build_results(player_places, score_list)

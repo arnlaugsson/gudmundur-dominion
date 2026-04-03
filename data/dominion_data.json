@@ -7153,6 +7153,86 @@
       "avg_score": 59.33
     },
     {
+      "game_num": 82,
+      "date": "2025-03-23",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Skúli",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 61.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 60.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Overlord",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Royal blacksmith",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Encampment/Plunder",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Patrician/Emporium",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Settlers/Bustling Village",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Farmers' market",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Temple",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Capital",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Crown",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Wild hunt",
+          "expansion": "Empires"
+        }
+      ],
+      "events": [],
+      "landmarks": [
+        "Arena",
+        "Aqueduct"
+      ],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Empires"
+      ],
+      "victory_type": "Province",
+      "avg_score": 60.5
+    },
+    {
       "game_num": 83,
       "date": "2025-04-17",
       "location": "Albufeira",
@@ -18987,6 +19067,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-03 00:21",
-  "upcoming_games": 3
+  "last_updated": "2026-04-03 00:23",
+  "upcoming_games": 2
 }
