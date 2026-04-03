@@ -128,7 +128,10 @@ export default function Suggester() {
   const [kingdom, setKingdom] = useState([])
   const [extras, setExtras] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
-  const [showPotions, setShowPotions] = useState(false)
+  const showPotions = useMemo(
+    () => [...kingdom, ...extras].some(c => c.potion),
+    [kingdom, extras]
+  )
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
@@ -276,13 +279,9 @@ export default function Suggester() {
     const prosperityCount = newKingdom.filter(c => c.expansion === 'Prosperity').length
     const newColony = Math.random() < prosperityCount / 10
 
-    // Detect potion-cost cards
-    const hasPotionCards = [...newKingdom, ...newExtras].some(c => c.potion)
-
     setKingdom(newKingdom)
     setExtras(newExtras)
     setColonyPlatinum(newColony)
-    setShowPotions(hasPotionCards)
     setCopied(false)
   }
 
