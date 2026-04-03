@@ -426,8 +426,9 @@ def main():
         download_spreadsheet(xlsx_path)
 
     games, skipped = parse_spreadsheet(xlsx_path)
-    # Count games with players but no results as "pending"
-    pending = sum(1 for g in games if g["players"] and not g["results"])
+    # Only count games beyond the current max completed game as pending
+    max_completed = max((g["game_num"] for g in games if g["results"]), default=0)
+    pending = sum(1 for g in games if g["game_num"] > max_completed and g["players"] and not g["results"])
     update_json(games, pending)
 
 
