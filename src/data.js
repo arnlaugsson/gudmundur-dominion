@@ -41,7 +41,7 @@ const parsedGames = rawData.games
       players: g.players.map(fixName),
       results: g.results.map(r => ({ ...r, name: fixName(r.name) })),
       expansions: (g.expansions || []).map(fixExp),
-      kingdom: (g.kingdom || []).map(k => ({ ...k, card: fixCard(k.card) })),
+      kingdom: (g.kingdom || []).map(k => ({ ...k, card: fixCard(k.card), expansion: k.expansion ? fixExp(k.expansion) : k.expansion })),
     }
   })
 
