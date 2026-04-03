@@ -127,15 +127,28 @@ def find_game_columns(ws):
     return game_cols
 
 
+def find_place_column(ws, col):
+    """Find which column has the place numbers (normally col+2, but may be shifted
+    if extra player names were entered in cols between name and place)."""
+    for offset in (2, 3, 4):
+        # Check if any player row has a valid place number in this column
+        for row in range(ROWS_PLAYERS[0], ROWS_PLAYERS[1] + 1):
+            val = ws.cell(row=row, column=col + offset).value
+            if is_valid_place(val):
+                return col + offset
+    return col + 2  # default
+
+
 def parse_players_and_places(ws, col):
     """Parse player names and places from rows 3-7."""
+    place_col = find_place_column(ws, col)
     players = []
     for row in range(ROWS_PLAYERS[0], ROWS_PLAYERS[1] + 1):
         name = read_string_cell(ws, row, col)
         if name is None:
             continue
         name = normalize_player_name(name)
-        place_val = ws.cell(row=row, column=col + 2).value
+        place_val = ws.cell(row=row, column=place_col).value
         place = int(place_val) if is_valid_place(place_val) else None
         players.append({"name": name, "place": place})
     return players
@@ -163,15 +176,26 @@ def parse_string_rows(ws, col, rows):
     return values
 
 
+def find_score_column(ws, col):
+    """Find which column has score numbers (normally col+2, may be shifted)."""
+    for offset in (2, 3, 4):
+        for row in range(ROWS_SCORES[0], ROWS_SCORES[1] + 1):
+            val = ws.cell(row=row, column=col + offset).value
+            if isinstance(val, (int, float)):
+                return col + offset
+    return col + 2
+
+
 def parse_scores(ws, col):
     """Parse score rows (35-38). Returns list of {name, score}."""
+    score_col = find_score_column(ws, col)
     scores = []
     for row in range(ROWS_SCORES[0], ROWS_SCORES[1] + 1):
         name = read_string_cell(ws, row, col)
         if name is None:
             continue
         name = normalize_player_name(name)
-        score_val = ws.cell(row=row, column=col + 2).value
+        score_val = ws.cell(row=row, column=score_col).value
         score = float(score_val) if isinstance(score_val, (int, float)) else None
         scores.append({"name": name, "score": score})
     return scores
@@ -179,7 +203,8 @@ def parse_scores(ws, col):
 
 def parse_avg_score(ws, col):
     """Parse average score from row 39."""
-    val = ws.cell(row=ROW_AVG_SCORE, column=col + 2).value
+    score_col = find_score_column(ws, col)
+    val = ws.cell(row=ROW_AVG_SCORE, column=score_col).value
     if isinstance(val, (int, float)):
         return round(float(val), 2)
     return None

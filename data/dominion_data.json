@@ -4301,6 +4301,92 @@
       "avg_score": 53.0
     },
     {
+      "game_num": 50,
+      "date": "2024-01-20",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Ragnheiður",
+        "Mummi",
+        "Arnlaugur"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 85.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 41.0
+        },
+        {
+          "place": 3,
+          "name": "Arnlaugur",
+          "tied_with": null,
+          "score": 33.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Hamlet",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Masterpiece",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Village",
+          "expansion": "Base"
+        },
+        {
+          "card": "Smithy",
+          "expansion": "Base"
+        },
+        {
+          "card": "Taxman",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Festival",
+          "expansion": "Base"
+        },
+        {
+          "card": "Hunting Party",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Grand Market",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Hoard",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "King's Court",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Base",
+        "Prosperity",
+        "Cornucopia & Guilds"
+      ],
+      "victory_type": null,
+      "avg_score": 53.0
+    },
+    {
       "game_num": 51,
       "date": "2024-01-20",
       "location": "Selvogsgrunn",
@@ -18901,6 +18987,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-03 00:15",
-  "upcoming_games": 4
+  "last_updated": "2026-04-03 00:21",
+  "upcoming_games": 3
 }
