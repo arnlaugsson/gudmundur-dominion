@@ -477,6 +477,34 @@ export default function Suggester() {
                   ))}
                 </div>
 
+                {selectedExps.length >= 2 && (
+                  <div style={{ marginBottom: '.75rem' }}>
+                    <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginBottom: '.4rem' }}>
+                      Fjöldi korta per viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
+                    </div>
+                    <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                      {selectedExps.map(exp => (
+                        <div key={exp} style={{ display: 'flex', alignItems: 'center', gap: '.3rem', background: 'var(--bg3)', borderRadius: '6px', padding: '.25rem .5rem' }}>
+                          <span id={`exp-ratio-adv-${exp}`} style={{ fontSize: '.75rem' }}>{exp}</span>
+                          <input
+                            type="number"
+                            min={1}
+                            max={10}
+                            aria-labelledby={`exp-ratio-adv-${exp}`}
+                            value={customRatios[exp] ?? ''}
+                            onChange={e => updateRatio(exp, e.target.value)}
+                            style={{
+                              width: '2.5rem', textAlign: 'center', background: 'var(--bg)',
+                              border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
+                              fontSize: '.78rem', padding: '.15rem', fontFamily: 'inherit',
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>
                   Tegund
                 </div>
