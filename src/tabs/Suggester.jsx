@@ -128,6 +128,7 @@ export default function Suggester() {
   const [kingdom, setKingdom] = useState([])
   const [extras, setExtras] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
+  const [showPotions, setShowPotions] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
@@ -275,9 +276,13 @@ export default function Suggester() {
     const prosperityCount = newKingdom.filter(c => c.expansion === 'Prosperity').length
     const newColony = Math.random() < prosperityCount / 10
 
+    // Detect potion-cost cards
+    const hasPotionCards = [...newKingdom, ...newExtras].some(c => c.potion)
+
     setKingdom(newKingdom)
     setExtras(newExtras)
     setColonyPlatinum(newColony)
+    setShowPotions(hasPotionCards)
     setCopied(false)
   }
 
@@ -495,6 +500,15 @@ export default function Suggester() {
                 {[colonyCard, platinumCard].map(card => (
                   <KingdomCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Potion reminder */}
+          {showPotions && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+                Eitrunarbrunnur — 16 í birgðum
               </div>
             </div>
           )}
