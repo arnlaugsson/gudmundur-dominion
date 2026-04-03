@@ -358,7 +358,7 @@ export default function Suggester() {
           </label>
           <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
             <input type="checkbox" checked={noTokens} onChange={() => setNoTokens(v => !v)} />
-            <span>Engin tákn</span>
+            <span>Engin souls</span>
           </label>
         </div>
       </div>
