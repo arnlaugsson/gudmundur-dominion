@@ -160,6 +160,8 @@ tr:hover td { background: rgba(201,168,76,.05); }
   border-radius: 99px;
   padding: .35rem .85rem;
   font-size: .78rem;
+  color: var(--text);
+  font-family: inherit;
   cursor: pointer;
   transition: all .2s;
   white-space: nowrap;
