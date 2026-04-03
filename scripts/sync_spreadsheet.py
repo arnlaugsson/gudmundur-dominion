@@ -334,8 +334,8 @@ def parse_game(ws, game_num, col):
                     pp["place"] = score_to_place[pp["name"]]
             has_places = any(pp["place"] is not None for pp in player_places)
 
-    if not has_places:
-        return None
+    # Games with no places and no scores are still included (with empty results)
+    # so they count toward player stats like "biggest game"
     avg_score = parse_avg_score(ws, col)
 
     results = build_results(player_places, score_list)
@@ -426,7 +426,9 @@ def main():
         download_spreadsheet(xlsx_path)
 
     games, skipped = parse_spreadsheet(xlsx_path)
-    update_json(games, skipped)
+    # Count games with players but no results as "pending"
+    pending = sum(1 for g in games if g["players"] and not g["results"])
+    update_json(games, pending)
 
 
 if __name__ == "__main__":

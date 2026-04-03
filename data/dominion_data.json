@@ -1,6 +1,141 @@
 {
   "games": [
     {
+      "game_num": 1,
+      "date": "2022-10-21",
+      "location": null,
+      "players": [
+        "Inga María",
+        "Lúlli",
+        "Helena",
+        "Mummi"
+      ],
+      "results": [],
+      "kingdom": [
+        {
+          "card": "Oasis",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Watchtower",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Nomad Camp",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Silk Road",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Trader",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Stables",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Vault",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Grand Market",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "King's Court",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Bank",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Hinterlands",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": null
+    },
+    {
+      "game_num": 2,
+      "date": "2022-10-21",
+      "location": null,
+      "players": [
+        "Lúlli",
+        "Helena",
+        "Ragnheiður",
+        "Mummi",
+        "Inga María"
+      ],
+      "results": [],
+      "kingdom": [
+        {
+          "card": "Crossroads",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Jack of all Trades",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Spice Merchant",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Talisman",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Cartographer",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "City",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Haggler",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Inn",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Mountebank",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "King's Court",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Hinterlands",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": null
+    },
+    {
       "game_num": 3,
       "date": "2022-11-10",
       "location": "Rauðalækur",
@@ -19067,6 +19202,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-03 00:23",
+  "last_updated": "2026-04-03 00:25",
   "upcoming_games": 2
 }
