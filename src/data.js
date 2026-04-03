@@ -77,10 +77,22 @@ function isCurseGiver(text) {
   return /gains? a curse/i.test(text)
 }
 
+// Victory cards whose +XVP is printed (not tokens) — excluded from token detection.
+const VICTORY_CARDS = new Set([
+  'Gardens', 'Great Hall', 'Duke', 'Harem', 'Nobles', 'Island', 'Vineyard',
+  'Fairgrounds', 'Tunnel', 'Silk Road', 'Farmland', 'Feodum', 'Distant Lands',
+  'Cemetery', 'Colony', 'Curse', 'Estate', 'Duchy', 'Province',
+])
+
 function isTokenCard(text, card) {
+  if (VICTORY_CARDS.has(card?.name)) return false
   if (card?.debt > 0) return true
   if (!text) return false
-  return /coffers|villagers?\b|\bvp\s*tokens?\b|\bexile\b|\btavern\s*mat\b|\breserve\b/i.test(text)
+  if (/coffers|villagers?\b|\bexile\b|\btavern\s*mat\b|\breserve\b/i.test(text)) return true
+  if (/\btake\b.*\bvp\b|\badd\b.*\bvp\b/i.test(text)) return true
+  if (/\bvp\s*tokens?\b/i.test(text)) return true
+  if (/\+\d+\s*vp\b/i.test(text)) return true
+  return false
 }
 
 const rawCards = [...seenCardNames.values()].map(c => ({
