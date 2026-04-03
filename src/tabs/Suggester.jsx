@@ -70,7 +70,13 @@ function formatCost(card) {
   return `${card.cost}`
 }
 
-function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard) {
+function formatColonyPlatinumLabel(playerCount) {
+  const colonyCount = playerCount >= 2 ? (playerCount === 2 ? 8 : 12) : null
+  const colonyLabel = colonyCount != null ? `Colony (${colonyCount})` : 'Colony (2 í leik: 8, 3-4 í leik: 12)'
+  return `${colonyLabel} & Platinum (12)`
+}
+
+function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, playerCount) {
   const lines = []
   lines.push('Ríkið:')
   for (const c of [...kingdom].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0))) {
@@ -86,7 +92,7 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
   }
   if (colonyPlatinum && colonyCard && platinumCard) {
     lines.push('')
-    lines.push('Velmegun: Colony & Platinum')
+    lines.push(`Velmegun: ${formatColonyPlatinumLabel(playerCount)}`)
   }
   return lines.join('\n')
 }
@@ -554,7 +560,7 @@ export default function Suggester() {
             className="gen-btn"
             style={{ background: copied ? 'var(--green, #3fb950)' : 'var(--bg3)', color: copied ? '#fff' : 'var(--text)' }}
             onClick={() => {
-              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard)
+              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, showAdvanced ? selectedPlayers.length : 0)
               navigator.clipboard.writeText(text).then(() => {
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
@@ -585,6 +591,15 @@ export default function Suggester() {
                 {showAdvanced && selectedPlayers.length >= 2
                   ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
                   : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
+              </div>
+            </div>
+          )}
+
+          {/* Colony + Platinum count reminder */}
+          {colonyPlatinum && colonyCard && platinumCard && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                Velmegun — {formatColonyPlatinumLabel(showAdvanced ? selectedPlayers.length : 0)}
               </div>
             </div>
           )}
