@@ -58,4 +58,7 @@ jobs:
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json
           npx firebase-tools deploy --only hosting --project dominon-1e56c
-          rm /tmp/sa.json
+
+      - name: Cleanup credentials
+        if: always()
+        run: rm -f /tmp/sa.json
