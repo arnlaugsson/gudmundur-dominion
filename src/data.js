@@ -77,9 +77,10 @@ function isCurseGiver(text) {
   return /gains? a curse/i.test(text)
 }
 
-function isTokenCard(text) {
+function isTokenCard(text, card) {
+  if (card?.debt > 0) return true
   if (!text) return false
-  return /coffers|villagers?\b|\bvp\s*token|\+1\s*vp\b|\bdebt\b|\bexile\b|\btavern\s*mat\b|\breserve\b/i.test(text)
+  return /coffers|villagers?\b|\bvp\s*tokens?\b|\bexile\b|\btavern\s*mat\b|\breserve\b/i.test(text)
 }
 
 const rawCards = [...seenCardNames.values()].map(c => ({
@@ -88,7 +89,7 @@ const rawCards = [...seenCardNames.values()].map(c => ({
   isSecondEdition: c.notes === '2nd edition',
   isAttack: isAttackCard(cardTexts[c.name]),
   isCurseGiver: isCurseGiver(cardTexts[c.name]),
-  isTokenCard: isTokenCard(cardTexts[c.name]),
+  isTokenCard: isTokenCard(cardTexts[c.name], c),
 }))
 
 const totalGames = games.length
