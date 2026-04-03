@@ -156,9 +156,9 @@ export default function History({ targetGame, onClearTarget }) {
                 {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
               </div>
               <div className="podium">
-                {game.results.slice(0, 3).map(r => (
-                  <span key={r.place} className={`p${r.place}`}>
-                    {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : '🥉'} {r.name}
+                {game.results.map(r => (
+                  <span key={r.place} className={r.place <= 3 ? `p${r.place}` : ''} style={r.place >= 4 ? { color: 'var(--dim)' } : undefined}>
+                    {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`} {r.name}
                     {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
                   </span>
                 ))}

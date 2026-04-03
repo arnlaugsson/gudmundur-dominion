@@ -40,44 +40,66 @@ export default function FunFacts({ onGameNav }) {
   const { games, players, cards } = DATA
 
   const facts = useMemo(() => {
+    const CLUB_OWNER = 'Mummi'
     const gamesByNum = [...games].sort((a, b) => a.game_num - b.game_num)
     const allScores = games.flatMap(g =>
       g.results.filter(r => r.score != null).map(r => ({ ...r, date: g.date, game: g.game_num }))
     )
 
     // ── Scores ──────────────────────────────────────────────────────────────
-    const highScore = allScores.length
-      ? allScores.reduce((a, b) => (b.score > a.score ? b : a))
-      : null
+    const allHighScores = [...allScores].sort((a, b) => b.score - a.score)
+    const highScoreOwner = allHighScores[0] || null
+    const highScore = highScoreOwner?.name === CLUB_OWNER
+      ? allHighScores.find(s => s.name !== CLUB_OWNER) || highScoreOwner
+      : highScoreOwner
+    const highScoreNote = highScoreOwner?.name === CLUB_OWNER && highScore !== highScoreOwner
+      ? ` (${CLUB_OWNER}: ${highScoreOwner.score} stig)`
+      : ''
 
-    const lowScore = allScores.length
-      ? allScores.reduce((a, b) => (b.score < a.score ? b : a))
-      : null
+    const allLowScores = [...allScores].sort((a, b) => a.score - b.score)
+    const lowScoreOwner = allLowScores[0] || null
+    const lowScore = lowScoreOwner?.name === CLUB_OWNER
+      ? allLowScores.find(s => s.name !== CLUB_OWNER) || lowScoreOwner
+      : lowScoreOwner
+    const lowScoreNote = lowScoreOwner?.name === CLUB_OWNER && lowScore !== lowScoreOwner
+      ? ` (${CLUB_OWNER}: ${lowScoreOwner.score} stig)`
+      : ''
 
     // ── Blowout & Nail-biter ────────────────────────────────────────────────
     let biggestBlowout = null
+    let biggestBlowoutOwner = null
     let nailBiter = null
+    let nailBiterOwner = null
     let tiedGames = []
 
     games.forEach(g => {
       const scored = g.results.filter(r => r.score != null).sort((a, b) => a.place - b.place)
       if (scored.length < 2) return
       const gap = scored[0].score - scored[scored.length - 1].score
-      if (!biggestBlowout || gap > biggestBlowout.gap) {
-        biggestBlowout = { gap, winner: scored[0].name, loser: scored[scored.length - 1].name,
-          winnerScore: scored[0].score, loserScore: scored[scored.length - 1].score, game: g.game_num, date: g.date }
-      }
+      const blowoutEntry = { gap, winner: scored[0].name, loser: scored[scored.length - 1].name,
+        winnerScore: scored[0].score, loserScore: scored[scored.length - 1].score, game: g.game_num, date: g.date }
+      if (!biggestBlowoutOwner || gap > biggestBlowoutOwner.gap) biggestBlowoutOwner = blowoutEntry
+      if (scored[0].name !== CLUB_OWNER && (!biggestBlowout || gap > biggestBlowout.gap)) biggestBlowout = blowoutEntry
 
       const r1 = scored.find(r => r.place === 1)
       const r2 = scored.find(r => r.place === 2)
       if (r1 && r2) {
         const top2gap = r1.score - r2.score
-        if (!nailBiter || top2gap < nailBiter.gap) {
-          nailBiter = { gap: top2gap, winner: r1.name, runnerUp: r2.name, game: g.game_num, date: g.date }
-        }
+        const nbEntry = { gap: top2gap, winner: r1.name, runnerUp: r2.name, game: g.game_num, date: g.date }
+        if (!nailBiterOwner || top2gap < nailBiterOwner.gap) nailBiterOwner = nbEntry
+        if (r1.name !== CLUB_OWNER && (!nailBiter || top2gap < nailBiter.gap)) nailBiter = nbEntry
         if (top2gap === 0) tiedGames.push(g)
       }
     })
+    // Fall back to owner's entry if no non-owner blowout/nailbiter exists
+    if (!biggestBlowout) biggestBlowout = biggestBlowoutOwner
+    if (!nailBiter) nailBiter = nailBiterOwner
+    const blowoutNote = biggestBlowoutOwner && biggestBlowout !== biggestBlowoutOwner
+      ? ` (${CLUB_OWNER}: ${biggestBlowoutOwner.gap} stiga munur í leik #${biggestBlowoutOwner.game})`
+      : ''
+    const nailBiterNote = nailBiterOwner && nailBiter !== nailBiterOwner
+      ? ` (${CLUB_OWNER}: ${nailBiterOwner.gap} stiga munur í leik #${nailBiterOwner.game})`
+      : ''
 
     // ── Cards ────────────────────────────────────────────────────────────────
     const kingdomCards = cards.filter(c => !c.removed && !c.isSupplyCard)
@@ -106,7 +128,14 @@ export default function FunFacts({ onGameNav }) {
       : null
 
     // ── Players ───────────────────────────────────────────────────────────────
-    const runnerUp = [...players].sort((a, b) => b.second - a.second)[0] || null
+    const sortedBySecond = [...players].sort((a, b) => b.second - a.second)
+    const runnerUpOwner = sortedBySecond[0] || null
+    const runnerUp = runnerUpOwner?.name === CLUB_OWNER
+      ? sortedBySecond.find(p => p.name !== CLUB_OWNER) || runnerUpOwner
+      : runnerUpOwner
+    const runnerUpNote = runnerUpOwner?.name === CLUB_OWNER && runnerUp !== runnerUpOwner
+      ? ` (${CLUB_OWNER}: ${runnerUpOwner.second}×)`
+      : ''
 
     // Last place finishes
     const lastCounts = {}
@@ -117,7 +146,14 @@ export default function FunFacts({ onGameNav }) {
         lastCounts[r.name] = (lastCounts[r.name] || 0) + 1
       })
     })
-    const lastPlaceKing = Object.entries(lastCounts).sort((a, b) => b[1] - a[1])[0]
+    const sortedLastPlace = Object.entries(lastCounts).sort((a, b) => b[1] - a[1])
+    const lastPlaceKingOwner = sortedLastPlace[0] || null
+    const lastPlaceKing = lastPlaceKingOwner?.[0] === CLUB_OWNER
+      ? sortedLastPlace.find(e => e[0] !== CLUB_OWNER) || lastPlaceKingOwner
+      : lastPlaceKingOwner
+    const lastPlaceNote = lastPlaceKingOwner?.[0] === CLUB_OWNER && lastPlaceKing !== lastPlaceKingOwner
+      ? ` (${CLUB_OWNER}: ${lastPlaceKingOwner[1]}×)`
+      : ''
 
     // Win streak
     const streaks = players.map(p => {
@@ -128,14 +164,28 @@ export default function FunFacts({ onGameNav }) {
       })
       return { name: p.name, streak: best }
     })
-    const topStreak = [...streaks].sort((a, b) => b.streak - a.streak)[0] || null
+    const sortedStreaks = [...streaks].sort((a, b) => b.streak - a.streak)
+    const topStreakOwner = sortedStreaks[0] || null
+    const topStreak = topStreakOwner?.name === CLUB_OWNER
+      ? sortedStreaks.find(s => s.name !== CLUB_OWNER) || topStreakOwner
+      : topStreakOwner
+    const streakNote = topStreakOwner?.name === CLUB_OWNER && topStreak !== topStreakOwner
+      ? ` (${CLUB_OWNER}: ${topStreakOwner.streak} í röð)`
+      : ''
 
     // Never won (min 5 games, 0 wins)
     const neverWon = players.filter(p => p.games >= 5 && p.first === 0).sort((a, b) => b.games - a.games)
 
     // Best avg scorer (min 5 scored games)
-    const bestScorer = players.filter(p => (p.scores?.length ?? 0) >= 5)
-      .sort((a, b) => (b.gpa ?? 0) - (a.gpa ?? 0))[0] || null
+    const sortedScorers = players.filter(p => (p.scores?.length ?? 0) >= 5)
+      .sort((a, b) => (b.gpa ?? 0) - (a.gpa ?? 0))
+    const bestScorerOwner = sortedScorers[0] || null
+    const bestScorer = bestScorerOwner?.name === CLUB_OWNER
+      ? sortedScorers.find(p => p.name !== CLUB_OWNER) || bestScorerOwner
+      : bestScorerOwner
+    const bestScorerNote = bestScorerOwner?.name === CLUB_OWNER && bestScorer !== bestScorerOwner
+      ? ` (${CLUB_OWNER}: ${bestScorerOwner.gpa.toFixed(1)} stig)`
+      : ''
 
     // Expansion variety per player
     const playerExpSets = {}
@@ -145,9 +195,16 @@ export default function FunFacts({ onGameNav }) {
         g.expansions.forEach(e => playerExpSets[p].add(e))
       })
     })
-    const expExplorer = Object.entries(playerExpSets)
+    const sortedExplorers = Object.entries(playerExpSets)
       .map(([name, exps]) => ({ name, count: exps.size }))
-      .sort((a, b) => b.count - a.count)[0] || null
+      .sort((a, b) => b.count - a.count)
+    const expExplorerOwner = sortedExplorers[0] || null
+    const expExplorer = expExplorerOwner?.name === CLUB_OWNER
+      ? sortedExplorers.find(e => e.name !== CLUB_OWNER) || expExplorerOwner
+      : expExplorerOwner
+    const expExplorerNote = expExplorerOwner?.name === CLUB_OWNER && expExplorer !== expExplorerOwner
+      ? ` (${CLUB_OWNER}: ${expExplorerOwner.count})`
+      : ''
 
     // ── Games & Venues ────────────────────────────────────────────────────────
     const biggestGame = games.length
@@ -231,7 +288,7 @@ export default function FunFacts({ onGameNav }) {
       highScore && {
         icon: '🏆', title: 'Stigamet',
         value: `${highScore.score} stig`,
-        desc: `${highScore.name} í leik #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''} — met í stigafjölda allra tíma`,
+        desc: `${highScore.name} í leik #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''}${highScoreNote}`,
         gameNums: [highScore.game],
       },
       maxTotalScore && {
@@ -243,13 +300,13 @@ export default function FunFacts({ onGameNav }) {
       lowScore && {
         icon: '😬', title: 'Lægsta skor',
         value: `${lowScore.score} stig`,
-        desc: `${lowScore.name} í leik #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — við tölum ekki um þetta`,
+        desc: `${lowScore.name} í leik #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — við tölum ekki um þetta${lowScoreNote}`,
         gameNums: [lowScore.game],
       },
       biggestBlowout && {
         icon: '🌊', title: 'Stærsti sigur',
         value: `${biggestBlowout.gap} stiga munur`,
-        desc: `Leikur #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) bræðdi ${biggestBlowout.loser} (${biggestBlowout.loserScore}). Algert yfirburðaspil.`,
+        desc: `Leikur #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) bræðdi ${biggestBlowout.loser} (${biggestBlowout.loserScore})${blowoutNote}`,
         gameNums: [biggestBlowout.game],
       },
       tiedGames.length > 0 && {
@@ -261,30 +318,30 @@ export default function FunFacts({ onGameNav }) {
       nailBiter && nailBiter.gap > 0 && {
         icon: '😰', title: 'Spennumesti leikurinn',
         value: `${nailBiter.gap} stiga munur`,
-        desc: `Leikur #${nailBiter.game}: ${nailBiter.winner} vann yfir ${nailBiter.runnerUp} með aðeins ${nailBiter.gap} stigi${nailBiter.gap !== 1 ? 'um' : ''}${nailBiter.date ? ` (${nailBiter.date})` : ''}`,
+        desc: `Leikur #${nailBiter.game}: ${nailBiter.winner} vann yfir ${nailBiter.runnerUp} með aðeins ${nailBiter.gap} stigi${nailBiter.gap !== 1 ? 'um' : ''}${nailBiter.date ? ` (${nailBiter.date})` : ''}${nailBiterNote}`,
         gameNums: [nailBiter.game],
       },
       bestScorer && {
         icon: '💰', title: 'Hæsta meðalskor',
         value: `${bestScorer.gpa.toFixed(1)} stig`,
-        desc: `${bestScorer.name} er með ${bestScorer.gpa.toFixed(1)} meðalstig á leik (min. 5 metin leikir)`,
+        desc: `${bestScorer.name} er með ${bestScorer.gpa.toFixed(1)} meðalstig á leik (min. 5 metin leikir)${bestScorerNote}`,
       },
 
       // Leikendamet
       topStreak && topStreak.streak > 1 && {
         icon: '🔥', title: 'Lengsta sigurröð',
         value: `${topStreak.streak} í röð`,
-        desc: `${topStreak.name} fór á óstöðvanlegt skrið — ${topStreak.streak} sigurleikar í röð`,
+        desc: `${topStreak.name} fór á óstöðvanlegt skrið — ${topStreak.streak} sigurleikar í röð${streakNote}`,
       },
       runnerUp && {
         icon: '🥈', title: 'Smiður á 2. sæti',
         value: `${runnerUp.second}× í 2. sæti`,
-        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkuð annað. Svo nálægt, svo oft — silfursætisgengni!`,
+        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkuð annað. Svo nálægt, svo oft — silfursætisgengni!${runnerUpNote}`,
       },
       lastPlaceKing && {
         icon: '🎯', title: 'Hinn góðgjarna taparinn',
         value: `${lastPlaceKing[1]} síðustu sæti`,
-        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.`,
+        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.${lastPlaceNote}`,
       },
       neverWon.length > 0 && {
         icon: '🌱', title: 'Enn í leit að dýrðinni',
@@ -294,7 +351,7 @@ export default function FunFacts({ onGameNav }) {
       expExplorer && {
         icon: '🗺️', title: 'Viðbótar-rannsakandi',
         value: `${expExplorer.name}`,
-        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — mest fjölbreytni í viðbótum`,
+        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — mest fjölbreytni í viðbótum${expExplorerNote}`,
       },
 
       // Spil
