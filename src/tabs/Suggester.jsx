@@ -18,8 +18,9 @@ const TYPE_COLOR = {
 }
 
 const PLAYER_MODES = [
-  { id: 'unseen', name: 'Óspilað', desc: 'Spil sem valdir hafa aldrei séð' },
-  { id: 'rare',   name: 'Sjaldséð', desc: 'Spil sem valdir hafa sjaldnast spilað' },
+  { id: 'unseen',    name: 'Óspilað',    desc: 'Spil sem valdir hafa aldrei séð' },
+  { id: 'rare',      name: 'Sjaldséð',   desc: 'Spil sem valdir hafa sjaldnast spilað' },
+  { id: 'favorites', name: 'Uppáhald',   desc: 'Spil sem valdir spila oftast' },
 ]
 
 function CostBadge({ card }) {
@@ -195,12 +196,23 @@ export default function Suggester() {
           })
           candidates = candidates.slice(0, 20)
         }
-      } else {
-        // 'rare' — sort by combined usage across selected players (least played first)
+      } else if (playerMode === 'rare') {
+        // Sort by combined usage across selected players (least played first)
         candidates.sort((a, b) => {
           const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
           const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
           return usageA - usageB
+        })
+        candidates = candidates.slice(0, 25)
+      } else {
+        // 'favorites' — sort by combined usage across selected players (most played first)
+        candidates = candidates.filter(c =>
+          selectedPlayers.some(p => (playerCardUsage[p]?.[c.name] || 0) > 0)
+        )
+        candidates.sort((a, b) => {
+          const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
+          const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
+          return usageB - usageA
         })
         candidates = candidates.slice(0, 25)
       }
