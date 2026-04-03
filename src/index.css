@@ -243,6 +243,24 @@ tr:hover td { background: rgba(201,168,76,.05); }
 .kchip-project { color: var(--blue); }
 .kchip-way { color: #a78bfa; }
 .kchip-ally { color: #f97316; }
+.exp-chip {
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: 99px;
+  padding: .15rem .5rem;
+  font-size: .68rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+.highlight-chip {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 99px;
+  padding: .15rem .55rem;
+  font-size: .68rem;
+  color: var(--text);
+  font-weight: 500;
+}
 .podium { display: flex; gap: 1rem; flex-wrap: wrap; }
 .podium span { font-size: .82rem; }
 .p1 { color: var(--gold); }

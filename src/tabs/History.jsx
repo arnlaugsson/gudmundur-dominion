@@ -2,6 +2,68 @@ import { useState, useMemo, useEffect } from 'react'
 import GameModal from '../components/GameModal'
 import DATA from '../data'
 
+function computeHighlights(games) {
+  const sorted = [...games].sort((a, b) => a.game_num - b.game_num)
+  const highlights = {}
+  let bestScore = -Infinity
+  let bestScoreGame = null
+  let lowestWin = Infinity
+  let lowestWinGame = null
+  const playerLastSeen = {}
+
+  for (const g of sorted) {
+    const tags = []
+
+    for (const r of g.results) {
+      // Track highest score ever
+      if (r.score != null && r.score > bestScore) {
+        bestScore = r.score
+        bestScoreGame = g.game_num
+      }
+      // Track lowest winning score
+      if (r.place === 1 && r.score != null && r.score < lowestWin) {
+        lowestWin = r.score
+        lowestWinGame = g.game_num
+      }
+    }
+
+    for (const r of g.results) {
+      const prev = playerLastSeen[r.name]
+      if (prev == null) {
+        tags.push({ icon: '🌟', text: `Fyrsti leikur: ${r.name}` })
+      } else {
+        const gap = g.game_num - prev
+        if (gap >= 30) {
+          tags.push({ icon: '👋', text: `${r.name} aftur eftir ${gap} leiki` })
+        }
+      }
+      playerLastSeen[r.name] = g.game_num
+    }
+
+    // Tie detection
+    const scores = g.results.filter(r => r.score != null).sort((a, b) => b.score - a.score)
+    if (scores.length >= 2 && scores[0].score === scores[1].score) {
+      tags.push({ icon: '🤝', text: 'Jafntefli' })
+    }
+
+    if (tags.length > 0) highlights[g.game_num] = tags
+  }
+
+  // Mark record games
+  if (bestScoreGame != null) {
+    const arr = highlights[bestScoreGame] || []
+    arr.push({ icon: '🏆', text: `Hæsta skor: ${bestScore}` })
+    highlights[bestScoreGame] = arr
+  }
+  if (lowestWinGame != null) {
+    const arr = highlights[lowestWinGame] || []
+    arr.push({ icon: '📉', text: `Lægsta sigur: ${lowestWin}` })
+    highlights[lowestWinGame] = arr
+  }
+
+  return highlights
+}
+
 export default function History({ targetGame, onClearTarget }) {
   const { games, players, expansions } = DATA
   const [search, setSearch] = useState('')
@@ -9,6 +71,8 @@ export default function History({ targetGame, onClearTarget }) {
   const [filterExp, setFilterExp] = useState('')
   const [filterVictory, setFilterVictory] = useState('')
   const [selectedGame, setSelectedGame] = useState(null)
+
+  const highlights = useMemo(() => computeHighlights(games), [games])
 
   useEffect(() => {
     if (targetGame != null) {
@@ -164,6 +228,20 @@ export default function History({ targetGame, onClearTarget }) {
                 ))}
               </div>
             </div>
+            {game.expansions?.length > 0 && (
+              <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
+                {game.expansions.map(exp => (
+                  <span key={exp} className="exp-chip">{exp}</span>
+                ))}
+              </div>
+            )}
+            {highlights[game.game_num]?.length > 0 && (
+              <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
+                {highlights[game.game_num].map((h, i) => (
+                  <span key={i} className="highlight-chip">{h.icon} {h.text}</span>
+                ))}
+              </div>
+            )}
             {game.kingdom.length > 0 && (
               <div className="gk">
                 {game.kingdom.map(k => (
