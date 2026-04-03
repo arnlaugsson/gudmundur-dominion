@@ -128,6 +128,10 @@ export default function Suggester() {
   const [kingdom, setKingdom] = useState([])
   const [extras, setExtras] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
+  const showPotions = useMemo(
+    () => [...kingdom, ...extras].some(c => c.potion),
+    [kingdom, extras]
+  )
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
@@ -466,6 +470,15 @@ export default function Suggester() {
       {kingdom.length > 0 && (
         <div style={{ marginTop: '1.5rem' }}>
 
+          {/* Potion reminder */}
+          {showPotions && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                Seyðabrunnur — 16 í birgðum
+              </div>
+            </div>
+          )}
+
           {/* 10 Kingdom Cards */}
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
             Ríkið — {kingdom.length} spil
@@ -503,6 +516,7 @@ export default function Suggester() {
               </div>
             </div>
           )}
+
 
         </div>
       )}
