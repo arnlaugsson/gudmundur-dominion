@@ -133,6 +133,7 @@ export default function Suggester() {
     () => [...kingdom, ...extras].some(c => c.potion),
     [kingdom, extras]
   )
+  const [showCurses, setShowCurses] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
@@ -312,9 +313,12 @@ export default function Suggester() {
     const prosperityCount = newKingdom.filter(c => c.expansion === 'Prosperity').length
     const newColony = Math.random() < prosperityCount / 10
 
+    const hasCurseGiver = [...newKingdom, ...newExtras].some(c => c.isCurseGiver)
+
     setKingdom(newKingdom)
     setExtras(newExtras)
     setColonyPlatinum(newColony)
+    setShowCurses(hasCurseGiver)
     setCopied(false)
   }
 
@@ -570,6 +574,17 @@ export default function Suggester() {
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
                 Seyðabrunnur — 16 í birgðum
+              </div>
+            </div>
+          )}
+
+          {/* Curse pile reminder */}
+          {showCurses && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                {showAdvanced && selectedPlayers.length >= 2
+                  ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
+                  : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
               </div>
             </div>
           )}
