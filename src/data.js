@@ -69,7 +69,7 @@ function isAttackCard(text) {
   if (/may (trash|discard).*to (draw|gain)/i.test(after)) return false
   if (/may trash a card from their hand\./i.test(after)) return false
   // Negative effects on other players = attack
-  return /discards?\b|trash|gains? a curse|puts? .*(back|onto)|down to|name a card|does nothing|instead of following/i.test(after)
+  return /discards?\b|trash|gains? a (curse|ruins)|puts? .*(back|onto)|down to|name a card|does nothing|instead of following/i.test(after)
 }
 
 function isCurseGiver(text) {
