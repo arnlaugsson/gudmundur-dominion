@@ -340,15 +340,18 @@ export default function Suggester() {
                 </div>
                 <div className="exp-checkboxes" style={{ marginBottom: '.75rem' }}>
                   {expStatsForPlayers.map(({ exp, cardCount, timesPlayed, unseenCount }) => (
-                    <label key={exp} className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                    <label key={exp} className="exp-check" style={{ display: 'flex', alignItems: 'flex-start', gap: '.4rem' }}>
                       <input
                         type="checkbox"
                         checked={selectedExps.includes(exp)}
                         onChange={() => toggleExp(exp)}
+                        style={{ marginTop: '.2rem' }}
                       />
-                      <span style={{ flex: 1 }}>{exp}</span>
-                      <span style={{ fontSize: '.7rem', color: 'var(--dim)', whiteSpace: 'nowrap' }}>
-                        {timesPlayed}x spilað · {unseenCount}/{cardCount} óséð
+                      <span style={{ display: 'flex', flexDirection: 'column', gap: '.15rem' }}>
+                        <span>{exp}</span>
+                        <span style={{ fontSize: '.7rem', color: 'var(--dim)' }}>
+                          {timesPlayed}x spilað · {unseenCount}/{cardCount} óséð
+                        </span>
                       </span>
                     </label>
                   ))}
