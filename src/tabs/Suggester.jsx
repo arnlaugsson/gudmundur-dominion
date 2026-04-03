@@ -525,7 +525,7 @@ export default function Suggester() {
           {showCurses && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                {selectedPlayers.length >= 2
+                {showAdvanced && selectedPlayers.length >= 2
                   ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
                   : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
               </div>
