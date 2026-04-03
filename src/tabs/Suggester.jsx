@@ -253,16 +253,20 @@ export default function Suggester() {
         (!c.card_type || c.card_type === 'Kingdom') &&
         c.expansion === exp
       )
-      // Combined times this group has seen this expansion
-      const timesPlayed = selectedPlayers.reduce((max, p) =>
-        Math.max(max, playerExpUsage[p]?.[exp] || 0), 0
-      )
-      // Cards from this expansion unseen by ALL selected players
-      const unseenCount = expCards.filter(c =>
-        selectedPlayers.every(p => !(playerCardUsage[p]?.[c.name]))
+      // Per-player breakdown
+      const perPlayer = selectedPlayers.map(p => {
+        const played = playerExpUsage[p]?.[exp] || 0
+        const unseen = expCards.filter(c => !(playerCardUsage[p]?.[c.name])).length
+        return { name: p, played, unseen }
+      })
+      // Total plays across all selected players
+      const totalPlayed = perPlayer.reduce((sum, pp) => sum + pp.played, 0)
+      // Cards unseen by ANY selected player (at least one hasn't seen it)
+      const unseenByAny = expCards.filter(c =>
+        selectedPlayers.some(p => !(playerCardUsage[p]?.[c.name]))
       ).length
-      return { exp, cardCount: expCards.length, timesPlayed, unseenCount }
-    }).sort((a, b) => a.timesPlayed - b.timesPlayed)
+      return { exp, cardCount: expCards.length, totalPlayed, unseenByAny, perPlayer }
+    }).sort((a, b) => a.totalPlayed - b.totalPlayed)
   }, [selectedPlayers, expansions, cards, playerExpUsage, playerCardUsage])
 
   return (
@@ -339,7 +343,7 @@ export default function Suggester() {
                   Viðbætur — raðað eftir minnstri reynslu
                 </div>
                 <div className="exp-checkboxes" style={{ marginBottom: '.75rem' }}>
-                  {expStatsForPlayers.map(({ exp, cardCount, timesPlayed, unseenCount }) => (
+                  {expStatsForPlayers.map(({ exp, cardCount, totalPlayed, unseenByAny, perPlayer }) => (
                     <label key={exp} className="exp-check" style={{ display: 'flex', alignItems: 'flex-start', gap: '.4rem' }}>
                       <input
                         type="checkbox"
@@ -350,7 +354,9 @@ export default function Suggester() {
                       <span style={{ display: 'flex', flexDirection: 'column', gap: '.15rem' }}>
                         <span>{exp}</span>
                         <span style={{ fontSize: '.7rem', color: 'var(--dim)' }}>
-                          {timesPlayed}x spilað · {unseenCount}/{cardCount} óséð
+                          {unseenByAny}/{cardCount} óséð · {perPlayer.map(pp =>
+                            `${pp.name.split(' ')[0]} ${pp.played}x`
+                          ).join(', ')}
                         </span>
                       </span>
                     </label>
