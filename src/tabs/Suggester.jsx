@@ -507,7 +507,7 @@ export default function Suggester() {
           {showPotions && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Eitrunarbrunnur — 16 í birgðum
+                Seyðabrunnur — 16 í birgðum
               </div>
             </div>
           )}
