@@ -483,6 +483,17 @@ export default function Suggester() {
             </div>
           )}
 
+          {/* Curse pile reminder */}
+          {showCurses && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                {showAdvanced && selectedPlayers.length >= 2
+                  ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
+                  : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
+              </div>
+            </div>
+          )}
+
           {/* 10 Kingdom Cards */}
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
             Ríkið — {kingdom.length} spil
@@ -521,16 +532,6 @@ export default function Suggester() {
             </div>
           )}
 
-          {/* Curse pile reminder */}
-          {showCurses && (
-            <div style={{ marginTop: '1.5rem' }}>
-              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                {showAdvanced && selectedPlayers.length >= 2
-                  ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
-                  : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
-              </div>
-            </div>
-          )}
 
         </div>
       )}
