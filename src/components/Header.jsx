@@ -9,7 +9,7 @@ export default function Header() {
     <header>
       <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
       <p>Tölfræði og gagnvirk úrvinnsla</p>
-      <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
         {lastUpdated && <span>Gögn uppfærð: {lastUpdated}</span>}
         {upcomingGames > 0 && (
           <span style={{ color: 'var(--gold)' }}>
