@@ -595,6 +595,15 @@ export default function Suggester() {
             </div>
           )}
 
+          {/* Colony + Platinum count reminder */}
+          {colonyPlatinum && colonyCard && platinumCard && (
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+                Velmegun — {formatColonyPlatinumLabel(showAdvanced ? selectedPlayers.length : 0)}
+              </div>
+            </div>
+          )}
+
           {/* 10 Kingdom Cards */}
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
             Ríkið — {kingdom.length} spil
@@ -623,7 +632,7 @@ export default function Suggester() {
           {colonyPlatinum && colonyCard && platinumCard && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Velmegun — {formatColonyPlatinumLabel(showAdvanced ? selectedPlayers.length : 0)}
+                Velmegun — Colony &amp; Platinum
               </div>
               <div className="kingdom-display">
                 {[colonyCard, platinumCard].map(card => (
