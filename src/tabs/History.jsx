@@ -27,17 +27,20 @@ function computeHighlights(games) {
       }
     }
 
-    for (const r of g.results) {
-      const prev = playerLastSeen[r.name]
+    const playerNames = g.results.length > 0
+      ? g.results.map(r => r.name)
+      : (g.players || [])
+    for (const name of playerNames) {
+      const prev = playerLastSeen[name]
       if (prev == null) {
-        tags.push({ icon: '🌟', text: `Fyrsti leikur: ${r.name}` })
+        tags.push({ icon: '🌟', text: `Fyrsti leikur: ${name}` })
       } else {
         const gap = g.game_num - prev
         if (gap >= 30) {
-          tags.push({ icon: '👋', text: `${r.name} aftur eftir ${gap} leiki` })
+          tags.push({ icon: '👋', text: `${name} aftur eftir ${gap} leiki` })
         }
       }
-      playerLastSeen[r.name] = g.game_num
+      playerLastSeen[name] = g.game_num
     }
 
     // Tie detection
