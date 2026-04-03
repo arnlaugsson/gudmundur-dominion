@@ -52,7 +52,7 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
             </div>
 
             <div className="exp-detail-section">
-              <div className="exp-detail-label">Visste þú?</div>
+              <div className="exp-detail-label">Vissir þú?</div>
               <p className="exp-fun-fact">{exp.funFact}</p>
             </div>
 
