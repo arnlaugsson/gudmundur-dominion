@@ -57,6 +57,34 @@ function ExtraCard({ card, onClick }) {
   )
 }
 
+function formatCost(card) {
+  if (card.cost == null && !card.debt && !card.potion) return ''
+  if (card.debt) return `${card.debt}D`
+  if (card.potion) return `${card.cost ?? 0}P`
+  return `${card.cost}`
+}
+
+function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard) {
+  const lines = []
+  lines.push('Ríkið:')
+  for (const c of [...kingdom].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0))) {
+    const cost = formatCost(c)
+    lines.push(`  ${c.name}${cost ? ` (${cost})` : ''} — ${c.expansion}`)
+  }
+  if (extras.length > 0) {
+    lines.push('')
+    lines.push('Aukaleg:')
+    for (const c of extras) {
+      lines.push(`  ${c.name} [${c.card_type}] — ${c.expansion}`)
+    }
+  }
+  if (colonyPlatinum && colonyCard && platinumCard) {
+    lines.push('')
+    lines.push('Velmegun: Colony & Platinum')
+  }
+  return lines.join('\n')
+}
+
 export default function Suggester() {
   const { cards, expansions } = DATA
   const [mode, setMode] = useState('random')
@@ -65,6 +93,7 @@ export default function Suggester() {
   const [extras, setExtras] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
+  const [copied, setCopied] = useState(false)
 
   const toggleExp = (e) => {
     setSelectedExps(prev => prev.includes(e) ? prev.filter(x => x !== e) : [...prev, e])
@@ -123,6 +152,7 @@ export default function Suggester() {
     setKingdom(newKingdom)
     setExtras(newExtras)
     setColonyPlatinum(newColony)
+    setCopied(false)
   }
 
   const colonyCard = useMemo(() => cards.find(c => c.name === 'Colony'), [cards])
@@ -161,7 +191,24 @@ export default function Suggester() {
         </div>
       </div>
 
-      <button className="gen-btn" onClick={generate}>Búa til ríki</button>
+      <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <button className="gen-btn" onClick={generate}>Búa til ríki</button>
+        {kingdom.length > 0 && (
+          <button
+            className="gen-btn"
+            style={{ background: copied ? 'var(--green, #3fb950)' : 'var(--bg3)', color: copied ? '#fff' : 'var(--text)' }}
+            onClick={() => {
+              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard)
+              navigator.clipboard.writeText(text).then(() => {
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2000)
+              })
+            }}
+          >
+            {copied ? 'Afritað!' : 'Afrita lista'}
+          </button>
+        )}
+      </div>
 
       {kingdom.length > 0 && (
         <div style={{ marginTop: '1.5rem' }}>
