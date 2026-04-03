@@ -1,6 +1,7 @@
-import { useState, Suspense, lazy, useCallback } from 'react'
+import { useState, useEffect, Suspense, lazy, useCallback } from 'react'
 import Header from './components/Header'
 import Nav from './components/Nav'
+import { TABS } from './constants'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
@@ -9,6 +10,13 @@ const Expansions = lazy(() => import('./tabs/Expansions'))
 const History = lazy(() => import('./tabs/History'))
 const FunFacts = lazy(() => import('./tabs/FunFacts'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
+
+const VALID_TABS = new Set(TABS.map(t => t.id))
+
+function getTabFromHash() {
+  const hash = window.location.hash.slice(1)
+  return VALID_TABS.has(hash) ? hash : 'dashboard'
+}
 
 function Loading() {
   return (
@@ -19,19 +27,29 @@ function Loading() {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard')
+  const [activeTab, setActiveTab] = useState(getTabFromHash)
   const [targetGame, setTargetGame] = useState(null)
   const [targetExpansion, setTargetExpansion] = useState(null)
 
+  const navigateTo = useCallback((tab) => {
+    window.location.hash = tab
+  }, [])
+
+  useEffect(() => {
+    const onHashChange = () => setActiveTab(getTabFromHash())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
   const handleGameNav = useCallback((gameNum) => {
     setTargetGame(gameNum)
-    setActiveTab('history')
-  }, [])
+    navigateTo('history')
+  }, [navigateTo])
 
   const handleExpansionCards = useCallback((expansion) => {
     setTargetExpansion(expansion)
-    setActiveTab('cards')
-  }, [])
+    navigateTo('cards')
+  }, [navigateTo])
 
   const clearTarget = useCallback(() => setTargetGame(null), [])
   const clearExpansion = useCallback(() => setTargetExpansion(null), [])
@@ -39,7 +57,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <Nav active={activeTab} onSelect={setActiveTab} />
+      <Nav active={activeTab} onSelect={navigateTo} />
       <main>
         <Suspense fallback={<Loading />}>
           {activeTab === 'dashboard' && <Dashboard />}
