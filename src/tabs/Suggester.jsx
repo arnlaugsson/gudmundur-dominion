@@ -125,6 +125,7 @@ export default function Suggester() {
   const { cards, expansions, games, players } = DATA
   const [mode, setMode] = useState('random')
   const [selectedExps, setSelectedExps] = useState([])
+  const [customRatios, setCustomRatios] = useState({})
   const [kingdom, setKingdom] = useState([])
   const [extras, setExtras] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
@@ -149,8 +150,30 @@ export default function Suggester() {
   )
 
   const toggleExp = (e) => {
-    setSelectedExps(prev => prev.includes(e) ? prev.filter(x => x !== e) : [...prev, e])
+    setSelectedExps(prev => {
+      const next = prev.includes(e) ? prev.filter(x => x !== e) : [...prev, e]
+      // Reset ratios to even split
+      if (next.length >= 2) {
+        const per = Math.floor(10 / next.length)
+        const rem = 10 - per * next.length
+        const ratios = {}
+        next.forEach((exp, i) => { ratios[exp] = per + (i < rem ? 1 : 0) })
+        setCustomRatios(ratios)
+      } else {
+        setCustomRatios({})
+      }
+      return next
+    })
   }
+
+  const updateRatio = (exp, value) => {
+    setCustomRatios(prev => ({ ...prev, [exp]: Math.max(0, Math.min(10, value)) }))
+  }
+
+  const ratioTotal = useMemo(() =>
+    Object.values(customRatios).reduce((sum, v) => sum + v, 0),
+    [customRatios]
+  )
 
   const togglePlayer = (name) => {
     setSelectedPlayers(prev => {
@@ -241,20 +264,27 @@ export default function Suggester() {
       }
     }
 
-    // Always 10 kingdom cards — balanced across selected expansions
+    // Always 10 kingdom cards — use custom ratios or balanced split
     let newKingdom
     const activeExps = [...new Set(candidates.map(c => c.expansion))]
-    if (activeExps.length >= 2) {
-      // Distribute slots roughly evenly, then fill remainder randomly
+    const hasCustomRatios = selectedExps.length >= 2 && Object.keys(customRatios).length > 0
+    if (hasCustomRatios && ratioTotal === 10) {
+      const picked = []
+      for (const exp of selectedExps) {
+        const count = customRatios[exp] || 0
+        if (count === 0) continue
+        const pool = candidates.filter(c => c.expansion === exp)
+        picked.push(...[...pool].sort(() => Math.random() - 0.5).slice(0, count))
+      }
+      newKingdom = [...picked].sort(() => Math.random() - 0.5).slice(0, 10)
+    } else if (activeExps.length >= 2) {
       const perExp = Math.floor(10 / activeExps.length)
       const remainder = 10 - perExp * activeExps.length
       const picked = []
       for (const exp of activeExps) {
         const pool = candidates.filter(c => c.expansion === exp)
-        const shuffled = [...pool].sort(() => Math.random() - 0.5)
-        picked.push(...shuffled.slice(0, perExp))
+        picked.push(...[...pool].sort(() => Math.random() - 0.5).slice(0, perExp))
       }
-      // Fill remaining slots from unused candidates
       const pickedNames = new Set(picked.map(c => c.name))
       const leftover = candidates.filter(c => !pickedNames.has(c.name))
       picked.push(...[...leftover].sort(() => Math.random() - 0.5).slice(0, remainder))
@@ -342,6 +372,33 @@ export default function Suggester() {
               </label>
             ))}
           </div>
+
+          {selectedExps.length >= 2 && (
+            <div style={{ marginTop: '.75rem' }}>
+              <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginBottom: '.4rem' }}>
+                Fjöldi korta per viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
+              </div>
+              <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                {selectedExps.map(exp => (
+                  <div key={exp} style={{ display: 'flex', alignItems: 'center', gap: '.3rem', background: 'var(--bg3)', borderRadius: '6px', padding: '.25rem .5rem' }}>
+                    <span style={{ fontSize: '.75rem' }}>{exp}</span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={10}
+                      value={customRatios[exp] ?? 0}
+                      onChange={e => updateRatio(exp, parseInt(e.target.value) || 0)}
+                      style={{
+                        width: '2.5rem', textAlign: 'center', background: 'var(--bg)',
+                        border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
+                        fontSize: '.78rem', padding: '.15rem', fontFamily: 'inherit',
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -440,7 +497,14 @@ export default function Suggester() {
       </div>
 
       <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-        <button className="gen-btn" onClick={generate}>Búa til ríki</button>
+        <button
+          className="gen-btn"
+          onClick={generate}
+          disabled={selectedExps.length >= 2 && ratioTotal !== 10}
+          style={selectedExps.length >= 2 && ratioTotal !== 10 ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
+        >
+          Búa til ríki
+        </button>
         {kingdom.length > 0 && (
           <button
             className="gen-btn"
