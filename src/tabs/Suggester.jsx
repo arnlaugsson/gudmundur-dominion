@@ -17,6 +17,11 @@ const TYPE_COLOR = {
   Way: '#a78bfa', Ally: '#f43f5e', Trait: '#06b6d4', Prophecy: '#e879f9',
 }
 
+const PLAYER_MODES = [
+  { id: 'unseen', name: 'Óspilað', desc: 'Spil sem valdir hafa aldrei séð' },
+  { id: 'rare',   name: 'Sjaldséð', desc: 'Spil sem valdir hafa sjaldnast spilað' },
+]
+
 function CostBadge({ card }) {
   if (card.cost == null && !card.debt && !card.potion) return null
   if (card.debt) return <span className="coin debt">{card.debt}D</span>
@@ -85,8 +90,23 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
   return lines.join('\n')
 }
 
+/** Build a map: playerName → { cardName → timesPlayed } */
+function buildPlayerCardUsage(games) {
+  const usage = {}
+  for (const g of games) {
+    const cardNames = (g.kingdom || []).map(k => k.card)
+    for (const player of g.players) {
+      if (!usage[player]) usage[player] = {}
+      for (const card of cardNames) {
+        usage[player][card] = (usage[player][card] || 0) + 1
+      }
+    }
+  }
+  return usage
+}
+
 export default function Suggester() {
-  const { cards, expansions } = DATA
+  const { cards, expansions, games, players } = DATA
   const [mode, setMode] = useState('random')
   const [selectedExps, setSelectedExps] = useState([])
   const [kingdom, setKingdom] = useState([])
@@ -95,8 +115,28 @@ export default function Suggester() {
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
+  // Advanced options
+  const [showAdvanced, setShowAdvanced] = useState(false)
+  const [selectedPlayers, setSelectedPlayers] = useState([])
+  const [playerMode, setPlayerMode] = useState('unseen')
+
+  const playerCardUsage = useMemo(() => buildPlayerCardUsage(games), [games])
+
+  const availablePlayers = useMemo(() =>
+    [...players].sort((a, b) => b.games - a.games),
+    [players]
+  )
+
   const toggleExp = (e) => {
     setSelectedExps(prev => prev.includes(e) ? prev.filter(x => x !== e) : [...prev, e])
+  }
+
+  const togglePlayer = (name) => {
+    setSelectedPlayers(prev => {
+      if (prev.includes(name)) return prev.filter(n => n !== name)
+      if (prev.length >= 4) return prev
+      return [...prev, name]
+    })
   }
 
   const kingdomExpansions = useMemo(() => {
@@ -122,17 +162,47 @@ export default function Suggester() {
 
     let candidates = [...kingdomPool]
 
-    if (mode === 'least') {
-      candidates.sort((a, b) => a.times_used - b.times_used)
-      candidates = candidates.slice(0, 20)
-    } else if (mode === 'favorites') {
-      candidates.sort((a, b) => b.times_used - a.times_used)
-      candidates = candidates.slice(0, 30)
-    } else if (mode === 'balanced') {
-      const half = Math.floor(candidates.length / 2)
-      const leastUsed = [...candidates].sort((a, b) => a.times_used - b.times_used).slice(0, half)
-      const mostUsed = [...candidates].sort((a, b) => b.times_used - a.times_used).slice(0, half)
-      candidates = [...leastUsed.slice(0, 15), ...mostUsed.slice(0, 15)]
+    // Apply player-based filtering if advanced is active and players selected
+    if (showAdvanced && selectedPlayers.length > 0) {
+      if (playerMode === 'unseen') {
+        // Cards that NONE of the selected players have ever played
+        candidates = candidates.filter(c =>
+          selectedPlayers.every(p => !(playerCardUsage[p]?.[c.name]))
+        )
+        // If not enough unseen cards, fall back to rarest
+        if (candidates.length < 10) {
+          candidates = [...kingdomPool]
+          // Sort by combined usage across selected players (ascending)
+          candidates.sort((a, b) => {
+            const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
+            const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
+            return usageA - usageB
+          })
+          candidates = candidates.slice(0, 20)
+        }
+      } else if (playerMode === 'rare') {
+        // Sort by combined usage across selected players (ascending = least played first)
+        candidates.sort((a, b) => {
+          const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
+          const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
+          return usageA - usageB
+        })
+        candidates = candidates.slice(0, 25)
+      }
+    } else {
+      // Standard modes (no player filter)
+      if (mode === 'least') {
+        candidates.sort((a, b) => a.times_used - b.times_used)
+        candidates = candidates.slice(0, 20)
+      } else if (mode === 'favorites') {
+        candidates.sort((a, b) => b.times_used - a.times_used)
+        candidates = candidates.slice(0, 30)
+      } else if (mode === 'balanced') {
+        const half = Math.floor(candidates.length / 2)
+        const leastUsed = [...candidates].sort((a, b) => a.times_used - b.times_used).slice(0, half)
+        const mostUsed = [...candidates].sort((a, b) => b.times_used - a.times_used).slice(0, half)
+        candidates = [...leastUsed.slice(0, 15), ...mostUsed.slice(0, 15)]
+      }
     }
 
     // Always 10 kingdom cards
@@ -158,6 +228,20 @@ export default function Suggester() {
   const colonyCard = useMemo(() => cards.find(c => c.name === 'Colony'), [cards])
   const platinumCard = useMemo(() => cards.find(c => c.name === 'Platinum'), [cards])
 
+  // Stats for selected players
+  const playerStats = useMemo(() => {
+    if (selectedPlayers.length === 0) return null
+    const pool = cards.filter(c =>
+      !c.removed && !c.isSupplyCard &&
+      (!c.card_type || c.card_type === 'Kingdom') &&
+      (selectedExps.length === 0 || selectedExps.includes(c.expansion))
+    )
+    const unseen = pool.filter(c =>
+      selectedPlayers.every(p => !(playerCardUsage[p]?.[c.name]))
+    ).length
+    return { total: pool.length, unseen }
+  }, [selectedPlayers, selectedExps, cards, playerCardUsage])
+
   return (
     <section className="section active">
       <h2 className="section-title">Ríkistillögur</h2>
@@ -166,7 +250,7 @@ export default function Suggester() {
         <h3>TEGUND TILLÖGU</h3>
         <div className="mode-grid">
           {MODES.map(m => (
-            <button key={m.id} className={`mode-card${mode === m.id ? ' selected' : ''}`} onClick={() => setMode(m.id)}>
+            <button key={m.id} className={`mode-card${mode === m.id && !(showAdvanced && selectedPlayers.length > 0) ? ' selected' : ''}`} onClick={() => setMode(m.id)}>
               <div className="mi">{m.icon}</div>
               <div className="mn">{m.name}</div>
               <div className="md">{m.desc}</div>
@@ -189,6 +273,71 @@ export default function Suggester() {
             </label>
           ))}
         </div>
+      </div>
+
+      {/* Advanced options */}
+      <div className="sug-section">
+        <button
+          onClick={() => setShowAdvanced(v => !v)}
+          style={{
+            background: 'none', border: 'none', color: 'var(--gold)', cursor: 'pointer',
+            fontSize: '.85rem', fontWeight: 600, padding: 0, display: 'flex', alignItems: 'center', gap: '.4rem',
+          }}
+        >
+          <span style={{ fontSize: '.7rem' }}>{showAdvanced ? '▼' : '▶'}</span>
+          ÍTARLEGRI VALKOSTIR
+        </button>
+
+        {showAdvanced && (
+          <div style={{ marginTop: '.75rem' }}>
+            <div style={{ fontSize: '.78rem', color: 'var(--dim)', marginBottom: '.5rem' }}>
+              Veldu 1–4 sem taka þátt — ríkið verður aðlagað að reynslu þeirra
+            </div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: '.75rem' }}>
+              {availablePlayers.map(p => (
+                <button
+                  key={p.name}
+                  className={`chip${selectedPlayers.includes(p.name) ? ' active' : ''}`}
+                  onClick={() => togglePlayer(p.name)}
+                  style={selectedPlayers.includes(p.name) ? { background: 'rgba(201,168,76,.2)', borderColor: 'var(--gold)' } : {}}
+                >
+                  {p.name}
+                  <span style={{ fontSize: '.68rem', color: 'var(--dim)', marginLeft: '.3rem' }}>({p.games})</span>
+                </button>
+              ))}
+            </div>
+
+            {selectedPlayers.length > 0 && (
+              <>
+                <div style={{ display: 'flex', gap: '.5rem', marginBottom: '.5rem' }}>
+                  {PLAYER_MODES.map(m => (
+                    <button
+                      key={m.id}
+                      className={`mode-card${playerMode === m.id ? ' selected' : ''}`}
+                      onClick={() => setPlayerMode(m.id)}
+                      style={{ flex: 1, padding: '.6rem .8rem' }}
+                    >
+                      <div className="mn" style={{ fontSize: '.85rem' }}>{m.name}</div>
+                      <div className="md" style={{ fontSize: '.72rem' }}>{m.desc}</div>
+                    </button>
+                  ))}
+                </div>
+
+                {playerStats && (
+                  <div style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
+                    {playerStats.unseen} af {playerStats.total} spilum eru óspilað fyrir {selectedPlayers.length === 1 ? selectedPlayers[0] : `þessa ${selectedPlayers.length}`}
+                    {playerMode === 'unseen' && playerStats.unseen < 10 && (
+                      <span style={{ color: 'var(--gold)', marginLeft: '.5rem' }}>
+                        (of fá óspilað — sjaldséð verður notað í staðinn)
+                      </span>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
