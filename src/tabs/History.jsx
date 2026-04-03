@@ -67,7 +67,7 @@ export default function History({ targetGame, onClearTarget }) {
         <input
           type="text"
           className="search-bar"
-          placeholder="Leita eftir leikmann, korti, stað..."
+          placeholder="Leita eftir nafni, korti, stað..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
@@ -77,7 +77,7 @@ export default function History({ targetGame, onClearTarget }) {
           onChange={e => { addPlayer(e.target.value); e.target.value = '' }}
           style={{ minWidth: '130px' }}
         >
-          <option value="">Sía eftir leikmann…</option>
+          <option value="">Sía eftir nafni…</option>
           {availablePlayers.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
         </select>
         <select value={filterExp} onChange={e => setFilterExp(e.target.value)}>

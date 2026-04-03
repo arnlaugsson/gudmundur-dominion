@@ -252,16 +252,16 @@ export default function Dashboard() {
 
       <div className="stats-grid">
         <StatCard label="Leikir alls" value={stats.totalGames} />
-        <StatCard label="Virkir leikmenn" value={stats.totalPlayers} />
+        <StatCard label="Virk í leik" value={stats.totalPlayers} />
         <StatCard label="Staðir" value={stats.locations} />
-        <StatCard label="Meðalskor" value={stats.avgScore} sub="á leikmann á leik" />
+        <StatCard label="Meðalskor" value={stats.avgScore} sub="per leik" />
         <StatCard className="span-2" label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
         <StatCard className="span-2" label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
       </div>
 
       {playerOfDay && (
         <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
-          <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Leikmaður dagsins</div>
+          <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Spilari dagsins</div>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: 180 }}>
               <div style={{ fontFamily: 'Cinzel, serif', fontSize: '1.3rem', color: 'var(--gold)', marginBottom: '.2rem' }}>{playerOfDay.player.name}</div>

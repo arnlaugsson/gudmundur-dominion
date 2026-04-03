@@ -82,7 +82,7 @@ export default function Players() {
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Leikmaður</th><th>Leikir</th>
+              <th>#</th><th>Nafn</th><th>Leikir</th>
               <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
               <th>Sigurhlutfall</th><th>Meðalskor</th>
             </tr>

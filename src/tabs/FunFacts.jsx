@@ -229,7 +229,7 @@ export default function FunFacts({ onGameNav }) {
 
       // Stigamet
       highScore && {
-        icon: '🏆', title: 'Hæsta skor nokkurnsinm',
+        icon: '🏆', title: 'Stigamet',
         value: `${highScore.score} stig`,
         desc: `${highScore.name} í leik #${highScore.game}${highScore.date ? ` (${highScore.date})` : ''} — met í stigafjölda allra tíma`,
         gameNums: [highScore.game],
@@ -255,7 +255,7 @@ export default function FunFacts({ onGameNav }) {
       tiedGames.length > 0 && {
         icon: '🤝', title: 'Jafnar lokur',
         value: `${tiedGames.length} jafn${tiedGames.length === 1 ? 'ur leikur' : 'ir leikir'}`,
-        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1. og 2. sæti enduðu með sömu stig. Leikniður þurfti að ráða úrslitum!`,
+        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1. og 2. sæti enduðu með sömu stig. Þurfti að skoða betur til að ráða úrslitum!`,
         gameNums: tiedGames.map(g => g.game_num),
       },
       nailBiter && nailBiter.gap > 0 && {
@@ -279,22 +279,22 @@ export default function FunFacts({ onGameNav }) {
       runnerUp && {
         icon: '🥈', title: 'Smiður á 2. sæti',
         value: `${runnerUp.second}× í 2. sæti`,
-        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkur annar. Svo nálægt, svo oft — silfursætisgengni!`,
+        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkuð annað. Svo nálægt, svo oft — silfursætisgengni!`,
       },
       lastPlaceKing && {
         icon: '🎯', title: 'Hinn góðgjarna taparinn',
         value: `${lastPlaceKing[1]} síðustu sæti`,
-        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhvern til að halda egói annarra í skefjum.`,
+        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.`,
       },
       neverWon.length > 0 && {
         icon: '🌱', title: 'Enn í leit að dýrðinni',
-        value: `${neverWon.length} leikmaður${neverWon.length !== 1 ? 'menn' : ''}`,
-        desc: `${neverWon.map(p => `${p.name} (${p.games} leikir)`).join(', ')} — hefur ekki unnið enn. Sérhver meistari var einu sinni byrjandi!`,
+        value: `${neverWon.length} ${neverWon.length !== 1 ? 'leikmenn' : 'í leik'}`,
+        desc: `${neverWon.map(p => `${p.name} (${p.games} leikir)`).join(', ')} — hefur ekki unnið enn. Allir byrja einhvers staðar!`,
       },
       expExplorer && {
         icon: '🗺️', title: 'Viðbótar-rannsakandi',
         value: `${expExplorer.name}`,
-        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — fjölbreyttastur leikmanna`,
+        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — mest fjölbreytni í viðbótum`,
       },
 
       // Spil
@@ -304,7 +304,7 @@ export default function FunFacts({ onGameNav }) {
         desc: `Kom fyrir í ${topCard.times_used} ríkjum — uppáhald klúbbsins`,
       },
       topPair && {
-        icon: '🔗', title: 'Kraftapari',
+        icon: '🔗', title: 'Kraftapar',
         value: `${topPair.cards[0]} + ${topPair.cards[1]}`,
         desc: `Þessi tvö spil hafa verið í sama ríki ${topPair.count} sinnum — skapaðar fyrir hvort annað`,
       },
@@ -315,14 +315,14 @@ export default function FunFacts({ onGameNav }) {
       },
       neverUsed.length > 0 && {
         icon: '👻', title: 'Ósnert spil',
-        value: `${neverUsed.length} spil`,
+        value: `${neverUsed.length} af ${kingdomCards.length} spilum`,
         desc: `${neverUsed.slice(0, 3).map(c => c.name).join(', ')}${neverUsed.length > 3 ? `… og ${neverUsed.length - 3} til viðbótar` : ''} — hafa aldrei komið í ríki`,
       },
 
       // Leiksnið
       biggestGame && {
         icon: '🎉', title: 'Stærsti leikurinn',
-        value: `${biggestGame.players.length} leikmenn`,
+        value: `${biggestGame.players.length} í leik`,
         desc: `Leikur #${biggestGame.game_num} — ${biggestGame.players.join(', ')}`,
         gameNums: [biggestGame.game_num],
       },
@@ -339,8 +339,8 @@ export default function FunFacts({ onGameNav }) {
       },
       {
         icon: '📊', title: 'Meðalstærð leiks',
-        value: `${avgPlayers} leikmenn`,
-        desc: 'Meðalfjöldi leikenda á leik',
+        value: `${avgPlayers} í leik`,
+        desc: 'Meðalfjöldi per leik',
       },
       provinceGames + colonyGames > 0 && {
         icon: '🏛️', title: 'Héraðið vs Nýlendur',

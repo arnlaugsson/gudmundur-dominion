@@ -13,10 +13,10 @@ export const t = {
   // Dashboard
   dashboard: {
     totalGames:       'Leikir alls',
-    activePlayers:    'Virkir leikmenn',
+    activePlayers:    'Virk í leik',
     locations:        'Staðir',
     avgScore:         'Meðalskor',
-    avgScoreSub:      'á leikmann á leik',
+    avgScoreSub:      'per leik',
     topWinner:        'Besti sigurvegari',
     wins:             'sigrar',
     mostDedicated:    'Hollastur',
@@ -44,7 +44,7 @@ export const t = {
     sortGpa:       'Meðalskor',
     sortWins:      'Sigrar',
     colRank:       '#',
-    colPlayer:     'Leikmaður',
+    colPlayer:     'Nafn',
     colGames:      'Leikir',
     col1st:        '1.',
     col2nd:        '2.',
@@ -77,8 +77,8 @@ export const t = {
   // History
   history: {
     title:        'Leikasaga',
-    search:       'Leita eftir leikmann, korti, stað...',
-    filterPlayer: 'Sía eftir leikmann…',
+    search:       'Leita eftir nafni, korti, stað...',
+    filterPlayer: 'Sía eftir nafni…',
     allExp:       'Allar viðbætur',
     allVictory:   'Allar sigurtegundir',
     victoryProv:  'Héraðið',
@@ -87,7 +87,7 @@ export const t = {
     playersLabel: 'Leikmenn:',
     clearFilter:  'Hreinsa',
     gameCount:    n => `${n} leik${n === 1 ? 'ur' : 'ir'}`,
-    withAll:      n => `með alla ${n} leikendur`,
+    withAll:      n => `með öll ${n}`,
     pts:          'stig',
   },
 
@@ -98,7 +98,7 @@ export const t = {
       lostToHistory: {
         title: 'Glatað í sögunni',
         value: n => `${n} leik${n === 1 ? 'ur' : 'ir'} óskráðir`,
-        desc:  (first, n) => `Færslur hefjast á leik #${first}. Fyrstu ${n} leikirnir voru spilaðir áður en nokkur hugðist halda utan um þá — glataðir í sögunni!`,
+        desc:  (first, n) => `Færslur hefjast á leik #${first}. Fyrstu ${n} leikirnir voru spilaðir áður en farið var að halda utan um þá — glataðir í sögunni!`,
       },
       homeTurf: {
         title: 'Heimavöllur',
@@ -109,12 +109,12 @@ export const t = {
         desc:  n => `Fjölmennasti mánuður klúbbsins með ${n} leiki. Sumarleg Dominion er sérstök!`,
       },
       highScore: {
-        title: 'Hæsta skor nokkurnsinm',
+        title: 'Stigamet',
         value: n => `${n} stig`,
         desc:  (name, game, date) => `${name} í leik #${game}${date ? ` (${date})` : ''} — met í stigafjölda allra tíma`,
       },
       highestScoringGame: {
-        title: 'Stiagríkasti leikurinn',
+        title: 'Stigaríkasti leikurinn',
         value: n => `${n} stig alls`,
         desc:  (game, date) => `Leikur #${game}${date ? ` (${date})` : ''} — flestu stig á einum leik`,
       },
@@ -151,28 +151,28 @@ export const t = {
       runnerUp: {
         title: 'Smiður á 2. sæti',
         value: n => `${n}× í 2. sæti`,
-        desc:  name => `${name} hefur lokið í 2. sæti fleiri sinnum en nokkur annar. Svo nálægt, svo oft — silfursætisgengni!`,
+        desc:  name => `${name} hefur lokið í 2. sæti oftar en nokkuð annað. Svo nálægt, svo oft!`,
       },
       generousLoser: {
         title: 'Hinn góðgjarna taparinn',
         value: n => `${n} síðustu sæti`,
-        desc:  (name, n) => `${name} hefur gjöfult lagt ${n} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhvern til að halda egói annarra í skefjum.`,
+        desc:  (name, n) => `${name} hefur gjöfult lagt ${n} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.`,
       },
       neverWon: {
         title: 'Enn í leit að dýrðinni',
-        value: n => `${n} leikmaður${n !== 1 ? 'menn' : ''}`,
-        desc:  names => `${names} — hefur ekki unnið enn. Sérhver meistari var einu sinni byrjandi!`,
+        value: n => `${n} ${n !== 1 ? 'leikmenn' : 'í leik'}`,
+        desc:  names => `${names} — hefur ekki unnið enn. Allir byrja einhvers staðar!`,
       },
       expExplorer: {
         title: 'Viðbótar-rannsakandi',
-        desc:  (name, n) => `${name} hefur spilað í leikjum með ${n} mismunandi viðbætur — fjölbreyttastur leikmanna`,
+        desc:  (name, n) => `${name} hefur spilað í leikjum með ${n} mismunandi viðbætur — mest fjölbreytni í viðbótum`,
       },
       mostBeloved: {
         title: 'Uppáhaldskortin',
         desc:  (name, n) => `Kom fyrir í ${n} ríkjum — uppáhald klúbbsins`,
       },
       powerCouple: {
-        title: 'Kraftapari',
+        title: 'Kraftapar',
         desc:  (c1, c2, n) => `Þessi tvö spil hafa verið í sama ríki ${n} sinnum — skapaðar fyrir hvort annað`,
       },
       forgotten: {
@@ -186,7 +186,7 @@ export const t = {
       },
       biggestGame: {
         title: 'Stærsti leikurinn',
-        value: n => `${n} leikmenn`,
+        value: n => `${n} í leik`,
         desc:  (num, names) => `Leikur #${num} — ${names}`,
       },
       largestKingdom: {
@@ -201,7 +201,7 @@ export const t = {
       },
       avgGameSize: {
         title: 'Meðalstærð leiks',
-        desc:  'Meðalfjöldi leikenda á leik',
+        desc:  'Meðalfjöldi per leik',
       },
       provinceVsColony: {
         title: 'Héraðið vs Nýlendur',
