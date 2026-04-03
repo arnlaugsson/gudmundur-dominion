@@ -346,6 +346,7 @@ def parse_spreadsheet(xlsx_path):
     return games, skipped
 
 
+
 def update_json(games, upcoming_count):
     """Update dominion_data.json with new games array."""
     if JSON_FILE.exists():
