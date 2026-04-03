@@ -24,7 +24,7 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
               )}
             </h3>
             <div className="exp-timeline-stats">
-              {stats.cardCount} spil &middot; Notað {stats.timesUsed}x &middot; {stats.gameCount} leikir
+              {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
             </div>
           </div>
           <span className="exp-timeline-toggle">{expanded ? '−' : '+'}</span>
@@ -55,6 +55,28 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
               <div className="exp-detail-label">Vissir þú?</div>
               <p className="exp-fun-fact">{exp.funFact}</p>
             </div>
+
+            {(stats.removed.length > 0 || stats.added.length > 0) && (
+              <div className="exp-detail-section">
+                <div className="exp-detail-label">Breytingar í 2. útgáfu</div>
+                {stats.removed.length > 0 && (
+                  <div style={{ marginBottom: '.4rem' }}>
+                    <span style={{ fontSize: '.75rem', color: '#f85149', fontWeight: 600 }}>Fjarlægð: </span>
+                    <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
+                      {stats.removed.join(', ')}
+                    </span>
+                  </div>
+                )}
+                {stats.added.length > 0 && (
+                  <div>
+                    <span style={{ fontSize: '.75rem', color: '#3fb950', fontWeight: 600 }}>Ný spil: </span>
+                    <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
+                      {stats.added.join(', ')}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
 
             {stats.topCards.length > 0 && (
               <div className="exp-detail-section">
@@ -104,7 +126,15 @@ export default function Expansions({ onNavigateCards }) {
         .sort((a, b) => b.times_used - a.times_used)
         .slice(0, 5)
 
-      stats[exp.dataKey] = { cardCount: expCards.length, timesUsed, gameCount, topCards }
+      // 2nd edition changes
+      const removed = exp.has2ndEdition
+        ? expCards.filter(c => c.removed).map(c => c.name).sort()
+        : []
+      const added = exp.has2ndEdition
+        ? expCards.filter(c => c.isSecondEdition).map(c => c.name).sort()
+        : []
+
+      stats[exp.dataKey] = { cardCount: expCards.length, timesUsed, gameCount, topCards, removed, added }
     }
     return stats
   }, [cards, games])
