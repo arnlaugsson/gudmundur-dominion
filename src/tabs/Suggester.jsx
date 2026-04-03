@@ -131,6 +131,10 @@ export default function Suggester() {
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
+  // Filters
+  const [noAttacks, setNoAttacks] = useState(false)
+  const [noCurses, setNoCurses] = useState(false)
+
   // Advanced options
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [selectedPlayers, setSelectedPlayers] = useState([])
@@ -162,19 +166,24 @@ export default function Suggester() {
   }, [expansions])
 
   function generate() {
+    const excludeCard = c =>
+      (noAttacks && c.isAttack) || (noCurses && c.isCurseGiver)
+
     // Kingdom cards only
     const kingdomPool = cards.filter(c =>
       !c.removed &&
       !c.isSupplyCard &&
       (!c.card_type || c.card_type === 'Kingdom') &&
-      (selectedExps.length === 0 || selectedExps.includes(c.expansion))
+      (selectedExps.length === 0 || selectedExps.includes(c.expansion)) &&
+      !excludeCard(c)
     )
 
     // Special/landscape cards as extras
     const extrasPool = cards.filter(c =>
       !c.removed &&
       SPECIAL_TYPES.has(c.card_type) &&
-      (selectedExps.length === 0 || selectedExps.includes(c.expansion))
+      (selectedExps.length === 0 || selectedExps.includes(c.expansion)) &&
+      !excludeCard(c)
     )
 
     let candidates = [...kingdomPool]
@@ -335,6 +344,19 @@ export default function Suggester() {
           </div>
         </div>
       )}
+
+      <div className="sug-section">
+        <div style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}>
+          <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+            <input type="checkbox" checked={noAttacks} onChange={() => setNoAttacks(v => !v)} />
+            <span>Engin árásarspil</span>
+          </label>
+          <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+            <input type="checkbox" checked={noCurses} onChange={() => setNoCurses(v => !v)} />
+            <span>Engar bölvanir</span>
+          </label>
+        </div>
+      </div>
 
       {/* Advanced options */}
       <div className="sug-section">

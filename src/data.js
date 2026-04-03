@@ -58,10 +58,31 @@ for (const c of rawData.cards) {
   }
 }
 
+// Detect attack and curse-giving cards from card text
+function isAttackCard(text) {
+  if (!text) return false
+  const lower = text.toLowerCase()
+  const idx = lower.indexOf('each other player')
+  if (idx === -1) return false
+  const after = lower.slice(idx)
+  // "may trash/discard...to draw/gain" = optional benefit, not attack
+  if (/may (trash|discard).*to (draw|gain)/i.test(after)) return false
+  if (/may trash a card from their hand\./i.test(after)) return false
+  // Negative effects on other players = attack
+  return /discards?\b|trash|gains? a curse|puts? .*(back|onto)|down to|name a card|does nothing|instead of following/i.test(after)
+}
+
+function isCurseGiver(text) {
+  if (!text) return false
+  return /gains? a curse/i.test(text)
+}
+
 const rawCards = [...seenCardNames.values()].map(c => ({
   ...c,
   card_type: c.card_type || 'Kingdom',
   isSecondEdition: c.notes === '2nd edition',
+  isAttack: isAttackCard(cardTexts[c.name]),
+  isCurseGiver: isCurseGiver(cardTexts[c.name]),
 }))
 
 const totalGames = games.length
