@@ -232,13 +232,33 @@ export default function Suggester() {
       }
     }
 
-    // Always 10 kingdom cards
-    const newKingdom = [...candidates].sort(() => Math.random() - 0.5).slice(0, 10)
+    // Always 10 kingdom cards — balanced across selected expansions
+    let newKingdom
+    const activeExps = [...new Set(candidates.map(c => c.expansion))]
+    if (activeExps.length >= 2) {
+      // Distribute slots roughly evenly, then fill remainder randomly
+      const perExp = Math.floor(10 / activeExps.length)
+      const remainder = 10 - perExp * activeExps.length
+      const picked = []
+      for (const exp of activeExps) {
+        const pool = candidates.filter(c => c.expansion === exp)
+        const shuffled = [...pool].sort(() => Math.random() - 0.5)
+        picked.push(...shuffled.slice(0, perExp))
+      }
+      // Fill remaining slots from unused candidates
+      const pickedNames = new Set(picked.map(c => c.name))
+      const leftover = candidates.filter(c => !pickedNames.has(c.name))
+      picked.push(...[...leftover].sort(() => Math.random() - 0.5).slice(0, remainder))
+      newKingdom = [...picked].sort(() => Math.random() - 0.5).slice(0, 10)
+    } else {
+      newKingdom = [...candidates].sort(() => Math.random() - 0.5).slice(0, 10)
+    }
 
-    // 1-2 extras if the pool has any
+    // 0, 1, or 2 extras (equal 1/3 chance each)
     let newExtras = []
     if (extrasPool.length > 0) {
-      const count = extrasPool.length === 1 ? 1 : Math.random() < 0.5 ? 1 : 2
+      const roll = Math.random()
+      const count = roll < 1/3 ? 0 : roll < 2/3 ? 1 : 2
       newExtras = [...extrasPool].sort(() => Math.random() - 0.5).slice(0, count)
     }
 
