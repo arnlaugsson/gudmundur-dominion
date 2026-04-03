@@ -150,24 +150,25 @@ export default function Suggester() {
   )
 
   const toggleExp = (e) => {
-    setSelectedExps(prev => {
-      const next = prev.includes(e) ? prev.filter(x => x !== e) : [...prev, e]
-      // Reset ratios to even split
-      if (next.length >= 2) {
-        const per = Math.floor(10 / next.length)
-        const rem = 10 - per * next.length
-        const ratios = {}
-        next.forEach((exp, i) => { ratios[exp] = per + (i < rem ? 1 : 0) })
-        setCustomRatios(ratios)
-      } else {
-        setCustomRatios({})
-      }
-      return next
-    })
+    const next = selectedExps.includes(e)
+      ? selectedExps.filter(x => x !== e)
+      : [...selectedExps, e]
+
+    setSelectedExps(next)
+
+    if (next.length >= 2) {
+      const per = Math.floor(10 / next.length)
+      const rem = 10 - per * next.length
+      const ratios = {}
+      next.forEach((exp, i) => { ratios[exp] = per + (i < rem ? 1 : 0) })
+      setCustomRatios(ratios)
+    } else {
+      setCustomRatios({})
+    }
   }
 
   const updateRatio = (exp, value) => {
-    setCustomRatios(prev => ({ ...prev, [exp]: Math.max(0, Math.min(10, value)) }))
+    setCustomRatios(prev => ({ ...prev, [exp]: Math.max(1, Math.min(10, value)) }))
   }
 
   const ratioTotal = useMemo(() =>
@@ -381,13 +382,14 @@ export default function Suggester() {
               <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
                 {selectedExps.map(exp => (
                   <div key={exp} style={{ display: 'flex', alignItems: 'center', gap: '.3rem', background: 'var(--bg3)', borderRadius: '6px', padding: '.25rem .5rem' }}>
-                    <span style={{ fontSize: '.75rem' }}>{exp}</span>
+                    <span id={`exp-ratio-label-${exp}`} style={{ fontSize: '.75rem' }}>{exp}</span>
                     <input
                       type="number"
-                      min={0}
+                      min={1}
                       max={10}
-                      value={customRatios[exp] ?? 0}
-                      onChange={e => updateRatio(exp, parseInt(e.target.value) || 0)}
+                      aria-labelledby={`exp-ratio-label-${exp}`}
+                      value={customRatios[exp] ?? 1}
+                      onChange={e => updateRatio(exp, parseInt(e.target.value) || 1)}
                       style={{
                         width: '2.5rem', textAlign: 'center', background: 'var(--bg)',
                         border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
