@@ -105,6 +105,21 @@ function buildPlayerCardUsage(games) {
   return usage
 }
 
+/** Build a map: playerName → { expansion → timesPlayed } counting games where that expansion appeared */
+function buildPlayerExpUsage(games) {
+  const usage = {}
+  for (const g of games) {
+    const exps = new Set((g.kingdom || []).map(k => k.expansion).filter(Boolean))
+    for (const player of g.players) {
+      if (!usage[player]) usage[player] = {}
+      for (const exp of exps) {
+        usage[player][exp] = (usage[player][exp] || 0) + 1
+      }
+    }
+  }
+  return usage
+}
+
 export default function Suggester() {
   const { cards, expansions, games, players } = DATA
   const [mode, setMode] = useState('random')
@@ -121,6 +136,7 @@ export default function Suggester() {
   const [playerMode, setPlayerMode] = useState('unseen')
 
   const playerCardUsage = useMemo(() => buildPlayerCardUsage(games), [games])
+  const playerExpUsage = useMemo(() => buildPlayerExpUsage(games), [games])
 
   const availablePlayers = useMemo(() =>
     [...players].sort((a, b) => b.games - a.games),
@@ -172,7 +188,6 @@ export default function Suggester() {
         // If not enough unseen cards, fall back to rarest
         if (candidates.length < 10) {
           candidates = [...kingdomPool]
-          // Sort by combined usage across selected players (ascending)
           candidates.sort((a, b) => {
             const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
             const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
@@ -180,8 +195,8 @@ export default function Suggester() {
           })
           candidates = candidates.slice(0, 20)
         }
-      } else if (playerMode === 'rare') {
-        // Sort by combined usage across selected players (ascending = least played first)
+      } else {
+        // 'rare' — sort by combined usage across selected players (least played first)
         candidates.sort((a, b) => {
           const usageA = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[a.name] || 0), 0)
           const usageB = selectedPlayers.reduce((sum, p) => sum + (playerCardUsage[p]?.[b.name] || 0), 0)
@@ -228,19 +243,27 @@ export default function Suggester() {
   const colonyCard = useMemo(() => cards.find(c => c.name === 'Colony'), [cards])
   const platinumCard = useMemo(() => cards.find(c => c.name === 'Platinum'), [cards])
 
-  // Stats for selected players
-  const playerStats = useMemo(() => {
-    if (selectedPlayers.length === 0) return null
-    const pool = cards.filter(c =>
-      !c.removed && !c.isSupplyCard &&
-      (!c.card_type || c.card_type === 'Kingdom') &&
-      (selectedExps.length === 0 || selectedExps.includes(c.expansion))
-    )
-    const unseen = pool.filter(c =>
-      selectedPlayers.every(p => !(playerCardUsage[p]?.[c.name]))
-    ).length
-    return { total: pool.length, unseen }
-  }, [selectedPlayers, selectedExps, cards, playerCardUsage])
+  // Per-expansion stats for the selected player group
+  const expStatsForPlayers = useMemo(() => {
+    if (selectedPlayers.length === 0) return []
+    const expList = expansions.filter(e => e !== 'Promo')
+    return expList.map(exp => {
+      const expCards = cards.filter(c =>
+        !c.removed && !c.isSupplyCard &&
+        (!c.card_type || c.card_type === 'Kingdom') &&
+        c.expansion === exp
+      )
+      // Combined times this group has seen this expansion
+      const timesPlayed = selectedPlayers.reduce((max, p) =>
+        Math.max(max, playerExpUsage[p]?.[exp] || 0), 0
+      )
+      // Cards from this expansion unseen by ALL selected players
+      const unseenCount = expCards.filter(c =>
+        selectedPlayers.every(p => !(playerCardUsage[p]?.[c.name]))
+      ).length
+      return { exp, cardCount: expCards.length, timesPlayed, unseenCount }
+    }).sort((a, b) => a.timesPlayed - b.timesPlayed)
+  }, [selectedPlayers, expansions, cards, playerExpUsage, playerCardUsage])
 
   return (
     <section className="section active">
@@ -259,21 +282,23 @@ export default function Suggester() {
         </div>
       </div>
 
-      <div className="sug-section">
-        <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— skildu eftir ómerkt til að nota allar</span></h3>
-        <div className="exp-checkboxes">
-          {kingdomExpansions.map(e => (
-            <label key={e} className="exp-check">
-              <input
-                type="checkbox"
-                checked={selectedExps.includes(e)}
-                onChange={() => toggleExp(e)}
-              />
-              <span>{e}</span>
-            </label>
-          ))}
+      {!(showAdvanced && selectedPlayers.length > 0) && (
+        <div className="sug-section">
+          <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— skildu eftir ómerkt til að nota allar</span></h3>
+          <div className="exp-checkboxes">
+            {kingdomExpansions.map(e => (
+              <label key={e} className="exp-check">
+                <input
+                  type="checkbox"
+                  checked={selectedExps.includes(e)}
+                  onChange={() => toggleExp(e)}
+                />
+                <span>{e}</span>
+              </label>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Advanced options */}
       <div className="sug-section">
@@ -291,7 +316,7 @@ export default function Suggester() {
         {showAdvanced && (
           <div style={{ marginTop: '.75rem' }}>
             <div style={{ fontSize: '.78rem', color: 'var(--dim)', marginBottom: '.5rem' }}>
-              Veldu 1–4 sem taka þátt — ríkið verður aðlagað að reynslu þeirra
+              Veldu 1–4 sem taka þátt — veldu svo viðbætur og tegund
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: '.75rem' }}>
@@ -310,6 +335,28 @@ export default function Suggester() {
 
             {selectedPlayers.length > 0 && (
               <>
+                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem', marginTop: '1rem' }}>
+                  Viðbætur — raðað eftir minnstri reynslu
+                </div>
+                <div className="exp-checkboxes" style={{ marginBottom: '.75rem' }}>
+                  {expStatsForPlayers.map(({ exp, cardCount, timesPlayed, unseenCount }) => (
+                    <label key={exp} className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                      <input
+                        type="checkbox"
+                        checked={selectedExps.includes(exp)}
+                        onChange={() => toggleExp(exp)}
+                      />
+                      <span style={{ flex: 1 }}>{exp}</span>
+                      <span style={{ fontSize: '.7rem', color: 'var(--dim)', whiteSpace: 'nowrap' }}>
+                        {timesPlayed}x spilað · {unseenCount}/{cardCount} óséð
+                      </span>
+                    </label>
+                  ))}
+                </div>
+
+                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>
+                  Tegund
+                </div>
                 <div style={{ display: 'flex', gap: '.5rem', marginBottom: '.5rem' }}>
                   {PLAYER_MODES.map(m => (
                     <button
@@ -323,17 +370,6 @@ export default function Suggester() {
                     </button>
                   ))}
                 </div>
-
-                {playerStats && (
-                  <div style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
-                    {playerStats.unseen} af {playerStats.total} spilum eru óspilað fyrir {selectedPlayers.length === 1 ? selectedPlayers[0] : `þessa ${selectedPlayers.length}`}
-                    {playerMode === 'unseen' && playerStats.unseen < 10 && (
-                      <span style={{ color: 'var(--gold)', marginLeft: '.5rem' }}>
-                        (of fá óspilað — sjaldséð verður notað í staðinn)
-                      </span>
-                    )}
-                  </div>
-                )}
               </>
             )}
           </div>
