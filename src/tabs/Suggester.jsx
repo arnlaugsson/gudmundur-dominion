@@ -134,6 +134,7 @@ export default function Suggester() {
   // Filters
   const [noAttacks, setNoAttacks] = useState(false)
   const [noCurses, setNoCurses] = useState(false)
+  const [noTokens, setNoTokens] = useState(false)
 
   // Advanced options
   const [showAdvanced, setShowAdvanced] = useState(false)
@@ -167,7 +168,7 @@ export default function Suggester() {
 
   function generate() {
     const excludeCard = c =>
-      (noAttacks && c.isAttack) || (noCurses && c.isCurseGiver)
+      (noAttacks && c.isAttack) || (noCurses && c.isCurseGiver) || (noTokens && c.isTokenCard)
 
     // Kingdom cards only
     const kingdomPool = cards.filter(c =>
@@ -354,6 +355,10 @@ export default function Suggester() {
           <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
             <input type="checkbox" checked={noCurses} onChange={() => setNoCurses(v => !v)} />
             <span>Engar bölvanir</span>
+          </label>
+          <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+            <input type="checkbox" checked={noTokens} onChange={() => setNoTokens(v => !v)} />
+            <span>Engin tákn</span>
           </label>
         </div>
       </div>
