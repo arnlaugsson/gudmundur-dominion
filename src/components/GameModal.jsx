@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import CardImage from './CardImage'
 import CardModal from './CardModal'
+import MemorySection from './MemorySection'
 import DATA from '../data'
 
 const EXTRA_COLORS = { event: '#f97316', landmark: '#3fb950', project: '#58a6ff', way: '#a78bfa', ally: '#f43f5e', trait: '#06b6d4', prophecy: '#e879f9' }
 
-export default function GameModal({ game, onClose }) {
+export default function GameModal({ game, memories, onClose, onMemorySaved }) {
   const [selectedCard, setSelectedCard] = useState(null)
+  const [editing, setEditing] = useState(false)
 
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
@@ -115,6 +117,7 @@ export default function GameModal({ game, onClose }) {
             </div>
           </div>
         )}
+        <MemorySection memories={memories} onEdit={() => setEditing(true)} />
       </div>
     </div>
 

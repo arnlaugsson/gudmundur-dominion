@@ -760,3 +760,89 @@ select:focus { outline: none; border-color: var(--gold); }
   border-color: var(--gold);
   color: var(--gold);
 }
+
+/* Memory indicator */
+.memory-icon {
+  color: var(--gold);
+  font-size: 0.75rem;
+  margin-left: 0.4rem;
+  opacity: 0.7;
+}
+
+/* Memory section in GameModal */
+.memory-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.memory-section h3 {
+  color: var(--gold);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+.memory-text {
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+}
+
+/* Photo grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.photo-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.photo-item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+.photo-caption {
+  font-size: 0.75rem;
+  color: var(--dim);
+  padding: 0.3rem 0.5rem;
+  background: var(--bg3);
+}
+.photo-tags {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg3);
+}
+.photo-tag {
+  font-size: 0.65rem;
+  color: var(--gold);
+  background: rgba(201, 168, 76, 0.15);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* Photo lightbox */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: pointer;
+}
+.photo-lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}

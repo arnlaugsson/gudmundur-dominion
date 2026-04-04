@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import GameModal from '../components/GameModal'
+import { useMemories } from '../hooks/useMemories'
 import DATA from '../data'
 
 function computeHighlights(games) {
@@ -76,6 +77,7 @@ export default function History({ targetGame, onClearTarget }) {
   const [selectedGame, setSelectedGame] = useState(null)
 
   const highlights = useMemo(() => computeHighlights(games), [games])
+  const { memoriesByGameNum } = useMemories()
 
   useEffect(() => {
     if (targetGame != null) {
@@ -221,6 +223,9 @@ export default function History({ targetGame, onClearTarget }) {
                 {game.ways?.length > 0 && <span className="badge badge-way">Ways</span>}
                 {game.traits?.length > 0 && <span className="badge badge-trait">Traits</span>}
                 {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
+                {memoriesByGameNum.has(game.game_num) && (
+                  <span className="memory-icon" title="Minningar">📷</span>
+                )}
               </div>
               <div className="podium">
                 {game.results.map(r => (
@@ -257,7 +262,11 @@ export default function History({ targetGame, onClearTarget }) {
       </div>
 
       {selectedGame && (
-        <GameModal game={selectedGame} onClose={() => setSelectedGame(null)} />
+        <GameModal
+          game={selectedGame}
+          memories={memoriesByGameNum.get(selectedGame.game_num) || []}
+          onClose={() => setSelectedGame(null)}
+        />
       )}
     </section>
   )
