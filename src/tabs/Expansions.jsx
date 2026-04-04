@@ -46,7 +46,11 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </h3>
               {!exp.mergedInto && (
                 <div className="exp-timeline-stats">
-                  {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
+                  {stats.cardCount} ríkisspil
+                  {Object.entries(stats.extraTypes).map(([type, count]) => (
+                    <span key={type}> + {count} {type}</span>
+                  ))}
+                  {' '}&middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
                 </div>
               )}
             </div>
@@ -185,6 +189,14 @@ export default function Expansions({ onNavigateCards }) {
     const stats = {}
     for (const exp of EXPANSIONS) {
       const expCards = cards.filter(c => c.expansion === exp.dataKey && !c.isSupplyCard)
+      const kingdomCards = expCards.filter(c => c.card_type === 'Kingdom' || !c.card_type)
+      const extraTypes = {}
+      for (const c of expCards) {
+        const t = c.card_type || 'Kingdom'
+        if (t !== 'Kingdom') {
+          extraTypes[t] = (extraTypes[t] || 0) + 1
+        }
+      }
       const timesUsed = expCards.reduce((sum, c) => sum + (c.times_used || 0), 0)
       const gameCount = games.filter(g =>
         g.expansions?.includes(exp.dataKey) ||
@@ -205,7 +217,7 @@ export default function Expansions({ onNavigateCards }) {
 
       const neverPlayed = expCards.filter(c => !c.times_used && !c.removed).sort((a, b) => a.name.localeCompare(b.name))
 
-      stats[exp.dataKey] = { cardCount: expCards.length, timesUsed, gameCount, topCards, removed, added, neverPlayed }
+      stats[exp.dataKey] = { cardCount: kingdomCards.length, extraTypes, timesUsed, gameCount, topCards, removed, added, neverPlayed }
     }
     return stats
   }, [cards, games])
