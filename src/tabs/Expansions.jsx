@@ -21,7 +21,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               <img
                 src={exp.coverImg}
                 alt={`${exp.name}`}
-                className="exp-thumb-img"
+                className={`exp-thumb-img${exp.portraitImg ? ' portrait' : ''}`}
                 loading="lazy"
               />
             )}
@@ -33,10 +33,22 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                     2. útg. {exp.secondEditionYear}
                   </span>
                 )}
+                {exp.mergedInto && (
+                  <span style={{ marginLeft: '.5rem', fontSize: '.65rem', color: 'var(--dim)', fontWeight: 400 }}>
+                    smákassi
+                  </span>
+                )}
+                {exp.isMergedEdition && (
+                  <span style={{ marginLeft: '.5rem', fontSize: '.65rem', color: 'var(--dim)', fontWeight: 400 }}>
+                    sameinuð
+                  </span>
+                )}
               </h3>
-              <div className="exp-timeline-stats">
-                {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
-              </div>
+              {!exp.mergedInto && (
+                <div className="exp-timeline-stats">
+                  {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
+                </div>
+              )}
             </div>
           </div>
           <span className="exp-timeline-toggle">{expanded ? '−' : '+'}</span>
@@ -50,7 +62,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                 <img
                   src={exp.coverImg}
                   alt={`${exp.name} kassinn`}
-                  className="exp-cover-img"
+                  className={`exp-cover-img${exp.portraitImg ? ' portrait' : ''}`}
                   loading="lazy"
                 />
               </div>
@@ -68,7 +80,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               <p className="exp-fun-fact">{exp.funFact}</p>
             </div>
 
-            {(stats.removed.length > 0 || stats.added.length > 0) && (
+            {!exp.mergedInto && (stats.removed.length > 0 || stats.added.length > 0) && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Breytingar í 2. útgáfu</div>
                 {stats.removed.length > 0 && (
@@ -110,7 +122,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </div>
             )}
 
-            {stats.topCards.length > 0 && (
+            {!exp.mergedInto && stats.topCards.length > 0 && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Mest notuð spil</div>
                 <div className="exp-top-cards">
@@ -124,7 +136,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </div>
             )}
 
-            {stats.neverPlayed.length > 0 && (
+            {!exp.mergedInto && stats.neverPlayed.length > 0 && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Aldrei spiluð ({stats.neverPlayed.length})</div>
                 <div className="exp-top-cards">
@@ -149,9 +161,11 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               >
                 Dominion Strategy Wiki <span className="external-icon">↗</span>
               </a>
-              <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
-                Skoða öll spil
-              </button>
+              {!exp.mergedInto && (
+                <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
+                  Skoða öll spil
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -218,7 +232,7 @@ export default function Expansions({ onNavigateCards }) {
       <div className="exp-timeline">
         {orderedExpansions.map(exp => (
           <ExpansionCard
-            key={exp.dataKey}
+            key={`${exp.name}-${exp.year}`}
             exp={exp}
             stats={expStats[exp.dataKey]}
             allCards={cards}
