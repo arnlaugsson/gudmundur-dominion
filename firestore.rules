@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /memories/{memoryId} {
+      allow read: if request.auth != null
+                  && request.auth.token.allowed == true;
+      allow create, update: if request.auth != null
+                            && request.auth.token.admin == true;
+      allow delete: if request.auth != null
+                    && request.auth.token.admin == true;
+    }
+
+    match /allowedUsers/{userId} {
+      allow read: if request.auth != null
+                  && request.auth.token.admin == true;
+      allow write: if false;
+    }
+  }
+}
