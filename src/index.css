@@ -1013,10 +1013,16 @@ select:focus { outline: none; border-color: var(--gold); }
 
 /* Game row highlight thumbnail */
 .game-row-highlight {
-  width: 72px;
-  height: 54px;
+  width: 120px;
+  height: 90px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid var(--border);
   flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .game-row-highlight {
+    width: 160px;
+    height: 110px;
+  }
 }

@@ -204,18 +204,6 @@ export default function History({ targetGame, onClearTarget }) {
             onClick={() => setSelectedGame(game)}
           >
             <div className="gh" style={{ display: 'flex', gap: '1rem' }}>
-            {(() => {
-              const memories = memoriesByGameNum.get(game.game_num)
-              const hl = memories?.flatMap(m => m.photos || []).find(p => p.highlight)
-              return hl ? (
-                <img
-                  src={hl.url}
-                  alt=""
-                  loading="lazy"
-                  className="game-row-highlight"
-                />
-              ) : null
-            })()}
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
                 <span className="cinzel gold" style={{ fontSize: '.95rem' }}>#{game.game_num}</span>
@@ -249,6 +237,18 @@ export default function History({ targetGame, onClearTarget }) {
                 ))}
               </div>
             </div>
+            {(() => {
+              const memories = memoriesByGameNum.get(game.game_num)
+              const hl = memories?.flatMap(m => m.photos || []).find(p => p.highlight)
+              return hl ? (
+                <img
+                  src={hl.url}
+                  alt=""
+                  loading="lazy"
+                  className="game-row-highlight"
+                />
+              ) : null
+            })()}
             </div>
             {game.expansions?.length > 0 && (
               <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
