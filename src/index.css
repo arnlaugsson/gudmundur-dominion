@@ -734,6 +734,10 @@ select:focus { outline: none; border-color: var(--gold); }
   font-size: .68rem;
   color: var(--dim);
 }
+.exp-card-chip-unseen {
+  opacity: .55;
+  border-style: dashed;
+}
 .exp-detail-actions {
   display: flex;
   gap: .5rem;

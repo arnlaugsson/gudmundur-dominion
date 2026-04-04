@@ -124,6 +124,19 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </div>
             )}
 
+            {stats.neverPlayed.length > 0 && (
+              <div className="exp-detail-section">
+                <div className="exp-detail-label">Aldrei spiluð ({stats.neverPlayed.length})</div>
+                <div className="exp-top-cards">
+                  {stats.neverPlayed.map(c => (
+                    <button key={c.name} className="exp-card-chip exp-card-chip-unseen" onClick={() => onCardClick(c)}>
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="exp-detail-actions">
               <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
                 BoardGameGeek <span className="external-icon">↗</span>
@@ -174,7 +187,9 @@ export default function Expansions({ onNavigateCards }) {
         ? expCards.filter(c => c.isSecondEdition).map(c => c.name).sort()
         : []
 
-      stats[exp.dataKey] = { cardCount: expCards.length, timesUsed, gameCount, topCards, removed, added }
+      const neverPlayed = expCards.filter(c => !c.times_used && !c.removed).sort((a, b) => a.name.localeCompare(b.name))
+
+      stats[exp.dataKey] = { cardCount: expCards.length, timesUsed, gameCount, topCards, removed, added, neverPlayed }
     }
     return stats
   }, [cards, games])
