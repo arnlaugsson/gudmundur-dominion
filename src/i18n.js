@@ -126,7 +126,7 @@ export const t = {
       biggestBlowout: {
         title: 'Stærsti sigur',
         value: n => `${n} stiga munur`,
-        desc:  (game, winner, ws, loser, ls) => `Leikur #${game}: ${winner} (${ws}) bræðdi ${loser} (${ls}). Algert yfirburðaspil.`,
+        desc:  (game, winner, ws, loser, ls) => `Leikur #${game}: ${winner} (${ws}) bræddi ${loser} (${ls}). Algert yfirburðaspil.`,
       },
       deadHeats: {
         title: 'Jafnir leikir',
