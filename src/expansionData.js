@@ -221,7 +221,7 @@ const EXPANSIONS = [
     dataKey: 'Plunder',
     year: 2022,
     bggUrl: 'https://boardgamegeek.com/boardgame/369536/dominion-plunder',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/d/da/Plunder.jpg/200px-Plunder.jpg',
+    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/0/0a/Plunder_%28expansion%29.jpg/300px-Plunder_%28expansion%29.jpg',
     keyMechanics: [
       'Loot (handahófskennd hágæða fjársjóðsspil)',
       'Traits (breytingar á ríkisspilabunkum)',
