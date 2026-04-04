@@ -8,9 +8,6 @@ export default function Header() {
   const { lastUpdated, upcomingGames } = DATA
   return (
     <header>
-      <div style={{ position: 'absolute', top: '1rem', right: '1.25rem', zIndex: 1 }}>
-        <LoginButton />
-      </div>
       <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
       <p>Tölfræði og gagnvirk úrvinnsla</p>
       <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
@@ -26,6 +23,7 @@ export default function Header() {
         <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
           Facebook
         </a>
+        <LoginButton />
       </div>
     </header>
   )
