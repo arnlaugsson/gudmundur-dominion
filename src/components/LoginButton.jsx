@@ -1,7 +1,7 @@
 import { useAuth } from '../context/AuthContext'
 
 export default function LoginButton() {
-  const { user, loading, login, logout } = useAuth()
+  const { user, loading, login, logout, authError } = useAuth()
 
   if (loading) return null
 
@@ -22,8 +22,11 @@ export default function LoginButton() {
   }
 
   return (
-    <button className="login-btn" onClick={login}>
-      Innskrá
-    </button>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+      {authError && <span style={{ color: 'var(--red)', fontSize: '0.75rem' }}>{authError}</span>}
+      <button className="login-btn" onClick={login}>
+        Innskrá
+      </button>
+    </span>
   )
 }

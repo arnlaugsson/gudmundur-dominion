@@ -12,8 +12,10 @@ service cloud.firestore {
     }
 
     match /allowedUsers/{userId} {
+      // Any authenticated user can check if their own email is allowed
       allow read: if request.auth != null
-                  && request.auth.token.admin == true;
+                  && (request.auth.token.admin == true
+                      || userId == request.auth.token.email);
       allow write: if false;
     }
   }

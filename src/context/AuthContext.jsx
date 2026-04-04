@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
-import { auth, googleProvider } from '../firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { auth, googleProvider, db } from '../firebase'
 
 const AuthContext = createContext(null)
 
@@ -28,11 +29,29 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  const login = () => signInWithPopup(auth, googleProvider)
+  const [authError, setAuthError] = useState(null)
+
+  const login = async () => {
+    setAuthError(null)
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      const email = result.user.email
+      const userDoc = await getDoc(doc(db, 'allowedUsers', email))
+      if (!userDoc.exists()) {
+        await signOut(auth)
+        setAuthError('Þú hefur ekki aðgang. Hafðu samband við stjórnanda.')
+        return
+      }
+    } catch (err) {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        setAuthError('Innskráning mistókst.')
+      }
+    }
+  }
   const logout = () => signOut(auth)
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, authError }}>
       {children}
     </AuthContext.Provider>
   )
