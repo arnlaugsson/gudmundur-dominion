@@ -228,7 +228,8 @@ tr:hover td { background: rgba(201,168,76,.05); }
   transition: border-color .2s;
 }
 .game-row:hover { border-color: var(--gold); }
-.game-row .gh { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.game-row .gh { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; flex-wrap: wrap; }
+.game-row-has-highlight .gh { flex-direction: column; }
 .game-row .gd { font-size: .8rem; color: var(--dim); }
 .game-row .gk { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .5rem; }
 .kchip {
