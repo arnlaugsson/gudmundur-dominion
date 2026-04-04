@@ -672,12 +672,12 @@ select:focus { outline: none; border-color: var(--gold); }
 }
 .exp-cover-img.portrait {
   width: auto;
-  height: 400px;
+  max-height: 270px;
 }
 @media (max-width: 480px) {
   .exp-cover-wrap { float: none; margin: 0 0 .75rem 0; text-align: center; }
   .exp-cover-img { width: 220px; }
-  .exp-cover-img.portrait { width: auto; height: 300px; }
+  .exp-cover-img.portrait { width: auto; max-height: 200px; }
 }
 .exp-edition-card {
   background: none;
