@@ -14,7 +14,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
   const [saving, setSaving] = useState(false)
   const [dragover, setDragover] = useState(false)
 
-  const gamePlayers = game.results?.map((r) => r.name) || []
+  const gamePlayers = game.results?.map((r) => r.name) || game.players || []
   const gameDate = game.date || ''
   const datePart = gameDate.replace(/\//g, '-')
 
@@ -134,13 +134,34 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
 
       {/* Existing photos */}
       {photos.length > 0 && (
-        <div className="memory-upload-preview">
+        <div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--dim)', marginBottom: '0.3rem', marginTop: '0.75rem' }}>
+            Myndir:
+          </div>
           {photos.map((photo, i) => (
-            <div key={photo.url} className="memory-upload-thumb">
-              <img src={photo.url} alt="" />
-              <button className="memory-upload-remove" onClick={() => removeExistingPhoto(i)}>
-                ✕
-              </button>
+            <div key={photo.url} style={{ marginBottom: '0.5rem' }}>
+              <div className="memory-upload-preview">
+                <div className="memory-upload-thumb">
+                  <img src={photo.url} alt="" />
+                  <button className="memory-upload-remove" onClick={() => removeExistingPhoto(i)}>
+                    ✕
+                  </button>
+                </div>
+              </div>
+              <div className="memory-tag-list">
+                <span style={{ fontSize: '0.7rem', color: 'var(--dim)', marginRight: '0.3rem' }}>
+                  Merkja:
+                </span>
+                {gamePlayers.map((player) => (
+                  <button
+                    key={player}
+                    className={(photo.taggedPlayers || []).includes(player) ? 'memory-tag' : 'memory-add-tag'}
+                    onClick={() => togglePlayerTag(i, player, false)}
+                  >
+                    {player}
+                  </button>
+                ))}
+              </div>
             </div>
           ))}
         </div>
