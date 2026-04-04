@@ -33,7 +33,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                     2. útg. {exp.secondEditionYear}
                   </span>
                 )}
-                {exp.mergedInto && (
+                {(exp.mergedInto || exp.isSmallBox) && (
                   <span style={{ marginLeft: '.5rem', fontSize: '.65rem', color: 'var(--dim)', fontWeight: 400 }}>
                     smákassi
                   </span>

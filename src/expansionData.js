@@ -56,6 +56,7 @@ const EXPANSIONS = [
     bggUrl: 'https://boardgamegeek.com/boardgame/66098/dominion-alchemy',
     coverImg: '/images/expansions/alchemy.jpg',
     portraitImg: true,
+    isSmallBox: true,
     keyMechanics: [
       'Drykkjarkostnaður (ný gjaldmiðilstegund)',
       'Potion-fjársjóðsspil',
