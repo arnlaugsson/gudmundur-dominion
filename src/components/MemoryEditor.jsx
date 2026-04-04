@@ -14,7 +14,8 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
   const [saving, setSaving] = useState(false)
   const [dragover, setDragover] = useState(false)
 
-  const gamePlayers = game.results?.map((r) => r.name) || game.players || []
+  const resultNames = (game.results || []).map((r) => r.name)
+  const gamePlayers = resultNames.length > 0 ? resultNames : (game.players || [])
   const gameDate = game.date || ''
   const datePart = gameDate.replace(/\//g, '-')
 
