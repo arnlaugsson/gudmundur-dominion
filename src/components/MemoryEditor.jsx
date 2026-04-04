@@ -47,6 +47,30 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
     setPhotos((prev) => prev.filter((_, i) => i !== index))
   }
 
+  const updatePhotoCaption = (index, caption) => {
+    setPhotos((prev) =>
+      prev.map((p, i) => i === index ? { ...p, caption } : p)
+    )
+  }
+
+  const movePhoto = (index, direction) => {
+    setPhotos((prev) => {
+      const target = index + direction
+      if (target < 0 || target >= prev.length) return prev
+      const updated = [...prev]
+      const temp = updated[index]
+      updated[index] = updated[target]
+      updated[target] = temp
+      return updated.map((p, i) => ({ ...p, order: i }))
+    })
+  }
+
+  const updateNewFileCaption = (index, caption) => {
+    setNewFiles((prev) =>
+      prev.map((f, i) => i === index ? { ...f, caption } : f)
+    )
+  }
+
   const togglePlayerTag = (photoIndex, player, isNew) => {
     if (isNew) {
       setNewFiles((prev) =>
@@ -84,7 +108,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
         const url = await getDownloadURL(storageRef)
         uploadedPhotos.push({
           url,
-          caption: null,
+          caption: newFiles[i].caption || null,
           taggedPlayers: fileTags,
           order: photos.length + i,
         })
@@ -140,28 +164,60 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
             Myndir:
           </div>
           {photos.map((photo, i) => (
-            <div key={photo.url} style={{ marginBottom: '0.5rem' }}>
-              <div className="memory-upload-preview">
+            <div key={photo.url} style={{ marginBottom: '0.75rem', padding: '0.5rem', background: 'var(--bg3)', borderRadius: '6px' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
                 <div className="memory-upload-thumb">
                   <img src={photo.url} alt="" />
-                  <button className="memory-upload-remove" onClick={() => removeExistingPhoto(i)}>
-                    ✕
-                  </button>
                 </div>
-              </div>
-              <div className="memory-tag-list">
-                <span style={{ fontSize: '0.7rem', color: 'var(--dim)', marginRight: '0.3rem' }}>
-                  Merkja:
-                </span>
-                {gamePlayers.map((player) => (
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <input
+                    type="text"
+                    value={photo.caption || ''}
+                    onChange={(e) => updatePhotoCaption(i, e.target.value)}
+                    placeholder="Myndatexti..."
+                    style={{
+                      width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
+                      color: 'var(--text)', borderRadius: '4px', padding: '0.3rem 0.5rem',
+                      fontSize: '0.8rem', fontFamily: 'inherit', boxSizing: 'border-box',
+                    }}
+                  />
+                  <div className="memory-tag-list">
+                    {gamePlayers.map((player) => (
+                      <button
+                        key={player}
+                        className={(photo.taggedPlayers || []).includes(player) ? 'memory-tag' : 'memory-add-tag'}
+                        onClick={() => togglePlayerTag(i, player, false)}
+                      >
+                        {player}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                   <button
-                    key={player}
-                    className={(photo.taggedPlayers || []).includes(player) ? 'memory-tag' : 'memory-add-tag'}
-                    onClick={() => togglePlayerTag(i, player, false)}
-                  >
-                    {player}
-                  </button>
-                ))}
+                    onClick={() => movePhoto(i, -1)}
+                    disabled={i === 0}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)', color: i === 0 ? 'var(--bg3)' : 'var(--dim)',
+                      borderRadius: '3px', cursor: i === 0 ? 'default' : 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >▲</button>
+                  <button
+                    onClick={() => movePhoto(i, 1)}
+                    disabled={i === photos.length - 1}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)', color: i === photos.length - 1 ? 'var(--bg3)' : 'var(--dim)',
+                      borderRadius: '3px', cursor: i === photos.length - 1 ? 'default' : 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >▼</button>
+                  <button
+                    onClick={() => removeExistingPhoto(i)}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)', color: 'var(--red)',
+                      borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >✕</button>
+                </div>
               </div>
             </div>
           ))}
@@ -170,13 +226,48 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
 
       {/* New file previews */}
       {newFiles.length > 0 && (
-        <div className="memory-upload-preview">
+        <div style={{ marginTop: '0.75rem' }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--dim)', marginBottom: '0.3rem' }}>
+            Nýjar myndir:
+          </div>
           {newFiles.map((f, i) => (
-            <div key={f.preview} className="memory-upload-thumb">
-              <img src={f.preview} alt="" />
-              <button className="memory-upload-remove" onClick={() => removeNewFile(i)}>
-                ✕
-              </button>
+            <div key={f.preview} style={{ marginBottom: '0.75rem', padding: '0.5rem', background: 'var(--bg3)', borderRadius: '6px' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
+                <div className="memory-upload-thumb">
+                  <img src={f.preview} alt="" />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <input
+                    type="text"
+                    value={f.caption || ''}
+                    onChange={(e) => updateNewFileCaption(i, e.target.value)}
+                    placeholder="Myndatexti..."
+                    style={{
+                      width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
+                      color: 'var(--text)', borderRadius: '4px', padding: '0.3rem 0.5rem',
+                      fontSize: '0.8rem', fontFamily: 'inherit', boxSizing: 'border-box',
+                    }}
+                  />
+                  <div className="memory-tag-list">
+                    {gamePlayers.map((player) => (
+                      <button
+                        key={player}
+                        className={f.taggedPlayers.includes(player) ? 'memory-tag' : 'memory-add-tag'}
+                        onClick={() => togglePlayerTag(i, player, true)}
+                      >
+                        {player}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={() => removeNewFile(i)}
+                  style={{
+                    background: 'none', border: '1px solid var(--border)', color: 'var(--red)',
+                    borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                  }}
+                >✕</button>
+              </div>
             </div>
           ))}
         </div>
@@ -200,31 +291,6 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
           onChange={(e) => handleFiles(e.target.files)}
         />
       </div>
-
-      {/* Player tagging for new files */}
-      {newFiles.length > 0 && (
-        <div style={{ marginTop: '0.75rem' }}>
-          <div style={{ fontSize: '0.8rem', color: 'var(--dim)', marginBottom: '0.3rem' }}>
-            Merkja leikmenn á nýjar myndir:
-          </div>
-          {newFiles.map((f, fi) => (
-            <div key={f.preview} className="memory-tag-list">
-              <span style={{ fontSize: '0.7rem', color: 'var(--dim)', marginRight: '0.3rem' }}>
-                Mynd {fi + 1}:
-              </span>
-              {gamePlayers.map((player) => (
-                <button
-                  key={player}
-                  className={f.taggedPlayers.includes(player) ? 'memory-tag' : 'memory-add-tag'}
-                  onClick={() => togglePlayerTag(fi, player, true)}
-                >
-                  {player}
-                </button>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
 
       <div className="memory-actions">
         <button className="memory-cancel-btn" onClick={onCancel}>
