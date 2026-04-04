@@ -13,6 +13,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+.external-icon { font-size: .7em; opacity: .6; margin-left: .15em; }
 
 body {
   background: var(--bg);

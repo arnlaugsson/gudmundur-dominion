@@ -126,7 +126,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
 
             <div className="exp-detail-actions">
               <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
-                BoardGameGeek
+                BoardGameGeek <span className="external-icon">↗</span>
               </a>
               <a
                 href={`https://wiki.dominionstrategy.com/index.php/${exp.name.replace(/ /g, '_')}`}
@@ -134,7 +134,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                 rel="noopener noreferrer"
                 className="exp-link-btn"
               >
-                Dominion Strategy Wiki
+                Dominion Strategy Wiki <span className="external-icon">↗</span>
               </a>
               <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
                 Skoða öll spil

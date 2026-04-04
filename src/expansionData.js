@@ -1,6 +1,6 @@
 // Static metadata for all Dominion expansions
 // dataKey must match the expansion name in dominion_data.json cards
-// Box art thumbnails from wiki.dominionstrategy.com
+// Box art images stored locally in public/images/expansions/
 
 const EXPANSIONS = [
   {
@@ -8,7 +8,7 @@ const EXPANSIONS = [
     dataKey: 'Base',
     year: 2008,
     bggUrl: 'https://boardgamegeek.com/boardgame/36218/dominion',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/2/21/Dominion2.jpg/300px-Dominion2.jpg',
+    coverImg: '/images/expansions/base.jpg',
     keyMechanics: [
       'Stokksmíði (fann upp tegundina)',
       'Aðgerðar-, fjársjóðs- og sigurspil',
@@ -24,7 +24,7 @@ const EXPANSIONS = [
     dataKey: 'Intrigue',
     year: 2009,
     bggUrl: 'https://boardgamegeek.com/boardgame/40834/dominion-intrigue',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/5/57/Intrigue2.jpg/300px-Intrigue2.jpg',
+    coverImg: '/images/expansions/intrigue.jpg',
     keyMechanics: [
       'Valspil (veldu eitt af mörgum áhrifum)',
       'Sigurspil með sérstökum hæfileikum',
@@ -39,7 +39,7 @@ const EXPANSIONS = [
     dataKey: 'Seaside',
     year: 2009,
     bggUrl: 'https://boardgamegeek.com/boardgame/51811/dominion-seaside',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/8/84/Seaside2.jpg/300px-Seaside2.jpg',
+    coverImg: '/images/expansions/seaside.jpg',
     keyMechanics: [
       'Duration-spil (áhrif sem ná yfir margar umferðir)',
       'Spilamattar (Native Village, Pirate Ship)',
@@ -54,7 +54,7 @@ const EXPANSIONS = [
     dataKey: 'Alchemy',
     year: 2010,
     bggUrl: 'https://boardgamegeek.com/boardgame/66098/dominion-alchemy',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/6/67/Alchemy.jpg/300px-Alchemy.jpg',
+    coverImg: '/images/expansions/alchemy.jpg',
     keyMechanics: [
       'Drykkjarkostnaður (ný gjaldmiðilstegund)',
       'Potion-fjársjóðsspil',
@@ -68,7 +68,7 @@ const EXPANSIONS = [
     dataKey: 'Prosperity',
     year: 2010,
     bggUrl: 'https://boardgamegeek.com/boardgame/66690/dominion-prosperity',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/8/80/Prosperity2.jpg/300px-Prosperity2.jpg',
+    coverImg: '/images/expansions/prosperity.jpg',
     keyMechanics: [
       'Platinum og Colony (verðmætari fjársjóður og sigurspil)',
       'Sigurstigatákn (VP tokens)',
@@ -84,7 +84,7 @@ const EXPANSIONS = [
     dataKey: 'Cornucopia & Guilds',
     year: 2011,
     bggUrl: 'https://boardgamegeek.com/boardgame/90850/dominion-cornucopia',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/2/26/Cornucopia.jpg/202px-Cornucopia.jpg',
+    coverImg: '/images/expansions/cornucopia_&_guilds.jpg',
     keyMechanics: [
       'Fjölbreytni verðlaunuð (hagur af fjölbreyttum stokkum)',
       'Verðlaunaspil (einstök spil í gegnum Tournament)',
@@ -100,7 +100,7 @@ const EXPANSIONS = [
     dataKey: 'Hinterlands',
     year: 2011,
     bggUrl: 'https://boardgamegeek.com/boardgame/104557/dominion-hinterlands',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/2/23/Hinterlands2.jpg/300px-Hinterlands2.jpg',
+    coverImg: '/images/expansions/hinterlands.jpg',
     keyMechanics: [
       'Áhrif við öflun (spil virkjast þegar þau fást)',
       'Áhrif við kaup',
@@ -115,7 +115,7 @@ const EXPANSIONS = [
     dataKey: 'Dark Ages',
     year: 2012,
     bggUrl: 'https://boardgamegeek.com/boardgame/125403/dominion-dark-ages',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/d/dd/Dark_Ages.jpg/300px-Dark_Ages.jpg',
+    coverImg: '/images/expansions/dark_ages.jpg',
     keyMechanics: [
       'Shelters (koma í stað upphaflegra Estate-spila)',
       'Ruins (ruslspil sem andstæðingar fá)',
@@ -131,7 +131,7 @@ const EXPANSIONS = [
     dataKey: 'Adventures',
     year: 2015,
     bggUrl: 'https://boardgamegeek.com/boardgame/171915/dominion-adventures',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/d/da/Adventures.jpg/300px-Adventures.jpg',
+    coverImg: '/images/expansions/adventures.jpg',
     keyMechanics: [
       'Reserve-spil (lögð til hliðar á Tavern-matta, kölluð síðar)',
       'Events (kaupa áhrif í stað spils)',
@@ -146,7 +146,7 @@ const EXPANSIONS = [
     dataKey: 'Empires',
     year: 2016,
     bggUrl: 'https://boardgamegeek.com/boardgame/192951/dominion-empires',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/0/0c/Empires.jpg/300px-Empires.jpg',
+    coverImg: '/images/expansions/empires.jpg',
     keyMechanics: [
       'Skuldatákn (kaupa núna, borga síðar)',
       'Landmarks (ný lokastigagjöf)',
@@ -161,7 +161,7 @@ const EXPANSIONS = [
     dataKey: 'Nocturne',
     year: 2017,
     bggUrl: 'https://boardgamegeek.com/boardgame/232452/dominion-nocturne',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/7/7b/Nocturne.jpg/300px-Nocturne.jpg',
+    coverImg: '/images/expansions/nocturne.jpg',
     keyMechanics: [
       'Næturhluti (nýr fasi eftir kaup)',
       'Heirlooms (koma í stað upphaflegra Copper-spila)',
@@ -177,7 +177,7 @@ const EXPANSIONS = [
     dataKey: 'Renaissance',
     year: 2018,
     bggUrl: 'https://boardgamegeek.com/boardgame/257673/dominion-renaissance',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/1/18/Renaissance.jpg/300px-Renaissance.jpg',
+    coverImg: '/images/expansions/renaissance.jpg',
     keyMechanics: [
       'Villagers (geyma +Aðgerðir fyrir síðari umferðir)',
       'Coffers formlega kynnt',
@@ -192,7 +192,7 @@ const EXPANSIONS = [
     dataKey: 'Menagerie',
     year: 2020,
     bggUrl: 'https://boardgamegeek.com/boardgame/298055/dominion-menagerie',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/e/ee/Menagerie_%28expansion%29.jpg/300px-Menagerie_%28expansion%29.jpg',
+    coverImg: '/images/expansions/menagerie.jpg',
     keyMechanics: [
       'Horses (einnota cantrip sem skilar sér í bunka)',
       'Exile-matti (leggja spil til hliðar, fá aftur síðar)',
@@ -206,7 +206,7 @@ const EXPANSIONS = [
     dataKey: 'Allies',
     year: 2022,
     bggUrl: 'https://boardgamegeek.com/boardgame/347307/dominion-allies',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/a/ab/Allies.jpg/300px-Allies.jpg',
+    coverImg: '/images/expansions/allies.jpg',
     keyMechanics: [
       'Ally-spil (sameiginlegir viðvarandi hæfileikar)',
       'Favor-tákn (nýr gjaldmiðill fyrir Ally-hæfileika)',
@@ -221,7 +221,7 @@ const EXPANSIONS = [
     dataKey: 'Plunder',
     year: 2022,
     bggUrl: 'https://boardgamegeek.com/boardgame/369536/dominion-plunder',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/0/0a/Plunder_%28expansion%29.jpg/300px-Plunder_%28expansion%29.jpg',
+    coverImg: '/images/expansions/plunder.jpg',
     keyMechanics: [
       'Loot (handahófskennd hágæða fjársjóðsspil)',
       'Traits (breytingar á ríkisspilabunkum)',
@@ -236,7 +236,7 @@ const EXPANSIONS = [
     dataKey: 'Rising Sun',
     year: 2024,
     bggUrl: 'https://boardgamegeek.com/boardgame/420298/dominion-rising-sun',
-    coverImg: 'https://wiki.dominionstrategy.com/images/thumb/4/4a/Rising_Sun.jpg/300px-Rising_Sun.jpg',
+    coverImg: '/images/expansions/rising_sun.jpg',
     keyMechanics: [
       'Shadows (spil sem hægt er að spila utan venjulegra fasa)',
       'Prophecy (atburðir sem virkjast við tæmingu bunka)',
