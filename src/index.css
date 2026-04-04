@@ -647,19 +647,40 @@ select:focus { outline: none; border-color: var(--gold); }
   padding-top: .85rem;
   border-top: 1px solid var(--border);
 }
+.exp-thumb-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
 .exp-cover-wrap {
   float: right;
   margin: 0 0 .75rem .75rem;
 }
 .exp-cover-img {
-  width: 120px;
+  width: 180px;
   border-radius: 8px;
   border: 1px solid var(--border);
 }
 @media (max-width: 480px) {
   .exp-cover-wrap { float: none; margin: 0 0 .75rem 0; text-align: center; }
-  .exp-cover-img { width: 160px; }
+  .exp-cover-img { width: 200px; }
 }
+.exp-edition-card {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: .78rem;
+  cursor: pointer;
+  padding: .1rem .3rem;
+  border-radius: 3px;
+  transition: background .15s;
+}
+.exp-edition-card:hover { background: rgba(255,255,255,.1); }
+.exp-edition-card.removed { color: #f85149; text-decoration: line-through; text-decoration-color: rgba(248,81,73,.4); }
+.exp-edition-card.added { color: #3fb950; }
 .exp-detail-section {
   margin-bottom: .75rem;
 }

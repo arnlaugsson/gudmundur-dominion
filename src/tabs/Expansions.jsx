@@ -3,8 +3,10 @@ import DATA from '../data'
 import EXPANSIONS from '../expansionData'
 import CardModal from '../components/CardModal'
 
-function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
+function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
   const [expanded, setExpanded] = useState(false)
+
+  const findCard = (name) => allCards.find(c => c.name === name)
 
   return (
     <div className="exp-timeline-card">
@@ -14,17 +16,27 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
 
       <div className="exp-timeline-content" onClick={() => setExpanded(v => !v)}>
         <div className="exp-timeline-header">
-          <div>
-            <h3 className="exp-timeline-name">
-              {exp.name}
-              {exp.has2ndEdition && (
-                <span className="tag tag-2nd" style={{ marginLeft: '.5rem', fontSize: '.65rem' }}>
-                  2. útg. {exp.secondEditionYear}
-                </span>
-              )}
-            </h3>
-            <div className="exp-timeline-stats">
-              {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+            {exp.coverImg && !expanded && (
+              <img
+                src={exp.coverImg}
+                alt={`${exp.name}`}
+                className="exp-thumb-img"
+                loading="lazy"
+              />
+            )}
+            <div>
+              <h3 className="exp-timeline-name">
+                {exp.name}
+                {exp.has2ndEdition && (
+                  <span className="tag tag-2nd" style={{ marginLeft: '.5rem', fontSize: '.65rem' }}>
+                    2. útg. {exp.secondEditionYear}
+                  </span>
+                )}
+              </h3>
+              <div className="exp-timeline-stats">
+                {stats.cardCount} spil &middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
+              </div>
             </div>
           </div>
           <span className="exp-timeline-toggle">{expanded ? '−' : '+'}</span>
@@ -60,19 +72,39 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Breytingar í 2. útgáfu</div>
                 {stats.removed.length > 0 && (
-                  <div style={{ marginBottom: '.4rem' }}>
-                    <span style={{ fontSize: '.75rem', color: '#f85149', fontWeight: 600 }}>Fjarlægð: </span>
-                    <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
-                      {stats.removed.join(', ')}
-                    </span>
+                  <div style={{ marginBottom: '.4rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '.2rem' }}>
+                    <span style={{ fontSize: '.75rem', color: '#f85149', fontWeight: 600, marginRight: '.3rem' }}>Fjarlægð:</span>
+                    {stats.removed.map((name, i) => {
+                      const card = findCard(name)
+                      return (
+                        <span key={name}>
+                          {card ? (
+                            <button className="exp-edition-card removed" onClick={() => onCardClick(card)}>{name}</button>
+                          ) : (
+                            <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>{name}</span>
+                          )}
+                          {i < stats.removed.length - 1 && <span style={{ color: 'var(--dim)', fontSize: '.78rem' }}>,</span>}
+                        </span>
+                      )
+                    })}
                   </div>
                 )}
                 {stats.added.length > 0 && (
-                  <div>
-                    <span style={{ fontSize: '.75rem', color: '#3fb950', fontWeight: 600 }}>Ný spil: </span>
-                    <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
-                      {stats.added.join(', ')}
-                    </span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '.2rem' }}>
+                    <span style={{ fontSize: '.75rem', color: '#3fb950', fontWeight: 600, marginRight: '.3rem' }}>Ný spil:</span>
+                    {stats.added.map((name, i) => {
+                      const card = findCard(name)
+                      return (
+                        <span key={name}>
+                          {card ? (
+                            <button className="exp-edition-card added" onClick={() => onCardClick(card)}>{name}</button>
+                          ) : (
+                            <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>{name}</span>
+                          )}
+                          {i < stats.added.length - 1 && <span style={{ color: 'var(--dim)', fontSize: '.78rem' }}>,</span>}
+                        </span>
+                      )
+                    })}
                   </div>
                 )}
               </div>
@@ -95,6 +127,14 @@ function ExpansionCard({ exp, stats, onCardClick, onFilterCards }) {
             <div className="exp-detail-actions">
               <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
                 BoardGameGeek
+              </a>
+              <a
+                href={`https://wiki.dominionstrategy.com/index.php/${exp.name.replace(/ /g, '_')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="exp-link-btn"
+              >
+                Dominion Strategy Wiki
               </a>
               <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
                 Skoða öll spil
@@ -166,6 +206,7 @@ export default function Expansions({ onNavigateCards }) {
             key={exp.dataKey}
             exp={exp}
             stats={expStats[exp.dataKey]}
+            allCards={cards}
             onCardClick={setSelectedCard}
             onFilterCards={onNavigateCards}
           />
