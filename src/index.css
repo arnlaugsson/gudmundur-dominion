@@ -977,3 +977,15 @@ select:focus { outline: none; border-color: var(--gold); }
   font-size: 0.85rem;
   cursor: pointer;
 }
+
+/* Player photos in PlayerModal */
+.player-photos {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.player-photos h3 {
+  color: var(--gold);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}

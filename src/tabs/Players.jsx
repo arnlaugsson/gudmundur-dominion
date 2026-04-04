@@ -3,12 +3,14 @@ import useChart from '../hooks/useChart'
 import DATA from '../data'
 import { PALETTE } from '../constants'
 import PlayerModal from '../components/PlayerModal'
+import { useMemories } from '../hooks/useMemories'
 
 
 export default function Players() {
   const { players, games } = DATA
   const [sortKey, setSortKey] = useState('games')
   const [selectedPlayer, setSelectedPlayer] = useState(null)
+  const { photosByPlayer } = useMemories()
 
   const sorted = useMemo(() => {
     return [...players].sort((a, b) => {
@@ -110,7 +112,7 @@ export default function Players() {
         </table>
       </div>
 
-      {selectedPlayer && <PlayerModal playerName={selectedPlayer} onClose={() => setSelectedPlayer(null)} />}
+      {selectedPlayer && <PlayerModal playerName={selectedPlayer} photosByPlayer={photosByPlayer} onClose={() => setSelectedPlayer(null)} />}
     </section>
   )
 }

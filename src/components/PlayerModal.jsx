@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import DATA from '../data'
+import PlayerPhotos from './PlayerPhotos'
 
-export default function PlayerModal({ playerName, onClose }) {
+export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -124,6 +125,8 @@ export default function PlayerModal({ playerName, onClose }) {
             </div>
           </div>
         )}
+
+        <PlayerPhotos playerName={playerName} photosByPlayer={photosByPlayer} />
       </div>
     </div>
   )
