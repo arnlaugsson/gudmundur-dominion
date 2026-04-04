@@ -68,6 +68,15 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
     })
   }
 
+  const toggleHighlight = (index) => {
+    setPhotos((prev) =>
+      prev.map((p, i) => ({
+        ...p,
+        highlight: i === index ? !p.highlight : false,
+      }))
+    )
+  }
+
   const updateNewFileCaption = (index, caption) => {
     setNewFiles((prev) =>
       prev.map((f, i) => i === index ? { ...f, caption } : f)
@@ -199,6 +208,15 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                   />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                  <button
+                    onClick={() => toggleHighlight(i)}
+                    title={photo.highlight ? 'Fjarlægja úr korti' : 'Sýna á korti'}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)',
+                      color: photo.highlight ? 'var(--gold)' : 'var(--dim)',
+                      borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >{photo.highlight ? '★' : '☆'}</button>
                   <button
                     onClick={() => movePhoto(i, -1)}
                     disabled={i === 0}
