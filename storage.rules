@@ -1,10 +1,15 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
-    // Card images are public read
     match /cards/{allPaths=**} {
       allow read: if true;
       allow write: if false;
+    }
+    match /memories/{allPaths=**} {
+      allow read: if request.auth != null
+                  && request.auth.token.allowed == true;
+      allow write: if request.auth != null
+                   && request.auth.token.admin == true;
     }
   }
 }
