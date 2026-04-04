@@ -57,17 +57,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
         {expanded && (
           <div className="exp-timeline-details" onClick={e => e.stopPropagation()}>
 
-            {exp.coverImg && (
-              <div className="exp-cover-wrap">
-                <img
-                  src={exp.coverImg}
-                  alt={`${exp.name} kassinn`}
-                  className={`exp-cover-img${exp.portraitImg ? ' portrait' : ''}`}
-                  loading="lazy"
-                />
-              </div>
-            )}
-
+            <div className="exp-details-content">
             <div className="exp-detail-section">
               <div className="exp-detail-label">Nýjungar</div>
               <ul className="exp-mechanic-list">
@@ -167,6 +157,18 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                 </button>
               )}
             </div>
+            </div>
+
+            {exp.coverImg && (
+              <div className="exp-cover-wrap">
+                <img
+                  src={exp.coverImg}
+                  alt={`${exp.name} kassinn`}
+                  className={`exp-cover-img${exp.portraitImg ? ' portrait' : ''}`}
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

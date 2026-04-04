@@ -647,6 +647,12 @@ select:focus { outline: none; border-color: var(--gold); }
   margin-top: .85rem;
   padding-top: .85rem;
   border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+}
+.exp-details-content {
+  flex: 1;
+  min-width: 0;
 }
 .exp-thumb-img {
   width: 72px;
@@ -662,8 +668,8 @@ select:focus { outline: none; border-color: var(--gold); }
   object-fit: contain;
 }
 .exp-cover-wrap {
-  float: right;
-  margin: 0 0 .75rem .75rem;
+  flex-shrink: 0;
+  order: 1;
 }
 .exp-cover-img {
   width: 270px;
@@ -675,7 +681,8 @@ select:focus { outline: none; border-color: var(--gold); }
   max-height: 270px;
 }
 @media (max-width: 480px) {
-  .exp-cover-wrap { float: none; margin: 0 0 .75rem 0; text-align: center; }
+  .exp-timeline-details { flex-direction: column; }
+  .exp-cover-wrap { order: 0; text-align: center; }
   .exp-cover-img { width: 220px; }
   .exp-cover-img.portrait { width: auto; max-height: 200px; }
 }
