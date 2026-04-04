@@ -6,8 +6,8 @@ service firebase.storage {
       allow write: if false;
     }
     match /memories/{allPaths=**} {
-      allow read: if request.auth != null
-                  && request.auth.token.allowed == true;
+      // Read allowed with download URL token (URLs only served to authenticated users via Firestore)
+      allow read: if true;
       allow write: if request.auth != null
                    && request.auth.token.admin == true;
     }
