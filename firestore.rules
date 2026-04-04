@@ -2,21 +2,25 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAllowed() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/allowedUsers/$(request.auth.token.email));
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && get(/databases/$(database)/documents/allowedUsers/$(request.auth.token.email)).data.admin == true;
+    }
+
     match /memories/{memoryId} {
-      allow read: if request.auth != null
-                  && request.auth.token.allowed == true;
-      allow create, update: if request.auth != null
-                            && request.auth.token.admin == true;
-      allow delete: if request.auth != null
-                    && request.auth.token.admin == true;
+      allow read: if isAllowed();
+      allow create, update, delete: if isAdmin();
     }
 
     match /allowedUsers/{userId} {
-      // Any authenticated user can check if their own email is allowed
       allow read: if request.auth != null
-                  && (request.auth.token.admin == true
-                      || userId == request.auth.token.email);
-      allow write: if false;
+                  && (isAdmin() || userId == request.auth.token.email);
+      allow create, update, delete: if isAdmin();
     }
   }
 }

@@ -5,22 +5,31 @@ import { auth, googleProvider, db } from '../firebase'
 
 const AuthContext = createContext(null)
 
+async function loadUserRole(firebaseUser) {
+  if (!firebaseUser) return null
+  const userDoc = await getDoc(doc(db, 'allowedUsers', firebaseUser.email))
+  if (!userDoc.exists()) return null
+  const data = userDoc.data()
+  return {
+    uid: firebaseUser.uid,
+    email: firebaseUser.email,
+    displayName: firebaseUser.displayName,
+    photoURL: firebaseUser.photoURL,
+    allowed: true,
+    admin: data.admin === true,
+  }
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [authError, setAuthError] = useState(null)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        const token = await firebaseUser.getIdTokenResult()
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          displayName: firebaseUser.displayName,
-          photoURL: firebaseUser.photoURL,
-          allowed: token.claims.allowed === true,
-          admin: token.claims.admin === true,
-        })
+        const role = await loadUserRole(firebaseUser)
+        setUser(role)
       } else {
         setUser(null)
       }
@@ -29,25 +38,24 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  const [authError, setAuthError] = useState(null)
-
   const login = async () => {
     setAuthError(null)
     try {
       const result = await signInWithPopup(auth, googleProvider)
-      const email = result.user.email
-      const userDoc = await getDoc(doc(db, 'allowedUsers', email))
-      if (!userDoc.exists()) {
+      const role = await loadUserRole(result.user)
+      if (!role) {
         await signOut(auth)
         setAuthError('Þú hefur ekki aðgang. Hafðu samband við stjórnanda.')
         return
       }
+      setUser(role)
     } catch (err) {
       if (err.code !== 'auth/popup-closed-by-user') {
         setAuthError('Innskráning mistókst.')
       }
     }
   }
+
   const logout = () => signOut(auth)
 
   return (
