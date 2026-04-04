@@ -1011,18 +1011,25 @@ select:focus { outline: none; border-color: var(--gold); }
   margin-bottom: 0.75rem;
 }
 
-/* Game row highlight thumbnail */
+/* Game row with highlight image */
+.game-row-inner {
+  display: flex;
+  gap: 1rem;
+}
+.game-row-content {
+  flex: 1;
+  min-width: 0;
+}
 .game-row-highlight {
   width: 120px;
-  height: 90px;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--border);
   flex-shrink: 0;
+  align-self: stretch;
 }
 @media (min-width: 640px) {
   .game-row-highlight {
-    width: 160px;
-    height: 110px;
+    width: 180px;
   }
 }

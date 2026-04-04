@@ -200,77 +200,79 @@ export default function History({ targetGame, onClearTarget }) {
         {filtered.map(game => (
           <div
             key={game.game_num}
-            className="game-row"
+            className={`game-row ${memoriesByGameNum.get(game.game_num)?.flatMap(m => m.photos || []).find(p => p.highlight) ? 'game-row-has-highlight' : ''}`}
             onClick={() => setSelectedGame(game)}
           >
-            <div className="gh" style={{ display: 'flex', gap: '1rem' }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                <span className="cinzel gold" style={{ fontSize: '.95rem' }}>#{game.game_num}</span>
-                <span className="gd">{game.date}</span>
-                <span className="gd">{game.location}</span>
-                {game.victory_type && (
-                  <span className={`badge ${victoryBadgeClass[game.victory_type] || 'badge-province'}`}>
-                    {game.victory_type}
-                  </span>
+            <div className="game-row-inner">
+              <div className="game-row-content">
+                <div className="gh">
+                  <div style={{ display: 'flex', gap: '.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <span className="cinzel gold" style={{ fontSize: '.95rem' }}>#{game.game_num}</span>
+                    <span className="gd">{game.date}</span>
+                    <span className="gd">{game.location}</span>
+                    {game.victory_type && (
+                      <span className={`badge ${victoryBadgeClass[game.victory_type] || 'badge-province'}`}>
+                        {game.victory_type}
+                      </span>
+                    )}
+                    {game.expansions?.includes('Prosperity') && (
+                      <span className="badge badge-prosperity">Colony</span>
+                    )}
+                    {game.events?.length > 0 && <span className="badge badge-event">Events</span>}
+                    {game.landmarks?.length > 0 && <span className="badge badge-landmark">Landmarks</span>}
+                    {game.projects?.length > 0 && <span className="badge badge-project">Projects</span>}
+                    {game.allies?.length > 0 && <span className="badge badge-ally">Allies</span>}
+                    {game.ways?.length > 0 && <span className="badge badge-way">Ways</span>}
+                    {game.traits?.length > 0 && <span className="badge badge-trait">Traits</span>}
+                    {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
+                    {memoriesByGameNum.has(game.game_num) && (
+                      <span className="memory-icon" title="Minningar">📷</span>
+                    )}
+                  </div>
+                  <div className="podium">
+                    {game.results.map(r => (
+                      <span key={r.place} className={r.place <= 3 ? `p${r.place}` : ''} style={r.place >= 4 ? { color: 'var(--dim)' } : undefined}>
+                        {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`} {r.name}
+                        {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {game.expansions?.length > 0 && (
+                  <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
+                    {game.expansions.map(exp => (
+                      <span key={exp} className="exp-chip">{exp}</span>
+                    ))}
+                  </div>
                 )}
-                {game.expansions?.includes('Prosperity') && (
-                  <span className="badge badge-prosperity">Colony</span>
+                {highlights[game.game_num]?.length > 0 && (
+                  <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
+                    {highlights[game.game_num].map((h, i) => (
+                      <span key={i} className="highlight-chip">{h.icon} {h.text}</span>
+                    ))}
+                  </div>
                 )}
-                {game.events?.length > 0 && <span className="badge badge-event">Events</span>}
-                {game.landmarks?.length > 0 && <span className="badge badge-landmark">Landmarks</span>}
-                {game.projects?.length > 0 && <span className="badge badge-project">Projects</span>}
-                {game.allies?.length > 0 && <span className="badge badge-ally">Allies</span>}
-                {game.ways?.length > 0 && <span className="badge badge-way">Ways</span>}
-                {game.traits?.length > 0 && <span className="badge badge-trait">Traits</span>}
-                {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
-                {memoriesByGameNum.has(game.game_num) && (
-                  <span className="memory-icon" title="Minningar">📷</span>
+                {game.kingdom.length > 0 && (
+                  <div className="gk">
+                    {game.kingdom.map(k => (
+                      <span key={k.card} className="kchip">{k.card}</span>
+                    ))}
+                  </div>
                 )}
               </div>
-              <div className="podium">
-                {game.results.map(r => (
-                  <span key={r.place} className={r.place <= 3 ? `p${r.place}` : ''} style={r.place >= 4 ? { color: 'var(--dim)' } : undefined}>
-                    {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`} {r.name}
-                    {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
-                  </span>
-                ))}
-              </div>
+              {(() => {
+                const memories = memoriesByGameNum.get(game.game_num)
+                const hl = memories?.flatMap(m => m.photos || []).find(p => p.highlight)
+                return hl ? (
+                  <img
+                    src={hl.url}
+                    alt=""
+                    loading="lazy"
+                    className="game-row-highlight"
+                  />
+                ) : null
+              })()}
             </div>
-            {(() => {
-              const memories = memoriesByGameNum.get(game.game_num)
-              const hl = memories?.flatMap(m => m.photos || []).find(p => p.highlight)
-              return hl ? (
-                <img
-                  src={hl.url}
-                  alt=""
-                  loading="lazy"
-                  className="game-row-highlight"
-                />
-              ) : null
-            })()}
-            </div>
-            {game.expansions?.length > 0 && (
-              <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
-                {game.expansions.map(exp => (
-                  <span key={exp} className="exp-chip">{exp}</span>
-                ))}
-              </div>
-            )}
-            {highlights[game.game_num]?.length > 0 && (
-              <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
-                {highlights[game.game_num].map((h, i) => (
-                  <span key={i} className="highlight-chip">{h.icon} {h.text}</span>
-                ))}
-              </div>
-            )}
-            {game.kingdom.length > 0 && (
-              <div className="gk">
-                {game.kingdom.map(k => (
-                  <span key={k.card} className="kchip">{k.card}</span>
-                ))}
-              </div>
-            )}
           </div>
         ))}
       </div>
