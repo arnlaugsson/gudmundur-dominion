@@ -1,4 +1,5 @@
 import DATA from '../data'
+import LoginButton from './LoginButton'
 
 const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/14f5TW05_jpnWGf6d3cAO7ChSrHPZl0dIbxyIO3qqe2A'
 const FACEBOOK_URL = 'https://www.facebook.com/groups/754031125659182'
@@ -7,6 +8,9 @@ export default function Header() {
   const { lastUpdated, upcomingGames } = DATA
   return (
     <header>
+      <div style={{ position: 'absolute', top: '1rem', right: '1.25rem', zIndex: 1 }}>
+        <LoginButton />
+      </div>
       <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
       <p>Tölfræði og gagnvirk úrvinnsla</p>
       <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>

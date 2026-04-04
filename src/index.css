@@ -733,3 +733,30 @@ select:focus { outline: none; border-color: var(--gold); }
   border-color: var(--gold);
   background: var(--bg2);
 }
+
+/* ── Login ── */
+.login-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.login-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+}
+.login-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.login-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}

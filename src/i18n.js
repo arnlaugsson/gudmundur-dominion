@@ -233,6 +233,31 @@ export const t = {
     },
   },
 
+  // Auth
+  auth: {
+    login: 'Innskrá',
+    logout: 'Útskrá',
+    notAllowed: 'Þú hefur ekki aðgang að þessu efni.',
+  },
+
+  // Memories
+  memories: {
+    title: 'Minningar',
+    addMemory: 'Bæta við minningu',
+    editMemory: 'Breyta minningu',
+    saveMemory: 'Vista minningu',
+    cancel: 'Hætta við',
+    notes: 'Athugasemdir',
+    photos: 'Myndir',
+    dragPhotos: 'Dragðu myndir hingað eða smelltu til að bæta við',
+    taggedPlayers: 'Merktir leikmenn',
+    addTag: 'Bæta við',
+    removeTag: 'Fjarlægja',
+    noMemories: 'Engar minningar skráðar.',
+    playerPhotos: 'Myndir',
+    source: 'Facebook',
+  },
+
   // CardModal
   cardModal: {
     cost:       'Verð:',
