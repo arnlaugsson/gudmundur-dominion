@@ -77,7 +77,7 @@ export default function History({ targetGame, onClearTarget }) {
   const [selectedGame, setSelectedGame] = useState(null)
 
   const highlights = useMemo(() => computeHighlights(games), [games])
-  const { memoriesByGameNum } = useMemories()
+  const { memoriesByGameNum, refetch } = useMemories()
 
   useEffect(() => {
     if (targetGame != null) {
@@ -266,6 +266,7 @@ export default function History({ targetGame, onClearTarget }) {
           game={selectedGame}
           memories={memoriesByGameNum.get(selectedGame.game_num) || []}
           onClose={() => setSelectedGame(null)}
+          onMemorySaved={refetch}
         />
       )}
     </section>

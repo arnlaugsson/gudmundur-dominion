@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import CardImage from './CardImage'
 import CardModal from './CardModal'
 import MemorySection from './MemorySection'
+import MemoryEditor from './MemoryEditor'
 import DATA from '../data'
 
 const EXTRA_COLORS = { event: '#f97316', landmark: '#3fb950', project: '#58a6ff', way: '#a78bfa', ally: '#f43f5e', trait: '#06b6d4', prophecy: '#e879f9' }
@@ -117,7 +118,19 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
             </div>
           </div>
         )}
-        <MemorySection memories={memories} onEdit={() => setEditing(true)} />
+        {editing ? (
+          <MemoryEditor
+            game={game}
+            existingMemory={memories?.[0] || null}
+            onSave={() => {
+              setEditing(false)
+              onMemorySaved?.()
+            }}
+            onCancel={() => setEditing(false)}
+          />
+        ) : (
+          <MemorySection memories={memories} onEdit={() => setEditing(true)} />
+        )}
       </div>
     </div>
 
