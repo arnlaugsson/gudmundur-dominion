@@ -3,6 +3,8 @@ import { collection, addDoc, doc, updateDoc, Timestamp } from 'firebase/firestor
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { db, storage } from '../firebase'
 import { useAuth } from '../context/AuthContext'
+import DATA from '../data'
+import PlayerTagger from './PlayerTagger'
 
 export default function MemoryEditor({ game, existingMemory, onSave, onCancel }) {
   const { user } = useAuth()
@@ -16,6 +18,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
 
   const resultNames = (game.results || []).map((r) => r.name)
   const gamePlayers = resultNames.length > 0 ? resultNames : (game.players || [])
+  const allPlayers = DATA.players.map((p) => p.name)
   const gameDate = game.date || ''
   const datePart = gameDate.replace(/\//g, '-')
 
@@ -181,17 +184,19 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                       fontSize: '0.8rem', fontFamily: 'inherit', boxSizing: 'border-box',
                     }}
                   />
-                  <div className="memory-tag-list">
-                    {gamePlayers.map((player) => (
-                      <button
-                        key={player}
-                        className={(photo.taggedPlayers || []).includes(player) ? 'memory-tag' : 'memory-add-tag'}
-                        onClick={() => togglePlayerTag(i, player, false)}
-                      >
-                        {player}
-                      </button>
-                    ))}
-                  </div>
+                  <PlayerTagger
+                    tagged={photo.taggedPlayers || []}
+                    gamePlayers={gamePlayers}
+                    onToggle={(player) => togglePlayerTag(i, player, false)}
+                    onAdd={(player) => {
+                      setPhotos((prev) =>
+                        prev.map((p, idx) => idx === i
+                          ? { ...p, taggedPlayers: [...(p.taggedPlayers || []), player] }
+                          : p
+                        )
+                      )
+                    }}
+                  />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                   <button
@@ -248,17 +253,19 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                       fontSize: '0.8rem', fontFamily: 'inherit', boxSizing: 'border-box',
                     }}
                   />
-                  <div className="memory-tag-list">
-                    {gamePlayers.map((player) => (
-                      <button
-                        key={player}
-                        className={f.taggedPlayers.includes(player) ? 'memory-tag' : 'memory-add-tag'}
-                        onClick={() => togglePlayerTag(i, player, true)}
-                      >
-                        {player}
-                      </button>
-                    ))}
-                  </div>
+                  <PlayerTagger
+                    tagged={f.taggedPlayers}
+                    gamePlayers={gamePlayers}
+                    onToggle={(player) => togglePlayerTag(i, player, true)}
+                    onAdd={(player) => {
+                      setNewFiles((prev) =>
+                        prev.map((file, idx) => idx === i
+                          ? { ...file, taggedPlayers: [...file.taggedPlayers, player] }
+                          : file
+                        )
+                      )
+                    }}
+                  />
                 </div>
                 <button
                   onClick={() => removeNewFile(i)}
