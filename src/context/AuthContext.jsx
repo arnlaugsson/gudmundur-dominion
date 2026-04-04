@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { onAuthStateChanged, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 import { auth, googleProvider } from '../firebase'
 
 const AuthContext = createContext(null)
@@ -9,7 +9,6 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getRedirectResult(auth).catch(() => {})
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         const token = await firebaseUser.getIdTokenResult()
@@ -29,7 +28,7 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  const login = () => signInWithRedirect(auth, googleProvider)
+  const login = () => signInWithPopup(auth, googleProvider)
   const logout = () => signOut(auth)
 
   return (
