@@ -24,7 +24,7 @@ export default function Header() {
           Facebook <span className="external-icon">↗</span>
         </a>
       </div>
-      <div style={{ position: 'absolute', top: '0.75rem', right: '1rem', zIndex: 1 }}>
+      <div className="header-login">
         <LoginButton />
       </div>
     </header>
