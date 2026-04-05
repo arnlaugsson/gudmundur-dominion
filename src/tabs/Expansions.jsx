@@ -1,10 +1,15 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import DATA from '../data'
 import EXPANSIONS from '../expansionData'
 import CardModal from '../components/CardModal'
 
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
 function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
   const [expanded, setExpanded] = useState(false)
+  const funFactRef = useRef(exp.funFacts ? pickRandom(exp.funFacts) : exp.funFact || '')
 
   const findCard = (name) => allCards.find(c => c.name === name)
 
@@ -71,7 +76,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
 
             <div className="exp-detail-section">
               <div className="exp-detail-label">Vissir þú?</div>
-              <p className="exp-fun-fact">{exp.funFact}</p>
+              <p className="exp-fun-fact">{funFactRef.current}</p>
             </div>
 
             {!exp.mergedInto && (stats.removed.length > 0 || stats.added.length > 0) && (
