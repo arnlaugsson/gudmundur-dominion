@@ -346,7 +346,7 @@ const EXPANSIONS = [
     funFacts: [
       'Fyrsta viðbótin með raunverulegu menningarþema (Japan), með Shadow-spilum sem hægt er að spila á óvenjulegum tímum.',
       'Prophecy-spil virkjast þegar bunkar tæmast — bætir spennu við lok leikja.',
-      'Nýjasta viðbótin í seríunni og sú fyrsta eftir þriggja ára hlé.',
+      'Nýjasta stóra viðbótin í seríunni — kynnti Japanskt þema og nýjar tegundir spila.',
     ],
     has2ndEdition: false,
   },
