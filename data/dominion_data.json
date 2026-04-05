@@ -962,35 +962,26 @@
         {
           "place": 1,
           "name": "Mummi",
-          "tied_with": [
-            "Ragnheiður",
-            "Iðunn"
-          ],
+          "tied_with": null,
           "score": 38.0
         },
         {
-          "place": 1,
+          "place": 2,
           "name": "Ragnheiður",
-          "tied_with": [
-            "Mummi",
-            "Iðunn"
-          ],
+          "tied_with": null,
           "score": 20.0
         },
         {
-          "place": 1,
-          "name": "Iðunn",
-          "tied_with": [
-            "Mummi",
-            "Ragnheiður"
-          ],
-          "score": 10.0
-        },
-        {
-          "place": 4,
+          "place": 3,
           "name": "Skúli",
           "tied_with": null,
           "score": 15.0
+        },
+        {
+          "place": 4,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 10.0
         }
       ],
       "kingdom": [
@@ -19202,6 +19193,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-03 22:11",
+  "last_updated": "2026-04-04 22:09",
   "upcoming_games": 0
 }

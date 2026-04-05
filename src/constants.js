@@ -1,5 +1,10 @@
 export const BUCKET = 'dominon-1e56c.firebasestorage.app'
 
+export function expansionImgUrl(filename) {
+  const path = encodeURIComponent('expansions/' + filename)
+  return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${path}?alt=media`
+}
+
 export function cardImgUrl(name) {
   const slug = name.replace(/ /g, '_').replace(/\//g, '_')
   const path = encodeURIComponent('cards/' + slug + '.jpg')

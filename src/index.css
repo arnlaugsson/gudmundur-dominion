@@ -13,6 +13,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+.external-icon { font-size: .7em; opacity: .6; margin-left: .15em; }
 
 body {
   background: var(--bg);
@@ -647,6 +648,25 @@ select:focus { outline: none; border-color: var(--gold); }
   margin-top: .85rem;
   padding-top: .85rem;
   border-top: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+}
+.exp-details-content {
+  flex: 1;
+  min-width: 0;
+}
+.exp-thumb-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.exp-thumb-img.portrait {
+  width: auto;
+  height: 72px;
+  object-fit: contain;
 }
 .exp-thumb-img {
   width: 48px;
@@ -657,17 +677,23 @@ select:focus { outline: none; border-color: var(--gold); }
   border: 1px solid var(--border);
 }
 .exp-cover-wrap {
-  float: right;
-  margin: 0 0 .75rem .75rem;
+  flex-shrink: 0;
+  order: 1;
 }
 .exp-cover-img {
-  width: 180px;
+  width: 270px;
   border-radius: 8px;
   border: 1px solid var(--border);
 }
+.exp-cover-img.portrait {
+  width: auto;
+  max-height: 270px;
+}
 @media (max-width: 480px) {
-  .exp-cover-wrap { float: none; margin: 0 0 .75rem 0; text-align: center; }
-  .exp-cover-img { width: 200px; }
+  .exp-timeline-details { flex-direction: column; }
+  .exp-cover-wrap { order: 0; text-align: center; }
+  .exp-cover-img { width: 220px; }
+  .exp-cover-img.portrait { width: auto; max-height: 200px; }
 }
 .exp-edition-card {
   background: none;
@@ -733,6 +759,10 @@ select:focus { outline: none; border-color: var(--gold); }
 .exp-card-chip-count {
   font-size: .68rem;
   color: var(--dim);
+}
+.exp-card-chip-unseen {
+  opacity: .55;
+  border-style: dashed;
 }
 .exp-detail-actions {
   display: flex;

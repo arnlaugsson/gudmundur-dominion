@@ -18,10 +18,10 @@ export default function Header() {
           </span>
         )}
         <a href={SPREADSHEET_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
-          Gögn
+          Gögn <span className="external-icon">↗</span>
         </a>
         <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
-          Facebook
+          Facebook <span className="external-icon">↗</span>
         </a>
         <LoginButton />
       </div>

@@ -17,9 +17,9 @@ export const t = {
     locations:        'Staðir',
     avgScore:         'Meðalskor',
     avgScoreSub:      'per leik',
-    topWinner:        'Besti sigurvegari',
+    topWinner:        'Flestir sigrar',
     wins:             'sigrar',
-    mostDedicated:    'Hollastur',
+    mostDedicated:    'Flestir leikir',
     games:            'leikir',
     victoryTypes:     'SIGURTEGUNDIR',
     expansions:       'VINSÆLUSTU VIÐBÆTUR',
@@ -69,7 +69,7 @@ export const t = {
     normal:       '↓ Venjuleg',
     allTypes:     'Allar tegundir',
     allExp:       'Allar viðbætur',
-    hideRemoved:  'Fela fjarlægð',
+    hideRemoved:  'Fela fjarlægð kort',
     hideBase:     'Fela grunnkort',
     cardCount:    n => `${n} spil`,
   },
@@ -96,7 +96,7 @@ export const t = {
     title: 'Skemmtilegar staðreyndir & met klúbbsins',
     facts: {
       lostToHistory: {
-        title: 'Glatað í sögunni',
+        title: 'Gleymd niðurstaða',
         value: n => `${n} leik${n === 1 ? 'ur' : 'ir'} óskráðir`,
         desc:  (first, n) => `Færslur hefjast á leik #${first}. Fyrstu ${n} leikirnir voru spilaðir áður en farið var að halda utan um þá — glataðir í sögunni!`,
       },
@@ -105,7 +105,7 @@ export const t = {
         desc:  (loc, n) => `Uppáhaldsstaðurinn — ${n} leikir spilaðir þar. Ekkert eins og heimavöllur!`,
       },
       peakSeason: {
-        title: 'Fjölmennastur mánuður',
+        title: 'Virkasti mánuðurinn',
         desc:  n => `Fjölmennasti mánuður klúbbsins með ${n} leiki. Sumarleg Dominion er sérstök!`,
       },
       highScore: {
@@ -114,7 +114,7 @@ export const t = {
         desc:  (name, game, date) => `${name} í leik #${game}${date ? ` (${date})` : ''} — met í stigafjölda allra tíma`,
       },
       highestScoringGame: {
-        title: 'Stigaríkasti leikurinn',
+        title: 'Stigahæsti leikurinn',
         value: n => `${n} stig alls`,
         desc:  (game, date) => `Leikur #${game}${date ? ` (${date})` : ''} — flestu stig á einum leik`,
       },
@@ -126,15 +126,15 @@ export const t = {
       biggestBlowout: {
         title: 'Stærsti sigur',
         value: n => `${n} stiga munur`,
-        desc:  (game, winner, ws, loser, ls) => `Leikur #${game}: ${winner} (${ws}) bræðdi ${loser} (${ls}). Algert yfirburðaspil.`,
+        desc:  (game, winner, ws, loser, ls) => `Leikur #${game}: ${winner} (${ws}) bræddi ${loser} (${ls}). Algert yfirburðaspil.`,
       },
       deadHeats: {
-        title: 'Jafnar lokur',
+        title: 'Jafnir leikir',
         value: n => `${n} jafnir leikir`,
         desc:  (nums) => `${nums} — 1. og 2. sæti enduðu með sömu stig. Leikniður þurfti að ráða úrslitum!`,
       },
       nailBiter: {
-        title: 'Spennumesta leikurinn',
+        title: 'Mest spennandi',
         value: n => `${n} stiga munur`,
         desc:  (game, winner, runner, gap, date) => `Leikur #${game}: ${winner} vann yfir ${runner} með aðeins ${gap} stigi${gap !== 1 ? 'um' : ''}${date ? ` (${date})` : ''}`,
       },
@@ -149,12 +149,12 @@ export const t = {
         desc:  (name, n) => `${name} fór á óstöðvanlegt skrið — ${n} sigurleikar í röð`,
       },
       runnerUp: {
-        title: 'Smiður á 2. sæti',
+        title: 'Spilarinn í 2. sæti',
         value: n => `${n}× í 2. sæti`,
         desc:  name => `${name} hefur lokið í 2. sæti oftar en nokkuð annað. Svo nálægt, svo oft!`,
       },
       generousLoser: {
-        title: 'Hinn góðgjarna taparinn',
+        title: 'Miskunarsami samverjinn',
         value: n => `${n} síðustu sæti`,
         desc:  (name, n) => `${name} hefur gjöfult lagt ${n} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.`,
       },
@@ -172,7 +172,7 @@ export const t = {
         desc:  (name, n) => `Kom fyrir í ${n} ríkjum — uppáhald klúbbsins`,
       },
       powerCouple: {
-        title: 'Kraftapar',
+        title: 'Kraftaparið',
         desc:  (c1, c2, n) => `Þessi tvö spil hafa verið í sama ríki ${n} sinnum — skapaðar fyrir hvort annað`,
       },
       forgotten: {
@@ -185,7 +185,7 @@ export const t = {
         desc:  (names, extra) => `${names}${extra} — hafa aldrei komið í ríki`,
       },
       biggestGame: {
-        title: 'Stærsti leikurinn',
+        title: 'Fjölmennasti leikurinn',
         value: n => `${n} í leik`,
         desc:  (num, names) => `Leikur #${num} — ${names}`,
       },
