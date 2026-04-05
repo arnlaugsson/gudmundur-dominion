@@ -24,7 +24,7 @@ export default function CardModal({ card: rawCard, onClose }) {
 
   function costBadge() {
     if (card.debt) return <span className="coin debt">{card.debt}D</span>
-    if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
+    if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">S</span></>
     return <span className="coin">{card.cost}</span>
   }
 

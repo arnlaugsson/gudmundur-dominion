@@ -10,7 +10,7 @@ const LANDSCAPE_TYPES = new Set(['Event','Landmark','Project','Way','Ally','Trai
 function CostBadge({ card }) {
   if (card.cost == null && !card.debt && !card.potion) return null
   if (card.debt) return <span className="coin debt">{card.debt}D</span>
-  if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
+  if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">S</span></>
   if (card.cost === 0 && LANDSCAPE_TYPES.has(card.card_type)) return null
   return <span className="coin">{card.cost}</span>
 }

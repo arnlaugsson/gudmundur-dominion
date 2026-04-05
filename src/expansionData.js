@@ -71,7 +71,7 @@ const EXPANSIONS = [
     isSmallBox: true,
     keyMechanics: [
       'Seyðakostnaður (ný gjaldmiðilstegund)',
-      'Potion-fjársjóðsspil',
+      'Seyði-fjársjóðsspil',
       'Öflugar aðgerðakeðjur',
     ],
     funFacts: [

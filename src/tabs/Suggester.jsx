@@ -26,7 +26,7 @@ const PLAYER_MODES = [
 function CostBadge({ card }) {
   if (card.cost == null && !card.debt && !card.potion) return null
   if (card.debt) return <span className="coin debt">{card.debt}D</span>
-  if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">P</span></>
+  if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">S</span></>
   return <span className="coin">{card.cost}</span>
 }
 
@@ -66,7 +66,7 @@ function ExtraCard({ card, onClick }) {
 function formatCost(card) {
   if (card.cost == null && !card.debt && !card.potion) return ''
   if (card.debt) return `${card.debt}D`
-  if (card.potion) return `${card.cost ?? 0}P`
+  if (card.potion) return `${card.cost ?? 0}S`
   return `${card.cost}`
 }
 
@@ -575,7 +575,7 @@ export default function Suggester() {
       {kingdom.length > 0 && (
         <div style={{ marginTop: '1.5rem' }}>
 
-          {/* Potion reminder */}
+          {/* Seyði reminder */}
           {showPotions && (
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
