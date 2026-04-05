@@ -23,6 +23,8 @@ export default function Header() {
         <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
           Facebook <span className="external-icon">↗</span>
         </a>
+      </div>
+      <div style={{ position: 'absolute', top: '0.75rem', right: '1rem', zIndex: 1 }}>
         <LoginButton />
       </div>
     </header>
