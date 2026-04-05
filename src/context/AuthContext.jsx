@@ -27,10 +27,14 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        const role = await loadUserRole(firebaseUser)
-        setUser(role)
-      } else {
+      try {
+        if (firebaseUser) {
+          const role = await loadUserRole(firebaseUser)
+          setUser(role)
+        } else {
+          setUser(null)
+        }
+      } catch {
         setUser(null)
       }
       setLoading(false)
