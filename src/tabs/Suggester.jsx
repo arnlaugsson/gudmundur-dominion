@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import DATA from '../data'
@@ -143,6 +143,9 @@ export default function Suggester() {
   const [selectedCard, setSelectedCard] = useState(null)
   const [copied, setCopied] = useState(false)
 
+  // Random expansion count
+  const [randomExpCount, setRandomExpCount] = useState(2)
+
   // Filters
   const [noAttacks, setNoAttacks] = useState(false)
   const [noCurses, setNoCurses] = useState(false)
@@ -201,6 +204,32 @@ export default function Suggester() {
     if (!expansions.length) return []
     return expansions.filter(e => e !== 'Promo')
   }, [expansions])
+
+  const autoGenerateRef = useRef(false)
+
+  useEffect(() => {
+    if (autoGenerateRef.current) {
+      autoGenerateRef.current = false
+      generate()
+    }
+  }) // runs after every render — only fires when flag is set
+
+  function generateRandomExps() {
+    const count = Math.max(1, Math.min(randomExpCount, kingdomExpansions.length))
+    const shuffled = [...kingdomExpansions].sort(() => Math.random() - 0.5)
+    const picked = shuffled.slice(0, count)
+    setSelectedExps(picked)
+    if (picked.length >= 2) {
+      const per = Math.floor(10 / picked.length)
+      const rem = 10 - per * picked.length
+      const ratios = {}
+      picked.forEach((exp, i) => { ratios[exp] = per + (i < rem ? 1 : 0) })
+      setCustomRatios(ratios)
+    } else {
+      setCustomRatios({})
+    }
+    autoGenerateRef.current = true
+  }
 
   function generate() {
     const excludeCard = c =>
@@ -377,6 +406,28 @@ export default function Suggester() {
       {!(showAdvanced && selectedPlayers.length > 0) && (
         <div className="sug-section">
           <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— skildu eftir ómerkt til að nota allar</span></h3>
+          <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center', marginBottom: '.75rem' }}>
+            <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Handahófskenndar:</span>
+            <input
+              type="number"
+              min={1}
+              max={kingdomExpansions.length}
+              value={randomExpCount}
+              onChange={e => setRandomExpCount(Math.max(1, Math.min(kingdomExpansions.length, parseInt(e.target.value) || 1)))}
+              style={{
+                width: '3rem', textAlign: 'center', background: 'var(--bg)',
+                border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
+                fontSize: '.82rem', padding: '.25rem', fontFamily: 'inherit',
+              }}
+            />
+            <button
+              className="gen-btn"
+              style={{ fontSize: '.78rem', padding: '.35rem .75rem' }}
+              onClick={() => { generateRandomExps() }}
+            >
+              Velja {randomExpCount} og búa til ríki
+            </button>
+          </div>
           <div className="exp-checkboxes">
             {kingdomExpansions.map(e => (
               <label key={e} className="exp-check">
