@@ -413,7 +413,14 @@ export default function Suggester() {
               min={1}
               max={kingdomExpansions.length}
               value={randomExpCount}
-              onChange={e => setRandomExpCount(Math.max(1, Math.min(kingdomExpansions.length, parseInt(e.target.value) || 1)))}
+              onFocus={e => e.target.select()}
+              onChange={e => {
+                const raw = e.target.value
+                if (raw === '') { setRandomExpCount(''); return }
+                const num = parseInt(raw)
+                if (!isNaN(num)) setRandomExpCount(Math.min(kingdomExpansions.length, num))
+              }}
+              onBlur={() => { if (randomExpCount === '' || randomExpCount < 1) setRandomExpCount(1) }}
               style={{
                 width: '3rem', textAlign: 'center', background: 'var(--bg)',
                 border: '1px solid var(--border)', borderRadius: '4px', color: 'var(--text)',
@@ -425,7 +432,7 @@ export default function Suggester() {
               style={{ fontSize: '.78rem', padding: '.35rem .75rem' }}
               onClick={() => { generateRandomExps() }}
             >
-              Velja {randomExpCount} og búa til ríki
+              Velja {randomExpCount || '?'} og búa til ríki
             </button>
           </div>
           <div className="exp-checkboxes">
