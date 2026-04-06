@@ -319,6 +319,12 @@ export default function Suggester() {
         const pool = candidates.filter(c => c.expansion === exp)
         picked.push(...[...pool].sort(() => Math.random() - 0.5).slice(0, count))
       }
+      // Backfill if any expansion couldn't fill its quota
+      if (picked.length < 10) {
+        const pickedNames = new Set(picked.map(c => c.name))
+        const leftover = candidates.filter(c => !pickedNames.has(c.name))
+        picked.push(...[...leftover].sort(() => Math.random() - 0.5).slice(0, 10 - picked.length))
+      }
       newKingdom = [...picked].sort(() => Math.random() - 0.5).slice(0, 10)
     } else if (activeExps.length >= 2) {
       const perExp = Math.floor(10 / activeExps.length)
@@ -328,9 +334,10 @@ export default function Suggester() {
         const pool = candidates.filter(c => c.expansion === exp)
         picked.push(...[...pool].sort(() => Math.random() - 0.5).slice(0, perExp))
       }
+      // Backfill remainder from any expansion
       const pickedNames = new Set(picked.map(c => c.name))
       const leftover = candidates.filter(c => !pickedNames.has(c.name))
-      picked.push(...[...leftover].sort(() => Math.random() - 0.5).slice(0, remainder))
+      picked.push(...[...leftover].sort(() => Math.random() - 0.5).slice(0, 10 - picked.length))
       newKingdom = [...picked].sort(() => Math.random() - 0.5).slice(0, 10)
     } else {
       newKingdom = [...candidates].sort(() => Math.random() - 0.5).slice(0, 10)
