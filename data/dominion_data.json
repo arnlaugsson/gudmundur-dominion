@@ -10094,6 +10094,22 @@
           "score": 31.0
         },
         {
+          "place": 2,
+          "name": "Halla",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 29.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": [
+            "Halla"
+          ],
+          "score": 29.0
+        },
+        {
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
@@ -10172,6 +10188,22 @@
           "name": "Halla",
           "tied_with": null,
           "score": 27.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": [
+            "Fúsi"
+          ],
+          "score": 21.0
+        },
+        {
+          "place": 2,
+          "name": "Fúsi",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 21.0
         },
         {
           "place": 4,
@@ -19349,6 +19381,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-06 18:23",
+  "last_updated": "2026-04-06 20:16",
   "upcoming_games": 0
 }
