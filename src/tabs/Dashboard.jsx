@@ -119,6 +119,22 @@ export default function Dashboard() {
           y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
         },
       },
+      plugins: [{
+        id: 'barLabels',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart
+          chart.data.datasets[0].data.forEach((value, i) => {
+            const bar = chart.getDatasetMeta(0).data[i]
+            ctx.save()
+            ctx.fillStyle = PALETTE.text
+            ctx.font = '11px sans-serif'
+            ctx.textAlign = 'left'
+            ctx.textBaseline = 'middle'
+            ctx.fillText(value, bar.x + 4, bar.y)
+            ctx.restore()
+          })
+        },
+      }],
     }
   }, [])
 
