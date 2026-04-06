@@ -5683,13 +5683,13 @@
       "players": [
         "Hafliði",
         "Nói",
-        "Matthildur",
+        "Mummi",
         "Hjödda"
       ],
       "results": [
         {
           "place": 1,
-          "name": "Matthildur",
+          "name": "Mummi",
           "tied_with": null,
           "score": 74.0
         },
@@ -19381,6 +19381,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-06 20:21",
+  "last_updated": "2026-04-06 22:13",
   "upcoming_games": 0
 }
