@@ -10885,6 +10885,162 @@
       ],
       "victory_type": "Province",
       "avg_score": 20.75
+    },
+    {
+      "game_num": 121,
+      "date": "2026-04-06",
+      "location": null,
+      "players": [
+        "Skúli",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 40.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 22.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Infirmary",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Investment",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Monument",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Plaza",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Hunting party",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Jester",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Merchant guild",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Rabble",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Soothsayer",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Goons",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Prosperity",
+        "Cornucopia & Guilds"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 31.0
+    },
+    {
+      "game_num": 122,
+      "date": "2026-04-06",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Mummi",
+        "Skúli"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 38.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 29.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Poor house",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Beggar",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Herbalist",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Alchemist",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Familiar",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Philosopher's stone",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Catacombs",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Count",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Knights",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Possession",
+          "expansion": "Alchemy"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Alchemy",
+        "Dark Ages"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 33.5
     }
   ],
   "players": [
@@ -19193,6 +19349,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-06 16:19",
+  "last_updated": "2026-04-06 18:23",
   "upcoming_games": 0
 }
