@@ -147,10 +147,15 @@ for (const name of playerSet) {
 }
 
 games.forEach(g => {
+  // Count game participation from players array (authoritative for who played)
+  g.players.forEach(name => {
+    const p = playerStats[name]
+    if (p) p.games++
+  })
+  // Count placements and scores from results
   g.results.forEach(r => {
     const p = playerStats[r.name]
     if (!p) return
-    p.games++
     if (r.place === 1) p.first++
     if (r.place === 2) p.second++
     if (r.place === 3) p.third++
