@@ -131,22 +131,24 @@ export default function UserManager({ onClose }) {
             type="email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
+            onFocus={(e) => setTimeout(() => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300)}
             placeholder="Netfang (Google)"
             style={{
               width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
               color: 'var(--text)', borderRadius: '4px', padding: '0.4rem 0.5rem',
-              fontSize: '0.85rem', fontFamily: 'inherit', boxSizing: 'border-box',
+              fontSize: '16px', fontFamily: 'inherit', boxSizing: 'border-box',
             }}
           />
           <input
             type="text"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
+            onFocus={(e) => setTimeout(() => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300)}
             placeholder="Nafn"
             style={{
               width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
               color: 'var(--text)', borderRadius: '4px', padding: '0.4rem 0.5rem',
-              fontSize: '0.85rem', fontFamily: 'inherit', boxSizing: 'border-box',
+              fontSize: '16px', fontFamily: 'inherit', boxSizing: 'border-box',
             }}
           />
           <label style={{ fontSize: '0.8rem', color: 'var(--dim)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>

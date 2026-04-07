@@ -570,7 +570,7 @@ select:focus { outline: none; border-color: var(--gold); }
   .cards-filter { gap: .5rem; }
   .search-bar { max-width: 100%; }
   .modal-overlay { padding: 0; align-items: flex-end; }
-  .modal-box { border-bottom-left-radius: 0; border-bottom-right-radius: 0; max-height: 92vh; border-radius: 16px 16px 0 0; }
+  .modal-box { border-bottom-left-radius: 0; border-bottom-right-radius: 0; max-height: 92vh; max-height: 92dvh; border-radius: 16px 16px 0 0; }
   .modal-card-layout { grid-template-columns: 1fr; }
   .modal-card-img-wrap { max-width: 160px; margin: 0 auto; }
   .kingdom-cards-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: .3rem; }
