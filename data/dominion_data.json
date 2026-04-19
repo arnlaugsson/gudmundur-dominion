@@ -10921,7 +10921,7 @@
     {
       "game_num": 121,
       "date": "2026-04-06",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Skúli",
         "Mummi"
@@ -11073,6 +11073,102 @@
       ],
       "victory_type": "Supply piles",
       "avg_score": 33.5
+    },
+    {
+      "game_num": 123,
+      "date": "2026-04-06",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Iðunn",
+        "Skúli",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 27.0
+        },
+        {
+          "place": 2,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 25.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 19.0
+        },
+        {
+          "place": 4,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 12.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Mountain Shrine",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Aristocrat",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Improve",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Poet",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Recruiter",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Ronin",
+          "expansion": "Rising sun"
+        },
+        {
+          "card": "Scholar",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Swashbuckler",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Treasurer",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Rice",
+          "expansion": "Rising sun"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [
+        "Pageant"
+      ],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [
+        "Bureaucracy"
+      ],
+      "expansions": [
+        "Renaissance",
+        "Rising Sun"
+      ],
+      "victory_type": "Province",
+      "avg_score": 20.75
     }
   ],
   "players": [
@@ -19381,6 +19477,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-19 14:17",
+  "last_updated": "2026-04-19 16:14",
   "upcoming_games": 0
 }
