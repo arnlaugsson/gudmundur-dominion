@@ -17,6 +17,56 @@ const TYPE_COLOR = {
   Way: '#a78bfa', Ally: '#f43f5e', Trait: '#06b6d4', Prophecy: '#e879f9',
 }
 
+// Subtypes not exposed in the card data. Liaisons summon an Ally; Omens summon a Prophecy.
+const LIAISON_NAMES = new Set([
+  'Bauble', 'Sycophant', 'Importer', 'Underling', 'Broker', 'Contract',
+  'Emissary', 'Galleria', 'Guildmaster', 'Wizards', 'Hunter', 'Modify',
+  'Specialist', 'Swap',
+])
+const OMEN_NAMES = new Set([
+  'Aristocrat', 'Artist', 'Daimyo', 'Gold mine', 'Imperial envoy',
+  'Mountain shrine', 'Snake witch', 'Tanuki',
+])
+
+function pickRandom(arr, n) {
+  if (arr.length === 0 || n <= 0) return []
+  return [...arr].sort(() => Math.random() - 0.5).slice(0, Math.min(n, arr.length))
+}
+
+function pickLandscapeCards(extrasPool, kingdom) {
+  const byType = { Event: [], Landmark: [], Project: [], Way: [], Trait: [], Ally: [], Prophecy: [] }
+  for (const c of extrasPool) {
+    if (byType[c.card_type]) byType[c.card_type].push(c)
+  }
+
+  const picked = []
+
+  // Always include 1 Way (kingdom-wide modifier from Menagerie) if any are available
+  picked.push(...pickRandom(byType.Way, 1))
+
+  // Always include 1 Trait (attaches to a Kingdom pile, from Plunder) if any are available
+  picked.push(...pickRandom(byType.Trait, 1))
+
+  // 1 Ally only if the kingdom contains a Liaison (Allies expansion rule)
+  if (kingdom.some(c => LIAISON_NAMES.has(c.name))) {
+    picked.push(...pickRandom(byType.Ally, 1))
+  }
+
+  // 1 Prophecy only if the kingdom contains an Omen (Rising Sun rule)
+  if (kingdom.some(c => OMEN_NAMES.has(c.name))) {
+    picked.push(...pickRandom(byType.Prophecy, 1))
+  }
+
+  // 1–2 from Event/Landmark/Project combined (Dominion's standard 0–2 cap, biased toward inclusion)
+  const elp = [...byType.Event, ...byType.Landmark, ...byType.Project]
+  if (elp.length > 0) {
+    const count = Math.random() < 0.5 ? 1 : 2
+    picked.push(...pickRandom(elp, count))
+  }
+
+  return picked
+}
+
 const PLAYER_MODES = [
   { id: 'unseen',    name: 'Óspilað',    desc: 'Spil sem valdir hafa aldrei séð' },
   { id: 'rare',      name: 'Sjaldséð',   desc: 'Spil sem valdir hafa sjaldnast spilað' },
@@ -343,13 +393,9 @@ export default function Suggester() {
       newKingdom = [...candidates].sort(() => Math.random() - 0.5).slice(0, 10)
     }
 
-    // 0, 1, or 2 extras (equal 1/3 chance each)
-    let newExtras = []
-    if (extrasPool.length > 0) {
-      const roll = Math.random()
-      const count = roll < 1/3 ? 0 : roll < 2/3 ? 1 : 2
-      newExtras = [...extrasPool].sort(() => Math.random() - 0.5).slice(0, count)
-    }
+    // Landscape cards: pick by Dominion setup rules (Way/Trait/Event/Landmark/Project always
+    // when available; Ally and Prophecy only when triggered by a Liaison or Omen in the kingdom).
+    const newExtras = pickLandscapeCards(extrasPool, newKingdom)
 
     // Colony + Platinum: 10% chance per Prosperity kingdom card
     const prosperityCount = newKingdom.filter(c => c.expansion === 'Prosperity').length
