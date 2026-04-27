@@ -44,9 +44,9 @@ function computeHighlights(games) {
       playerLastSeen[name] = g.game_num
     }
 
-    // Tie detection
-    const scores = g.results.filter(r => r.score != null).sort((a, b) => b.score - a.score)
-    if (scores.length >= 2 && scores[0].score === scores[1].score) {
+    // Tie detection: only a true draw if multiple players share place 1
+    const firsts = g.results.filter(r => r.place === 1)
+    if (firsts.length >= 2) {
       tags.push({ icon: '🤝', text: 'Jafntefli' })
     }
 
