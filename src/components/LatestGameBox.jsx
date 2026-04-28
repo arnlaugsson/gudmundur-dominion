@@ -50,15 +50,20 @@ export default function LatestGameBox({ onGameNav }) {
 
       {/* Podium */}
       {latest.results?.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem .8rem', marginBottom: '.8rem', fontSize: '.82rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem .8rem', marginBottom: '.8rem', fontSize: '.82rem', lineHeight: 1.6 }}>
           {latest.results.map(r => (
-            <span key={r.place}>
-              <span style={{ color: r.place === 1 ? 'var(--gold)' : 'var(--dim)' }}>
+            <span key={r.place} style={{ display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+              <span style={{
+                color: r.place === 1 ? 'var(--gold)' : 'var(--dim)',
+                display: 'inline-block',
+                width: '1.4em',
+                textAlign: 'center',
+                lineHeight: 1,
+              }}>
                 {PLACE_ICON[r.place] || `${r.place}.`}
               </span>
-              {' '}
               <span>{r.name}</span>
-              {r.score != null && <span style={{ color: 'var(--dim)', marginLeft: '.3rem' }}>{r.score}stig</span>}
+              {r.score != null && <span style={{ color: 'var(--dim)' }}>{r.score}stig</span>}
             </span>
           ))}
         </div>

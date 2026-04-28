@@ -129,17 +129,12 @@ nav::-webkit-scrollbar { display: none; }
 .chart-box h3 { font-size: .9rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: .05em; }
 .chart-box canvas { max-height: 280px; }
 
-/* ── DASHBOARD HIGHLIGHTS (top row of cards + latest game) ── */
+/* ── DASHBOARD HIGHLIGHTS (latest game + 2 random cards in one row) ── */
 .dashboard-highlights {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: minmax(0, auto);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-}
-.dashboard-highlights > .latest-game-box {
-  grid-column: 2;
-  grid-row: 1 / 3;
 }
 .latest-game-box:hover {
   border-color: var(--gold);
@@ -575,10 +570,6 @@ select:focus { outline: none; border-color: var(--gold); }
   .charts-row[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
   .dashboard-highlights {
     grid-template-columns: 1fr;
-  }
-  .dashboard-highlights > .latest-game-box {
-    grid-column: 1;
-    grid-row: auto;
   }
 }
 
