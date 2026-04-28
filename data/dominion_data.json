@@ -9734,7 +9734,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 29.0
         }
       ],
       "kingdom": [
@@ -19477,6 +19477,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-28 16:40",
+  "last_updated": "2026-04-28 18:37",
   "upcoming_games": 0
 }
