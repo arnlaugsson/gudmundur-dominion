@@ -5,6 +5,7 @@ import { PALETTE } from '../constants'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import GameModal from '../components/GameModal'
+import LatestGameBox from '../components/LatestGameBox'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -214,6 +215,10 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
+      <div className="dashboard-highlights">
+        <LatestGameBox onGameNav={onGameNav} />
+      </div>
+
       {randomCard && (() => {
         const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
         const cardGames = games.filter(g =>
