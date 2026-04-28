@@ -16,7 +16,7 @@ function StatCard({ label, value, sub, className = '' }) {
   )
 }
 
-export default function Dashboard() {
+export default function Dashboard({ onGameNav }) {
   const { games, players, cards } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
