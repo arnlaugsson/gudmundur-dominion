@@ -8,6 +8,9 @@ const VICTORY_BADGE_CLASS = {
   'Supply piles': 'badge-supply',
 }
 
+// Keycap emojis (4️⃣ etc.) match the medal glyph metrics so podium rows align vertically.
+const PLACE_ICON = { 1: '🥇', 2: '🥈', 3: '🥉', 4: '4️⃣', 5: '5️⃣', 6: '6️⃣', 7: '7️⃣', 8: '8️⃣', 9: '9️⃣' }
+
 export default function LatestGameBox({ onGameNav }) {
   const { games, players, cards } = DATA
 
@@ -51,7 +54,7 @@ export default function LatestGameBox({ onGameNav }) {
           {latest.results.map(r => (
             <span key={r.place}>
               <span style={{ color: r.place === 1 ? 'var(--gold)' : 'var(--dim)' }}>
-                {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`}
+                {PLACE_ICON[r.place] || `${r.place}.`}
               </span>
               {' '}
               <span>{r.name}</span>

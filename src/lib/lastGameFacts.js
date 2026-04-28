@@ -7,6 +7,9 @@ const RETURN_GAP_THRESHOLD = 30
 const STREAK_THRESHOLD = 3
 const SPOTLIGHT_RARE_MAX = 3
 const MAX_FACTS = 5
+// Standard Dominion games hit these ceilings; only call out as a "record" when above the norm.
+const KINGDOM_RECORD_MIN = 10
+const EXPANSIONS_RECORD_MIN = 2
 
 function buildRecordFacts(game, allGames) {
   const facts = []
@@ -68,10 +71,10 @@ function buildRecordFacts(game, allGames) {
   if (thisTop2 != null && thisTop2 >= 1 && thisTop2 <= minNailbiter && minNailbiter !== Infinity) {
     facts.push({ icon: '😰', title: 'Spennumesti leikurinn', text: `Aðeins ${thisTop2} stiga munur á 1. og 2. sæti — met` })
   }
-  if (thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
+  if (thisKingdom > KINGDOM_RECORD_MIN && thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
     facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} ríkiskort — met` })
   }
-  if (thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
+  if (thisExpansions > EXPANSIONS_RECORD_MIN && thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
     facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik — met` })
   }
   return facts
@@ -89,10 +92,10 @@ function buildSetupRecords(game, allGames) {
   }
   const thisKingdom = game.kingdom?.length ?? 0
   const thisExpansions = game.expansions?.length ?? 0
-  if (thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
+  if (thisKingdom > KINGDOM_RECORD_MIN && thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
     facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} ríkiskort — met` })
   }
-  if (thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
+  if (thisExpansions > EXPANSIONS_RECORD_MIN && thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
     facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik — met` })
   }
   return facts
