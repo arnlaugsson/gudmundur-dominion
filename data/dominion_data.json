@@ -4523,15 +4523,15 @@
       "results": [
         {
           "place": 1,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 46.0
-        },
-        {
-          "place": 2,
           "name": "Mummi",
           "tied_with": null,
           "score": 47.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 46.0
         }
       ],
       "kingdom": [
@@ -19477,6 +19477,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-28 10:44",
+  "last_updated": "2026-04-28 12:42",
   "upcoming_games": 0
 }
