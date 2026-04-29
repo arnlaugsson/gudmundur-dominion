@@ -364,12 +364,12 @@ export default function FunFacts({ onGameNav }) {
         gameNums: [longestGap.toGame],
       },
       runnerUp && {
-        icon: '🥈', title: 'Smiður á 2. sæti',
+        icon: '🥈', title: 'Eilíft silfur',
         value: `${runnerUp.second}× í 2. sæti`,
         desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkuð annað. Svo nálægt, svo oft — silfursætisgengni!${runnerUpNote}`,
       },
       lastPlaceKing && {
-        icon: '🎯', title: 'Hinn góðgjarna taparinn',
+        icon: '🎯', title: 'Eilíft botnsæti',
         value: `${lastPlaceKing[1]} síðustu sæti`,
         desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.${lastPlaceNote}`,
       },
