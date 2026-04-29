@@ -104,11 +104,16 @@ export default function FunFacts({ onGameNav }) {
     // ── Cards ────────────────────────────────────────────────────────────────
     const kingdomCards = cards.filter(c => !c.removed && !c.isSupplyCard)
 
-    const topCard = kingdomCards.length
-      ? [...kingdomCards].sort((a, b) => b.times_used - a.times_used)[0]
-      : null
+    const maxUsage = kingdomCards.length
+      ? Math.max(...kingdomCards.map(c => c.times_used))
+      : 0
+    const topCards = maxUsage > 0
+      ? kingdomCards.filter(c => c.times_used === maxUsage)
+      : []
 
-    const leastUsed = kingdomCards.filter(c => c.times_used > 0).sort((a, b) => a.times_used - b.times_used)[0] || null
+    const usedCards = kingdomCards.filter(c => c.times_used > 0)
+    const minUsage = usedCards.length ? Math.min(...usedCards.map(c => c.times_used)) : 0
+    const leastUsedCards = minUsage > 0 ? usedCards.filter(c => c.times_used === minUsage) : []
     const neverUsed = kingdomCards.filter(c => c.times_used === 0)
 
     // Card power couple (most co-appearing pair in kingdoms)
@@ -122,10 +127,12 @@ export default function FunFacts({ onGameNav }) {
         }
       }
     })
-    const topPairEntry = Object.entries(pairCounts).sort((a, b) => b[1] - a[1])[0]
-    const topPair = topPairEntry
-      ? { cards: topPairEntry[0].split('|||'), count: topPairEntry[1] }
-      : null
+    const maxPairCount = Math.max(0, ...Object.values(pairCounts))
+    const topPairs = maxPairCount > 0
+      ? Object.entries(pairCounts)
+          .filter(([, count]) => count === maxPairCount)
+          .map(([key]) => ({ cards: key.split('|||') }))
+      : []
 
     // ── Players ───────────────────────────────────────────────────────────────
     const sortedBySecond = [...players].sort((a, b) => b.second - a.second)
@@ -172,6 +179,23 @@ export default function FunFacts({ onGameNav }) {
     const streakNote = topStreakOwner?.name === CLUB_OWNER && topStreak !== topStreakOwner
       ? ` (${CLUB_OWNER}: ${topStreakOwner.streak} í röð)`
       : ''
+
+    // Longest wait between a player's appearances
+    let longestGap = null
+    const sortedGames = [...games].sort((a, b) => a.game_num - b.game_num)
+    const lastSeenGameNum = {}
+    for (const g of sortedGames) {
+      for (const name of (g.players || [])) {
+        const prev = lastSeenGameNum[name]
+        if (prev != null) {
+          const gap = g.game_num - prev
+          if (!longestGap || gap > longestGap.gap) {
+            longestGap = { name, gap, fromGame: prev, toGame: g.game_num }
+          }
+        }
+        lastSeenGameNum[name] = g.game_num
+      }
+    }
 
     // Never won (min 5 games, 0 wins)
     const neverWon = players.filter(p => p.games >= 5 && p.first === 0).sort((a, b) => b.games - a.games)
@@ -333,6 +357,12 @@ export default function FunFacts({ onGameNav }) {
         value: `${topStreak.streak} í röð`,
         desc: `${topStreak.name} fór á óstöðvanlegt skrið — ${topStreak.streak} sigurleikar í röð${streakNote}`,
       },
+      longestGap && {
+        icon: '⏳', title: 'Lengsta bið milli spila',
+        value: `${longestGap.gap} leikir`,
+        desc: `${longestGap.name} mætti aftur eftir ${longestGap.gap} leiki (leikur #${longestGap.fromGame} → #${longestGap.toGame})`,
+        gameNums: [longestGap.toGame],
+      },
       runnerUp && {
         icon: '🥈', title: 'Smiður á 2. sæti',
         value: `${runnerUp.second}× í 2. sæti`,
@@ -355,20 +385,28 @@ export default function FunFacts({ onGameNav }) {
       },
 
       // Spil
-      topCard && {
+      topCards.length > 0 && {
         icon: '♣', title: 'Uppáhaldskortin',
-        value: topCard.name,
-        desc: `Kom fyrir í ${topCard.times_used} ríkjum — uppáhald klúbbsins`,
+        value: topCards.length === 1 ? topCards[0].name : `${topCards.length} spil jafnt`,
+        desc: topCards.length === 1
+          ? `Kom fyrir í ${maxUsage} ríkjum — uppáhald klúbbsins`
+          : `${topCards.slice(0, 3).map(c => c.name).join(', ')}${topCards.length > 3 ? ` … og ${topCards.length - 3} til viðbótar` : ''} — hvert kom fyrir í ${maxUsage} ríkjum`,
       },
-      topPair && {
+      topPairs.length > 0 && {
         icon: '🔗', title: 'Kraftapar',
-        value: `${topPair.cards[0]} + ${topPair.cards[1]}`,
-        desc: `Þessi tvö spil hafa verið í sama ríki ${topPair.count} sinnum — skapaðar fyrir hvort annað`,
+        value: topPairs.length === 1
+          ? `${topPairs[0].cards[0]} + ${topPairs[0].cards[1]}`
+          : `${topPairs.length} pör jafnt`,
+        desc: topPairs.length === 1
+          ? `Þessi tvö spil hafa verið í sama ríki ${maxPairCount} sinnum — skapaðar fyrir hvort annað`
+          : `${topPairs.slice(0, 2).map(p => `${p.cards[0]} + ${p.cards[1]}`).join(', ')}${topPairs.length > 2 ? ` … og ${topPairs.length - 2} til viðbótar` : ''} — hvert par hefur verið saman í ${maxPairCount} ríkjum`,
       },
-      leastUsed && {
-        icon: '🦗', title: 'Gleymda kortið',
-        value: leastUsed.name,
-        desc: `Kom aðeins fyrir ${leastUsed.times_used} sinni${leastUsed.times_used !== 1 ? 'um' : ''} — greinilega ekki vinsælt`,
+      leastUsedCards.length > 0 && {
+        icon: '🦗', title: 'Gleymdu spilin',
+        value: leastUsedCards.length === 1 ? leastUsedCards[0].name : `${leastUsedCards.length} spil jafnt`,
+        desc: leastUsedCards.length === 1
+          ? `Kom aðeins fyrir ${minUsage} sinni${minUsage !== 1 ? 'um' : ''} — greinilega ekki vinsælt`
+          : `${leastUsedCards.slice(0, 3).map(c => c.name).join(', ')}${leastUsedCards.length > 3 ? ` … og ${leastUsedCards.length - 3} til viðbótar` : ''} — hvert spilað aðeins ${minUsage} sinni${minUsage !== 1 ? 'um' : ''}`,
       },
       neverUsed.length > 0 && {
         icon: '👻', title: 'Ósnert spil',
