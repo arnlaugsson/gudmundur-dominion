@@ -11077,7 +11077,7 @@
     {
       "game_num": 123,
       "date": "2026-04-19",
-      "location": "Selvogsgrunn",
+      "location": "Álfheimar",
       "players": [
         "Iðunn",
         "Skúli",
@@ -19477,6 +19477,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-04-29 18:35",
+  "last_updated": "2026-04-29 20:29",
   "upcoming_games": 0
 }
