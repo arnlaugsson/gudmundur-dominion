@@ -2,9 +2,10 @@ import { useMemo, useState } from 'react'
 import useChart from '../hooks/useChart'
 import DATA from '../data'
 import { PALETTE } from '../constants'
-import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import GameModal from '../components/GameModal'
+import LatestGameBox from '../components/LatestGameBox'
+import RandomCardBox from '../components/RandomCardBox'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -16,15 +17,10 @@ function StatCard({ label, value, sub, className = '' }) {
   )
 }
 
-export default function Dashboard() {
-  const { games, players, cards } = DATA
+export default function Dashboard({ onGameNav }) {
+  const { games, players } = DATA
   const [selectedCard, setSelectedCard] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
-
-  const randomCard = useState(() => {
-    const pool = cards.filter(c => !c.isSupplyCard && !c.removed && c.times_used > 0)
-    return pool[Math.floor(Math.random() * pool.length)] || null
-  })[0]
 
   // Player of the Day — deterministic daily rotation based on date
   const playerOfDay = useMemo(() => {
@@ -214,57 +210,11 @@ export default function Dashboard() {
 
   return (
     <section className="section active">
-      {randomCard && (() => {
-        const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
-        const cardGames = games.filter(g =>
-          g.kingdom.some(k => k.card === randomCard.name) ||
-          EXTRA_FIELDS.some(f => g[f]?.includes(randomCard.name))
-        )
-        const recentGames = [...cardGames].slice(-5).reverse()
-        const winRate = cardGames.length > 0
-          ? Math.round(cardGames.filter(g => players.find(p => p.name === g.results[0]?.name)).length / cardGames.length * 100)
-          : null
-        return (
-          <div className="chart-box" style={{ marginBottom: '1.5rem', padding: '1rem 1.25rem' }}>
-            <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Handahófskennt spil</div>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <div
-                style={{ flexShrink: 0, width: 60, borderRadius: 6, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
-                onClick={() => setSelectedCard(randomCard)}
-              >
-                <CardImage name={randomCard.name} style={{ width: '100%', display: 'block' }} />
-              </div>
-              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '.5rem 1.5rem' }}>
-                <div
-                  style={{ fontFamily: 'Cinzel, serif', fontSize: '1rem', color: 'var(--gold)', cursor: 'pointer', whiteSpace: 'nowrap' }}
-                  onClick={() => setSelectedCard(randomCard)}
-                >
-                  {randomCard.name}
-                  {randomCard.card_type && randomCard.card_type !== 'Kingdom' && (
-                    <span className={`badge badge-${randomCard.card_type.toLowerCase()}`} style={{ marginLeft: '.4rem', fontSize: '.6rem', verticalAlign: 'middle', padding: '.1rem .35rem' }}>{randomCard.card_type}</span>
-                  )}
-                </div>
-                <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.expansion}</span>
-                <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{randomCard.times_used}× spiluð ({games.length > 0 ? Math.round(randomCard.times_used / games.length * 100) : 0}%)</span>
-                {randomCard.card_text && (
-                  <div style={{ width: '100%', fontSize: '.78rem', color: 'var(--dim)', lineHeight: 1.5, borderLeft: '2px solid var(--gold)', paddingLeft: '.6rem', marginTop: '.1rem' }}>
-                    {randomCard.card_text.length > 150 ? randomCard.card_text.slice(0, 150) + '…' : randomCard.card_text}
-                  </div>
-                )}
-                {recentGames.length > 0 && (
-                  <div style={{ width: '100%', display: 'flex', gap: '.35rem', flexWrap: 'wrap' }}>
-                    {recentGames.map(g => (
-                      <span key={g.game_num} style={{ fontSize: '.72rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.2rem .5rem', cursor: 'pointer', whiteSpace: 'nowrap' }} onClick={() => setSelectedGame(g)}>
-                        <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span> <span style={{ color: 'var(--dim)' }}>{g.date}</span>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )
-      })()}
+      <div className="dashboard-highlights">
+        <LatestGameBox onGameNav={onGameNav} />
+        <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />
+        <RandomCardBox pool="unplayed" onCardClick={setSelectedCard} />
+      </div>
 
       <div className="stats-grid">
         <StatCard label="Leikir alls" value={stats.totalGames} />

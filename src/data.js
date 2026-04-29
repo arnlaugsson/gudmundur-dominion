@@ -127,12 +127,23 @@ games.forEach(g => {
   })
 })
 
+// Some card_texts entries from the source spreadsheet concatenate effects
+// without separators ("+1 Card+1 ActionReveal..."). Normalize at load time
+// so every display site sees readable text.
+function cleanCardText(text) {
+  if (!text) return null
+  return text
+    .replace(/(\S)\+/g, '$1 +')          // space before any non-leading +
+    .replace(/([a-z])([A-Z])/g, '$1 $2') // space at lowercase→uppercase boundary
+    .replace(/(\d)([A-Z])/g, '$1 $2')    // space at digit→uppercase boundary (e.g. "$1You")
+}
+
 const baseCardNames = new Set(BASE_SUPPLY_CARDS.map(c => c.name))
 const cards = [
   ...rawCards.filter(c => !baseCardNames.has(c.name)).map(c => ({
     ...c,
     times_used: usageCounts[c.name] ?? c.times_used ?? 0,
-    card_text: cardTexts[c.name] || null,
+    card_text: cleanCardText(cardTexts[c.name]) || null,
   })),
   ...BASE_SUPPLY_CARDS,
 ]

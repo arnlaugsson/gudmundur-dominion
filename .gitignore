@@ -28,3 +28,6 @@ __pycache__/
 .idea/
 *.swp
 *.swo
+
+# Git worktrees
+.worktrees/

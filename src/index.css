@@ -129,6 +129,17 @@ nav::-webkit-scrollbar { display: none; }
 .chart-box h3 { font-size: .9rem; color: var(--gold); margin-bottom: 1rem; letter-spacing: .05em; }
 .chart-box canvas { max-height: 280px; }
 
+/* ── DASHBOARD HIGHLIGHTS (latest game + 2 random cards in one row) ── */
+.dashboard-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.latest-game-box:hover {
+  border-color: var(--gold);
+}
+
 /* ── SECTION TITLE ── */
 .section-title {
   font-size: 1.4rem;
@@ -557,6 +568,9 @@ select:focus { outline: none; border-color: var(--gold); }
   .mode-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .player-detail { padding: 1rem; }
   .charts-row[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+  .dashboard-highlights {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {

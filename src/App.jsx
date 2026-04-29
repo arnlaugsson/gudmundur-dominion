@@ -60,7 +60,7 @@ export default function App() {
       <Nav active={activeTab} onSelect={navigateTo} />
       <main>
         <Suspense fallback={<Loading />}>
-          {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'dashboard' && <Dashboard onGameNav={handleGameNav} />}
           {activeTab === 'players' && <Players />}
           {activeTab === 'cards' && <Cards initialExpansion={targetExpansion} onClearExpansion={clearExpansion} />}
           {activeTab === 'expansions' && <Expansions onNavigateCards={handleExpansionCards} />}
