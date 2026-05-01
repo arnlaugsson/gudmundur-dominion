@@ -9986,7 +9986,7 @@
     },
     {
       "game_num": 111,
-      "date": "2026-02-15",
+      "date": "2026-02-14",
       "location": "Álfheimar",
       "players": [
         "Iðunn",
@@ -19477,6 +19477,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-01 16:24",
+  "last_updated": "2026-05-01 18:28",
   "upcoming_games": 0
 }
