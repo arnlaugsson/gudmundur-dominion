@@ -46,6 +46,13 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
     ? `${card.times_used}× spiluð (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
     : null
 
+  const hasCost = card.cost != null || card.debt != null || card.potion
+  const renderCost = () => {
+    if (card.debt) return <span className="coin debt">{card.debt}D</span>
+    if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">S</span></>
+    return <span className="coin">{card.cost}</span>
+  }
+
   const cardTextSnippet = card.card_text
     ? (card.card_text.length > 150 ? card.card_text.slice(0, 150) + '…' : card.card_text)
     : null
@@ -76,9 +83,11 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
               </span>
             )}
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.3rem .8rem', marginTop: '.2rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.3rem .8rem', marginTop: '.2rem', alignItems: 'center' }}>
             <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{card.expansion}</span>
+            {hasCost && <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.2rem' }}>{renderCost()}</span>}
             {usageText && <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{usageText}</span>}
+            {pool === 'unplayed' && <span style={{ fontSize: '.75rem', color: 'var(--dim)', fontStyle: 'italic' }}>Aldrei spilað</span>}
           </div>
         </div>
       </div>
