@@ -1,4 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
+import { detectSidePiles, detectHeirlooms, pickNamedTargets } from '../lib/sidePiles'
+import { SPLIT_PILE_MEMBERS } from '../constants'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import DATA from '../data'
@@ -88,10 +90,14 @@ function CostBadge({ card }) {
   return <span className="coin">{card.cost}</span>
 }
 
-function KingdomCard({ card, attachedTrait, onClick }) {
+function KingdomCard({ card, attachedTrait, attachedHeirloom, baneOf, onClick }) {
+  const highlight = attachedTrait ? 'kd-card-trait'
+    : baneOf ? 'kd-card-bane'
+    : attachedHeirloom ? 'kd-card-heirloom'
+    : ''
   return (
     <div
-      className={`kd-card${attachedTrait ? ' kd-card-trait' : ''}`}
+      className={`kd-card${highlight ? ' ' + highlight : ''}`}
       onClick={onClick}
       style={{ cursor: 'pointer' }}
     >
@@ -101,6 +107,8 @@ function KingdomCard({ card, attachedTrait, onClick }) {
           {card.name}
           {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
           {attachedTrait && <span className="trait-pill">✨ {attachedTrait.name}</span>}
+          {attachedHeirloom && <span className="heirloom-pill">🎁 {attachedHeirloom}</span>}
+          {baneOf && <span className="bane-pill">🧙 Bane</span>}
         </div>
         <div className="ke">{card.expansion}</div>
         <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
@@ -139,7 +147,7 @@ function formatColonyPlatinumLabel(playerCount) {
   return `${colonyLabel} & Platinum (12)`
 }
 
-function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, playerCount) {
+function buildExportText(kingdom, extras, sidePiles, heirlooms, namedTargets, colonyPlatinum, colonyCard, platinumCard, playerCount) {
   const lines = []
   lines.push('Ríkið:')
   for (const c of [...kingdom].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0))) {
@@ -153,6 +161,21 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
       const attached = c._attachedCard ? ` → ${c._attachedCard}` : ''
       lines.push(`  ${c.name} [${c.card_type}]${attached} — ${c.expansion}`)
     }
+  }
+  if (sidePiles.length > 0) {
+    lines.push('')
+    lines.push('Aukabunkar:')
+    for (const p of sidePiles) lines.push(`  ${p.icon} ${p.pile}`)
+  }
+  if (heirlooms.length > 0) {
+    lines.push('')
+    lines.push('Heirlooms:')
+    for (const h of heirlooms) lines.push(`  ${h.heirloom} (frá ${h.kingdomCard})`)
+  }
+  if (namedTargets.length > 0) {
+    lines.push('')
+    lines.push('Auka kort:')
+    for (const nt of namedTargets) lines.push(`  ${nt.label} fyrir ${nt.source.name}: ${nt.target.name}`)
   }
   if (colonyPlatinum && colonyCard && platinumCard) {
     lines.push('')
@@ -198,6 +221,9 @@ export default function Suggester() {
   const [customRatios, setCustomRatios] = useState({})
   const [kingdom, setKingdom] = useState([])
   const [extras, setExtras] = useState([])
+  const [sidePiles, setSidePiles] = useState([])
+  const [heirlooms, setHeirlooms] = useState([])
+  const [namedTargets, setNamedTargets] = useState([])
   const [colonyPlatinum, setColonyPlatinum] = useState(false)
   const showPotions = useMemo(
     () => [...kingdom, ...extras].some(c => c.potion),
@@ -299,11 +325,14 @@ export default function Suggester() {
     const excludeCard = c =>
       (noAttacks && c.isAttack) || (noCurses && c.isCurseGiver) || (noTokens && c.isTokenCard)
 
-    // Kingdom cards only
+    // Kingdom cards only — exclude split-pile members (Herb Gatherer, Blacksmith,
+    // Sir Bailey, Humble Castle, …) since the parent pile (Augurs, Townsfolk,
+    // Knights, Castles) is what gets selected as the kingdom slot.
     const kingdomPool = cards.filter(c =>
       !c.removed &&
       !c.isSupplyCard &&
       (!c.card_type || c.card_type === 'Kingdom') &&
+      !SPLIT_PILE_MEMBERS.has(c.name) &&
       (selectedExps.length === 0 || selectedExps.includes(c.expansion)) &&
       !excludeCard(c)
     )
@@ -417,8 +446,17 @@ export default function Suggester() {
 
     const hasCurseGiver = [...newKingdom, ...newExtras].some(c => c.isCurseGiver)
 
+    // Side pieces — piles, heirlooms, and named targets that Dominion's setup
+    // rules call for given the chosen kingdom + extras.
+    const newSidePiles = detectSidePiles(newKingdom, newExtras)
+    const newHeirlooms = detectHeirlooms(newKingdom)
+    const newNamedTargets = pickNamedTargets(newKingdom, newExtras, cards)
+
     setKingdom(newKingdom)
     setExtras(newExtras)
+    setSidePiles(newSidePiles)
+    setHeirlooms(newHeirlooms)
+    setNamedTargets(newNamedTargets)
     setColonyPlatinum(newColony)
     setShowCurses(hasCurseGiver)
     setCopied(false)
@@ -685,7 +723,7 @@ export default function Suggester() {
             className="gen-btn"
             style={{ background: copied ? 'var(--green, #3fb950)' : 'var(--bg3)', color: copied ? '#fff' : 'var(--text)' }}
             onClick={() => {
-              const text = buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCard, showAdvanced ? selectedPlayers.length : 0)
+              const text = buildExportText(kingdom, extras, sidePiles, heirlooms, namedTargets, colonyPlatinum, colonyCard, platinumCard, showAdvanced ? selectedPlayers.length : 0)
               navigator.clipboard.writeText(text).then(() => {
                 setCopied(true)
                 setTimeout(() => setCopied(false), 2000)
@@ -736,11 +774,13 @@ export default function Suggester() {
           <div className="kingdom-display">
             {kingdom.map(card => {
               const attachedTrait = extras.find(e => e.card_type === 'Trait' && e._attachedCard === card.name)
+              const heirloom = heirlooms.find(h => h.kingdomCard === card.name)?.heirloom
               return (
                 <KingdomCard
                   key={card.name}
                   card={card}
                   attachedTrait={attachedTrait}
+                  attachedHeirloom={heirloom}
                   onClick={() => setSelectedCard(card)}
                 />
               )
@@ -756,6 +796,49 @@ export default function Suggester() {
               <div className="kingdom-display">
                 {extras.map(card => (
                   <ExtraCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Side piles (Loots, Spoils, Ruins, Boons, Hexes, etc.) */}
+          {sidePiles.length > 0 && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+                Aukabunkar — {sidePiles.length}
+              </div>
+              <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
+                {sidePiles.map(p => (
+                  <span key={p.pile} className="side-pile-chip">
+                    <span className="side-pile-icon">{p.icon}</span>
+                    {p.pile}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Named targets — referenced cards from outside the kingdom (Mouse, Riverboat, Bane) */}
+          {namedTargets.length > 0 && (
+            <div style={{ marginTop: '1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
+                Auka kort — {namedTargets.length}
+              </div>
+              <div className="kingdom-display">
+                {namedTargets.map(nt => (
+                  <KingdomCard
+                    key={`${nt.source.name}->${nt.target.name}`}
+                    card={nt.target}
+                    baneOf={nt.source.name === 'Young Witch' ? nt.source.name : null}
+                    onClick={() => setSelectedCard(nt.target)}
+                  />
+                ))}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '.25rem', marginTop: '.5rem', fontSize: '.78rem', color: 'var(--dim)' }}>
+                {namedTargets.map(nt => (
+                  <div key={`${nt.source.name}->${nt.target.name}`}>
+                    {nt.icon} <strong style={{ color: 'var(--gold)' }}>{nt.label}</strong> fyrir {nt.source.name}: <span style={{ color: 'var(--text)' }}>{nt.target.name}</span>
+                  </div>
                 ))}
               </div>
             </div>
