@@ -11184,19 +11184,19 @@
           "place": 1,
           "name": "Skúli",
           "tied_with": null,
-          "score": 19.0
+          "score": 36.0
         },
         {
           "place": 2,
           "name": "Mummi",
           "tied_with": null,
-          "score": 12.0
+          "score": 18.0
         },
         {
           "place": 3,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": 25.0
+          "score": 12.0
         }
       ],
       "kingdom": [
@@ -11246,9 +11246,7 @@
         "Reap"
       ],
       "landmarks": [],
-      "projects": [
-        "Pageant"
-      ],
+      "projects": [],
       "ways": [
         "Way of the mouse"
       ],
@@ -11262,7 +11260,7 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 22.0
     }
   ],
   "players": [
@@ -19571,6 +19569,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-02 16:19",
+  "last_updated": "2026-05-02 18:22",
   "upcoming_games": 0
 }
