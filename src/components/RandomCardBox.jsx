@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import DATA from '../data'
 import CardImage from './CardImage'
+import { SPLIT_PILE_MEMBERS } from '../constants'
 
 const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
 
@@ -20,8 +21,8 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
 
   const { card, recentGames } = useMemo(() => {
     const filter = pool === 'unplayed'
-      ? c => !c.isSupplyCard && !c.removed && c.times_used === 0
-      : c => !c.isSupplyCard && !c.removed && c.times_used > 0
+      ? c => !c.isSupplyCard && !c.removed && c.times_used === 0 && !SPLIT_PILE_MEMBERS.has(c.name)
+      : c => !c.isSupplyCard && !c.removed && c.times_used > 0 && !SPLIT_PILE_MEMBERS.has(c.name)
     const candidates = cards.filter(filter)
     if (candidates.length === 0) return { card: null, recentGames: [] }
     const card = candidates[Math.floor(Math.random() * candidates.length)]

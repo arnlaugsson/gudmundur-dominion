@@ -29,6 +29,26 @@ export const PALETTE = {
   blue: '#58a6ff',
 }
 
+// Split-pile member cards. Kingdoms reference the parent pile name
+// (e.g., "Augurs"), so members like "Herb Gatherer" never appear in
+// any kingdom and have no card image of their own. Anything that picks
+// random kingdom cards should skip these.
+export const SPLIT_PILE_MEMBERS = new Set([
+  // Knights (Dark Ages)
+  'Sir Bailey', 'Sir Destry', 'Sir Martin', 'Sir Michael', 'Sir Vander',
+  'Dame Anna', 'Dame Josephine', 'Dame Molly', 'Dame Natalie', 'Dame Sylvia',
+  // Castles (Empires)
+  'Humble Castle', 'Crumbling Castle', 'Small Castle', 'Haunted Castle',
+  'Opulent Castle', 'Sprawling Castle', 'Grand Castle', "King's Castle",
+  // Allies split piles
+  'Herb Gatherer', 'Acolyte', 'Sorceress', 'Lich',                 // Augurs
+  'Battle Plan', 'Archer', 'Warlord', 'Territory',                  // Clashes
+  'Tent', 'Garrison', 'Hill Fort', 'Stronghold',                    // Forts
+  'Old Map', 'Voyage', 'Sunken Treasure', 'Distant Shore',          // Odysseys
+  'Town Crier', 'Blacksmith', 'Miller', 'Elder',                    // Townsfolk
+  'Student', 'Conjurer', 'Sorcerer',                                // Wizards (Lich shared with Augurs above)
+])
+
 export const TABS = [
   { id: 'dashboard',   label: '📊 Yfirlit' },
   { id: 'players',     label: '🏆 Leikmenn' },
