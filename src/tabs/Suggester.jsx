@@ -44,8 +44,16 @@ function pickLandscapeCards(extrasPool, kingdom) {
   // Always include 1 Way (kingdom-wide modifier from Menagerie) if any are available
   picked.push(...pickRandom(byType.Way, 1))
 
-  // Always include 1 Trait (attaches to a Kingdom pile, from Plunder) if any are available
-  picked.push(...pickRandom(byType.Trait, 1))
+  // Always include 1 Trait (attaches to a Kingdom pile, from Plunder) if any are available.
+  // The trait modifies a single Kingdom pile per Dominion's Plunder rules — pair it with a
+  // random kingdom card so the suggestion specifies which pile.
+  const traitPicks = pickRandom(byType.Trait, 1)
+  if (traitPicks.length > 0 && kingdom.length > 0) {
+    const target = kingdom[Math.floor(Math.random() * kingdom.length)]
+    picked.push({ ...traitPicks[0], _attachedCard: target.name })
+  } else {
+    picked.push(...traitPicks)
+  }
 
   // 1 Ally only if the kingdom contains a Liaison (Allies expansion rule)
   if (kingdom.some(c => LIAISON_NAMES.has(c.name))) {
@@ -108,6 +116,11 @@ function ExtraCard({ card, onClick }) {
         <div className="kn">{card.name}</div>
         <div className="ke">{card.expansion}</div>
         <div style={{ fontSize: '.72rem', fontWeight: 600, color }}>{card.card_type}</div>
+        {card._attachedCard && (
+          <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginTop: '.2rem' }}>
+            → {card._attachedCard}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -137,7 +150,8 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
     lines.push('')
     lines.push('Aukaleg:')
     for (const c of extras) {
-      lines.push(`  ${c.name} [${c.card_type}] — ${c.expansion}`)
+      const attached = c._attachedCard ? ` → ${c._attachedCard}` : ''
+      lines.push(`  ${c.name} [${c.card_type}]${attached} — ${c.expansion}`)
     }
   }
   if (colonyPlatinum && colonyCard && platinumCard) {

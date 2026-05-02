@@ -30,7 +30,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
     ...game.projects.map(e => ({ label: e, type: 'project' })),
     ...game.ways.map(e => ({ label: e, type: 'way' })),
     ...game.allies.map(e => ({ label: e, type: 'ally' })),
-    ...game.traits.map(e => ({ label: e, type: 'trait' })),
+    ...game.traits.map(t => ({ label: t.name, type: 'trait', attachedCard: t.card || null })),
     ...(game.prophecy || []).map(e => ({ label: e, type: 'prophecy' })),
   ]
 
@@ -107,12 +107,20 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
                 <div
                   key={ex.label}
                   className="kingdom-card-thumb"
-                  title={ex.label}
+                  title={ex.attachedCard ? `${ex.label} → ${ex.attachedCard}` : ex.label}
                   onClick={() => openCard(ex.label)}
                   style={{ cursor: 'pointer' }}
                 >
                   <CardImage name={ex.label} className="kingdom-card-img" loading="eager" />
                   <div className="kingdom-card-name" style={{ color: EXTRA_COLORS[ex.type] || 'var(--dim)' }}>{ex.label}</div>
+                  {ex.attachedCard && (
+                    <div
+                      onClick={e => { e.stopPropagation(); openCard(ex.attachedCard) }}
+                      style={{ fontSize: '.65rem', color: 'var(--dim)', marginTop: '.15rem', textAlign: 'center', cursor: 'pointer' }}
+                    >
+                      → {ex.attachedCard}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
