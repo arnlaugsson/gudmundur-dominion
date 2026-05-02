@@ -4,6 +4,12 @@ import CardImage from './CardImage'
 
 const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
 
+// Landscape (wide) card types — render their image bigger to stay readable.
+const LANDSCAPE_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 'Trait', 'Prophecy'])
+
+// Card types you don't pay for (landmarks, ways, allies, traits, prophecies are free).
+const COSTLESS_TYPES = new Set(['Landmark', 'Way', 'Ally', 'Trait', 'Prophecy'])
+
 const LABELS = {
   played: 'Handahófskennt spil',
   unplayed: 'Óspilað spil',
@@ -46,7 +52,9 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
     ? `${card.times_used}× spiluð (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
     : null
 
-  const hasCost = card.cost != null || card.debt != null || card.potion
+  const isLandscape = LANDSCAPE_TYPES.has(card.card_type)
+  const imgWidth = isLandscape ? 130 : 60
+  const hasCost = !COSTLESS_TYPES.has(card.card_type) && (card.cost != null || card.debt != null || card.potion)
   const renderCost = () => {
     if (card.debt) return <span className="coin debt">{card.debt}D</span>
     if (card.potion) return <><span className="coin">{card.cost ?? 0}</span><span className="coin potion">S</span></>
@@ -65,7 +73,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
 
       <div style={{ display: 'flex', gap: '.85rem', alignItems: 'flex-start' }}>
         <div
-          style={{ flexShrink: 0, width: 60, borderRadius: 6, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
+          style={{ flexShrink: 0, width: imgWidth, borderRadius: 6, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
           onClick={() => onCardClick?.(card)}
         >
           <CardImage name={card.name} style={{ width: '100%', display: 'block' }} />
