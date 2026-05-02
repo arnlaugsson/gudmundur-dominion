@@ -1,3 +1,5 @@
+import { SPLIT_PILE_MEMBERS } from '../constants'
+
 // Detect which Dominion "side pieces" should be set up alongside the
 // chosen kingdom + extras. There are three kinds:
 //
@@ -138,6 +140,7 @@ export function pickNamedTargets(kingdom = [], extras = [], allCards = []) {
       x.card_type === 'Kingdom' &&
       !x.isSupplyCard &&
       !x.removed &&
+      !SPLIT_PILE_MEMBERS.has(x.name) &&
       !inKingdom.has(x.name) &&
       x.name !== c.name &&
       rule.pool(x)

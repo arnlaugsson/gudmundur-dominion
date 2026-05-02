@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { detectSidePiles, detectHeirlooms, pickNamedTargets } from '../lib/sidePiles'
+import { SPLIT_PILE_MEMBERS } from '../constants'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import DATA from '../data'
@@ -324,11 +325,14 @@ export default function Suggester() {
     const excludeCard = c =>
       (noAttacks && c.isAttack) || (noCurses && c.isCurseGiver) || (noTokens && c.isTokenCard)
 
-    // Kingdom cards only
+    // Kingdom cards only — exclude split-pile members (Herb Gatherer, Blacksmith,
+    // Sir Bailey, Humble Castle, …) since the parent pile (Augurs, Townsfolk,
+    // Knights, Castles) is what gets selected as the kingdom slot.
     const kingdomPool = cards.filter(c =>
       !c.removed &&
       !c.isSupplyCard &&
       (!c.card_type || c.card_type === 'Kingdom') &&
+      !SPLIT_PILE_MEMBERS.has(c.name) &&
       (selectedExps.length === 0 || selectedExps.includes(c.expansion)) &&
       !excludeCard(c)
     )
