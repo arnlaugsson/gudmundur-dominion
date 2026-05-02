@@ -88,14 +88,19 @@ function CostBadge({ card }) {
   return <span className="coin">{card.cost}</span>
 }
 
-function KingdomCard({ card, onClick }) {
+function KingdomCard({ card, attachedTrait, onClick }) {
   return (
-    <div className="kd-card" onClick={onClick} style={{ cursor: 'pointer' }}>
+    <div
+      className={`kd-card${attachedTrait ? ' kd-card-trait' : ''}`}
+      onClick={onClick}
+      style={{ cursor: 'pointer' }}
+    >
       <CardImage name={card.name} className="card-art" />
       <div style={{ padding: '.5rem .6rem' }}>
         <div className="kn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
           {card.name}
           {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
+          {attachedTrait && <span className="trait-pill">✨ {attachedTrait.name}</span>}
         </div>
         <div className="ke">{card.expansion}</div>
         <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
@@ -116,11 +121,6 @@ function ExtraCard({ card, onClick }) {
         <div className="kn">{card.name}</div>
         <div className="ke">{card.expansion}</div>
         <div style={{ fontSize: '.72rem', fontWeight: 600, color }}>{card.card_type}</div>
-        {card._attachedCard && (
-          <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginTop: '.2rem' }}>
-            → {card._attachedCard}
-          </div>
-        )}
       </div>
     </div>
   )
@@ -734,9 +734,17 @@ export default function Suggester() {
             Ríkið — {kingdom.length} spil
           </div>
           <div className="kingdom-display">
-            {kingdom.map(card => (
-              <KingdomCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
-            ))}
+            {kingdom.map(card => {
+              const attachedTrait = extras.find(e => e.card_type === 'Trait' && e._attachedCard === card.name)
+              return (
+                <KingdomCard
+                  key={card.name}
+                  card={card}
+                  attachedTrait={attachedTrait}
+                  onClick={() => setSelectedCard(card)}
+                />
+              )
+            })}
           </div>
 
           {/* Extras */}

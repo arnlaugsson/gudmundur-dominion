@@ -82,18 +82,22 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
               Ríki ({game.kingdom.length} spil)
             </div>
             <div className="kingdom-cards-grid">
-              {game.kingdom.map(k => (
-                <div
-                  key={k.card}
-                  className="kingdom-card-thumb"
-                  title={k.card}
-                  onClick={() => openCard(k.card)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <CardImage name={k.card} className="kingdom-card-img" loading="eager" />
-                  <div className="kingdom-card-name">{k.card}</div>
-                </div>
-              ))}
+              {game.kingdom.map(k => {
+                const trait = game.traits.find(t => t.card === k.card)
+                return (
+                  <div
+                    key={k.card}
+                    className={`kingdom-card-thumb${trait ? ' kingdom-card-trait' : ''}`}
+                    title={trait ? `${k.card} — Trait: ${trait.name}` : k.card}
+                    onClick={() => openCard(k.card)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <CardImage name={k.card} className="kingdom-card-img" loading="eager" />
+                    <div className="kingdom-card-name">{k.card}</div>
+                    {trait && <div className="trait-pill">✨ {trait.name}</div>}
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
@@ -113,14 +117,6 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
                 >
                   <CardImage name={ex.label} className="kingdom-card-img" loading="eager" />
                   <div className="kingdom-card-name" style={{ color: EXTRA_COLORS[ex.type] || 'var(--dim)' }}>{ex.label}</div>
-                  {ex.attachedCard && (
-                    <div
-                      onClick={e => { e.stopPropagation(); openCard(ex.attachedCard) }}
-                      style={{ fontSize: '.65rem', color: 'var(--dim)', marginTop: '.15rem', textAlign: 'center', cursor: 'pointer' }}
-                    >
-                      → {ex.attachedCard}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
