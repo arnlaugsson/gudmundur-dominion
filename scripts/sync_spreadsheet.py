@@ -176,6 +176,33 @@ def parse_string_rows(ws, col, rows):
     return values
 
 
+def parse_traits(ws, col):
+    """Parse the trait row.
+
+    Each trait may be paired with the kingdom-card pile it's attached to.
+    Spreadsheet layout for the trait row (row 28):
+      - col+0: trait name (e.g., 'Rich')
+      - col+1: source-expansion tag (e.g., 'Plunder') — informational, ignored here
+      - col+2: attached kingdom card (e.g., 'Quartermaster') — may be empty for
+        older games where the association wasn't recorded.
+    Returns a list with at most one entry of shape {'name': str, 'card'?: str}.
+    """
+    name = read_string_cell(ws, ROW_TRAIT, col)
+    if name is None:
+        return []
+    card = read_string_cell(ws, ROW_TRAIT, col + 2)
+    if card:
+        card = card.strip()
+        if card.startswith("(") and card.endswith(")"):
+            card = card[1:-1].strip()
+        if not card:
+            card = None
+    entry = {"name": name}
+    if card:
+        entry["card"] = card
+    return [entry]
+
+
 def find_score_column(ws, col):
     """Find which column has score numbers (normally col+2, may be shifted)."""
     for offset in (2, 3, 4):
@@ -309,7 +336,7 @@ def parse_game(ws, game_num, col):
     projects = parse_string_rows(ws, col, [ROW_PROJECT])
     ways = parse_string_rows(ws, col, [ROW_WAY])
     allies = parse_string_rows(ws, col, [ROW_ALLY_1, ROW_ALLY_2])
-    traits = parse_string_rows(ws, col, [ROW_TRAIT])
+    traits = parse_traits(ws, col)
     prophecy = parse_string_rows(ws, col, [ROW_PROPHECY])
     expansions = [normalize_expansion(e) for e in parse_string_rows(ws, col, range(ROWS_EXPANSIONS[0], ROWS_EXPANSIONS[1] + 1))]
     victory_type = normalize_victory_type(read_string_cell(ws, ROW_VICTORY_TYPE, col))

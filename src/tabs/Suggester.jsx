@@ -44,8 +44,16 @@ function pickLandscapeCards(extrasPool, kingdom) {
   // Always include 1 Way (kingdom-wide modifier from Menagerie) if any are available
   picked.push(...pickRandom(byType.Way, 1))
 
-  // Always include 1 Trait (attaches to a Kingdom pile, from Plunder) if any are available
-  picked.push(...pickRandom(byType.Trait, 1))
+  // Always include 1 Trait (attaches to a Kingdom pile, from Plunder) if any are available.
+  // The trait modifies a single Kingdom pile per Dominion's Plunder rules — pair it with a
+  // random kingdom card so the suggestion specifies which pile.
+  const traitPicks = pickRandom(byType.Trait, 1)
+  if (traitPicks.length > 0 && kingdom.length > 0) {
+    const target = kingdom[Math.floor(Math.random() * kingdom.length)]
+    picked.push({ ...traitPicks[0], _attachedCard: target.name })
+  } else {
+    picked.push(...traitPicks)
+  }
 
   // 1 Ally only if the kingdom contains a Liaison (Allies expansion rule)
   if (kingdom.some(c => LIAISON_NAMES.has(c.name))) {
@@ -80,14 +88,19 @@ function CostBadge({ card }) {
   return <span className="coin">{card.cost}</span>
 }
 
-function KingdomCard({ card, onClick }) {
+function KingdomCard({ card, attachedTrait, onClick }) {
   return (
-    <div className="kd-card" onClick={onClick} style={{ cursor: 'pointer' }}>
+    <div
+      className={`kd-card${attachedTrait ? ' kd-card-trait' : ''}`}
+      onClick={onClick}
+      style={{ cursor: 'pointer' }}
+    >
       <CardImage name={card.name} className="card-art" />
       <div style={{ padding: '.5rem .6rem' }}>
         <div className="kn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
           {card.name}
           {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
+          {attachedTrait && <span className="trait-pill">✨ {attachedTrait.name}</span>}
         </div>
         <div className="ke">{card.expansion}</div>
         <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
@@ -137,7 +150,8 @@ function buildExportText(kingdom, extras, colonyPlatinum, colonyCard, platinumCa
     lines.push('')
     lines.push('Aukaleg:')
     for (const c of extras) {
-      lines.push(`  ${c.name} [${c.card_type}] — ${c.expansion}`)
+      const attached = c._attachedCard ? ` → ${c._attachedCard}` : ''
+      lines.push(`  ${c.name} [${c.card_type}]${attached} — ${c.expansion}`)
     }
   }
   if (colonyPlatinum && colonyCard && platinumCard) {
@@ -720,9 +734,17 @@ export default function Suggester() {
             Ríkið — {kingdom.length} spil
           </div>
           <div className="kingdom-display">
-            {kingdom.map(card => (
-              <KingdomCard key={card.name} card={card} onClick={() => setSelectedCard(card)} />
-            ))}
+            {kingdom.map(card => {
+              const attachedTrait = extras.find(e => e.card_type === 'Trait' && e._attachedCard === card.name)
+              return (
+                <KingdomCard
+                  key={card.name}
+                  card={card}
+                  attachedTrait={attachedTrait}
+                  onClick={() => setSelectedCard(card)}
+                />
+              )
+            })}
           </div>
 
           {/* Extras */}

@@ -30,7 +30,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
     ...game.projects.map(e => ({ label: e, type: 'project' })),
     ...game.ways.map(e => ({ label: e, type: 'way' })),
     ...game.allies.map(e => ({ label: e, type: 'ally' })),
-    ...game.traits.map(e => ({ label: e, type: 'trait' })),
+    ...game.traits.map(t => ({ label: t.name, type: 'trait', attachedCard: t.card || null })),
     ...(game.prophecy || []).map(e => ({ label: e, type: 'prophecy' })),
   ]
 
@@ -82,18 +82,22 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
               Ríki ({game.kingdom.length} spil)
             </div>
             <div className="kingdom-cards-grid">
-              {game.kingdom.map(k => (
-                <div
-                  key={k.card}
-                  className="kingdom-card-thumb"
-                  title={k.card}
-                  onClick={() => openCard(k.card)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <CardImage name={k.card} className="kingdom-card-img" loading="eager" />
-                  <div className="kingdom-card-name">{k.card}</div>
-                </div>
-              ))}
+              {game.kingdom.map(k => {
+                const trait = game.traits.find(t => t.card === k.card)
+                return (
+                  <div
+                    key={k.card}
+                    className={`kingdom-card-thumb${trait ? ' kingdom-card-trait' : ''}`}
+                    title={trait ? `${k.card} — Trait: ${trait.name}` : k.card}
+                    onClick={() => openCard(k.card)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <CardImage name={k.card} className="kingdom-card-img" loading="eager" />
+                    <div className="kingdom-card-name">{k.card}</div>
+                    {trait && <div className="trait-pill">✨ {trait.name}</div>}
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
@@ -107,7 +111,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
                 <div
                   key={ex.label}
                   className="kingdom-card-thumb"
-                  title={ex.label}
+                  title={ex.attachedCard ? `${ex.label} → ${ex.attachedCard}` : ex.label}
                   onClick={() => openCard(ex.label)}
                   style={{ cursor: 'pointer' }}
                 >

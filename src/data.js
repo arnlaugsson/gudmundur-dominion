@@ -32,7 +32,19 @@ const parsedGames = rawData.games
     const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
     const extras = {}
     for (const f of EXTRA_FIELDS) {
-      if (g[f]?.length) extras[f] = g[f].map(fixCard)
+      if (!g[f]?.length) continue
+      if (f === 'traits') {
+        // Traits are { name, card? } objects. Older sync files may still have plain strings.
+        extras.traits = g.traits.map(t => {
+          if (!t) return null
+          if (typeof t === 'string') return { name: fixCard(t) }
+          const out = { name: fixCard(t.name) }
+          if (t.card) out.card = fixCard(t.card)
+          return out
+        }).filter(Boolean)
+      } else {
+        extras[f] = g[f].map(fixCard)
+      }
     }
     return {
       ...g,
