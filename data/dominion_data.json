@@ -11169,6 +11169,100 @@
       ],
       "victory_type": "Province",
       "avg_score": 20.75
+    },
+    {
+      "game_num": 124,
+      "date": "2026-05-02",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Skúli",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 19.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 12.0
+        },
+        {
+          "place": 3,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 25.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Black cat",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Grotto",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Supplies",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Harbor village",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Tools",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Village green",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Barge",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Enlarge",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Pickaxe",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Sanctuary",
+          "expansion": "Menagerie"
+        }
+      ],
+      "events": [
+        "March",
+        "Reap"
+      ],
+      "landmarks": [],
+      "projects": [
+        "Pageant"
+      ],
+      "ways": [
+        "Way of the mouse"
+      ],
+      "allies": [],
+      "traits": [
+        "Fated"
+      ],
+      "prophecy": [],
+      "expansions": [
+        "Menagerie",
+        "Plunder"
+      ],
+      "victory_type": "Province",
+      "avg_score": 20.75
     }
   ],
   "players": [
@@ -19477,6 +19571,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-02 14:22",
+  "last_updated": "2026-05-02 16:19",
   "upcoming_games": 0
 }
