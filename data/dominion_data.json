@@ -962,26 +962,35 @@
         {
           "place": 1,
           "name": "Mummi",
-          "tied_with": null,
+          "tied_with": [
+            "Ragnheiður",
+            "Iðunn"
+          ],
           "score": 38.0
         },
         {
-          "place": 2,
+          "place": 1,
           "name": "Ragnheiður",
-          "tied_with": null,
+          "tied_with": [
+            "Mummi",
+            "Iðunn"
+          ],
           "score": 20.0
         },
         {
-          "place": 3,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 15.0
+          "place": 1,
+          "name": "Iðunn",
+          "tied_with": [
+            "Mummi",
+            "Ragnheiður"
+          ],
+          "score": 10.0
         },
         {
           "place": 4,
-          "name": "Iðunn",
+          "name": "Skúli",
           "tied_with": null,
-          "score": 10.0
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -2759,7 +2768,9 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Nearby"
+        {
+          "name": "Nearby"
+        }
       ],
       "prophecy": [
         "Nearby"
@@ -3118,7 +3129,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Inherited"
+        {
+          "name": "Inherited",
+          "card": "Figurine"
+        }
       ],
       "prophecy": [
         "Inherited"
@@ -3313,7 +3327,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Inspiring"
+        {
+          "name": "Inspiring",
+          "card": "Figurine"
+        }
       ],
       "prophecy": [
         "Inspiring"
@@ -3700,7 +3717,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Cursed"
+        {
+          "name": "Cursed",
+          "card": "Highway"
+        }
       ],
       "prophecy": [
         "Cursed"
@@ -3791,7 +3811,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Shy"
+        {
+          "name": "Shy",
+          "card": "Harbor Village"
+        }
       ],
       "prophecy": [
         "Shy"
@@ -4523,15 +4546,15 @@
       "results": [
         {
           "place": 1,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 47.0
-        },
-        {
-          "place": 2,
           "name": "Skúli",
           "tied_with": null,
           "score": 46.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 47.0
         }
       ],
       "kingdom": [
@@ -5683,13 +5706,13 @@
       "players": [
         "Hafliði",
         "Nói",
-        "Mummi",
+        "Matthildur",
         "Hjödda"
       ],
       "results": [
         {
           "place": 1,
-          "name": "Mummi",
+          "name": "Matthildur",
           "tied_with": null,
           "score": 74.0
         },
@@ -6310,7 +6333,9 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Fated"
+        {
+          "name": "Fated"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -6477,7 +6502,9 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Fawning"
+        {
+          "name": "Fawning"
+        }
       ],
       "prophecy": [
         "Fawning"
@@ -7905,7 +7932,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Friendly"
+        {
+          "name": "Friendly",
+          "card": "Fortune hunter"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -8001,7 +8031,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Fawning"
+        {
+          "name": "Fawning",
+          "card": "Fortune hunter"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -8097,7 +8130,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Inspiring"
+        {
+          "name": "Inspiring",
+          "card": "King's cache"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -8193,7 +8229,10 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Rich"
+        {
+          "name": "Rich",
+          "card": "Quartermaster"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -9598,7 +9637,9 @@
       "ways": [],
       "allies": [],
       "traits": [
-        "Inherited"
+        {
+          "name": "Inherited"
+        }
       ],
       "prophecy": [],
       "expansions": [
@@ -9734,7 +9775,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": 29.0
+          "score": null
         }
       ],
       "kingdom": [
@@ -9986,7 +10027,7 @@
     },
     {
       "game_num": 111,
-      "date": "2026-02-14",
+      "date": "2026-02-15",
       "location": "Álfheimar",
       "players": [
         "Iðunn",
@@ -10094,22 +10135,6 @@
           "score": 31.0
         },
         {
-          "place": 2,
-          "name": "Halla",
-          "tied_with": [
-            "Mummi"
-          ],
-          "score": 29.0
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "tied_with": [
-            "Halla"
-          ],
-          "score": 29.0
-        },
-        {
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
@@ -10188,22 +10213,6 @@
           "name": "Halla",
           "tied_with": null,
           "score": 27.0
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "tied_with": [
-            "Fúsi"
-          ],
-          "score": 21.0
-        },
-        {
-          "place": 2,
-          "name": "Fúsi",
-          "tied_with": [
-            "Mummi"
-          ],
-          "score": 21.0
         },
         {
           "place": 4,
@@ -10917,350 +10926,6 @@
       ],
       "victory_type": "Province",
       "avg_score": 20.75
-    },
-    {
-      "game_num": 121,
-      "date": "2026-04-06",
-      "location": "Selvogsgrunn",
-      "players": [
-        "Skúli",
-        "Mummi"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 40.0
-        },
-        {
-          "place": 2,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 22.0
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Infirmary",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Investment",
-          "expansion": "Prosperity"
-        },
-        {
-          "card": "Monument",
-          "expansion": "Prosperity"
-        },
-        {
-          "card": "Plaza",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Hunting party",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Jester",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Merchant guild",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Rabble",
-          "expansion": "Prosperity"
-        },
-        {
-          "card": "Soothsayer",
-          "expansion": "Cornucopia & Guilds"
-        },
-        {
-          "card": "Goons",
-          "expansion": "Prosperity"
-        }
-      ],
-      "events": [],
-      "landmarks": [],
-      "projects": [],
-      "ways": [],
-      "allies": [],
-      "traits": [],
-      "prophecy": [],
-      "expansions": [
-        "Prosperity",
-        "Cornucopia & Guilds"
-      ],
-      "victory_type": "Supply piles",
-      "avg_score": 31.0
-    },
-    {
-      "game_num": 122,
-      "date": "2026-04-06",
-      "location": "Selvogsgrunn",
-      "players": [
-        "Mummi",
-        "Skúli"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 38.0
-        },
-        {
-          "place": 2,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 29.0
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Poor house",
-          "expansion": "Dark ages"
-        },
-        {
-          "card": "Beggar",
-          "expansion": "Dark ages"
-        },
-        {
-          "card": "Herbalist",
-          "expansion": "Alchemy"
-        },
-        {
-          "card": "Alchemist",
-          "expansion": "Alchemy"
-        },
-        {
-          "card": "Familiar",
-          "expansion": "Alchemy"
-        },
-        {
-          "card": "Philosopher's stone",
-          "expansion": "Alchemy"
-        },
-        {
-          "card": "Catacombs",
-          "expansion": "Dark ages"
-        },
-        {
-          "card": "Count",
-          "expansion": "Dark ages"
-        },
-        {
-          "card": "Knights",
-          "expansion": "Dark ages"
-        },
-        {
-          "card": "Possession",
-          "expansion": "Alchemy"
-        }
-      ],
-      "events": [],
-      "landmarks": [],
-      "projects": [],
-      "ways": [],
-      "allies": [],
-      "traits": [],
-      "prophecy": [],
-      "expansions": [
-        "Alchemy",
-        "Dark Ages"
-      ],
-      "victory_type": "Supply piles",
-      "avg_score": 33.5
-    },
-    {
-      "game_num": 123,
-      "date": "2026-04-19",
-      "location": "Álfheimar",
-      "players": [
-        "Iðunn",
-        "Skúli",
-        "Ragnheiður",
-        "Mummi"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Iðunn",
-          "tied_with": null,
-          "score": 27.0
-        },
-        {
-          "place": 2,
-          "name": "Ragnheiður",
-          "tied_with": null,
-          "score": 25.0
-        },
-        {
-          "place": 3,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 19.0
-        },
-        {
-          "place": 4,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 12.0
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Mountain Shrine",
-          "expansion": "Rising sun"
-        },
-        {
-          "card": "Aristocrat",
-          "expansion": "Rising sun"
-        },
-        {
-          "card": "Improve",
-          "expansion": "Renaissance"
-        },
-        {
-          "card": "Poet",
-          "expansion": "Rising sun"
-        },
-        {
-          "card": "Recruiter",
-          "expansion": "Renaissance"
-        },
-        {
-          "card": "Ronin",
-          "expansion": "Rising sun"
-        },
-        {
-          "card": "Scholar",
-          "expansion": "Renaissance"
-        },
-        {
-          "card": "Swashbuckler",
-          "expansion": "Renaissance"
-        },
-        {
-          "card": "Treasurer",
-          "expansion": "Renaissance"
-        },
-        {
-          "card": "Rice",
-          "expansion": "Rising sun"
-        }
-      ],
-      "events": [],
-      "landmarks": [],
-      "projects": [
-        "Pageant"
-      ],
-      "ways": [],
-      "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Bureaucracy"
-      ],
-      "expansions": [
-        "Renaissance",
-        "Rising Sun"
-      ],
-      "victory_type": "Province",
-      "avg_score": 20.75
-    },
-    {
-      "game_num": 124,
-      "date": "2026-05-02",
-      "location": "Selvogsgrunn",
-      "players": [
-        "Skúli",
-        "Ragnheiður",
-        "Mummi"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Skúli",
-          "tied_with": null,
-          "score": 36.0
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 18.0
-        },
-        {
-          "place": 3,
-          "name": "Ragnheiður",
-          "tied_with": null,
-          "score": 12.0
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Black cat",
-          "expansion": "Menagerie"
-        },
-        {
-          "card": "Grotto",
-          "expansion": "Plunder"
-        },
-        {
-          "card": "Supplies",
-          "expansion": "Menagerie"
-        },
-        {
-          "card": "Harbor village",
-          "expansion": "Plunder"
-        },
-        {
-          "card": "Tools",
-          "expansion": "Plunder"
-        },
-        {
-          "card": "Village green",
-          "expansion": "Menagerie"
-        },
-        {
-          "card": "Barge",
-          "expansion": "Menagerie"
-        },
-        {
-          "card": "Enlarge",
-          "expansion": "Plunder"
-        },
-        {
-          "card": "Pickaxe",
-          "expansion": "Plunder"
-        },
-        {
-          "card": "Sanctuary",
-          "expansion": "Menagerie"
-        }
-      ],
-      "events": [
-        "March",
-        "Reap"
-      ],
-      "landmarks": [],
-      "projects": [],
-      "ways": [
-        "Way of the mouse"
-      ],
-      "allies": [],
-      "traits": [
-        "Fated"
-      ],
-      "prophecy": [],
-      "expansions": [
-        "Menagerie",
-        "Plunder"
-      ],
-      "victory_type": "Province",
-      "avg_score": 22.0
     }
   ],
   "players": [
@@ -19569,6 +19234,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-02 22:16",
+  "last_updated": "2026-05-02 23:01",
   "upcoming_games": 0
 }
