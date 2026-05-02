@@ -566,6 +566,41 @@ select:focus { outline: none; border-color: var(--gold); }
   margin-bottom: .35rem;
   white-space: nowrap;
 }
+/* Heirloom pill (gold) and Bane pill (red), same shape as trait-pill */
+.heirloom-pill, .bane-pill {
+  display: inline-block;
+  align-self: center;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  margin-bottom: .35rem;
+  white-space: nowrap;
+  color: #0d1117;
+}
+.heirloom-pill { background: #f0cb6c; }
+.bane-pill { background: #f43f5e; color: #fff; }
+.kingdom-card-thumb.kingdom-card-heirloom { border-color: #f0cb6c; }
+.kingdom-card-thumb.kingdom-card-heirloom:hover { border-color: #f0cb6c; box-shadow: 0 0 0 1px #f0cb6c; }
+.kd-card.kd-card-heirloom { border-color: #f0cb6c; }
+.kd-card.kd-card-heirloom:hover { border-color: #f0cb6c; box-shadow: 0 0 0 1px #f0cb6c; }
+.kd-card.kd-card-bane { border-color: #f43f5e; }
+.kd-card.kd-card-bane:hover { border-color: #f43f5e; box-shadow: 0 0 0 1px #f43f5e; }
+/* Side-pile chips (text + icon, no card image) */
+.side-pile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .78rem;
+  font-weight: 600;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .3rem .7rem;
+  color: var(--text);
+}
+.side-pile-icon { font-size: 1rem; line-height: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
