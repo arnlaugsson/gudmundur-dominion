@@ -2760,12 +2760,11 @@
       "allies": [],
       "traits": [
         {
-          "name": "Nearby"
+          "name": "Nearby",
+          "card": "Patrician/Emporium"
         }
       ],
-      "prophecy": [
-        "Nearby"
-      ],
+      "prophecy": [],
       "expansions": [
         "Empires",
         "Plunder"
@@ -19604,6 +19603,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-03 06:56",
+  "last_updated": "2026-05-03 08:38",
   "upcoming_games": 0
 }
