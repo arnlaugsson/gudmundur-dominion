@@ -134,6 +134,44 @@ export default function Dashboard({ onGameNav }) {
     }
   }, [])
 
+  const locationRef = useChart(() => {
+    const counts = {}
+    games.forEach(g => { if (g.location) counts[g.location] = (counts[g.location] || 0) + 1 })
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1])
+    return {
+      type: 'bar',
+      data: {
+        labels: sorted.map(([loc]) => loc),
+        datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.blue + '88', borderColor: PALETTE.blue, borderWidth: 1 }],
+      },
+      options: {
+        indexAxis: 'y',
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
+          y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
+        },
+      },
+      plugins: [{
+        id: 'barLabels',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart
+          chart.data.datasets[0].data.forEach((value, i) => {
+            const bar = chart.getDatasetMeta(0).data[i]
+            ctx.save()
+            ctx.fillStyle = PALETTE.text
+            ctx.font = '11px sans-serif'
+            ctx.textAlign = 'left'
+            ctx.textBaseline = 'middle'
+            ctx.fillText(value, bar.x + 4, bar.y)
+            ctx.restore()
+          })
+        },
+      }],
+    }
+  }, [])
+
   const monthlyRef = useChart(() => {
     const counts = {}
     games.forEach(g => {
@@ -278,6 +316,12 @@ export default function Dashboard({ onGameNav }) {
         <h3>VINSÆLUSTU VIÐBÆTUR</h3>
         <div style={{ height: '420px', position: 'relative' }}>
           <canvas ref={expansionRef} />
+        </div>
+      </div>
+      <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
+        <h3>VINSÆLUSTU STAÐIR</h3>
+        <div style={{ height: '300px', position: 'relative' }}>
+          <canvas ref={locationRef} />
         </div>
       </div>
       <div className="charts-row">
