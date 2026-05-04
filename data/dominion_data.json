@@ -3,7 +3,7 @@
     {
       "game_num": 1,
       "date": "2022-10-21",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Inga María",
         "Lúlli",
@@ -70,7 +70,7 @@
     {
       "game_num": 2,
       "date": "2022-10-21",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Lúlli",
         "Helena",
@@ -314,7 +314,7 @@
     {
       "game_num": 5,
       "date": "2023-01-03",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Halla",
         "Fúsi",
@@ -398,7 +398,7 @@
     {
       "game_num": 6,
       "date": "2023-01-03",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Fúsi",
         "Mummi",
@@ -494,7 +494,7 @@
     {
       "game_num": 7,
       "date": "2023-01-06",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Hallgrímur",
         "Arnlaugur",
@@ -586,7 +586,7 @@
     {
       "game_num": 8,
       "date": "2023-01-15",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Skúli",
         "Ragnheiður",
@@ -672,7 +672,7 @@
     {
       "game_num": 9,
       "date": "2023-01-18",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Helgi",
         "Hjödda",
@@ -764,7 +764,7 @@
     {
       "game_num": 10,
       "date": "2023-02-14",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Lúlli",
         "Helena",
@@ -855,7 +855,7 @@
     },
     {
       "game_num": 11,
-      "date": "2023-02-14",
+      "date": "2023-02-19",
       "location": "Álfheimar",
       "players": [
         "Skúli",
@@ -951,7 +951,7 @@
     {
       "game_num": 12,
       "date": "2023-04-09",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Skúli",
         "Mummi",
@@ -1047,7 +1047,7 @@
     {
       "game_num": 13,
       "date": "2023-04-20",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Arnlaugur",
         "Mummi",
@@ -1422,7 +1422,7 @@
     {
       "game_num": 17,
       "date": "2023-05-10",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Krissi",
         "Lúlli",
@@ -1507,7 +1507,7 @@
     {
       "game_num": 18,
       "date": "2023-05-10",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Lúlli",
         "Mummi",
@@ -1592,7 +1592,7 @@
     {
       "game_num": 19,
       "date": "2023-06-25",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Jóel",
         "Kiddi",
@@ -1685,7 +1685,7 @@
     {
       "game_num": 20,
       "date": "2023-06-25",
-      "location": null,
+      "location": "Selvogsgrunn",
       "players": [
         "Jóel",
         "Kiddi",
@@ -19603,6 +19603,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-04 16:37",
+  "last_updated": "2026-05-04 18:37",
   "upcoming_games": 0
 }
