@@ -51,10 +51,10 @@ export const SPLIT_PILE_MEMBERS = new Set([
 
 export const TABS = [
   { id: 'dashboard',   label: '📊 Yfirlit' },
+  { id: 'history',     label: '📖 Spilasaga' },
   { id: 'players',     label: '🏆 Leikmenn' },
   { id: 'cards',       label: '♣ Spil' },
   { id: 'expansions',  label: '📦 Viðbætur' },
-  { id: 'history',     label: '📖 Leikasaga' },
   { id: 'funfacts',    label: '🌟 Skemmtilegt' },
   { id: 'suggester',   label: '🎲 Ríkistillögur' },
 ]

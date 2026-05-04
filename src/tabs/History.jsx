@@ -74,7 +74,21 @@ export default function History({ targetGame, onClearTarget }) {
   const [filterPlayers, setFilterPlayers] = useState([])
   const [filterExp, setFilterExp] = useState('')
   const [filterVictory, setFilterVictory] = useState('')
+  const [filterLocation, setFilterLocation] = useState('')
+  const [filterPlayerCount, setFilterPlayerCount] = useState('')
   const [selectedGame, setSelectedGame] = useState(null)
+
+  const sortedLocations = useMemo(() => {
+    const counts = {}
+    for (const g of games) if (g.location) counts[g.location] = (counts[g.location] || 0) + 1
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([name]) => name)
+  }, [games])
+
+  const playerCounts = useMemo(() => {
+    const set = new Set()
+    for (const g of games) if (g.players?.length) set.add(g.players.length)
+    return [...set].sort((a, b) => a - b)
+  }, [games])
 
   const highlights = useMemo(() => computeHighlights(games), [games])
   const { memoriesByGameNum, refetch } = useMemories()
@@ -94,6 +108,8 @@ export default function History({ targetGame, onClearTarget }) {
     if (filterPlayers.length > 0) list = list.filter(g => filterPlayers.every(p => g.results.some(r => r.name === p)))
     if (filterExp) list = list.filter(g => g.expansions.includes(filterExp))
     if (filterVictory) list = list.filter(g => g.victory_type === filterVictory)
+    if (filterLocation) list = list.filter(g => g.location === filterLocation)
+    if (filterPlayerCount) list = list.filter(g => g.players.length === Number(filterPlayerCount))
     if (search) {
       const q = search.toLowerCase()
       list = list.filter(g =>
@@ -103,7 +119,7 @@ export default function History({ targetGame, onClearTarget }) {
       )
     }
     return list
-  }, [sortedGames, search, filterPlayers, filterExp, filterVictory])
+  }, [sortedGames, search, filterPlayers, filterExp, filterVictory, filterLocation, filterPlayerCount])
 
   const victoryBadgeClass = {
     Province: 'badge-province',
@@ -130,7 +146,7 @@ export default function History({ targetGame, onClearTarget }) {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Leikasaga</h2>
+      <h2 className="section-title">Spilasaga</h2>
 
       <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginBottom: filterPlayers.length > 0 ? '.5rem' : '1rem', alignItems: 'center' }}>
         <input
@@ -158,6 +174,14 @@ export default function History({ targetGame, onClearTarget }) {
           <option value="Province">Héraðið</option>
           <option value="Colony">Nýlendur</option>
           <option value="Supply piles">Birgðahrúgar</option>
+        </select>
+        <select value={filterLocation} onChange={e => setFilterLocation(e.target.value)}>
+          <option value="">Allir staðir</option>
+          {sortedLocations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+        </select>
+        <select value={filterPlayerCount} onChange={e => setFilterPlayerCount(e.target.value)}>
+          <option value="">Allir leikmannafjöldar</option>
+          {playerCounts.map(n => <option key={n} value={n}>{n}-manna</option>)}
         </select>
       </div>
 
