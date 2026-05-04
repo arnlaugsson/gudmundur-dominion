@@ -1864,7 +1864,7 @@
     {
       "game_num": 22,
       "date": "2023-07-09",
-      "location": "Akureyri - Hamrar úti",
+      "location": "Akureyri - Hamrar",
       "players": [
         "Ragnheiður",
         "Hjödda",
@@ -2228,7 +2228,7 @@
     {
       "game_num": 26,
       "date": "2023-07-12",
-      "location": "Fossatún, Borgarfirði, H&H fellihýsi",
+      "location": "Fossatún, Borgarfirði",
       "players": [
         "Hjödda",
         "Addý",
@@ -2412,7 +2412,7 @@
     {
       "game_num": 28,
       "date": "2023-09-21",
-      "location": "Arnarholti",
+      "location": "Arnarholt",
       "players": [
         "Arnlaugur",
         "Hallgrímur",
@@ -2497,7 +2497,7 @@
     {
       "game_num": 29,
       "date": "2023-07-31",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Arnlaugur",
         "Ragnheiður",
@@ -2589,7 +2589,7 @@
     {
       "game_num": 30,
       "date": "2023-07-31",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Arnlaugur",
         "Ragnheiður",
@@ -2775,7 +2775,7 @@
     {
       "game_num": 32,
       "date": "2023-08-01",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Hallgrímur",
         "Ragnheiður",
@@ -2870,7 +2870,7 @@
     {
       "game_num": 33,
       "date": "2023-08-02",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Hjödda",
         "Ragnheiður",
@@ -2957,7 +2957,7 @@
     {
       "game_num": 34,
       "date": "2023-08-02",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Mosi",
         "Krissi",
@@ -3043,7 +3043,7 @@
     {
       "game_num": 35,
       "date": "2023-08-02",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Mummi",
         "Mosi",
@@ -3136,7 +3136,7 @@
     {
       "game_num": 36,
       "date": "2023-08-02",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Arnlaugur",
         "Hallgrímur",
@@ -4881,7 +4881,7 @@
     {
       "game_num": 55,
       "date": "2024-07-06",
-      "location": "Hamrar",
+      "location": "Akureyri - Hamrar",
       "players": [
         "Hjödda",
         "Helgi",
@@ -4973,7 +4973,7 @@
     {
       "game_num": 56,
       "date": "2024-07-07",
-      "location": "Hamrar",
+      "location": "Akureyri - Hamrar",
       "players": [
         "Hjödda",
         "Helgi",
@@ -5871,7 +5871,7 @@
     {
       "game_num": 66,
       "date": "2024-10-25",
-      "location": "Húsafelli",
+      "location": "Húsafell",
       "players": [
         "Arnlaugur",
         "Hallgrímur",
@@ -5956,7 +5956,7 @@
     {
       "game_num": 67,
       "date": "2024-10-26",
-      "location": "Húsafelli",
+      "location": "Húsafell",
       "players": [
         "Arnlaugur",
         "Ragnheiður",
@@ -6049,7 +6049,7 @@
     {
       "game_num": 68,
       "date": "2024-10-27",
-      "location": "Húsafelli",
+      "location": "Húsafell",
       "players": [
         "Ragnheiður",
         "Hallgrímur",
@@ -7378,7 +7378,7 @@
     {
       "game_num": 83,
       "date": "2025-04-17",
-      "location": "Albufeira",
+      "location": "Albufeira - Cerro Mar Garden",
       "players": [
         "Ragnheiður",
         "Helgi",
@@ -7473,7 +7473,7 @@
     {
       "game_num": 84,
       "date": "2025-04-19",
-      "location": "Albufeira",
+      "location": "Albufeira - Cerro Mar Garden",
       "players": [
         "Helgi",
         "Ragnheiður",
@@ -8764,7 +8764,7 @@
     {
       "game_num": 98,
       "date": "2025-09-20",
-      "location": "Laugalæk 23",
+      "location": "Laugalækur",
       "players": [
         "Ragnheiður",
         "Hjödda",
@@ -10488,7 +10488,7 @@
     {
       "game_num": 116,
       "date": "2026-02-28",
-      "location": "Álfheimum",
+      "location": "Álfheimar",
       "players": [
         "Iðunn",
         "Skúli",
@@ -19603,6 +19603,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-04 14:48",
+  "last_updated": "2026-05-04 16:37",
   "upcoming_games": 0
 }
