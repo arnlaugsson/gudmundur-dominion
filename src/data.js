@@ -89,6 +89,14 @@ function isCurseGiver(text) {
   return /gains? a curse/i.test(text)
 }
 
+// Detect Duration cards from card text. Hallmarks: effects that span turns
+// — "at the start of your next/each turn", taking an extra turn (Outpost),
+// or effects "for the rest of the game" (Hireling).
+function isDurationCard(text) {
+  if (!text) return false
+  return /at the (start|beginning) of (your )?(next|each)( of your)? turn|now and at the start|while this is in play|take an extra turn|for the rest of (this|the) game/i.test(text)
+}
+
 // Victory cards whose +XVP is printed (not tokens) — excluded from token detection.
 const VICTORY_CARDS = new Set([
   'Gardens', 'Great Hall', 'Duke', 'Harem', 'Nobles', 'Island', 'Vineyard',
@@ -113,6 +121,7 @@ const rawCards = [...seenCardNames.values()].map(c => ({
   isSecondEdition: c.notes === '2nd edition',
   isAttack: isAttackCard(cardTexts[c.name]),
   isCurseGiver: isCurseGiver(cardTexts[c.name]),
+  isDuration: isDurationCard(cardTexts[c.name]),
   isTokenCard: isTokenCard(cardTexts[c.name], c),
 }))
 

@@ -67,12 +67,12 @@ const NAMED_TARGETS = {
   'Way of the Mouse': {
     label: 'Mús-spil',
     icon: '🐭',
-    pool: c => [2, 3].includes(c.cost) && !c.isAttack,
+    pool: c => [2, 3].includes(c.cost) && !c.isDuration,
   },
   'Riverboat': {
     label: 'Bátsmaður-spil',
     icon: '🚣',
-    pool: c => c.cost === 5 && !c.isAttack,
+    pool: c => c.cost === 5 && !c.isDuration,
   },
   'Young Witch': {
     label: 'Bane',
