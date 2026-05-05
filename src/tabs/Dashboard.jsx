@@ -173,57 +173,74 @@ export default function Dashboard({ onGameNav }) {
     }
   }, [])
 
-  const monthlyRef = useChart(() => {
+  const scoresRef = useChart(() => {
+    // Aggregate by month: game count + average of per-game average scores.
     const counts = {}
-    games.forEach(g => {
+    const monthAvgs = {}
+    for (const g of games) {
       const m = g.date?.slice(0, 7)
-      if (m) counts[m] = (counts[m] || 0) + 1
+      if (!m) continue
+      counts[m] = (counts[m] || 0) + 1
+      const scores = g.results.filter(r => r.score != null).map(r => r.score)
+      if (scores.length) {
+        const gameAvg = scores.reduce((a, b) => a + b, 0) / scores.length
+        if (!monthAvgs[m]) monthAvgs[m] = []
+        monthAvgs[m].push(gameAvg)
+      }
+    }
+    const months = Object.keys(counts).sort()
+    const monthlyAvg = months.map(m => {
+      const arr = monthAvgs[m]
+      return arr && arr.length ? +(arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1) : null
     })
-    const sorted = Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0]))
+    const monthlyCount = months.map(m => counts[m] || 0)
     return {
       type: 'bar',
       data: {
-        labels: sorted.map(([m]) => m),
-        datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.gold + '88', borderColor: PALETTE.gold, borderWidth: 1 }],
+        labels: months,
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Leikir',
+            data: monthlyCount,
+            backgroundColor: PALETTE.blue + '55',
+            borderColor: PALETTE.blue,
+            borderWidth: 1,
+            yAxisID: 'y1',
+            order: 2,
+          },
+          {
+            type: 'line',
+            label: 'Meðalskor',
+            data: monthlyAvg,
+            borderColor: PALETTE.gold,
+            backgroundColor: PALETTE.gold + '22',
+            tension: 0.3,
+            pointRadius: 3,
+            yAxisID: 'y',
+            order: 1,
+            spanGaps: true,
+          },
+        ],
       },
       options: {
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { ticks: { color: PALETTE.dim, maxRotation: 45 }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-        },
-      },
-    }
-  }, [])
-
-  const scoresRef = useChart(() => {
-    const byGame = games
-      .map(g => {
-        const scores = g.results.filter(r => r.score != null).map(r => r.score)
-        if (!scores.length || !g.date) return null
-        return { date: g.date, avg: scores.reduce((a, b) => a + b, 0) / scores.length }
-      })
-      .filter(Boolean)
-      .sort((a, b) => a.date.localeCompare(b.date))
-
-    return {
-      type: 'line',
-      data: {
-        labels: byGame.map(g => g.date),
-        datasets: [{
-          data: byGame.map(g => +g.avg.toFixed(1)),
-          borderColor: PALETTE.gold,
-          backgroundColor: PALETTE.gold + '22',
-          tension: 0.3,
-          fill: true,
-          pointRadius: 3,
-        }],
-      },
-      options: {
-        plugins: { legend: { display: false } },
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: PALETTE.text, font: { size: 11 } } } },
         scales: {
           x: { ticks: { color: PALETTE.dim, maxRotation: 45, autoSkip: true, maxTicksLimit: 12 }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
+          y: {
+            position: 'left',
+            title: { display: true, text: 'Meðalskor', color: PALETTE.dim, font: { size: 11 } },
+            ticks: { color: PALETTE.dim },
+            grid: { color: PALETTE.border },
+          },
+          y1: {
+            position: 'right',
+            title: { display: true, text: 'Leikir', color: PALETTE.dim, font: { size: 11 } },
+            beginAtZero: true,
+            ticks: { color: PALETTE.dim, precision: 0 },
+            grid: { display: false },
+          },
         },
       },
     }
@@ -311,7 +328,6 @@ export default function Dashboard({ onGameNav }) {
 
       <div className="charts-row">
         <div className="chart-box"><h3>SIGURTEGUNDIR</h3><canvas ref={victoryRef} /></div>
-        <div className="chart-box" style={{ gridColumn: 'span 2 / auto' }}><h3>LEIKIR Á MÁNUÐI</h3><canvas ref={monthlyRef} /></div>
       </div>
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>VINSÆLUSTU VIÐBÆTUR</h3>
@@ -326,7 +342,12 @@ export default function Dashboard({ onGameNav }) {
         </div>
       </div>
       <div className="charts-row">
-        <div className="chart-box"><h3>MEÐALSKOR Á LEIK (þróun)</h3><canvas ref={scoresRef} /></div>
+        <div className="chart-box">
+          <h3>MEÐALSKOR &amp; LEIKIR Á MÁNUÐI</h3>
+          <div style={{ height: '300px', position: 'relative' }}>
+            <canvas ref={scoresRef} />
+          </div>
+        </div>
         <div className="chart-box"><h3>ÞÁTTTAKA LEIKENDA</h3><canvas ref={participationRef} /></div>
       </div>
 
