@@ -4,8 +4,17 @@ import cardTexts from '../data/card_texts.json'
 // ── Normalize & parse all games ───────────────────────────────────────────────
 const PLAYER_FIXES = { 'Hallgríur': 'Hallgrímur' }
 const EXP_FIXES = { 'Cornucopia': 'Cornucopia & Guilds', 'Prospoerity': 'Prosperity', 'Rising sun': 'Rising Sun', 'Dark ages': 'Dark Ages' }
+// Icelandic case declensions of the same place — collapse to nominative.
+const LOCATION_FIXES = {
+  'Laugarási': 'Laugarás',
+  'Húsafelli': 'Húsafell',
+  'Arnarholti': 'Arnarholt',
+  'Álfheimum': 'Álfheimar',
+  'Laugalæk 23': 'Laugalækur',
+}
 const fixName = n => PLAYER_FIXES[n] || n
 const fixExp = e => EXP_FIXES[e] || e
+const fixLocation = l => l ? (LOCATION_FIXES[l] || l) : l
 
 // Build canonical card name map (lowercase → proper case) from card list
 const canonicalCardName = new Map()
@@ -50,6 +59,7 @@ const parsedGames = rawData.games
       ...g,
       ...extras,
       victory_type,
+      location: fixLocation(g.location),
       players: g.players.map(fixName),
       results: g.results.map(r => ({ ...r, name: fixName(r.name) })),
       expansions: (g.expansions || []).map(fixExp),

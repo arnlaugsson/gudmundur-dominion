@@ -135,40 +135,41 @@ export default function Dashboard({ onGameNav }) {
   }, [])
 
   const locationRef = useChart(() => {
+    const MIN = 3
     const counts = {}
     games.forEach(g => { if (g.location) counts[g.location] = (counts[g.location] || 0) + 1 })
     const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1])
+    const big = sorted.filter(([, v]) => v >= MIN)
+    const small = sorted.filter(([, v]) => v < MIN)
+    const otherTotal = small.reduce((sum, [, v]) => sum + v, 0)
+    const otherLabel = `Annað (${small.length} staðir)`
+    const slices = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
+    const colors = slices.map((_, i) => `hsl(${Math.round(i * 360 / slices.length)}, 60%, 55%)`)
     return {
-      type: 'bar',
+      type: 'doughnut',
       data: {
-        labels: sorted.map(([loc]) => loc),
-        datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.blue + '88', borderColor: PALETTE.blue, borderWidth: 1 }],
+        labels: slices.map(([loc]) => loc),
+        datasets: [{ data: slices.map(([, v]) => v), backgroundColor: colors, borderWidth: 0 }],
       },
       options: {
-        indexAxis: 'y',
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
+        plugins: {
+          legend: { position: 'right', labels: { color: PALETTE.text, font: { size: 11 }, boxWidth: 12 } },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const label = ctx.label || ''
+                const value = ctx.parsed
+                if (label === otherLabel) {
+                  return [`${value} leikir alls`, ...small.map(([n, v]) => `  ${n}: ${v}`)]
+                }
+                return `${value} leikir`
+              },
+            },
+          },
         },
+        cutout: '55%',
       },
-      plugins: [{
-        id: 'barLabels',
-        afterDatasetsDraw(chart) {
-          const { ctx } = chart
-          chart.data.datasets[0].data.forEach((value, i) => {
-            const bar = chart.getDatasetMeta(0).data[i]
-            ctx.save()
-            ctx.fillStyle = PALETTE.text
-            ctx.font = '11px sans-serif'
-            ctx.textAlign = 'left'
-            ctx.textBaseline = 'middle'
-            ctx.fillText(value, bar.x + 4, bar.y)
-            ctx.restore()
-          })
-        },
-      }],
     }
   }, [])
 
