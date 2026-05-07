@@ -143,23 +143,28 @@ export default function Dashboard({ onGameNav }) {
     const small = sorted.filter(([, v]) => v < MIN)
     const otherTotal = small.reduce((sum, [, v]) => sum + v, 0)
     const otherLabel = `Annað (${small.length} staðir)`
-    const slices = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
-    const colors = slices.map((_, i) => `hsl(${Math.round(i * 360 / slices.length)}, 60%, 55%)`)
+    const rows = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
     return {
-      type: 'doughnut',
+      type: 'bar',
       data: {
-        labels: slices.map(([loc]) => loc),
-        datasets: [{ data: slices.map(([, v]) => v), backgroundColor: colors, borderWidth: 0 }],
+        labels: rows.map(([loc]) => loc),
+        datasets: [{
+          data: rows.map(([, v]) => v),
+          backgroundColor: PALETTE.blue + '88',
+          borderColor: PALETTE.blue,
+          borderWidth: 1,
+        }],
       },
       options: {
+        indexAxis: 'y',
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'right', labels: { color: PALETTE.text, font: { size: 11 }, boxWidth: 12 } },
+          legend: { display: false },
           tooltip: {
             callbacks: {
               label: (ctx) => {
                 const label = ctx.label || ''
-                const value = ctx.parsed
+                const value = ctx.parsed.x
                 if (label === otherLabel) {
                   return [`${value} leikir alls`, ...small.map(([n, v]) => `  ${n}: ${v}`)]
                 }
@@ -168,8 +173,27 @@ export default function Dashboard({ onGameNav }) {
             },
           },
         },
-        cutout: '55%',
+        scales: {
+          x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
+          y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
+        },
       },
+      plugins: [{
+        id: 'barLabels',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart
+          chart.data.datasets[0].data.forEach((value, i) => {
+            const bar = chart.getDatasetMeta(0).data[i]
+            ctx.save()
+            ctx.fillStyle = PALETTE.text
+            ctx.font = '11px sans-serif'
+            ctx.textAlign = 'left'
+            ctx.textBaseline = 'middle'
+            ctx.fillText(value, bar.x + 4, bar.y)
+            ctx.restore()
+          })
+        },
+      }],
     }
   }, [])
 
