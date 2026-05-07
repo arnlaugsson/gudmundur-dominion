@@ -331,7 +331,7 @@ export default function Dashboard({ onGameNav }) {
       </div>
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>VINSÆLUSTU VIÐBÆTUR</h3>
-        <div style={{ height: '420px', position: 'relative' }}>
+        <div style={{ height: '300px', position: 'relative' }}>
           <canvas ref={expansionRef} />
         </div>
       </div>
