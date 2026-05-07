@@ -143,28 +143,24 @@ export default function Dashboard({ onGameNav }) {
     const small = sorted.filter(([, v]) => v < MIN)
     const otherTotal = small.reduce((sum, [, v]) => sum + v, 0)
     const otherLabel = `Annað (${small.length} staðir)`
-    const rows = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
+    const slices = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
+    const colors = slices.map((_, i) => `hsl(${Math.round(i * 360 / slices.length)}, 60%, 55%)`)
     return {
-      type: 'bar',
+      type: 'pie',
       data: {
-        labels: rows.map(([loc]) => loc),
-        datasets: [{
-          data: rows.map(([, v]) => v),
-          backgroundColor: PALETTE.blue + '88',
-          borderColor: PALETTE.blue,
-          borderWidth: 1,
-        }],
+        labels: slices.map(([loc]) => loc),
+        datasets: [{ data: slices.map(([, v]) => v), backgroundColor: colors, borderWidth: 0 }],
       },
       options: {
-        indexAxis: 'y',
         maintainAspectRatio: false,
+        layout: { padding: { top: 16, bottom: 16, left: 90, right: 90 } },
         plugins: {
           legend: { display: false },
           tooltip: {
             callbacks: {
               label: (ctx) => {
                 const label = ctx.label || ''
-                const value = ctx.parsed.x
+                const value = ctx.parsed
                 if (label === otherLabel) {
                   return [`${value} leikir alls`, ...small.map(([n, v]) => `  ${n}: ${v}`)]
                 }
@@ -173,23 +169,34 @@ export default function Dashboard({ onGameNav }) {
             },
           },
         },
-        scales: {
-          x: { ticks: { color: PALETTE.dim }, grid: { color: PALETTE.border } },
-          y: { ticks: { color: PALETTE.text, font: { size: 11 }, autoSkip: false }, grid: { display: false } },
-        },
       },
       plugins: [{
-        id: 'barLabels',
+        id: 'sliceLabels',
         afterDatasetsDraw(chart) {
           const { ctx } = chart
-          chart.data.datasets[0].data.forEach((value, i) => {
-            const bar = chart.getDatasetMeta(0).data[i]
+          const meta = chart.getDatasetMeta(0)
+          meta.data.forEach((arc, i) => {
+            const value = chart.data.datasets[0].data[i]
+            if (!value) return
+            const angle = (arc.startAngle + arc.endAngle) / 2
+            const r = arc.outerRadius + 8
+            const x = arc.x + Math.cos(angle) * r
+            const y = arc.y + Math.sin(angle) * r
+            const tickEndX = arc.x + Math.cos(angle) * (arc.outerRadius + 4)
+            const tickEndY = arc.y + Math.sin(angle) * (arc.outerRadius + 4)
             ctx.save()
+            ctx.strokeStyle = PALETTE.dim
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(arc.x + Math.cos(angle) * arc.outerRadius, arc.y + Math.sin(angle) * arc.outerRadius)
+            ctx.lineTo(tickEndX, tickEndY)
+            ctx.stroke()
             ctx.fillStyle = PALETTE.text
             ctx.font = '11px sans-serif'
-            ctx.textAlign = 'left'
+            ctx.textAlign = x < arc.x ? 'right' : 'left'
             ctx.textBaseline = 'middle'
-            ctx.fillText(value, bar.x + 4, bar.y)
+            const label = chart.data.labels[i]
+            ctx.fillText(`${label} (${value})`, x, y)
             ctx.restore()
           })
         },
