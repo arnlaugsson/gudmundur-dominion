@@ -146,15 +146,16 @@ export default function Dashboard({ onGameNav }) {
     const slices = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
     const colors = slices.map((_, i) => `hsl(${Math.round(i * 360 / slices.length)}, 60%, 55%)`)
     return {
-      type: 'doughnut',
+      type: 'pie',
       data: {
         labels: slices.map(([loc]) => loc),
         datasets: [{ data: slices.map(([, v]) => v), backgroundColor: colors, borderWidth: 0 }],
       },
       options: {
         maintainAspectRatio: false,
+        layout: { padding: { top: 16, bottom: 16, left: 90, right: 90 } },
         plugins: {
-          legend: { position: 'right', labels: { color: PALETTE.text, font: { size: 11 }, boxWidth: 12 } },
+          legend: { display: false },
           tooltip: {
             callbacks: {
               label: (ctx) => {
@@ -168,8 +169,38 @@ export default function Dashboard({ onGameNav }) {
             },
           },
         },
-        cutout: '55%',
       },
+      plugins: [{
+        id: 'sliceLabels',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart
+          const meta = chart.getDatasetMeta(0)
+          meta.data.forEach((arc, i) => {
+            const value = chart.data.datasets[0].data[i]
+            if (!value) return
+            const angle = (arc.startAngle + arc.endAngle) / 2
+            const r = arc.outerRadius + 8
+            const x = arc.x + Math.cos(angle) * r
+            const y = arc.y + Math.sin(angle) * r
+            const tickEndX = arc.x + Math.cos(angle) * (arc.outerRadius + 4)
+            const tickEndY = arc.y + Math.sin(angle) * (arc.outerRadius + 4)
+            ctx.save()
+            ctx.strokeStyle = PALETTE.dim
+            ctx.lineWidth = 1
+            ctx.beginPath()
+            ctx.moveTo(arc.x + Math.cos(angle) * arc.outerRadius, arc.y + Math.sin(angle) * arc.outerRadius)
+            ctx.lineTo(tickEndX, tickEndY)
+            ctx.stroke()
+            ctx.fillStyle = PALETTE.text
+            ctx.font = '11px sans-serif'
+            ctx.textAlign = x < arc.x ? 'right' : 'left'
+            ctx.textBaseline = 'middle'
+            const label = chart.data.labels[i]
+            ctx.fillText(`${label} (${value})`, x, y)
+            ctx.restore()
+          })
+        },
+      }],
     }
   }, [])
 
@@ -331,7 +362,7 @@ export default function Dashboard({ onGameNav }) {
       </div>
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>VINSÆLUSTU VIÐBÆTUR</h3>
-        <div style={{ height: '420px', position: 'relative' }}>
+        <div style={{ height: '300px', position: 'relative' }}>
           <canvas ref={expansionRef} />
         </div>
       </div>
