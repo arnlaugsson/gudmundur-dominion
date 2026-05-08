@@ -4,6 +4,7 @@ import DATA from '../data'
 import { PALETTE } from '../constants'
 import PlayerModal from '../components/PlayerModal'
 import { useMemories } from '../hooks/useMemories'
+import { computeAchievements } from '../lib/achievements'
 
 
 export default function Players() {
@@ -12,14 +13,22 @@ export default function Players() {
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const { photosByPlayer } = useMemories()
 
+  const achievementsByPlayer = useMemo(
+    () => computeAchievements(games, players),
+    [games, players],
+  )
+
   const sorted = useMemo(() => {
     return [...players].sort((a, b) => {
+      if (sortKey === 'afrek') {
+        return (achievementsByPlayer.get(b.name)?.length || 0) - (achievementsByPlayer.get(a.name)?.length || 0)
+      }
       if (sortKey === 'win_rate') return b.win_rate - a.win_rate
       if (sortKey === 'gpa') return (b.gpa ?? -1) - (a.gpa ?? -1)
       if (sortKey === 'first') return b.first - a.first
       return b.games - a.games
     })
-  }, [players, sortKey])
+  }, [players, sortKey, achievementsByPlayer])
 
   const winrateRef = useChart(() => {
     const top = [...players].filter(p => p.games >= 3).sort((a, b) => b.win_rate - a.win_rate).slice(0, 10)
@@ -73,9 +82,9 @@ export default function Players() {
 
       <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Raða eftir:</span>
-        {['games', 'win_rate', 'gpa', 'first'].map(key => (
+        {['games', 'win_rate', 'gpa', 'first', 'afrek'].map(key => (
           <button key={key} className={`sort-btn${sortKey === key ? ' active' : ''}`} onClick={() => setSortKey(key)}>
-            {key === 'win_rate' ? 'Sigurhlutfall' : key === 'gpa' ? 'Meðalskor' : key === 'first' ? 'Sigrar' : 'Leikir'}
+            {key === 'win_rate' ? 'Sigurhlutfall' : key === 'gpa' ? 'Meðalskor' : key === 'first' ? 'Sigrar' : key === 'afrek' ? 'Afrek' : 'Leikir'}
           </button>
         ))}
       </div>
@@ -87,6 +96,7 @@ export default function Players() {
               <th>#</th><th>Nafn</th><th>Leikir</th>
               <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
               <th>Sigurhlutfall</th><th>Meðalskor</th>
+              <th onClick={() => setSortKey('afrek')} style={{ cursor: 'pointer' }}>Afrek</th>
             </tr>
           </thead>
           <tbody>
@@ -106,6 +116,7 @@ export default function Players() {
                   </div>
                 </td>
                 <td style={{ color: 'var(--gold)' }}>{p.avg_score ?? '—'}</td>
+                <td>🏆 {achievementsByPlayer.get(p.name)?.length || 0}</td>
               </tr>
             ))}
           </tbody>
