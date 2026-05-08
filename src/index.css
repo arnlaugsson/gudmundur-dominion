@@ -587,6 +587,55 @@ select:focus { outline: none; border-color: var(--gold); }
 .kd-card.kd-card-heirloom:hover { border-color: #f0cb6c; box-shadow: 0 0 0 1px #f0cb6c; }
 .kd-card.kd-card-bane { border-color: #f43f5e; }
 .kd-card.kd-card-bane:hover { border-color: #f43f5e; box-shadow: 0 0 0 1px #f43f5e; }
+/* ── ACHIEVEMENT BADGES ── */
+.achievement-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .7rem .35rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg2);
+  font-size: .78rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.achievement-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.achievement-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.achievement-title {
+  color: var(--text);
+  font-weight: 600;
+}
+.achievement-detail {
+  color: var(--dim);
+  font-size: .68rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18ch;
+}
+.achievement-group {
+  margin-top: 1rem;
+}
+.achievement-group-label {
+  font-size: .7rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .4rem;
+}
+.achievement-group-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
 /* Fallback when a card image fails to load (typo, homebrew, missing upload) */
 .card-image-fallback {
   display: flex;

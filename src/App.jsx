@@ -9,6 +9,7 @@ const Cards = lazy(() => import('./tabs/Cards'))
 const Expansions = lazy(() => import('./tabs/Expansions'))
 const History = lazy(() => import('./tabs/History'))
 const FunFacts = lazy(() => import('./tabs/FunFacts'))
+const Afrek = lazy(() => import('./tabs/Afrek'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
@@ -66,6 +67,7 @@ export default function App() {
           {activeTab === 'expansions' && <Expansions onNavigateCards={handleExpansionCards} />}
           {activeTab === 'history' && <History targetGame={targetGame} onClearTarget={clearTarget} />}
           {activeTab === 'funfacts' && <FunFacts onGameNav={handleGameNav} />}
+          {activeTab === 'afrek' && <Afrek />}
           {activeTab === 'suggester' && <Suggester />}
         </Suspense>
       </main>

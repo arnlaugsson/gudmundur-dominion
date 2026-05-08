@@ -56,5 +56,6 @@ export const TABS = [
   { id: 'cards',       label: '♣ Spil' },
   { id: 'expansions',  label: '📦 Viðbætur' },
   { id: 'funfacts',    label: '🌟 Skemmtilegt' },
+  { id: 'afrek',       label: '🎖️ Afrek' },
   { id: 'suggester',   label: '🎲 Ríkistillögur' },
 ]
