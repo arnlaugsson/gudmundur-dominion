@@ -322,7 +322,7 @@ function computeRivalries(sortedGames, byPlayer) {
         id: `rivalry-leader-${b}`,
         category: 'rivalries',
         icon: '⚔️',
-        title: `Sigursæll vs ${b}`,
+        title: `Forskot gegn ${b}`,
         detail: `${stat.wins}-${stat.total - stat.wins} í ${stat.total} leikjum`,
       }))
     }
