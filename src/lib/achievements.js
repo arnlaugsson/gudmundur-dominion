@@ -9,6 +9,9 @@ const VENUE_TIERS = [5]          // plus 'all' (≥3 games) computed dynamically
 const OPPONENT_TIERS = [10]      // plus 'all' (active = ≥10 games) computed dynamically
 const ACTIVE_PLAYER_MIN_GAMES = 10
 const COMMON_VENUE_MIN_GAMES = 3
+const MUMMI_SLAYER_TIERS = [5, 10, 25]
+const RIVALRY_MIN_SHARED_GAMES = 5
+const CLUB_OWNER = 'Mummi'
 
 function buildAchievement({ id, category, icon, title, detail = null, earnedGameNum = null, earnedDate = null }) {
   return { id, category, icon, title, detail, earnedGameNum, earnedDate }
@@ -253,6 +256,75 @@ function computeVariety(sortedGames, byPlayer, totalsForVariety) {
   }
 }
 
+function computeRivalries(sortedGames, byPlayer) {
+  // Mummi-bani: count of games this player finished above Mummi.
+  const mummiBeats = {}
+  // Per-pair head-to-head: { aName: { bName: { wins: N, total: N } } }
+  // wins = times a finished better (lower place) than b in a shared game.
+  const h2h = {}
+
+  function ensure(a, b) {
+    if (!h2h[a]) h2h[a] = {}
+    if (!h2h[a][b]) h2h[a][b] = { wins: 0, total: 0 }
+    return h2h[a][b]
+  }
+
+  for (const g of sortedGames) {
+    const placed = (g.results || []).filter(r => r.place != null)
+    if (placed.length < 2) continue
+    const placeByName = {}
+    for (const r of placed) placeByName[r.name] = r.place
+    const names = placed.map(r => r.name)
+    // Mummi-bani: player ranked strictly higher (lower place number) than Mummi
+    const mummiPlace = placeByName[CLUB_OWNER]
+    if (mummiPlace != null) {
+      for (const r of placed) {
+        if (r.name === CLUB_OWNER) continue
+        if (r.place < mummiPlace) {
+          mummiBeats[r.name] = (mummiBeats[r.name] || 0) + 1
+          const c = mummiBeats[r.name]
+          if (MUMMI_SLAYER_TIERS.includes(c) && byPlayer.has(r.name)) {
+            const tierIdx = MUMMI_SLAYER_TIERS.indexOf(c) + 1
+            const numeral = ['I', 'II', 'III'][tierIdx - 1] || tierIdx
+            byPlayer.get(r.name).push(buildAchievement({
+              id: `mummi-slayer-${c}`, category: 'rivalries', icon: '👑',
+              title: `Mummi-bani ${numeral}`,
+              detail: `Sigrað Mumma ${c} sinnum`,
+              earnedGameNum: g.game_num, earnedDate: g.date || null,
+            }))
+          }
+        }
+      }
+    }
+    // Pairwise totals
+    for (let i = 0; i < names.length; i++) {
+      for (let j = 0; j < names.length; j++) {
+        if (i === j) continue
+        const a = names[i], b = names[j]
+        const stat = ensure(a, b)
+        stat.total++
+        if (placeByName[a] < placeByName[b]) stat.wins++
+      }
+    }
+  }
+
+  // After the chronological pass, decide rivalry-leader badges from final stats.
+  for (const [a, opps] of Object.entries(h2h)) {
+    if (!byPlayer.has(a)) continue
+    for (const [b, stat] of Object.entries(opps)) {
+      if (stat.total < RIVALRY_MIN_SHARED_GAMES) continue
+      if (stat.wins * 2 <= stat.total) continue // require strict majority
+      byPlayer.get(a).push(buildAchievement({
+        id: `rivalry-leader-${b}`,
+        category: 'rivalries',
+        icon: '⚔️',
+        title: `Sigursæll vs ${b}`,
+        detail: `${stat.wins}-${stat.total - stat.wins} í ${stat.total} leikjum`,
+      }))
+    }
+  }
+}
+
 export function computeAchievements(games = [], players = []) {
   const byPlayer = new Map()
   for (const p of players) byPlayer.set(p.name, [])
@@ -275,5 +347,6 @@ export function computeAchievements(games = [], players = []) {
   computeRecords(sortedGames, byPlayer)
   computeStreaks(sortedGames, byPlayer)
   computeVariety(sortedGames, byPlayer, { allExpansions, commonVenues, activePlayers })
+  computeRivalries(sortedGames, byPlayer)
   return byPlayer
 }
