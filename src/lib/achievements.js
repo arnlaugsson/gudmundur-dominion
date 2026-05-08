@@ -10,6 +10,10 @@ const OPPONENT_TIERS = [10]      // plus 'all' (active = ≥10 games) computed d
 const ACTIVE_PLAYER_MIN_GAMES = 10
 const COMMON_VENUE_MIN_GAMES = 3
 const MUMMI_SLAYER_TIERS = [5, 10, 25]
+// Percentage-based Mummi-bani — separate axis from the count tiers, so a
+// player who beats Mummi often AND in a high % of games can earn both.
+const MUMMI_SLAYER_PCT_TIERS = [55, 70] // %
+const MUMMI_SLAYER_PCT_MIN_GAMES = 10
 const RIVALRY_MIN_SHARED_GAMES = 5
 const CLUB_OWNER = 'Mummi'
 
@@ -321,6 +325,27 @@ function computeRivalries(sortedGames, byPlayer) {
         title: `Sigursæll vs ${b}`,
         detail: `${stat.wins}-${stat.total - stat.wins} í ${stat.total} leikjum`,
       }))
+    }
+  }
+
+  // Percentage-based Mummi-bani — separate from the count tiers, so a player
+  // with both a high count AND a high % can earn both kinds of badge.
+  for (const [name, opps] of Object.entries(h2h)) {
+    if (name === CLUB_OWNER) continue
+    if (!byPlayer.has(name)) continue
+    const stat = opps[CLUB_OWNER]
+    if (!stat || stat.total < MUMMI_SLAYER_PCT_MIN_GAMES) continue
+    const pct = (stat.wins / stat.total) * 100
+    for (const tier of MUMMI_SLAYER_PCT_TIERS) {
+      if (pct >= tier) {
+        byPlayer.get(name).push(buildAchievement({
+          id: `mummi-slayer-pct-${tier}`,
+          category: 'rivalries',
+          icon: '👑',
+          title: `Mummi-bani (${tier}%)`,
+          detail: `${stat.wins} af ${stat.total} (${pct.toFixed(0)}%)`,
+        }))
+      }
     }
   }
 }
