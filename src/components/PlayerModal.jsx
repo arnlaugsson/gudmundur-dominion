@@ -1,6 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import DATA from '../data'
 import PlayerPhotos from './PlayerPhotos'
+import AchievementBadge from './AchievementBadge'
+import { computeAchievements } from '../lib/achievements'
 
 export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
   useEffect(() => {
@@ -11,6 +13,9 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
 
   const { games, players } = DATA
   const p = players.find(pl => pl.name === playerName)
+
+  const allAchievements = useMemo(() => computeAchievements(DATA.games, DATA.players), [])
+  const playerAchievements = allAchievements.get(p?.name) || []
 
   const details = useMemo(() => {
     if (!p) return null
@@ -123,6 +128,33 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
                 )
               })}
             </div>
+          </div>
+        )}
+
+        {playerAchievements.length > 0 && (
+          <div className="achievement-group">
+            <div className="achievement-group-label">
+              Afrek · {playerAchievements.length}
+            </div>
+            {[
+              ['volume',    'Þátttaka'],
+              ['wins',      'Sigrar'],
+              ['records',   'Met'],
+              ['streaks',   'Sigurraðir'],
+              ['variety',   'Fjölbreytni'],
+              ['rivalries', 'Keppinautar'],
+            ].map(([cat, label]) => {
+              const items = playerAchievements.filter(a => a.category === cat)
+              if (items.length === 0) return null
+              return (
+                <div key={cat} style={{ marginTop: '.6rem' }}>
+                  <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginBottom: '.3rem' }}>{label}</div>
+                  <div className="achievement-group-pills">
+                    {items.map(a => <AchievementBadge key={a.id} achievement={a} />)}
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
 
