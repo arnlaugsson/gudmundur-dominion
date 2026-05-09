@@ -11982,9 +11982,9 @@
       "cost": 3,
       "debt": null,
       "potion": false,
-      "notes": null,
+      "notes": "Fjarlægt",
       "times_used": 0,
-      "removed": false,
+      "removed": true,
       "card_type": "Kingdom"
     },
     {
@@ -12543,9 +12543,9 @@
       "cost": 4,
       "debt": null,
       "potion": false,
-      "notes": null,
+      "notes": "Fjarlægt",
       "times_used": 0,
-      "removed": false,
+      "removed": true,
       "card_type": "Kingdom"
     },
     {
