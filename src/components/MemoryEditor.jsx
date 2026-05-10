@@ -1,10 +1,29 @@
 import { useState, useRef } from 'react'
 import { collection, addDoc, doc, updateDoc, Timestamp } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytes, getDownloadURL, updateMetadata } from 'firebase/storage'
 import { db, storage } from '../firebase'
 import { useAuth } from '../context/AuthContext'
 import DATA from '../data'
 import PlayerTagger from './PlayerTagger'
+
+// Build the storage filename for a photo. Including the game number, the
+// date, and a per-memory sequence index makes the path unambiguous even
+// when two games share the same date.
+function buildStorageFilename(gameNum, datePart, sequenceIdx, ext) {
+  const seq = String(sequenceIdx).padStart(2, '0')
+  return `game-${gameNum}-${datePart}-mynd${seq}.${ext}`
+}
+
+// Custom metadata we want on every uploaded image so the file is
+// self-describing in the Firebase Storage console — even if the
+// Firestore record is ever lost or out of sync.
+function buildCustomMetadata(game, taggedPlayers) {
+  return {
+    gameNum: String(game.game_num ?? ''),
+    gameDate: game.date || '',
+    taggedPlayers: (taggedPlayers || []).join(','),
+  }
+}
 
 export default function MemoryEditor({ game, existingMemory, onSave, onCancel }) {
   const { user } = useAuth()
@@ -110,20 +129,49 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
   const handleSave = async () => {
     setSaving(true)
     try {
+      // 1. Upload new files with full metadata baked in.
       const uploadedPhotos = []
       for (let i = 0; i < newFiles.length; i++) {
         const { file, taggedPlayers: fileTags } = newFiles[i]
         const ext = file.name.split('.').pop()
-        const filename = `${datePart}-mynd${String(photos.length + i + 1).padStart(2, '0')}.${ext}`
-        const storageRef = ref(storage, `memories/${filename}`)
-        await uploadBytes(storageRef, file)
-        const url = await getDownloadURL(storageRef)
+        const filename = buildStorageFilename(game.game_num, datePart, photos.length + i + 1, ext)
+        const storagePath = `memories/${filename}`
+        const fileRef = ref(storage, storagePath)
+        await uploadBytes(fileRef, file, { customMetadata: buildCustomMetadata(game, fileTags) })
+        const url = await getDownloadURL(fileRef)
         uploadedPhotos.push({
           url,
+          storagePath,
+          gameNum: game.game_num,
           caption: newFiles[i].caption || null,
           taggedPlayers: fileTags,
           order: photos.length + i,
         })
+      }
+
+      // 2. For existing photos whose tags or per-photo gameNum changed since
+      //    load, sync the change down to Firebase Storage's customMetadata so
+      //    the file remains self-describing. Skip silently when storagePath
+      //    is missing (older photos predating this field).
+      const existingByUrl = new Map((existingMemory?.photos || []).map(p => [p.url, p]))
+      for (const photo of photos) {
+        if (!photo.storagePath) continue
+        const before = existingByUrl.get(photo.url)
+        const tagsChanged = before
+          ? JSON.stringify(before.taggedPlayers || []) !== JSON.stringify(photo.taggedPlayers || [])
+          : false
+        if (!tagsChanged) continue
+        try {
+          await updateMetadata(ref(storage, photo.storagePath), {
+            customMetadata: buildCustomMetadata(
+              { game_num: photo.gameNum ?? game.game_num, date: game.date },
+              photo.taggedPlayers,
+            ),
+          })
+        } catch (err) {
+          // Non-fatal: log but keep the Firestore save going.
+          console.warn('Failed to update Storage metadata for', photo.storagePath, err)
+        }
       }
 
       const allPhotos = [...photos, ...uploadedPhotos]
