@@ -965,6 +965,10 @@ select:focus { outline: none; border-color: var(--gold); }
   color: var(--gold);
 }
 
+/* ── AVATAR ── */
+.avatar { transition: box-shadow .15s, transform .15s; }
+.avatar:hover[style*="cursor: pointer"] { box-shadow: 0 0 0 2px var(--gold); }
+
 /* Memory indicator */
 .memory-icon {
   color: var(--gold);
