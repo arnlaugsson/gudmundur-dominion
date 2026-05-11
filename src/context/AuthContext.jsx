@@ -17,6 +17,7 @@ async function loadUserRole(firebaseUser) {
     photoURL: firebaseUser.photoURL,
     allowed: true,
     admin: data.admin === true,
+    playerName: data.playerName || null,
   }
 }
 
