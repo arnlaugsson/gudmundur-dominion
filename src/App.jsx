@@ -5,6 +5,7 @@ import { TABS } from './constants'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
+const PlayerPage = lazy(() => import('./tabs/PlayerPage'))
 const Cards = lazy(() => import('./tabs/Cards'))
 const Expansions = lazy(() => import('./tabs/Expansions'))
 const History = lazy(() => import('./tabs/History'))
@@ -14,9 +15,12 @@ const Suggester = lazy(() => import('./tabs/Suggester'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
 
-function getTabFromHash() {
-  const hash = window.location.hash.slice(1)
-  return VALID_TABS.has(hash) ? hash : 'dashboard'
+function parseHash() {
+  const raw = window.location.hash.slice(1)
+  const [head, sub] = raw.split('/')
+  const tab = VALID_TABS.has(head) ? head : 'dashboard'
+  const playerName = head === 'players' && sub ? decodeURIComponent(sub) : null
+  return { tab, playerName }
 }
 
 function Loading() {
@@ -28,7 +32,9 @@ function Loading() {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState(getTabFromHash)
+  const [route, setRoute] = useState(parseHash)
+  const activeTab = route.tab
+  const viewPlayerName = route.playerName
   const [targetGame, setTargetGame] = useState(null)
   const [targetExpansion, setTargetExpansion] = useState(null)
 
@@ -37,7 +43,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    const onHashChange = () => setActiveTab(getTabFromHash())
+    const onHashChange = () => setRoute(parseHash())
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
@@ -62,7 +68,9 @@ export default function App() {
       <main>
         <Suspense fallback={<Loading />}>
           {activeTab === 'dashboard' && <Dashboard onGameNav={handleGameNav} />}
-          {activeTab === 'players' && <Players />}
+          {activeTab === 'players' && (viewPlayerName
+            ? <PlayerPage playerName={viewPlayerName} />
+            : <Players />)}
           {activeTab === 'cards' && <Cards initialExpansion={targetExpansion} onClearExpansion={clearExpansion} />}
           {activeTab === 'expansions' && <Expansions onNavigateCards={handleExpansionCards} />}
           {activeTab === 'history' && <History targetGame={targetGame} onClearTarget={clearTarget} />}
