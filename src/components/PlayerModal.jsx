@@ -93,6 +93,17 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
       <div className="modal-box" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
 
+        <button
+          onClick={() => {
+            window.location.hash = `players/${encodeURIComponent(p.name)}`
+            onClose?.()
+          }}
+          style={{
+            background: 'none', border: 'none', color: 'var(--gold)',
+            cursor: 'pointer', padding: 0, fontSize: '.82rem', marginBottom: '.4rem',
+          }}
+        >Sjá fulla síðu →</button>
+
         <h2 className="cinzel gold" style={{ fontSize: '1.4rem', marginBottom: '.2rem' }}>{p.name}</h2>
         {details.firstGame && (
           <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '1rem' }}>

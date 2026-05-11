@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
+import DATA from '../data'
 
 export default function UserManager({ onClose }) {
   const { user } = useAuth()
@@ -11,6 +12,11 @@ export default function UserManager({ onClose }) {
   const [newName, setNewName] = useState('')
   const [newAdmin, setNewAdmin] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  const playerNames = useMemo(
+    () => [...DATA.players].sort((a, b) => a.name.localeCompare(b.name)).map((p) => p.name),
+    [],
+  )
 
   useEffect(() => {
     loadUsers()
@@ -79,6 +85,18 @@ export default function UserManager({ onClose }) {
     }
   }
 
+  const setPlayerName = async (u, value) => {
+    try {
+      await setDoc(doc(db, 'allowedUsers', u.email), {
+        ...u,
+        playerName: value || null,
+      })
+      await loadUsers()
+    } catch (err) {
+      alert('Villa: ' + err.message)
+    }
+  }
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px' }}>
@@ -103,6 +121,21 @@ export default function UserManager({ onClose }) {
                   <div style={{ fontSize: '0.85rem' }}>{u.name || u.email}</div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--dim)' }}>{u.email}</div>
                 </div>
+                <select
+                  value={u.playerName || ''}
+                  onChange={(e) => setPlayerName(u, e.target.value)}
+                  title="Tengja við leikmann"
+                  style={{
+                    background: 'var(--bg)', border: '1px solid var(--border)',
+                    color: 'var(--text)', borderRadius: '3px', padding: '2px 4px',
+                    fontSize: '0.75rem', fontFamily: 'inherit', maxWidth: '110px',
+                  }}
+                >
+                  <option value="">(óvalinn)</option>
+                  {playerNames.map((n) => (
+                    <option key={n} value={n}>{n}</option>
+                  ))}
+                </select>
                 <button
                   className={u.admin ? 'memory-tag' : 'memory-add-tag'}
                   onClick={() => toggleAdmin(u)}
