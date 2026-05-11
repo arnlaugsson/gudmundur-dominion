@@ -12,9 +12,20 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/allowedUsers/$(request.auth.token.email)).data.admin == true;
     }
 
+    function callerPlayerName() {
+      return get(/databases/$(database)/documents/allowedUsers/$(request.auth.token.email)).data.playerName;
+    }
+
     match /memories/{memoryId} {
       allow read: if isAllowed();
       allow create, update, delete: if isAdmin();
+    }
+
+    match /playerProfiles/{playerName} {
+      allow read: if isAllowed();
+      allow create, update: if isAllowed()
+        && (isAdmin() || callerPlayerName() == playerName);
+      allow delete: if isAdmin();
     }
 
     match /allowedUsers/{userId} {
