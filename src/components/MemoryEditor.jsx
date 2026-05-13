@@ -43,10 +43,15 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
 
   const handleFiles = (files) => {
     const imageFiles = Array.from(files).filter((f) => f.type.startsWith('image/'))
-    const withPreview = imageFiles.map((file) => ({
+    if (imageFiles.length === 0) return
+    // Auto-star the first new upload when nothing is currently highlighted —
+    // saves a click for the common "upload some photos, mark the best one" flow.
+    const hasAnyHighlight = photos.some((p) => p.highlight) || newFiles.some((f) => f.highlight)
+    const withPreview = imageFiles.map((file, idx) => ({
       file,
       preview: URL.createObjectURL(file),
       taggedPlayers: [],
+      highlight: !hasAnyHighlight && idx === 0,
     }))
     setNewFiles((prev) => [...prev, ...withPreview])
   }
@@ -87,11 +92,23 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
     })
   }
 
-  const toggleHighlight = (index) => {
+  // The highlight is "one per memory" — toggling it on one image must clear
+  // it on every other, across BOTH existing photos and pending uploads.
+  const setHighlight = (kind, index) => {
+    const currentlyOn = kind === 'existing'
+      ? !!photos[index]?.highlight
+      : !!newFiles[index]?.highlight
+    const next = !currentlyOn
     setPhotos((prev) =>
       prev.map((p, i) => ({
         ...p,
-        highlight: i === index ? !p.highlight : false,
+        highlight: kind === 'existing' && i === index ? next : false,
+      }))
+    )
+    setNewFiles((prev) =>
+      prev.map((f, i) => ({
+        ...f,
+        highlight: kind === 'new' && i === index ? next : false,
       }))
     )
   }
@@ -145,6 +162,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
           gameNum: game.game_num,
           caption: newFiles[i].caption || null,
           taggedPlayers: fileTags,
+          highlight: !!newFiles[i].highlight,
           order: photos.length + i,
         })
       }
@@ -257,7 +275,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                   <button
-                    onClick={() => toggleHighlight(i)}
+                    onClick={() => setHighlight('existing', i)}
                     title={photo.highlight ? 'Fjarlægja úr korti' : 'Sýna á korti'}
                     style={{
                       background: 'none', border: '1px solid var(--border)',
@@ -333,13 +351,24 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                     }}
                   />
                 </div>
-                <button
-                  onClick={() => removeNewFile(i)}
-                  style={{
-                    background: 'none', border: '1px solid var(--border)', color: 'var(--red)',
-                    borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
-                  }}
-                >✕</button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                  <button
+                    onClick={() => setHighlight('new', i)}
+                    title={f.highlight ? 'Fjarlægja úr korti' : 'Sýna á korti'}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)',
+                      color: f.highlight ? 'var(--gold)' : 'var(--dim)',
+                      borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >{f.highlight ? '★' : '☆'}</button>
+                  <button
+                    onClick={() => removeNewFile(i)}
+                    style={{
+                      background: 'none', border: '1px solid var(--border)', color: 'var(--red)',
+                      borderRadius: '3px', cursor: 'pointer', fontSize: '0.7rem', padding: '2px 5px',
+                    }}
+                  >✕</button>
+                </div>
               </div>
             </div>
           ))}
