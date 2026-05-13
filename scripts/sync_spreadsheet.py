@@ -176,6 +176,39 @@ def parse_string_rows(ws, col, rows):
     return values
 
 
+# Source-expansion tags (e.g. 'Renaissance') sit in col+1 of single-name rows
+# to mark which expansion a project/way/trait comes from. They look like names
+# but should not be treated as project names.
+KNOWN_EXPANSION_TAGS = frozenset({
+    'dominion', 'intrigue', 'seaside', 'alchemy', 'prosperity',
+    'prospoerity', 'cornucopia', 'guilds', 'cornucopia & guilds',
+    'hinterlands', 'dark ages', 'adventures', 'empires', 'nocturne',
+    'renaissance', 'menagerie', 'allies', 'plunder', 'rising sun',
+})
+
+
+def is_expansion_tag(val):
+    return isinstance(val, str) and val.strip().lower() in KNOWN_EXPANSION_TAGS
+
+
+def parse_projects(ws, col):
+    """Parse the projects row (24).
+
+    A game may have more than one project, in which case the second is
+    written into the next column of the same row. col+1 historically holds
+    the source-expansion tag (e.g. 'Renaissance') when there is only one
+    project, so we read every cell and drop expansion tags — both projects
+    survive regardless of which column the user happened to use.
+    """
+    names = []
+    for offset in (0, 1, 2):
+        val = read_string_cell(ws, ROW_PROJECT, col + offset)
+        if val is None or is_expansion_tag(val):
+            continue
+        names.append(val)
+    return names
+
+
 def parse_traits(ws, col):
     """Parse the trait row.
 
@@ -333,7 +366,7 @@ def parse_game(ws, game_num, col):
     kingdom = parse_kingdom(ws, col)
     events = parse_string_rows(ws, col, [ROW_EVENT_1, ROW_EVENT_2])
     landmarks = parse_string_rows(ws, col, [ROW_LANDMARK_1, ROW_LANDMARK_2])
-    projects = parse_string_rows(ws, col, [ROW_PROJECT])
+    projects = parse_projects(ws, col)
     ways = parse_string_rows(ws, col, [ROW_WAY])
     allies = parse_string_rows(ws, col, [ROW_ALLY_1, ROW_ALLY_2])
     traits = parse_traits(ws, col)
