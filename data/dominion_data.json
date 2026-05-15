@@ -17335,7 +17335,7 @@
       "isSecondEdition": false
     },
     {
-      "name": "Domination",
+      "name": "Dominate",
       "expansion": "Empires",
       "cost": 0,
       "debt": 12,
@@ -18559,42 +18559,6 @@
       "isSecondEdition": false
     },
     {
-      "name": "Guild of Travelers",
-      "expansion": "Allies",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Ally",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Harbor League",
-      "expansion": "Allies",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Ally",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Helpers",
-      "expansion": "Allies",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Ally",
-      "isSecondEdition": false
-    },
-    {
       "name": "Island Folk",
       "expansion": "Allies",
       "cost": 0,
@@ -18620,18 +18584,6 @@
     },
     {
       "name": "League of Shopkeepers",
-      "expansion": "Allies",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Ally",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Marketeers",
       "expansion": "Allies",
       "cost": 0,
       "debt": null,
@@ -18692,18 +18644,6 @@
     },
     {
       "name": "Plateau Shepherds",
-      "expansion": "Allies",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Ally",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Rabble Rousers",
       "expansion": "Allies",
       "cost": 0,
       "debt": null,
@@ -18835,18 +18775,6 @@
       "isSecondEdition": false
     },
     {
-      "name": "Lazy",
-      "expansion": "Plunder",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Trait",
-      "isSecondEdition": false
-    },
-    {
       "name": "Nearby",
       "expansion": "Plunder",
       "cost": 0,
@@ -18872,30 +18800,6 @@
     },
     {
       "name": "Pious",
-      "expansion": "Plunder",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Trait",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Portly",
-      "expansion": "Plunder",
-      "cost": 0,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Trait",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Profane",
       "expansion": "Plunder",
       "cost": 0,
       "debt": null,
@@ -19255,7 +19159,7 @@
       "isSecondEdition": false
     },
     {
-      "name": "Spellscroll",
+      "name": "Spell Scroll",
       "expansion": "Plunder",
       "cost": 0,
       "debt": null,
@@ -19306,18 +19210,6 @@
       "name": "Acolyte",
       "expansion": "Allies",
       "cost": 4,
-      "debt": null,
-      "potion": false,
-      "notes": null,
-      "times_used": 0,
-      "removed": false,
-      "card_type": "Kingdom",
-      "isSecondEdition": false
-    },
-    {
-      "name": "Amulet of Wishes",
-      "expansion": "Allies",
-      "cost": 6,
       "debt": null,
       "potion": false,
       "notes": null,
