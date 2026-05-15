@@ -350,6 +350,19 @@ const EXPANSIONS = [
     ],
     has2ndEdition: false,
   },
+  {
+    name: 'Arcana',
+    dataKey: 'Arcana',
+    year: 2026,
+    isUpcoming: true,
+    keyMechanics: [
+      'Ekki opinberað ennþá',
+    ],
+    funFacts: [
+      'Á Discord-rás Arcana svaraði Donald X. Vaccarino getgátum um mögulegar mekaníkur með því að staðfesta að hvorki Potion-mekaník né neitt sambærilegt yrði í viðbótinni — heldur „does other stuff".',
+    ],
+    has2ndEdition: false,
+  },
 ]
 
 export default EXPANSIONS
