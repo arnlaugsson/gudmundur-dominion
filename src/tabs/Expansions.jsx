@@ -10,6 +10,8 @@ function pickRandom(arr) {
 function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
   const [expanded, setExpanded] = useState(false)
   const funFactRef = useRef(exp.funFacts ? pickRandom(exp.funFacts) : exp.funFact || '')
+  // Upcoming and merged-into expansions have no game stats to show.
+  const showStats = !exp.mergedInto && !exp.isUpcoming
 
   const findCard = (name) => allCards.find(c => c.name === name)
 
@@ -48,8 +50,13 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                     sameinuð
                   </span>
                 )}
+                {exp.isUpcoming && (
+                  <span style={{ marginLeft: '.5rem', fontSize: '.65rem', color: 'var(--gold)', fontWeight: 600 }}>
+                    Væntanleg
+                  </span>
+                )}
               </h3>
-              {!exp.mergedInto && (
+              {showStats && (
                 <div className="exp-timeline-stats">
                   {stats.cardCount} ríkisspil
                   {Object.entries(stats.extraTypes).map(([type, count]) => (
@@ -79,7 +86,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               <p className="exp-fun-fact">{funFactRef.current}</p>
             </div>
 
-            {!exp.mergedInto && (stats.removed.length > 0 || stats.added.length > 0) && (
+            {showStats && (stats.removed.length > 0 || stats.added.length > 0) && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Breytingar í 2. útgáfu</div>
                 {stats.removed.length > 0 && (
@@ -121,7 +128,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </div>
             )}
 
-            {!exp.mergedInto && stats.topCards.length > 0 && (
+            {showStats && stats.topCards.length > 0 && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Mest notuð spil</div>
                 <div className="exp-top-cards">
@@ -135,7 +142,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               </div>
             )}
 
-            {!exp.mergedInto && stats.neverPlayed.length > 0 && (
+            {showStats && stats.neverPlayed.length > 0 && (
               <div className="exp-detail-section">
                 <div className="exp-detail-label">Aldrei spiluð ({stats.neverPlayed.length})</div>
                 <div className="exp-top-cards">
@@ -149,9 +156,11 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
             )}
 
             <div className="exp-detail-actions">
-              <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
-                BoardGameGeek <span className="external-icon">↗</span>
-              </a>
+              {exp.bggUrl && (
+                <a href={exp.bggUrl} target="_blank" rel="noopener noreferrer" className="exp-link-btn">
+                  BoardGameGeek <span className="external-icon">↗</span>
+                </a>
+              )}
               <a
                 href={`https://wiki.dominionstrategy.com/index.php/${exp.name.replace(/ /g, '_')}`}
                 target="_blank"
@@ -160,7 +169,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
               >
                 Dominion Strategy Wiki <span className="external-icon">↗</span>
               </a>
-              {!exp.mergedInto && (
+              {showStats && (
                 <button className="exp-link-btn" onClick={() => onFilterCards(exp.dataKey)}>
                   Skoða öll spil
                 </button>
