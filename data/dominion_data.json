@@ -11236,6 +11236,91 @@
       ],
       "victory_type": null,
       "avg_score": null
+    },
+    {
+      "game_num": 125,
+      "date": "2026-05-02",
+      "location": "Álfheimar",
+      "players": [
+        "Skúli",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 14.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 7.0
+        },
+        {
+          "place": 3,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 2.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Native village",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Shanty town",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Wishing well",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Cutpurse",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Ironworks",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Secret passage",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Barge",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Sea witch",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Upgrade",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Wharf",
+          "expansion": "Seaside"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Intrigue",
+        "Seaside"
+      ],
+      "victory_type": null,
+      "avg_score": null
     }
   ],
   "players": [
@@ -19436,6 +19521,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-05-22 20:36",
+  "last_updated": "2026-05-22 22:25",
   "upcoming_games": 0
 }
