@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { doc, setDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
+import { formatRelative, formatAbsolute } from '../utils/formatRelative'
 import DATA from '../data'
 
 export default function UserManager({ onClose }) {
@@ -100,6 +101,12 @@ export default function UserManager({ onClose }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: '0.85rem' }}>{u.name || u.email}</div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--dim)' }}>{u.email}</div>
+                  <div
+                    style={{ fontSize: '0.65rem', color: 'var(--dim)', marginTop: '2px' }}
+                    title={u.lastSeen ? formatAbsolute(u.lastSeen.toDate()) : 'Hefur ekki skráð sig inn'}
+                  >
+                    {u.lastSeen ? formatRelative(u.lastSeen.toDate()) : '—'}
+                  </div>
                 </div>
                 <select
                   value={u.playerName || ''}

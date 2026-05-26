@@ -1,15 +1,23 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
-import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '../firebase'
 
 const AuthContext = createContext(null)
 
+const LAST_SEEN_THROTTLE_MS = 60 * 60 * 1000
+
 async function loadUserRole(firebaseUser) {
   if (!firebaseUser) return null
-  const userDoc = await getDoc(doc(db, 'allowedUsers', firebaseUser.email))
+  const userRef = doc(db, 'allowedUsers', firebaseUser.email)
+  const userDoc = await getDoc(userRef)
   if (!userDoc.exists()) return null
   const data = userDoc.data()
+  const lastSeenMs = data.lastSeen?.toMillis?.() ?? 0
+  if (Date.now() - lastSeenMs > LAST_SEEN_THROTTLE_MS) {
+    setDoc(userRef, { lastSeen: serverTimestamp() }, { merge: true })
+      .catch((err) => console.error('Failed to update lastSeen:', err))
+  }
   return {
     uid: firebaseUser.uid,
     email: firebaseUser.email,
