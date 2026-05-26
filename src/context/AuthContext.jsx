@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import { auth, googleProvider, db } from '../firebase'
 
 const AuthContext = createContext(null)
@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [authError, setAuthError] = useState(null)
+  const [allowedUsers, setAllowedUsers] = useState(null)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -42,6 +43,19 @@ export function AuthProvider({ children }) {
     })
     return unsubscribe
   }, [])
+
+  useEffect(() => {
+    if (!user?.admin) {
+      setAllowedUsers(null)
+      return
+    }
+    const unsubscribe = onSnapshot(
+      collection(db, 'allowedUsers'),
+      (snap) => setAllowedUsers(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
+      (err) => console.error('Failed to subscribe to allowedUsers:', err),
+    )
+    return unsubscribe
+  }, [user?.admin])
 
   const login = async () => {
     setAuthError(null)
@@ -64,7 +78,7 @@ export function AuthProvider({ children }) {
   const logout = () => signOut(auth)
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, authError }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, authError, allowedUsers }}>
       {children}
     </AuthContext.Provider>
   )

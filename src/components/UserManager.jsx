@@ -1,13 +1,13 @@
-import { useState, useEffect, useMemo } from 'react'
-import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { useState, useMemo } from 'react'
+import { doc, setDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
 import DATA from '../data'
 
 export default function UserManager({ onClose }) {
-  const { user } = useAuth()
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { user, allowedUsers } = useAuth()
+  const users = allowedUsers ?? []
+  const loading = allowedUsers === null
   const [newEmail, setNewEmail] = useState('')
   const [newName, setNewName] = useState('')
   const [newAdmin, setNewAdmin] = useState(false)
@@ -17,22 +17,6 @@ export default function UserManager({ onClose }) {
     () => [...DATA.players].sort((a, b) => a.name.localeCompare(b.name)).map((p) => p.name),
     [],
   )
-
-  useEffect(() => {
-    loadUsers()
-  }, [])
-
-  const loadUsers = async () => {
-    setLoading(true)
-    try {
-      const snap = await getDocs(collection(db, 'allowedUsers'))
-      setUsers(snap.docs.map((d) => ({ id: d.id, ...d.data() })))
-    } catch (err) {
-      console.error('Failed to load users:', err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const addUser = async () => {
     const email = newEmail.trim().toLowerCase()
@@ -47,7 +31,6 @@ export default function UserManager({ onClose }) {
       setNewEmail('')
       setNewName('')
       setNewAdmin(false)
-      await loadUsers()
     } catch (err) {
       alert('Villa: ' + err.message)
     } finally {
@@ -63,7 +46,6 @@ export default function UserManager({ onClose }) {
     if (!confirm(`Fjarlægja ${email}?`)) return
     try {
       await deleteDoc(doc(db, 'allowedUsers', email))
-      await loadUsers()
     } catch (err) {
       alert('Villa: ' + err.message)
     }
@@ -79,7 +61,6 @@ export default function UserManager({ onClose }) {
         ...u,
         admin: !u.admin,
       })
-      await loadUsers()
     } catch (err) {
       alert('Villa: ' + err.message)
     }
@@ -91,7 +72,6 @@ export default function UserManager({ onClose }) {
         ...u,
         playerName: value || null,
       })
-      await loadUsers()
     } catch (err) {
       alert('Villa: ' + err.message)
     }
