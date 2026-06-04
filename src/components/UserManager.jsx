@@ -80,7 +80,7 @@ export default function UserManager({ onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px' }}>
+      <div className="modal-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '640px' }}>
         <button className="modal-close" onClick={onClose}>✕</button>
         <h2 className="cinzel gold" style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
           Notendur
@@ -101,12 +101,15 @@ export default function UserManager({ onClose }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: '0.85rem' }}>{u.name || u.email}</div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--dim)' }}>{u.email}</div>
-                  <div
-                    style={{ fontSize: '0.65rem', color: 'var(--dim)', marginTop: '2px' }}
-                    title={u.lastSeen ? formatAbsolute(u.lastSeen.toDate()) : 'Hefur ekki skráð sig inn'}
-                  >
-                    {u.lastSeen ? formatRelative(u.lastSeen.toDate()) : '—'}
-                  </div>
+                </div>
+                <div
+                  style={{
+                    fontSize: '0.7rem', color: 'var(--dim)',
+                    width: '110px', textAlign: 'right', flexShrink: 0,
+                  }}
+                  title={u.lastSeen ? formatAbsolute(u.lastSeen.toDate()) : 'Hefur ekki skráð sig inn'}
+                >
+                  {u.lastSeen ? formatRelative(u.lastSeen.toDate()) : '—'}
                 </div>
                 <select
                   value={u.playerName || ''}
