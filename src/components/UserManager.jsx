@@ -7,7 +7,14 @@ import DATA from '../data'
 
 export default function UserManager({ onClose }) {
   const { user, allowedUsers } = useAuth()
-  const users = allowedUsers ?? []
+  const users = useMemo(() => {
+    if (!allowedUsers) return []
+    return [...allowedUsers].sort((a, b) => {
+      const aKey = (a.name || a.email).split(' ')[0]
+      const bKey = (b.name || b.email).split(' ')[0]
+      return aKey.localeCompare(bKey, 'is')
+    })
+  }, [allowedUsers])
   const loading = allowedUsers === null
   const [newEmail, setNewEmail] = useState('')
   const [newName, setNewName] = useState('')
