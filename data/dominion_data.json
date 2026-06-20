@@ -11502,6 +11502,98 @@
       ],
       "victory_type": null,
       "avg_score": 45.0
+    },
+    {
+      "game_num": 128,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
+        "Hrafnkell",
+        "Guðrún",
+        "Matti",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Guðrún",
+          "tied_with": null,
+          "score": 20.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 13.0
+        },
+        {
+          "place": 3,
+          "name": "Hrafnkell",
+          "tied_with": null,
+          "score": 13.0
+        },
+        {
+          "place": 4,
+          "name": "Matti",
+          "tied_with": null,
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Cellar",
+          "expansion": "Base"
+        },
+        {
+          "card": "Chapel",
+          "expansion": "Base"
+        },
+        {
+          "card": "Courtyard",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Lurker",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Conspirator",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Poacher",
+          "expansion": "Base"
+        },
+        {
+          "card": "Secret passage",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Bandit",
+          "expansion": "Base"
+        },
+        {
+          "card": "Witch",
+          "expansion": "Base"
+        },
+        {
+          "card": "Nobles",
+          "expansion": "Intrigue"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Seaside",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": 10.0
     }
   ],
   "players": [
@@ -19702,6 +19794,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-20 18:35",
+  "last_updated": "2026-06-20 20:31",
   "upcoming_games": 0
 }
