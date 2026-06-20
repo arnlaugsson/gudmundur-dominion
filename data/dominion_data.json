@@ -11594,6 +11594,98 @@
       ],
       "victory_type": null,
       "avg_score": 10.0
+    },
+    {
+      "game_num": 129,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
+        "Fúsi",
+        "Halla",
+        "Hallgrímur",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 13.0
+        },
+        {
+          "place": 2,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": null
+        },
+        {
+          "place": 3,
+          "name": "Halla",
+          "tied_with": null,
+          "score": null
+        },
+        {
+          "place": 4,
+          "name": "Fúsi",
+          "tied_with": null,
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Peasant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Amulet",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Miser",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Artificer",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Lost city",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Poacher",
+          "expansion": "Base"
+        },
+        {
+          "card": "Secret passage",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Bandit",
+          "expansion": "Base"
+        },
+        {
+          "card": "Witch",
+          "expansion": "Base"
+        },
+        {
+          "card": "Nobles",
+          "expansion": "Intrigue"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Seaside",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": 10.0
     }
   ],
   "players": [
@@ -19794,6 +19886,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-20 20:31",
+  "last_updated": "2026-06-20 22:29",
   "upcoming_games": 0
 }
