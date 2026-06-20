@@ -11410,6 +11410,98 @@
       ],
       "victory_type": null,
       "avg_score": null
+    },
+    {
+      "game_num": 127,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
+        "Iðunn",
+        "Ragnheiður",
+        "Skúli",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 50.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 48.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 47.0
+        },
+        {
+          "place": 4,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Fishing village",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Blockade",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Cutpurse",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Island",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Investment",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Talisman",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Corsair",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Rabble",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Royal seal",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Forge",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Seaside",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": 45.0
     }
   ],
   "players": [
@@ -19610,6 +19702,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-20 12:42",
+  "last_updated": "2026-06-20 14:49",
   "upcoming_games": 0
 }
