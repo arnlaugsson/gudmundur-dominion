@@ -49,4 +49,4 @@ python3 scripts/sync_spreadsheet.py
 
 ## License
 
-Private project for the Guðmundur Dominion club.
+A private project for the Guðmundur Dominion club.
