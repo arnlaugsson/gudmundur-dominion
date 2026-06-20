@@ -11321,6 +11321,95 @@
       ],
       "victory_type": null,
       "avg_score": null
+    },
+    {
+      "game_num": 126,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
+        "Skúli",
+        "Fúsi",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 36.0
+        },
+        {
+          "place": 2,
+          "name": "Fúsi",
+          "tied_with": null,
+          "score": 33.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 25.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Gear",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Goatherd",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Cavalry",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Port",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Displace",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Distant lands",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Hunting lodge",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Relic",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Wine merchant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Wayfarer",
+          "expansion": "Menagerie"
+        }
+      ],
+      "events": [
+        "Travelling fair"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [
+        "Way of the sheep"
+      ],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Adventures",
+        "Menagerie"
+      ],
+      "victory_type": null,
+      "avg_score": null
     }
   ],
   "players": [
@@ -19521,6 +19610,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-04 13:12",
+  "last_updated": "2026-06-20 11:26",
   "upcoming_games": 0
 }
