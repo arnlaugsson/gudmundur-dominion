@@ -11600,6 +11600,100 @@
       "date": "2026-06-20",
       "location": "Arnarholt",
       "players": [
+        "Fúsi",
+        "Halla",
+        "Hallgrímur",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 48.0
+        },
+        {
+          "place": 2,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 36.0
+        },
+        {
+          "place": 3,
+          "name": "Halla",
+          "tied_with": null,
+          "score": 30.0
+        },
+        {
+          "place": 4,
+          "name": "Fúsi",
+          "tied_with": null,
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Peasant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Amulet",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Miser",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Artificer",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Lost city",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Royal carriage",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Hireling",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Vineyard",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Apothecary",
+          "expansion": null
+        },
+        {
+          "card": "Alchemist",
+          "expansion": "Alchemy"
+        }
+      ],
+      "events": [
+        "Trade"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Seaside",
+        "Prosperity"
+      ],
+      "victory_type": null,
+      "avg_score": 7.0
+    },
+    {
+      "game_num": 130,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
         "Hafliði",
         "Skúli",
         "Fúsi",
@@ -11694,100 +11788,6 @@
       ],
       "victory_type": null,
       "avg_score": 21.0
-    },
-    {
-      "game_num": 129,
-      "date": "2026-06-20",
-      "location": "Arnarholt",
-      "players": [
-        "Fúsi",
-        "Halla",
-        "Hallgrímur",
-        "Mummi"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 48.0
-        },
-        {
-          "place": 2,
-          "name": "Hallgrímur",
-          "tied_with": null,
-          "score": 36.0
-        },
-        {
-          "place": 3,
-          "name": "Halla",
-          "tied_with": null,
-          "score": 30.0
-        },
-        {
-          "place": 4,
-          "name": "Fúsi",
-          "tied_with": null,
-          "score": null
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Peasant",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Amulet",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Miser",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Artificer",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Lost city",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Royal carriage",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Hireling",
-          "expansion": "Adventures"
-        },
-        {
-          "card": "Vineyard",
-          "expansion": "Alchemy"
-        },
-        {
-          "card": "Apothecary",
-          "expansion": null
-        },
-        {
-          "card": "Alchemist",
-          "expansion": "Alchemy"
-        }
-      ],
-      "events": [
-        "Trade"
-      ],
-      "landmarks": [],
-      "projects": [],
-      "ways": [],
-      "allies": [],
-      "traits": [],
-      "prophecy": [],
-      "expansions": [
-        "Seaside",
-        "Prosperity"
-      ],
-      "victory_type": null,
-      "avg_score": 7.0
     }
   ],
   "players": [
@@ -19988,6 +19988,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-21 12:45",
+  "last_updated": "2026-06-21 14:50",
   "upcoming_games": 0
 }
