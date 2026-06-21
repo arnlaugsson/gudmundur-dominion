@@ -11600,6 +11600,106 @@
       "date": "2026-06-20",
       "location": "Arnarholt",
       "players": [
+        "Hafliði",
+        "Skúli",
+        "Fúsi",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 28.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 24.0
+        },
+        {
+          "place": 3,
+          "name": "Fúsi",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 21.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": [
+            "Fúsi"
+          ],
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Cage",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Jeweled egg",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Develop",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Dismantle",
+          "expansion": "Promo"
+        },
+        {
+          "card": "Landing party",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Trader",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Flagship",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Pendant",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Wheelwright",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "King's cache",
+          "expansion": "Plunder"
+        }
+      ],
+      "events": [
+        "Scrounge"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [
+        "Friendly"
+      ],
+      "expansions": [
+        "Hinterlands",
+        "Plunder"
+      ],
+      "victory_type": null,
+      "avg_score": 21.0
+    },
+    {
+      "game_num": 129,
+      "date": "2026-06-20",
+      "location": "Arnarholt",
+      "players": [
         "Fúsi",
         "Halla",
         "Hallgrímur",
@@ -19888,6 +19988,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-21 11:06",
+  "last_updated": "2026-06-21 12:45",
   "upcoming_games": 0
 }
