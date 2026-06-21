@@ -11610,19 +11610,19 @@
           "place": 1,
           "name": "Mummi",
           "tied_with": null,
-          "score": 13.0
+          "score": 48.0
         },
         {
           "place": 2,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 36.0
         },
         {
           "place": 3,
           "name": "Halla",
           "tied_with": null,
-          "score": null
+          "score": 30.0
         },
         {
           "place": 4,
@@ -11653,27 +11653,29 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Poacher",
-          "expansion": "Base"
+          "card": "Royal carriage",
+          "expansion": "Adventures"
         },
         {
-          "card": "Secret passage",
-          "expansion": "Intrigue"
+          "card": "Hireling",
+          "expansion": "Adventures"
         },
         {
-          "card": "Bandit",
-          "expansion": "Base"
+          "card": "Vineyard",
+          "expansion": "Alchemy"
         },
         {
-          "card": "Witch",
-          "expansion": "Base"
+          "card": "Apothecary",
+          "expansion": null
         },
         {
-          "card": "Nobles",
-          "expansion": "Intrigue"
+          "card": "Alchemist",
+          "expansion": "Alchemy"
         }
       ],
-      "events": [],
+      "events": [
+        "Trade"
+      ],
       "landmarks": [],
       "projects": [],
       "ways": [],
@@ -11685,7 +11687,7 @@
         "Prosperity"
       ],
       "victory_type": null,
-      "avg_score": 10.0
+      "avg_score": 7.0
     }
   ],
   "players": [
@@ -19886,6 +19888,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-06-20 22:29",
+  "last_updated": "2026-06-21 01:02",
   "upcoming_games": 0
 }
