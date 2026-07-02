@@ -75,8 +75,7 @@
         "Lúlli",
         "Helena",
         "Ragnheiður",
-        "Mummi",
-        "Inga María"
+        "Mummi"
       ],
       "results": [],
       "kingdom": [
@@ -219,7 +218,7 @@
         "Empires",
         "Prosperity"
       ],
-      "victory_type": null,
+      "victory_type": "Province",
       "avg_score": null
     },
     {
@@ -308,7 +307,7 @@
         "Empires",
         "Prosperity"
       ],
-      "victory_type": null,
+      "victory_type": "Colony",
       "avg_score": null
     },
     {
@@ -392,8 +391,8 @@
       "expansions": [
         "Hinterlands"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 46.67
     },
     {
       "game_num": 6,
@@ -428,7 +427,7 @@
           "place": 4,
           "name": "Halla",
           "tied_with": null,
-          "score": null
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -488,8 +487,8 @@
         "Allies",
         "Adventures"
       ],
-      "victory_type": null,
-      "avg_score": 15.0
+      "victory_type": "Province",
+      "avg_score": 25.75
     },
     {
       "game_num": 7,
@@ -524,7 +523,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 24.0
         }
       ],
       "kingdom": [
@@ -580,8 +579,8 @@
         "Base",
         "Adventures"
       ],
-      "victory_type": null,
-      "avg_score": 24.0
+      "victory_type": "Supply piles",
+      "avg_score": 27.75
     },
     {
       "game_num": 8,
@@ -666,8 +665,8 @@
       "expansions": [
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 38.0
     },
     {
       "game_num": 9,
@@ -702,7 +701,7 @@
           "place": 4,
           "name": "Helgi",
           "tied_with": null,
-          "score": null
+          "score": 17.0
         }
       ],
       "kingdom": [
@@ -758,8 +757,8 @@
         "Base",
         "Dark Ages"
       ],
-      "victory_type": null,
-      "avg_score": 17.0
+      "victory_type": "Province",
+      "avg_score": 22.25
     },
     {
       "game_num": 10,
@@ -794,7 +793,7 @@
           "place": 4,
           "name": "Lúlli",
           "tied_with": null,
-          "score": null
+          "score": 37.0
         }
       ],
       "kingdom": [
@@ -850,8 +849,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": 37.0
+      "victory_type": "Province",
+      "avg_score": null
     },
     {
       "game_num": 11,
@@ -886,7 +885,7 @@
           "place": 4,
           "name": "Iðunn",
           "tied_with": null,
-          "score": null
+          "score": 10.0
         }
       ],
       "kingdom": [
@@ -936,17 +935,17 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the Chameleon"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 10.0
+      "victory_type": "Province",
+      "avg_score": 20.75
     },
     {
       "game_num": 12,
@@ -981,7 +980,7 @@
           "place": 4,
           "name": "Iðunn",
           "tied_with": null,
-          "score": null
+          "score": 10.0
         }
       ],
       "kingdom": [
@@ -1041,8 +1040,8 @@
         "Adventures",
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": 10.0
+      "victory_type": "Province",
+      "avg_score": 20.75
     },
     {
       "game_num": 13,
@@ -1126,8 +1125,8 @@
         "Base",
         "Intrigue"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 34.67
     },
     {
       "game_num": 14,
@@ -1158,7 +1157,7 @@
           "tied_with": [
             "Skúli"
           ],
-          "score": null
+          "score": 23.0
         },
         {
           "place": 4,
@@ -1225,8 +1224,8 @@
         "Hinterlands",
         "Adventures"
       ],
-      "victory_type": null,
-      "avg_score": 23.0
+      "victory_type": "Province",
+      "avg_score": 27.5
     },
     {
       "game_num": 15,
@@ -1255,7 +1254,7 @@
           "place": 3,
           "name": "Skúli",
           "tied_with": null,
-          "score": null
+          "score": 22.0
         },
         {
           "place": 4,
@@ -1320,8 +1319,8 @@
         "Hinterlands",
         "Adventures"
       ],
-      "victory_type": null,
-      "avg_score": 22.0
+      "victory_type": "Province",
+      "avg_score": 26.0
     },
     {
       "game_num": 16,
@@ -1356,7 +1355,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 13.0
         }
       ],
       "kingdom": [
@@ -1416,8 +1415,8 @@
         "Empires",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": 13.0
+      "victory_type": "Province",
+      "avg_score": 28.75
     },
     {
       "game_num": 17,
@@ -1501,8 +1500,8 @@
         "Prosperity",
         "Seaside"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 58.0
     },
     {
       "game_num": 18,
@@ -1586,8 +1585,8 @@
         "Prosperity",
         "Seaside"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 60.33
     },
     {
       "game_num": 19,
@@ -1622,7 +1621,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 35.0
         }
       ],
       "kingdom": [
@@ -1679,8 +1678,8 @@
         "Prosperity",
         "Seaside"
       ],
-      "victory_type": null,
-      "avg_score": 35.0
+      "victory_type": "Province",
+      "avg_score": 45.0
     },
     {
       "game_num": 20,
@@ -1715,7 +1714,7 @@
           "place": 4,
           "name": "Kiddi",
           "tied_with": null,
-          "score": null
+          "score": 22.0
         }
       ],
       "kingdom": [
@@ -1773,8 +1772,8 @@
         "Adventures",
         "Seaside"
       ],
-      "victory_type": null,
-      "avg_score": 22.0
+      "victory_type": "Province",
+      "avg_score": 30.0
     },
     {
       "game_num": 21,
@@ -1858,8 +1857,8 @@
         "Base",
         "Intrigue"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 35.33
     },
     {
       "game_num": 22,
@@ -1943,8 +1942,8 @@
         "Intrigue",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 58.67
     },
     {
       "game_num": 23,
@@ -1979,7 +1978,7 @@
           "place": 4,
           "name": "Arnlaugur",
           "tied_with": null,
-          "score": null
+          "score": 33.0
         }
       ],
       "kingdom": [
@@ -2036,8 +2035,8 @@
         "Intrigue",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 33.0
+      "victory_type": "Province",
+      "avg_score": 48.25
     },
     {
       "game_num": 24,
@@ -2072,7 +2071,7 @@
           "place": 4,
           "name": "Nói",
           "tied_with": null,
-          "score": null
+          "score": 30.0
         }
       ],
       "kingdom": [
@@ -2129,8 +2128,8 @@
         "Intrigue",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 30.0
+      "victory_type": "Colony",
+      "avg_score": 35.0
     },
     {
       "game_num": 25,
@@ -2165,7 +2164,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 39.0
         }
       ],
       "kingdom": [
@@ -2222,8 +2221,8 @@
         "Intrigue",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 39.0
+      "victory_type": "Province",
+      "avg_score": 52.25
     },
     {
       "game_num": 26,
@@ -2258,7 +2257,7 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": null
+          "score": 5.0
         }
       ],
       "kingdom": [
@@ -2314,8 +2313,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 5.0
+      "victory_type": "Supply piles",
+      "avg_score": 12.75
     },
     {
       "game_num": 27,
@@ -2350,7 +2349,7 @@
           "place": 4,
           "name": "Addý",
           "tied_with": null,
-          "score": null
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -2406,8 +2405,8 @@
         "Menagerie",
         "Promo"
       ],
-      "victory_type": null,
-      "avg_score": 15.0
+      "victory_type": "Province",
+      "avg_score": 22.0
     },
     {
       "game_num": 28,
@@ -2491,8 +2490,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 63.33
     },
     {
       "game_num": 29,
@@ -2527,7 +2526,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 20.0
         }
       ],
       "kingdom": [
@@ -2583,8 +2582,8 @@
         "Base",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 20.0
+      "victory_type": "Province",
+      "avg_score": 29.0
     },
     {
       "game_num": 30,
@@ -2667,10 +2666,11 @@
       "expansions": [
         "Base",
         "Prosperity",
-        "Cornucopia & Guilds"
+        "Cornucopia & Guilds",
+        "Plunder"
       ],
-      "victory_type": "Plunder",
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 81.33
     },
     {
       "game_num": 31,
@@ -2705,7 +2705,7 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": null
+          "score": 44.0
         }
       ],
       "kingdom": [
@@ -2757,16 +2757,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Nearby"
+      "traits": [
+        {
+          "name": "Nearby",
+          "card": "Patrician/Emporium"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Empires",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 44.0
+      "victory_type": "Province",
+      "avg_score": 56.75
     },
     {
       "game_num": 32,
@@ -2801,7 +2804,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 35.0
         }
       ],
       "kingdom": [
@@ -2860,8 +2863,8 @@
         "Prosperity",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": 35.0
+      "victory_type": "Colony",
+      "avg_score": 52.75
     },
     {
       "game_num": 33,
@@ -2947,8 +2950,8 @@
         "Seaside",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 30.33
     },
     {
       "game_num": 34,
@@ -3033,8 +3036,8 @@
       "expansions": [
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 26.33
     },
     {
       "game_num": 35,
@@ -3114,15 +3117,18 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Inherited"
+      "traits": [
+        {
+          "name": "Inherited",
+          "card": "Figurine"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 28.33
     },
     {
       "game_num": 36,
@@ -3215,8 +3221,8 @@
         "Prosperity",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 58.33
     },
     {
       "game_num": 37,
@@ -3251,7 +3257,7 @@
           "place": 4,
           "name": "Fúsi",
           "tied_with": null,
-          "score": null
+          "score": 19.0
         }
       ],
       "kingdom": [
@@ -3303,15 +3309,18 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Inspiring"
+      "traits": [
+        {
+          "name": "Inspiring",
+          "card": "Figurine"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 19.0
+      "victory_type": "Province",
+      "avg_score": 21.75
     },
     {
       "game_num": 38,
@@ -3411,8 +3420,8 @@
       "expansions": [
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 22.5
     },
     {
       "game_num": 39,
@@ -3506,10 +3515,11 @@
       "expansions": [
         "Cornucopia & Guilds",
         "Empires",
-        "Menagerie"
+        "Menagerie",
+        "Plunder"
       ],
-      "victory_type": "Plunder",
-      "avg_score": -5.0
+      "victory_type": "Province",
+      "avg_score": 1.75
     },
     {
       "game_num": 40,
@@ -3544,7 +3554,7 @@
           "place": 4,
           "name": "Fúsi",
           "tied_with": null,
-          "score": null
+          "score": 7.0
         }
       ],
       "kingdom": [
@@ -3594,19 +3604,20 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the Seal"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Cornucopia & Guilds",
         "Renaissance",
-        "Menagerie"
+        "Menagerie",
+        "Plunder"
       ],
-      "victory_type": "Plunder",
-      "avg_score": 7.0
+      "victory_type": "Supply piles",
+      "avg_score": 15.25
     },
     {
       "game_num": 41,
@@ -3686,16 +3697,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Cursed"
+      "traits": [
+        {
+          "name": "Cursed",
+          "card": "Highway"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 26.67
     },
     {
       "game_num": 42,
@@ -3775,16 +3789,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Shy"
+      "traits": [
+        {
+          "name": "Shy",
+          "card": "Harbor Village"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 41.67
     },
     {
       "game_num": 43,
@@ -3868,8 +3885,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 60.33
     },
     {
       "game_num": 44,
@@ -3904,7 +3921,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 51.0
         }
       ],
       "kingdom": [
@@ -3960,8 +3977,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 51.0
+      "victory_type": "Province",
+      "avg_score": 57.0
     },
     {
       "game_num": 45,
@@ -4049,8 +4066,8 @@
         "Dark Ages",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 48.33
     },
     {
       "game_num": 46,
@@ -4141,8 +4158,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 48.33
     },
     {
       "game_num": 47,
@@ -4177,7 +4194,7 @@
           "place": 4,
           "name": "Arnlaugur",
           "tied_with": null,
-          "score": null
+          "score": 42.0
         }
       ],
       "kingdom": [
@@ -4234,8 +4251,8 @@
         "Prosperity",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": 42.0
+      "victory_type": "Colony",
+      "avg_score": 49.5
     },
     {
       "game_num": 48,
@@ -4320,8 +4337,8 @@
         "Prosperity",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 66.67
     },
     {
       "game_num": 49,
@@ -4406,8 +4423,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 53.0
     },
     {
       "game_num": 50,
@@ -4493,7 +4510,7 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": null,
-      "avg_score": null
+      "avg_score": 53.0
     },
     {
       "game_num": 51,
@@ -4571,8 +4588,8 @@
         "Nocturne",
         "Promo"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 46.5
     },
     {
       "game_num": 52,
@@ -4657,8 +4674,8 @@
       "expansions": [
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 26.67
     },
     {
       "game_num": 53,
@@ -4693,7 +4710,7 @@
           "place": 4,
           "name": "Skúli",
           "tied_with": null,
-          "score": null
+          "score": 14.0
         }
       ],
       "kingdom": [
@@ -4744,17 +4761,17 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the Frog"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 14.0
+      "victory_type": "Supply piles",
+      "avg_score": 18.5
     },
     {
       "game_num": 54,
@@ -4789,7 +4806,7 @@
           "place": 4,
           "name": "Helgi",
           "tied_with": null,
-          "score": null
+          "score": 23.0
         }
       ],
       "kingdom": [
@@ -4845,8 +4862,8 @@
         "Intrigue",
         "Hinterlands"
       ],
-      "victory_type": null,
-      "avg_score": 23.0
+      "victory_type": "Province",
+      "avg_score": 32.25
     },
     {
       "game_num": 55,
@@ -4881,7 +4898,7 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": null
+          "score": 19.0
         }
       ],
       "kingdom": [
@@ -4937,8 +4954,8 @@
         "Adventures",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": 19.0
+      "victory_type": "Province",
+      "avg_score": 29.5
     },
     {
       "game_num": 56,
@@ -4973,7 +4990,7 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": null
+          "score": 31.0
         }
       ],
       "kingdom": [
@@ -5034,8 +5051,8 @@
         "Empires",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": 31.0
+      "victory_type": "Province",
+      "avg_score": 38.25
     },
     {
       "game_num": 57,
@@ -5120,8 +5137,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 46.67
     },
     {
       "game_num": 58,
@@ -5206,8 +5223,8 @@
         "Prosperity",
         "Hinterlands"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 40.33
     },
     {
       "game_num": 59,
@@ -5292,8 +5309,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 59.33
     },
     {
       "game_num": 60,
@@ -5328,7 +5345,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 9.0
         }
       ],
       "kingdom": [
@@ -5388,8 +5405,8 @@
         "Renaissance",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 9.0
+      "victory_type": "Province",
+      "avg_score": 20.0
     },
     {
       "game_num": 61,
@@ -5424,7 +5441,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 16.0
         }
       ],
       "kingdom": [
@@ -5476,18 +5493,18 @@
       "projects": [
         "Sewers"
       ],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the horse"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Renaissance",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 16.0
+      "victory_type": "Province",
+      "avg_score": 22.0
     },
     {
       "game_num": 62,
@@ -5571,8 +5588,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 56.67
     },
     {
       "game_num": 63,
@@ -5656,8 +5673,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 44.0
     },
     {
       "game_num": 64,
@@ -5692,7 +5709,7 @@
           "place": 4,
           "name": "Nói",
           "tied_with": null,
-          "score": null
+          "score": 39.0
         }
       ],
       "kingdom": [
@@ -5749,8 +5766,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": 39.0
+      "victory_type": "Supply piles",
+      "avg_score": 55.25
     },
     {
       "game_num": 65,
@@ -5835,8 +5852,8 @@
       "expansions": [
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 30.67
     },
     {
       "game_num": 66,
@@ -5920,8 +5937,8 @@
         "Intrigue",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 47.67
     },
     {
       "game_num": 67,
@@ -5956,7 +5973,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 17.0
         }
       ],
       "kingdom": [
@@ -6013,8 +6030,8 @@
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 17.0
+      "victory_type": "Province",
+      "avg_score": 28.5
     },
     {
       "game_num": 68,
@@ -6049,7 +6066,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 32.0
         }
       ],
       "kingdom": [
@@ -6104,10 +6121,11 @@
       "expansions": [
         "Intrigue",
         "Prosperity",
-        "Cornucopia & Guilds"
+        "Cornucopia & Guilds",
+        "Plunder"
       ],
-      "victory_type": "Plunder",
-      "avg_score": 32.0
+      "victory_type": "Colony",
+      "avg_score": 39.0
     },
     {
       "game_num": 69,
@@ -6142,7 +6160,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 26.0
         }
       ],
       "kingdom": [
@@ -6199,8 +6217,8 @@
         "Prosperity",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 26.0
+      "victory_type": "Colony",
+      "avg_score": 48.25
     },
     {
       "game_num": 70,
@@ -6233,7 +6251,7 @@
           "tied_with": [
             "Halla"
           ],
-          "score": null
+          "score": 17.0
         },
         {
           "place": 4,
@@ -6291,16 +6309,18 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Fated"
+      "traits": [
+        {
+          "name": "Fated"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Seaside",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 17.0
+      "victory_type": "Province",
+      "avg_score": 21.0
     },
     {
       "game_num": 71,
@@ -6384,8 +6404,8 @@
         "Dark Ages",
         "Hinterlands"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 25.33
     },
     {
       "game_num": 72,
@@ -6458,16 +6478,18 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Fawning"
+      "traits": [
+        {
+          "name": "Fawning"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Adventures",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 30.0
     },
     {
       "game_num": 73,
@@ -6553,8 +6575,8 @@
         "Adventures",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 27.33
     },
     {
       "game_num": 74,
@@ -6635,13 +6657,14 @@
       "ways": [],
       "allies": [],
       "traits": [],
-      "prophecy": [],
+      "prophecy": [
+        "Kind emperor"
+      ],
       "expansions": [
-        "Kind emperor",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 22.33
     },
     {
       "game_num": 75,
@@ -6722,13 +6745,14 @@
       "ways": [],
       "allies": [],
       "traits": [],
-      "prophecy": [],
+      "prophecy": [
+        "Progress"
+      ],
       "expansions": [
-        "Progress",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 29.67
     },
     {
       "game_num": 76,
@@ -6804,8 +6828,8 @@
       "expansions": [
         "Base"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 29.0
     },
     {
       "game_num": 77,
@@ -6840,7 +6864,7 @@
           "place": 4,
           "name": "Bergþór",
           "tied_with": null,
-          "score": null
+          "score": 27.0
         }
       ],
       "kingdom": [
@@ -6896,8 +6920,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 27.0
+      "victory_type": "Province",
+      "avg_score": 40.5
     },
     {
       "game_num": 78,
@@ -6932,7 +6956,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 8.0
         }
       ],
       "kingdom": [
@@ -6988,8 +7012,8 @@
         "Base",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 8.0
+      "victory_type": "Province",
+      "avg_score": 17.75
     },
     {
       "game_num": 79,
@@ -7071,14 +7095,15 @@
       "ways": [],
       "allies": [],
       "traits": [],
-      "prophecy": [],
+      "prophecy": [
+        "Sickness"
+      ],
       "expansions": [
-        "Sickness",
         "Dark Ages",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 32.67
     },
     {
       "game_num": 80,
@@ -7164,8 +7189,8 @@
         "Dark Ages",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 29.0
     },
     {
       "game_num": 81,
@@ -7252,8 +7277,8 @@
       "expansions": [
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 59.33
     },
     {
       "game_num": 82,
@@ -7332,8 +7357,8 @@
       "expansions": [
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 60.5
     },
     {
       "game_num": 83,
@@ -7368,7 +7393,7 @@
           "place": 4,
           "name": "Helgi",
           "tied_with": null,
-          "score": null
+          "score": 18.0
         }
       ],
       "kingdom": [
@@ -7427,8 +7452,8 @@
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 18.0
+      "victory_type": "Province",
+      "avg_score": 25.25
     },
     {
       "game_num": 84,
@@ -7463,7 +7488,7 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": null
+          "score": 19.0
         }
       ],
       "kingdom": [
@@ -7511,18 +7536,18 @@
       "events": [],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the mule"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 19.0
+      "victory_type": "Province",
+      "avg_score": 24.75
     },
     {
       "game_num": 85,
@@ -7609,8 +7634,8 @@
       "expansions": [
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 43.33
     },
     {
       "game_num": 86,
@@ -7697,8 +7722,8 @@
         "Renaissance",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Colony",
+      "avg_score": 70.0
     },
     {
       "game_num": 87,
@@ -7793,8 +7818,8 @@
         "Seaside",
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": 18.0
+      "victory_type": "Province",
+      "avg_score": 20.0
     },
     {
       "game_num": 88,
@@ -7829,7 +7854,7 @@
           "place": 4,
           "name": "Skúli",
           "tied_with": null,
-          "score": null
+          "score": 19.0
         }
       ],
       "kingdom": [
@@ -7881,16 +7906,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Friendly"
+      "traits": [
+        {
+          "name": "Friendly",
+          "card": "Fortune hunter"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 19.0
+      "victory_type": "Province",
+      "avg_score": 24.25
     },
     {
       "game_num": 89,
@@ -7925,7 +7953,7 @@
           "place": 4,
           "name": "Ásta",
           "tied_with": null,
-          "score": null
+          "score": 17.0
         }
       ],
       "kingdom": [
@@ -7977,16 +8005,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Fawning"
+      "traits": [
+        {
+          "name": "Fawning",
+          "card": "Fortune hunter"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 17.0
+      "victory_type": "Province",
+      "avg_score": 20.5
     },
     {
       "game_num": 90,
@@ -8021,7 +8052,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -8073,16 +8104,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Inspiring"
+      "traits": [
+        {
+          "name": "Inspiring",
+          "card": "King's cache"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 15.0
+      "victory_type": "Province",
+      "avg_score": 27.75
     },
     {
       "game_num": 91,
@@ -8117,7 +8151,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 11.0
         }
       ],
       "kingdom": [
@@ -8169,16 +8203,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Rich"
+      "traits": [
+        {
+          "name": "Rich",
+          "card": "Quartermaster"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 11.0
+      "victory_type": "Supply piles",
+      "avg_score": 22.75
     },
     {
       "game_num": 92,
@@ -8262,8 +8299,8 @@
         "Intrigue",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 36.0
     },
     {
       "game_num": 93,
@@ -8348,8 +8385,8 @@
         "Cornucopia & Guilds",
         "Promo"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 42.0
     },
     {
       "game_num": 94,
@@ -8433,8 +8470,8 @@
         "Dark Ages",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 26.33
     },
     {
       "game_num": 95,
@@ -8522,8 +8559,8 @@
         "Dark Ages",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 39.67
     },
     {
       "game_num": 96,
@@ -8610,8 +8647,8 @@
         "Adventures",
         "Nocturne"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 42.33
     },
     {
       "game_num": 97,
@@ -8646,7 +8683,7 @@
           "place": 4,
           "name": "Iðunn",
           "tied_with": null,
-          "score": null
+          "score": 26.0
         }
       ],
       "kingdom": [
@@ -8706,8 +8743,8 @@
         "Adventures",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": 26.0
+      "victory_type": "Supply piles",
+      "avg_score": 28.75
     },
     {
       "game_num": 98,
@@ -8742,7 +8779,7 @@
           "place": 4,
           "name": "Helgi",
           "tied_with": null,
-          "score": null
+          "score": 42.0
         }
       ],
       "kingdom": [
@@ -8801,8 +8838,8 @@
         "Base",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": 42.0
+      "victory_type": "Province",
+      "avg_score": 45.5
     },
     {
       "game_num": 99,
@@ -8837,7 +8874,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 14.0
         }
       ],
       "kingdom": [
@@ -8897,8 +8934,8 @@
         "Empires",
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": 14.0
+      "victory_type": "Province",
+      "avg_score": 26.5
     },
     {
       "game_num": 100,
@@ -8933,7 +8970,7 @@
           "place": 4,
           "name": "Lúlli",
           "tied_with": null,
-          "score": null
+          "score": 36.0
         }
       ],
       "kingdom": [
@@ -8995,8 +9032,8 @@
         "Empires",
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": 36.0
+      "victory_type": "Province",
+      "avg_score": 47.0
     },
     {
       "game_num": 101,
@@ -9031,7 +9068,7 @@
           "place": 4,
           "name": "Krissi",
           "tied_with": null,
-          "score": null
+          "score": 26.0
         }
       ],
       "kingdom": [
@@ -9081,18 +9118,18 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the sheep"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 26.0
+      "victory_type": "Province",
+      "avg_score": 32.75
     },
     {
       "game_num": 102,
@@ -9127,7 +9164,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -9177,18 +9214,18 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the turtle"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Seaside",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 15.0
+      "victory_type": "Province",
+      "avg_score": 22.75
     },
     {
       "game_num": 103,
@@ -9223,7 +9260,7 @@
           "place": 4,
           "name": "Skúli",
           "tied_with": null,
-          "score": null
+          "score": 21.0
         }
       ],
       "kingdom": [
@@ -9282,8 +9319,8 @@
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 21.0
+      "victory_type": "Province",
+      "avg_score": 26.5
     },
     {
       "game_num": 104,
@@ -9318,7 +9355,7 @@
           "place": 4,
           "name": "Ásta",
           "tied_with": null,
-          "score": null
+          "score": 11.0
         }
       ],
       "kingdom": [
@@ -9379,10 +9416,11 @@
       "expansions": [
         "Cornucopia & Guilds",
         "Menagerie",
-        "Prosperity"
+        "Prosperity",
+        "Renaissance"
       ],
-      "victory_type": "Renaissance",
-      "avg_score": 11.0
+      "victory_type": "Province",
+      "avg_score": 14.0
     },
     {
       "game_num": 105,
@@ -9484,10 +9522,11 @@
       "expansions": [
         "Prosperity",
         "Dark Ages",
-        "Allies"
+        "Allies",
+        "Cornucopia & Guilds"
       ],
-      "victory_type": "Cornucopia & Guilds",
-      "avg_score": 37.0
+      "victory_type": "Supply piles",
+      "avg_score": 45.25
     },
     {
       "game_num": 106,
@@ -9522,7 +9561,7 @@
           "place": 4,
           "name": "Arnlaugur",
           "tied_with": null,
-          "score": null
+          "score": 38.0
         }
       ],
       "kingdom": [
@@ -9572,17 +9611,19 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Inherited"
+      "traits": [
+        {
+          "name": "Inherited"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Renaissance",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 38.0
+      "victory_type": "Province",
+      "avg_score": 50.5
     },
     {
       "game_num": 107,
@@ -9617,7 +9658,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 33.0
         }
       ],
       "kingdom": [
@@ -9673,8 +9714,8 @@
         "Nocturne",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 33.0
+      "victory_type": "Colony",
+      "avg_score": 48.5
     },
     {
       "game_num": 108,
@@ -9709,7 +9750,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 29.0
         }
       ],
       "kingdom": [
@@ -9765,8 +9806,8 @@
         "Seaside",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 29.0
+      "victory_type": "Colony",
+      "avg_score": 42.0
     },
     {
       "game_num": 109,
@@ -9801,7 +9842,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 8.0
         }
       ],
       "kingdom": [
@@ -9860,8 +9901,8 @@
         "Adventures",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": 8.0
+      "victory_type": "Province",
+      "avg_score": 11.75
     },
     {
       "game_num": 110,
@@ -9896,7 +9937,7 @@
           "place": 4,
           "name": "Gunni",
           "tied_with": null,
-          "score": null
+          "score": 20.0
         }
       ],
       "kingdom": [
@@ -9956,8 +9997,8 @@
         "Adventures",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": 20.0
+      "victory_type": "Supply piles",
+      "avg_score": 30.25
     },
     {
       "game_num": 111,
@@ -9992,7 +10033,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 16.0
         }
       ],
       "kingdom": [
@@ -10048,8 +10089,8 @@
         "Renaissance",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": 16.0
+      "victory_type": "Province",
+      "avg_score": 25.0
     },
     {
       "game_num": 112,
@@ -10088,7 +10129,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 18.0
         }
       ],
       "kingdom": [
@@ -10144,8 +10185,8 @@
         "Intrigue",
         "Nocturne"
       ],
-      "victory_type": null,
-      "avg_score": 18.0
+      "victory_type": "Province",
+      "avg_score": 26.75
     },
     {
       "game_num": 113,
@@ -10184,7 +10225,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 14.0
         }
       ],
       "kingdom": [
@@ -10240,8 +10281,8 @@
         "Intrigue",
         "Nocturne"
       ],
-      "victory_type": null,
-      "avg_score": 14.0
+      "victory_type": "Province",
+      "avg_score": 20.75
     },
     {
       "game_num": 114,
@@ -10276,7 +10317,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 18.0
         }
       ],
       "kingdom": [
@@ -10331,8 +10372,8 @@
       "expansions": [
         "Base"
       ],
-      "victory_type": null,
-      "avg_score": 18.0
+      "victory_type": "Province",
+      "avg_score": 26.0
     },
     {
       "game_num": 115,
@@ -10367,7 +10408,7 @@
           "place": 4,
           "name": "Hafliði",
           "tied_with": null,
-          "score": null
+          "score": 48.0
         }
       ],
       "kingdom": [
@@ -10426,8 +10467,8 @@
         "Prosperity",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": 48.0
+      "victory_type": "Colony",
+      "avg_score": 60.5
     },
     {
       "game_num": 116,
@@ -10512,8 +10553,8 @@
       "expansions": [
         "Allies"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 29.33
     },
     {
       "game_num": 117,
@@ -10548,7 +10589,7 @@
           "place": 4,
           "name": "Iðunn",
           "tied_with": null,
-          "score": null
+          "score": 14.0
         }
       ],
       "kingdom": [
@@ -10596,11 +10637,10 @@
       "events": [],
       "landmarks": [],
       "projects": [
-        "Barracks"
-      ],
-      "ways": [
+        "Barracks",
         "Citadel"
       ],
+      "ways": [],
       "allies": [],
       "traits": [],
       "prophecy": [],
@@ -10608,8 +10648,8 @@
         "Adventures",
         "Renaissance"
       ],
-      "victory_type": null,
-      "avg_score": 14.0
+      "victory_type": "Province",
+      "avg_score": 22.0
     },
     {
       "game_num": 118,
@@ -10644,7 +10684,7 @@
           "place": 4,
           "name": "Mosi",
           "tied_with": null,
-          "score": null
+          "score": 21.0
         }
       ],
       "kingdom": [
@@ -10698,14 +10738,15 @@
       "ways": [],
       "allies": [],
       "traits": [],
-      "prophecy": [],
+      "prophecy": [
+        "Biding time"
+      ],
       "expansions": [
-        "Biding time",
         "Adventures",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": 21.0
+      "victory_type": "Supply piles",
+      "avg_score": 32.5
     },
     {
       "game_num": 119,
@@ -10740,7 +10781,7 @@
           "place": 4,
           "name": "Mosi",
           "tied_with": null,
-          "score": null
+          "score": -9.0
         }
       ],
       "kingdom": [
@@ -10800,8 +10841,8 @@
         "Adventures",
         "Empires"
       ],
-      "victory_type": null,
-      "avg_score": -9.0
+      "victory_type": "Supply piles",
+      "avg_score": 3.0
     },
     {
       "game_num": 120,
@@ -10836,7 +10877,7 @@
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": null
+          "score": 18.0
         }
       ],
       "kingdom": [
@@ -10891,8 +10932,8 @@
       "expansions": [
         "Nocturne"
       ],
-      "victory_type": null,
-      "avg_score": 18.0
+      "victory_type": "Province",
+      "avg_score": 20.75
     },
     {
       "game_num": 121,
@@ -10969,8 +11010,8 @@
         "Prosperity",
         "Cornucopia & Guilds"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 31.0
     },
     {
       "game_num": 122,
@@ -11047,8 +11088,8 @@
         "Alchemy",
         "Dark Ages"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 33.5
     },
     {
       "game_num": 123,
@@ -11083,7 +11124,7 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": null
+          "score": 12.0
         }
       ],
       "kingdom": [
@@ -11136,14 +11177,15 @@
       "ways": [],
       "allies": [],
       "traits": [],
-      "prophecy": [],
+      "prophecy": [
+        "Bureaucracy"
+      ],
       "expansions": [
-        "Bureaucracy",
         "Renaissance",
         "Rising Sun"
       ],
-      "victory_type": null,
-      "avg_score": 12.0
+      "victory_type": "Province",
+      "avg_score": 20.75
     },
     {
       "game_num": 124,
@@ -11222,20 +11264,23 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the mouse"
       ],
-      "traits": [],
-      "prophecy": [
-        "Fated"
+      "allies": [],
+      "traits": [
+        {
+          "name": "Fated",
+          "card": "Enlarge"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Menagerie",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 22.0
     },
     {
       "game_num": 125,
@@ -11319,8 +11364,8 @@
         "Intrigue",
         "Seaside"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Supply piles",
+      "avg_score": 7.67
     },
     {
       "game_num": 126,
@@ -11398,18 +11443,18 @@
       ],
       "landmarks": [],
       "projects": [],
-      "ways": [],
-      "allies": [
+      "ways": [
         "Way of the sheep"
       ],
+      "allies": [],
       "traits": [],
       "prophecy": [],
       "expansions": [
         "Adventures",
         "Menagerie"
       ],
-      "victory_type": null,
-      "avg_score": null
+      "victory_type": "Province",
+      "avg_score": 31.33
     },
     {
       "game_num": 127,
@@ -11444,7 +11489,7 @@
           "place": 4,
           "name": "Iðunn",
           "tied_with": null,
-          "score": null
+          "score": 45.0
         }
       ],
       "kingdom": [
@@ -11500,8 +11545,8 @@
         "Seaside",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 45.0
+      "victory_type": "Colony",
+      "avg_score": 47.5
     },
     {
       "game_num": 128,
@@ -11536,7 +11581,7 @@
           "place": 4,
           "name": "Matti",
           "tied_with": null,
-          "score": null
+          "score": 10.0
         }
       ],
       "kingdom": [
@@ -11592,8 +11637,8 @@
         "Seaside",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 10.0
+      "victory_type": "Supply piles",
+      "avg_score": 14.0
     },
     {
       "game_num": 129,
@@ -11628,7 +11673,7 @@
           "place": 4,
           "name": "Fúsi",
           "tied_with": null,
-          "score": null
+          "score": 7.0
         }
       ],
       "kingdom": [
@@ -11686,8 +11731,8 @@
         "Seaside",
         "Prosperity"
       ],
-      "victory_type": null,
-      "avg_score": 7.0
+      "victory_type": "Province",
+      "avg_score": 30.25
     },
     {
       "game_num": 130,
@@ -11726,7 +11771,7 @@
           "tied_with": [
             "Fúsi"
           ],
-          "score": null
+          "score": 21.0
         }
       ],
       "kingdom": [
@@ -11778,16 +11823,18 @@
       "projects": [],
       "ways": [],
       "allies": [],
-      "traits": [],
-      "prophecy": [
-        "Friendly"
+      "traits": [
+        {
+          "name": "Friendly"
+        }
       ],
+      "prophecy": [],
       "expansions": [
         "Hinterlands",
         "Plunder"
       ],
-      "victory_type": null,
-      "avg_score": 21.0
+      "victory_type": "Province",
+      "avg_score": 23.5
     }
   ],
   "players": [
@@ -19988,6 +20035,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-02 10:56",
+  "last_updated": "2026-07-02 11:05",
   "upcoming_games": 0
 }
