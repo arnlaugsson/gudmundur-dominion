@@ -11835,6 +11835,308 @@
       ],
       "victory_type": "Province",
       "avg_score": 23.5
+    },
+    {
+      "game_num": 131,
+      "date": "2026-07-07",
+      "location": "Álfheimar",
+      "players": [
+        "Krissi",
+        "Skúli",
+        "Arnór",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 45.0
+        },
+        {
+          "place": 2,
+          "name": "Arnór",
+          "tied_with": null,
+          "score": 33.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 27.0
+        },
+        {
+          "place": 4,
+          "name": "Krissi",
+          "tied_with": null,
+          "score": null
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Search",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Crucible",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Worker's village",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Buried treasure",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Crew",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "First mate",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Mint",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Rabble",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Silver mine",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Trickster",
+          "expansion": "Plunder"
+        }
+      ],
+      "events": [
+        "Bury",
+        "Scrounge"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [
+        {
+          "name": "Shy",
+          "card": "Crucible"
+        }
+      ],
+      "prophecy": [],
+      "expansions": [
+        "Prosperity",
+        "Plunder"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 33.25
+    },
+    {
+      "game_num": 132,
+      "date": "2026-07-07",
+      "location": "Álfheimar",
+      "players": [
+        "Skúli",
+        "Arnór",
+        "Mummi",
+        "Krissi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 39.0
+        },
+        {
+          "place": 3,
+          "name": "Skúli",
+          "tied_with": [
+            "Krissi"
+          ],
+          "score": 21.0
+        },
+        {
+          "place": 3,
+          "name": "Krissi",
+          "tied_with": [
+            "Skúli"
+          ],
+          "score": 21.0
+        },
+        {
+          "place": 4,
+          "name": "Arnór",
+          "tied_with": null,
+          "score": 9.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Siren",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Taskmaster",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Crucible",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "Investment",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Charlatan",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "City",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Pickaxe",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "War chest",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Sack of loot",
+          "expansion": "Plunder"
+        },
+        {
+          "card": "King's court",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [
+        "Avoid"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [
+        {
+          "name": "Patient",
+          "card": "Siren"
+        }
+      ],
+      "prophecy": [],
+      "expansions": [
+        "Prosperity",
+        "Plunder"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 22.5
+    },
+    {
+      "game_num": 133,
+      "date": "2026-07-07",
+      "location": "Álfheimar",
+      "players": [
+        "Arnór",
+        "Mummi",
+        "Krissi",
+        "Skúli"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 15.0
+        },
+        {
+          "place": 2,
+          "name": "Arnór",
+          "tied_with": null,
+          "score": 15.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 13.0
+        },
+        {
+          "place": 4,
+          "name": "Krissi",
+          "tied_with": null,
+          "score": 7.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Border guard",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Vagrant",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Experiment",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Improve",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Inventor",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Scavenger",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Cultist",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Old witch",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Rogue",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Altar",
+          "expansion": "Dark ages"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [
+        "Canal",
+        "City gate"
+      ],
+      "ways": [],
+      "allies": [],
+      "traits": [
+        {
+          "name": "Friendly"
+        }
+      ],
+      "prophecy": [],
+      "expansions": [
+        "Dark Ages",
+        "Renaissance"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 12.5
     }
   ],
   "players": [
@@ -20035,6 +20337,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-08 08:55",
+  "last_updated": "2026-07-08 10:43",
   "upcoming_games": 0
 }
