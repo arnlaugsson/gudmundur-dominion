@@ -12137,6 +12137,99 @@
       ],
       "victory_type": "Supply piles",
       "avg_score": 12.5
+    },
+    {
+      "game_num": 134,
+      "date": "2026-07-10",
+      "location": "Sunnuhvoll",
+      "players": [
+        "Ragnheiður",
+        "Iðunn",
+        "Rakel",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 22.0
+        },
+        {
+          "place": 2,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 19.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 8.0
+        },
+        {
+          "place": 4,
+          "name": "Rakel",
+          "tied_with": null,
+          "score": 6.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Moat",
+          "expansion": "Base"
+        },
+        {
+          "card": "Supplies",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Scrap",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Quarry",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Throne room",
+          "expansion": "Base"
+        },
+        {
+          "card": "Worker's village",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Coven",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Fisherman",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Laboratory",
+          "expansion": "Base"
+        },
+        {
+          "card": "Witch",
+          "expansion": "Base"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Base",
+        "Prosperity",
+        "Menagerie"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 13.75
     }
   ],
   "players": [
@@ -20337,6 +20430,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-10 18:33",
+  "last_updated": "2026-07-10 20:33",
   "upcoming_games": 0
 }
