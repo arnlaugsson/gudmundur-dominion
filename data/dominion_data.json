@@ -3163,7 +3163,7 @@
           "place": 4,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": null
+          "score": 40.0
         }
       ],
       "kingdom": [
@@ -3222,7 +3222,7 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 58.33
+      "avg_score": 53.75
     },
     {
       "game_num": 37,
@@ -20430,6 +20430,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-11 20:19",
+  "last_updated": "2026-07-11 22:18",
   "upcoming_games": 0
 }
