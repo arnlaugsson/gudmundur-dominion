@@ -11284,7 +11284,7 @@
     },
     {
       "game_num": 125,
-      "date": "2026-05-02",
+      "date": "2026-05-22",
       "location": "Álfheimar",
       "players": [
         "Skúli",
@@ -20430,6 +20430,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-12 12:22",
+  "last_updated": "2026-07-12 14:32",
   "upcoming_games": 0
 }
