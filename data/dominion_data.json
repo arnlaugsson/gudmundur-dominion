@@ -12230,6 +12230,103 @@
       ],
       "victory_type": "Supply piles",
       "avg_score": 13.75
+    },
+    {
+      "game_num": 135,
+      "date": "2026-07-12",
+      "location": "Ásabyggð 38",
+      "players": [
+        "Ragnheiður",
+        "Skúli",
+        "Iðunn",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 52.0
+        },
+        {
+          "place": 2,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 39.0
+        },
+        {
+          "place": 3,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 39.0
+        },
+        {
+          "place": 4,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 19.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Snowy village",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Bureaucrat",
+          "expansion": "Base"
+        },
+        {
+          "card": "Cavalry",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Clerk",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "Fisherman",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Library",
+          "expansion": "Base"
+        },
+        {
+          "card": "Mastermind",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Destrier",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Wayfarer",
+          "expansion": "Menagerie"
+        },
+        {
+          "card": "Forge",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [
+        "Pursue"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [
+        "Way of the butterfly"
+      ],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Base",
+        "Prosperity",
+        "Menagerie"
+      ],
+      "victory_type": "Colony",
+      "avg_score": 37.25
     }
   ],
   "players": [
@@ -20430,6 +20527,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-07-12 16:22",
+  "last_updated": "2026-07-12 18:21",
   "upcoming_games": 0
 }
