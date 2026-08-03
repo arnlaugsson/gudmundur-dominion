@@ -11777,13 +11777,13 @@
           "place": 3,
           "name": "Skúli",
           "tied_with": null,
-          "score": 27.0
+          "score": 28.0
         },
         {
           "place": 4,
           "name": "Krissi",
           "tied_with": null,
-          "score": null
+          "score": 27.0
         }
       ],
       "kingdom": [
@@ -20441,6 +20441,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-03 20:32",
+  "last_updated": "2026-08-03 22:24",
   "upcoming_games": 0
 }
