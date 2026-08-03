@@ -854,102 +854,6 @@
     },
     {
       "game_num": 11,
-      "date": "2026-02-15",
-      "location": "Selvogsgrunn",
-      "players": [
-        "Fúsi",
-        "Halla",
-        "Ragnheiður",
-        "Mummi"
-      ],
-      "results": [
-        {
-          "place": 1,
-          "name": "Fúsi",
-          "tied_with": null,
-          "score": 31.0
-        },
-        {
-          "place": 2,
-          "name": "Halla",
-          "tied_with": [
-            "Mummi"
-          ],
-          "score": 29.0
-        },
-        {
-          "place": 2,
-          "name": "Mummi",
-          "tied_with": [
-            "Halla"
-          ],
-          "score": 29.0
-        },
-        {
-          "place": 4,
-          "name": "Ragnheiður",
-          "tied_with": null,
-          "score": 18.0
-        }
-      ],
-      "kingdom": [
-        {
-          "card": "Faithful hound",
-          "expansion": "Nocturne"
-        },
-        {
-          "card": "Bridge",
-          "expansion": "Intrigue"
-        },
-        {
-          "card": "Mill",
-          "expansion": "Intrigue"
-        },
-        {
-          "card": "Mining village",
-          "expansion": "Intrigue"
-        },
-        {
-          "card": "Courtier",
-          "expansion": "Intrigue"
-        },
-        {
-          "card": "Crypt",
-          "expansion": "Nocturne"
-        },
-        {
-          "card": "Patrol",
-          "expansion": "Intrigue"
-        },
-        {
-          "card": "Pooka",
-          "expansion": "Nocturne"
-        },
-        {
-          "card": "Sacred grove",
-          "expansion": "Nocturne"
-        },
-        {
-          "card": "Nobles",
-          "expansion": "Intrigue"
-        }
-      ],
-      "events": [],
-      "landmarks": [],
-      "projects": [],
-      "ways": [],
-      "allies": [],
-      "traits": [],
-      "prophecy": [],
-      "expansions": [
-        "Intrigue",
-        "Nocturne"
-      ],
-      "victory_type": "Province",
-      "avg_score": 26.75
-    },
-    {
-      "game_num": 11,
       "date": "2023-02-19",
       "location": "Álfheimar",
       "players": [
@@ -10103,6 +10007,102 @@
       "avg_score": 25.0
     },
     {
+      "game_num": 111,
+      "date": "2026-02-15",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Fúsi",
+        "Halla",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Fúsi",
+          "tied_with": null,
+          "score": 31.0
+        },
+        {
+          "place": 2,
+          "name": "Halla",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 29.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": [
+            "Halla"
+          ],
+          "score": 29.0
+        },
+        {
+          "place": 4,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 18.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Faithful hound",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Bridge",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Mill",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Mining village",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Courtier",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Crypt",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Patrol",
+          "expansion": "Intrigue"
+        },
+        {
+          "card": "Pooka",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Sacred grove",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Nobles",
+          "expansion": "Intrigue"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Intrigue",
+        "Nocturne"
+      ],
+      "victory_type": "Province",
+      "avg_score": 26.75
+    },
+    {
       "game_num": 112,
       "date": "2026-02-15",
       "location": "Selvogsgrunn",
@@ -11625,7 +11625,7 @@
         },
         {
           "card": "Apothecary",
-          "expansion": null
+          "expansion": "Alchemy"
         },
         {
           "card": "Alchemist",
@@ -20441,6 +20441,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-02 22:20",
+  "last_updated": "2026-08-03 00:40",
   "upcoming_games": 0
 }
