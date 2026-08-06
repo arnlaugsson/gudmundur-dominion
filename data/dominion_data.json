@@ -12241,6 +12241,198 @@
       ],
       "victory_type": "Colony",
       "avg_score": 37.25
+    },
+    {
+      "game_num": 135,
+      "date": "2026-08-05",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Helgi",
+        "Ragnheiður",
+        "Mummi",
+        "Hjödda"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 27.0
+        },
+        {
+          "place": 2,
+          "name": "Hjödda",
+          "tied_with": null,
+          "score": 21.0
+        },
+        {
+          "place": 3,
+          "name": "Helgi",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 15.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": [
+            "Helgi"
+          ],
+          "score": 21.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Border guard",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Ducat",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Acting troupe",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Flag bearer",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Patron",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Apprentice",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Villain",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Scrying pool",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Philosopher's stone",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Golem",
+          "expansion": "Alchemy"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Alchemy",
+        "Renaissance"
+      ],
+      "victory_type": "Province",
+      "avg_score": 21.0
+    },
+    {
+      "game_num": 136,
+      "date": "2026-08-05",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Hjödda",
+        "Helgi",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 27.0
+        },
+        {
+          "place": 2,
+          "name": "Hjödda",
+          "tied_with": [
+            "Mummi"
+          ],
+          "score": 19.0
+        },
+        {
+          "place": 2,
+          "name": "Mummi",
+          "tied_with": [
+            "Hjödda"
+          ],
+          "score": 17.0
+        },
+        {
+          "place": 4,
+          "name": "Helgi",
+          "tied_with": null,
+          "score": 17.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Improve",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Cargo ship",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Hideout",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Inventor",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Priest",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Recruiter",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Spices",
+          "expansion": "Renaissance"
+        },
+        {
+          "card": "Transmute",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "University",
+          "expansion": "Alchemy"
+        },
+        {
+          "card": "Familiar",
+          "expansion": "Alchemy"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Alchemy",
+        "Renaissance"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 20.0
     }
   ],
   "players": [
@@ -20441,6 +20633,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-05 22:58",
+  "last_updated": "2026-08-06 02:33",
   "upcoming_games": 0
 }
