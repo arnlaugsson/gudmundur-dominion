@@ -12261,25 +12261,25 @@
         },
         {
           "place": 2,
-          "name": "Hjödda",
-          "tied_with": null,
+          "name": "Mummi",
+          "tied_with": [
+            "Hjödda"
+          ],
           "score": 21.0
         },
         {
-          "place": 3,
-          "name": "Helgi",
+          "place": 2,
+          "name": "Hjödda",
           "tied_with": [
             "Mummi"
           ],
-          "score": 15.0
+          "score": 21.0
         },
         {
-          "place": 3,
-          "name": "Mummi",
-          "tied_with": [
-            "Helgi"
-          ],
-          "score": 21.0
+          "place": 4,
+          "name": "Helgi",
+          "tied_with": null,
+          "score": 15.0
         }
       ],
       "kingdom": [
@@ -12358,23 +12358,23 @@
         {
           "place": 2,
           "name": "Hjödda",
-          "tied_with": [
-            "Mummi"
-          ],
+          "tied_with": null,
           "score": 19.0
         },
         {
-          "place": 2,
-          "name": "Mummi",
+          "place": 3,
+          "name": "Helgi",
           "tied_with": [
-            "Hjödda"
+            "Mummi"
           ],
           "score": 17.0
         },
         {
-          "place": 4,
-          "name": "Helgi",
-          "tied_with": null,
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": [
+            "Helgi"
+          ],
           "score": 17.0
         }
       ],
@@ -20633,6 +20633,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-08 10:32",
+  "last_updated": "2026-08-08 12:47",
   "upcoming_games": 0
 }
