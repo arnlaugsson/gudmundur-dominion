@@ -556,7 +556,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Transmongrify",
+          "card": "Transmogrify",
           "expansion": "Adventures"
         },
         {
@@ -8535,7 +8535,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Transmongrify",
+          "card": "Transmogrify",
           "expansion": "Adventures"
         },
         {
@@ -8626,7 +8626,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Transmongrify",
+          "card": "Transmogrify",
           "expansion": "Adventures"
         },
         {
@@ -20633,6 +20633,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-14 09:05",
+  "last_updated": "2026-08-14 10:57",
   "upcoming_games": 0
 }
