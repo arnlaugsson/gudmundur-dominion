@@ -12433,6 +12433,98 @@
       ],
       "victory_type": "Supply piles",
       "avg_score": 20.0
+    },
+    {
+      "game_num": 137,
+      "date": "2026-08-16",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Hafliði",
+        "Hallgrímur",
+        "Skúli",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 26.0
+        },
+        {
+          "place": 2,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 26.0
+        },
+        {
+          "place": 3,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 21.0
+        },
+        {
+          "place": 4,
+          "name": "Skúli",
+          "tied_with": null,
+          "score": 19.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Native village",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Changeling",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Lookout",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Cemetery",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Sailor",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Bazaar",
+          "expansion": "Seaside"
+        },
+        {
+          "card": "Cobbler",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Crypt",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Cursed village",
+          "expansion": "Nocturne"
+        },
+        {
+          "card": "Tactician",
+          "expansion": "Seaside"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Seaside",
+        "Nocturne"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 23.0
     }
   ],
   "players": [
@@ -20633,6 +20725,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-16 14:22",
+  "last_updated": "2026-08-16 16:24",
   "upcoming_games": 0
 }
