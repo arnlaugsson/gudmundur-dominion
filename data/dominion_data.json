@@ -12523,7 +12523,7 @@
         "Seaside",
         "Nocturne"
       ],
-      "victory_type": "Supply piles",
+      "victory_type": "Province",
       "avg_score": 23.0
     }
   ],
@@ -20725,6 +20725,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-16 16:24",
+  "last_updated": "2026-08-16 18:28",
   "upcoming_games": 0
 }
