@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth'
 import { collection, doc, getDoc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
 import { auth, googleProvider, db } from '../firebase'
 
@@ -36,6 +36,18 @@ export function AuthProvider({ children }) {
   const [allowedUsers, setAllowedUsers] = useState(null)
 
   useEffect(() => {
+    // Handle returning from signInWithRedirect (Safari fallback)
+    getRedirectResult(auth)
+      .then(async (result) => {
+        if (!result?.user) return
+        const role = await loadUserRole(result.user)
+        if (!role) {
+          await signOut(auth)
+          setAuthError('Þú hefur ekki aðgang. Hafðu samband við stjórnanda.')
+        }
+      })
+      .catch(() => {})
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       try {
         if (firebaseUser) {
@@ -77,7 +89,10 @@ export function AuthProvider({ children }) {
       }
       setUser(role)
     } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user') {
+      if (err.code === 'auth/popup-blocked') {
+        // Safari blocks popups — fall back to redirect flow
+        signInWithRedirect(auth, googleProvider)
+      } else if (err.code !== 'auth/popup-closed-by-user') {
         setAuthError('Innskráning mistókst.')
       }
     }
