@@ -539,27 +539,216 @@ def parse_spreadsheet(xlsx_path):
     games.sort(key=lambda g: g["game_num"])
 
     print(f"Parsed {len(games)} games, skipped {skipped} incomplete")
-    return games, skipped
+
+    sheet_cards = parse_card_sheets(wb)
+    print(f"Parsed {len(sheet_cards)} cards from {len(CARD_SHEETS)} expansion sheets")
+
+    return games, skipped, sheet_cards
 
 
 
-# --- Card-list repair -------------------------------------------------------
-# Only the "Öll spil" sheet is parsed here; the per-expansion card sheets
-# (Base, Intrigue, ... Promo) are not. That means `cards` is carried over from
-# the original one-off import on every sync, and corrections made in those
-# sheets never reach the site on their own. Until the card sheets are parsed
-# too, known problems are repaired below so a sync converges on correct data.
+# --- Card list ---------------------------------------------------------------
+# Every expansion has its own sheet listing that set's cards. Those sheets are
+# the authority for a card's spelling, cost and notes; `cards` in the JSON is
+# reconciled against them on each sync so a correction made in the spreadsheet
+# reaches the site on its own.
+CARD_SHEETS = (
+    "Base", "Intrigue", "Seaside", "Alchemy", "Prosperity", "Cornucopia & Guilds",
+    "Hinterlands", "Dark Ages", "Adventures", "Empires", "Nocturne", "Renaissance",
+    "Menagerie", "Allies", "Plunder", "Rising sun", "Promo",
+)
 
-# Misspellings in the card list, mapped to the spelling the card sheets use.
-CARD_NAME_FIXES = {
-    "Transmongrify": "Transmogrify",
+# Column headers inside a card block, mapped to the field they fill. The count
+# column is read but discarded: it counts appearances, while times_used counts
+# games, so it is recomputed from the games instead (see count_card_usage).
+CARD_COLUMNS = {
+    "nafn": "name",
+    "kostnaður": "cost",
+    "skuld": "debt",
+    "potion": "potion",
+    "athugasemdir": "notes",
 }
 
-# Entries that duplicate a real card under the wrong expansion. Keyed by
+# Sheets put non-Kingdom cards in their own labelled block off to the right.
+# The label sits in the block's name column and names the type of its rows.
+CARD_BLOCK_TYPES = {
+    "events": "Event",
+    "landmarks": "Landmark",
+    "projects": "Project",
+    "ways": "Way",
+    "allies": "Ally",
+    "prophecies": "Prophecy",
+    "traits": "Trait",
+}
+
+# Kingdom blocks run unbroken apart from the odd single spacer row.
+CARD_BLOCK_MAX_GAP = 3
+# How far to hunt for the labelled blocks described above.
+CARD_LABEL_SCAN_ROWS = 60
+CARD_LABEL_SCAN_COLS = 30
+
+# Misspellings in the card list, mapped to the spelling the card sheets use.
+# Only genuine misspellings belong here — a name that differs from the sheet
+# purely by capitalisation keeps the capitalisation the card list already has,
+# because that is what the card images in Storage are named after.
+CARD_NAME_FIXES = {
+    "Transmongrify": "Transmogrify",
+    "Apotechary": "Apothecary",
+    # Two Plunder traits typed into one cell on the Plunder sheet; "Rich" has a
+    # row of its own directly below, so this one is "Reckless".
+    "RecklessRich": "Reckless",
+}
+
+# Entries that duplicate a real card under a wrong name or expansion. Keyed by
 # (name, expansion) so the correct entry with the same name survives.
 CARD_DROPS = {
     ("Transmogrify", "Intrigue"),
+    ("Harbringer", "Base"),
 }
+
+# Kept lowercase inside a title, matching how the card images are named
+# (Way_of_the_Goat, Salt_the_Earth).
+TITLE_CASE_SMALL_WORDS = frozenset({
+    "a", "an", "and", "of", "the", "to", "in", "on", "for", "with", "at", "by",
+})
+
+
+def title_case_card_name(name):
+    """Title-case a name from the sheets, which capitalise inconsistently.
+
+    Applied only to cards being added for the first time. A card already in the
+    list keeps its existing capitalisation, which has been corrected by hand and
+    which the card image filenames depend on.
+    """
+    words = name.split(" ")
+    out = []
+    for index, word in enumerate(words):
+        if not word:
+            continue
+        lower = word.lower()
+        if index > 0 and lower in TITLE_CASE_SMALL_WORDS:
+            out.append(lower)
+        elif word[:1].islower():
+            out.append(word[:1].upper() + word[1:])
+        else:
+            out.append(word)
+    return " ".join(out)
+
+
+def card_block_columns(ws, header_row, name_col):
+    """Map field name -> column for one card block, from its header row."""
+    columns = {"name": name_col}
+    for col in range(name_col, name_col + 6):
+        header = read_string_cell(ws, header_row, col)
+        if header is None:
+            continue
+        field = CARD_COLUMNS.get(header.lower())
+        if field and field != "name":
+            columns[field] = col
+    return columns
+
+
+def read_card_block(ws, header_row, name_col, card_type, expansion):
+    """Read the rows of one card block, starting below its header row."""
+    columns = card_block_columns(ws, header_row, name_col)
+    cards = []
+    blanks = 0
+    row = header_row + 1
+
+    while row <= ws.max_row and blanks < CARD_BLOCK_MAX_GAP:
+        name = read_string_cell(ws, row, name_col)
+        if name is None:
+            blanks += 1
+            row += 1
+            continue
+        # A block ends where the next one is labelled, e.g. Plunder stacks
+        # "Traits" directly below its events.
+        if name.lower() in CARD_BLOCK_TYPES:
+            break
+
+        blanks = 0
+        card = {
+            "name": CARD_NAME_FIXES.get(name, name),
+            "expansion": expansion,
+            "card_type": card_type,
+        }
+
+        # Only fields the block actually records are carried. A blank cell means
+        # "not written down", never "clear what is already known": the sheets
+        # leave costs off every Landmark/Way/Ally/Prophecy block entirely, and
+        # omit the odd Kingdom cost (Duchess) and 2nd-edition note (Great Hall).
+        cost = read_cell(ws, row, columns["cost"]) if "cost" in columns else None
+        if isinstance(cost, (int, float)):
+            card["cost"] = int(cost)
+
+        debt = read_cell(ws, row, columns["debt"]) if "debt" in columns else None
+        if isinstance(debt, (int, float)) and debt:
+            card["debt"] = int(debt)
+
+        potion = read_cell(ws, row, columns["potion"]) if "potion" in columns else None
+        if potion:
+            card["potion"] = True
+
+        notes = read_string_cell(ws, row, columns["notes"]) if "notes" in columns else None
+        if notes:
+            card["notes"] = notes
+            card["removed"] = notes == "Fjarlægt"
+
+        cards.append(card)
+        row += 1
+
+    return cards
+
+
+def parse_card_sheets(wb):
+    """Parse every expansion sheet into a flat list of cards."""
+    cards = []
+    for sheet in CARD_SHEETS:
+        if sheet not in wb.sheetnames:
+            print(f"Warning: card sheet {sheet!r} not found, skipping")
+            continue
+        ws = wb[sheet]
+        expansion = normalize_expansion(sheet)
+
+        cards += read_card_block(ws, 2, 1, "Kingdom", expansion)
+
+        for row in range(1, CARD_LABEL_SCAN_ROWS + 1):
+            for col in range(1, CARD_LABEL_SCAN_COLS + 1):
+                if row == 1 and col == 1:
+                    continue  # the sheet's own title, not a block label
+                label = read_string_cell(ws, row, col)
+                if label is None:
+                    continue
+                card_type = CARD_BLOCK_TYPES.get(label.lower())
+                if card_type:
+                    cards += read_card_block(ws, row, col, card_type, expansion)
+
+    return dedupe_sheet_cards(cards)
+
+
+def dedupe_sheet_cards(cards):
+    """Collapse cards listed more than once on a sheet.
+
+    Dark Ages lists "Shelters" twice, once with a cost and once without. Keep
+    whichever entry carries the most detail so the two do not overwrite each
+    other on alternate syncs.
+    """
+    def detail(card):
+        return sum(1 for value in card.values() if value not in (None, "", False))
+
+    best = {}
+    for card in cards:
+        key = card["name"].lower()
+        if key not in best or detail(card) > detail(best[key]):
+            best[key] = card
+
+    if len(best) != len(cards):
+        for key, card in best.items():
+            if sum(1 for c in cards if c["name"].lower() == key) > 1:
+                print(f"Card listed more than once on its sheet: {card['name']} "
+                      f"({card['expansion']}) — kept the fullest entry")
+
+    return list(best.values())
 
 
 def card_names_used(game):
@@ -597,15 +786,33 @@ def count_card_usage(games):
     return counts
 
 
-def repair_cards(cards, games):
-    """Drop bogus entries, fix known misspellings, merge duplicates, recount use."""
-    counts = count_card_usage(games)
-    repaired = []
+# Fields the expansion sheets may speak for. A sheet only overrides a field it
+# actually recorded, so anything missing there leaves the card list untouched.
+CARD_SHEET_FIELDS = ("expansion", "cost", "debt", "potion", "notes", "removed", "card_type")
+
+# Defaults for a card being added from a sheet that did not record these.
+CARD_DEFAULTS = {"cost": None, "debt": None, "potion": False, "notes": None, "removed": False}
+
+
+def sync_cards(cards, sheet_cards, games):
+    """Reconcile the card list against the expansion sheets.
+
+    The sheets decide a card's details, but a card already in the list keeps its
+    own name: those have been corrected by hand and the card images in Storage
+    are named after them, so adopting the sheet's capitalisation would silently
+    break every image. Genuine misspellings are corrected through
+    CARD_NAME_FIXES instead.
+
+    Cards absent from the sheets are kept, not deleted. Split-pile members
+    (Knights, Augurs, ...), Loot and the always-in-supply cards are all real
+    cards that the sheets simply do not list.
+    """
+    merged = []
     by_name = {}
 
     for card in cards:
         if (card.get("name"), card.get("expansion")) in CARD_DROPS:
-            print(f"Dropped bogus card entry: {card['name']} ({card['expansion']})")
+            print(f"Dropped duplicate card entry: {card['name']} ({card['expansion']})")
             continue
 
         card = dict(card)
@@ -626,15 +833,46 @@ def repair_cards(cards, games):
             continue
 
         by_name[key] = card
-        repaired.append(card)
+        merged.append(card)
 
-    for card in repaired:
+    added = 0
+    updated = 0
+    for sheet_card in sheet_cards:
+        key = sheet_card["name"].lower()
+        existing = by_name.get(key)
+
+        if existing is None:
+            new_card = dict(CARD_DEFAULTS)
+            new_card.update(sheet_card)
+            new_card["name"] = title_case_card_name(sheet_card["name"])
+            new_card["times_used"] = 0
+            by_name[key] = new_card
+            merged.append(new_card)
+            added += 1
+            continue
+
+        for field in CARD_SHEET_FIELDS:
+            if field not in sheet_card:
+                continue
+            if existing.get(field) != sheet_card[field]:
+                existing[field] = sheet_card[field]
+                updated += 1
+
+    unlisted = [c["name"] for c in merged if c["name"].lower() not in
+                {s["name"].lower() for s in sheet_cards}]
+
+    counts = count_card_usage(games)
+    for card in merged:
         card["times_used"] = counts.get(card["name"].lower(), 0)
 
-    return repaired
+    print(f"Cards: {len(cards)} -> {len(merged)} "
+          f"({added} added from expansion sheets, {updated} fields updated)")
+    print(f"Cards not listed on any expansion sheet (kept): {len(unlisted)}")
+
+    return merged
 
 
-def update_json(games, upcoming_count):
+def update_json(games, sheet_cards, upcoming_count):
     """Update dominion_data.json with new games array."""
     if JSON_FILE.exists():
         with open(JSON_FILE, encoding="utf-8") as f:
@@ -646,7 +884,7 @@ def update_json(games, upcoming_count):
     new_data = {k: v for k, v in data.items() if k != "legacy_games"}
     new_data["games"] = games
     if new_data.get("cards"):
-        new_data["cards"] = repair_cards(new_data["cards"], games)
+        new_data["cards"] = sync_cards(new_data["cards"], sheet_cards, games)
     new_data["last_updated"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     new_data["upcoming_games"] = upcoming_count
 
@@ -670,11 +908,11 @@ def main():
         xlsx_path = DOWNLOAD_PATH
         download_spreadsheet(xlsx_path)
 
-    games, skipped = parse_spreadsheet(xlsx_path)
+    games, skipped, sheet_cards = parse_spreadsheet(xlsx_path)
     # Only count games beyond the current max completed game as pending
     max_completed = max((g["game_num"] for g in games if g["results"]), default=0)
     pending = sum(1 for g in games if g["game_num"] > max_completed and g["players"] and not g["results"])
-    update_json(games, pending)
+    update_json(games, sheet_cards, pending)
 
 
 if __name__ == "__main__":
