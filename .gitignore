@@ -15,6 +15,10 @@ sa.json
 # Data (downloaded at build time)
 data/spreadsheet.xlsx
 
+# Local backup of the card images. These are served from Firebase Storage
+# (cards/{slug}.jpg); the local copy is ~318 MB and must not enter the repo.
+images/
+
 # OS
 .DS_Store
 Thumbs.db
