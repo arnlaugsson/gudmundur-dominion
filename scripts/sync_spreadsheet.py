@@ -40,6 +40,9 @@ SECTION_LABELS = {
     "date": ("Dagsetning", "exact"),
     "players": ("Spilarar", "exact"),
     "kingdom": ("Kingdom", "prefix"),
+    # Row labelled "Auka spil" is an 11th kingdom-card slot, not a section of
+    # its own. It is folded into the kingdom block in detect_layout().
+    "kingdom_extra": ("Auka spil", "exact"),
     "events": ("Event", "prefix"),
     "landmarks": ("Landmark", "prefix"),
     "projects": ("Project", "exact"),
@@ -99,11 +102,19 @@ def detect_layout(ws):
     def block(row):
         return (row, next_label_row(row) - 1)
 
+    # "Auka spil" holds an 11th kingdom card. Because it carries its own label
+    # it would otherwise close the kingdom block early and the card would be
+    # dropped, so extend the block over it when it sits directly below.
+    kingdom_block = block(found["kingdom"])
+    extra = found.get("kingdom_extra")
+    if extra is not None and extra == kingdom_block[1] + 1:
+        kingdom_block = (kingdom_block[0], block(extra)[1])
+
     layout = {
         "game_num": ROW_GAME_NUM,
         "date": found["date"] or 1,
         "players": block(found["players"]),
-        "kingdom": block(found["kingdom"]),
+        "kingdom": kingdom_block,
         "events": block(found["events"]) if found["events"] else None,
         "landmarks": block(found["landmarks"]) if found["landmarks"] else None,
         "projects": block(found["projects"]) if found["projects"] else None,
@@ -532,6 +543,97 @@ def parse_spreadsheet(xlsx_path):
 
 
 
+# --- Card-list repair -------------------------------------------------------
+# Only the "Öll spil" sheet is parsed here; the per-expansion card sheets
+# (Base, Intrigue, ... Promo) are not. That means `cards` is carried over from
+# the original one-off import on every sync, and corrections made in those
+# sheets never reach the site on their own. Until the card sheets are parsed
+# too, known problems are repaired below so a sync converges on correct data.
+
+# Misspellings in the card list, mapped to the spelling the card sheets use.
+CARD_NAME_FIXES = {
+    "Transmongrify": "Transmogrify",
+}
+
+# Entries that duplicate a real card under the wrong expansion. Keyed by
+# (name, expansion) so the correct entry with the same name survives.
+CARD_DROPS = {
+    ("Transmogrify", "Intrigue"),
+}
+
+
+def card_names_used(game):
+    """Every card/event/landmark/... name a game references."""
+    names = []
+    for entry in game.get("kingdom") or []:
+        if isinstance(entry, dict) and entry.get("card"):
+            names.append(entry["card"])
+    for key in ("events", "landmarks", "projects", "ways", "allies", "prophecy"):
+        for value in game.get(key) or []:
+            if isinstance(value, str):
+                names.append(value)
+    for trait in game.get("traits") or []:
+        if not isinstance(trait, dict):
+            continue
+        if trait.get("name"):
+            names.append(trait["name"])
+        # The pile a trait is attached to is a kingdom pile in that game.
+        if trait.get("card"):
+            names.append(trait["card"])
+    return names
+
+
+def count_card_usage(games):
+    """Map lowercased card name -> number of games it appears in.
+
+    Matched case-insensitively: "Öll spil" and the card list disagree on
+    capitalisation for many names (e.g. "Wishing well" vs "Wishing Well"),
+    and a case-sensitive count silently reports 0 for those.
+    """
+    counts = {}
+    for game in games:
+        for name in {n.lower() for n in card_names_used(game)}:
+            counts[name] = counts.get(name, 0) + 1
+    return counts
+
+
+def repair_cards(cards, games):
+    """Drop bogus entries, fix known misspellings, merge duplicates, recount use."""
+    counts = count_card_usage(games)
+    repaired = []
+    by_name = {}
+
+    for card in cards:
+        if (card.get("name"), card.get("expansion")) in CARD_DROPS:
+            print(f"Dropped bogus card entry: {card['name']} ({card['expansion']})")
+            continue
+
+        card = dict(card)
+        fixed = CARD_NAME_FIXES.get(card.get("name"))
+        if fixed:
+            print(f"Renamed card: {card['name']} -> {fixed}")
+            card["name"] = fixed
+
+        key = card["name"].lower()
+        existing = by_name.get(key)
+        if existing is not None:
+            # Same card listed twice; fill blanks from the later entry rather
+            # than discarding data (e.g. Shelters, listed with and without cost).
+            for field, value in card.items():
+                if existing.get(field) in (None, "") and value not in (None, ""):
+                    existing[field] = value
+            print(f"Merged duplicate card entry: {card['name']}")
+            continue
+
+        by_name[key] = card
+        repaired.append(card)
+
+    for card in repaired:
+        card["times_used"] = counts.get(card["name"].lower(), 0)
+
+    return repaired
+
+
 def update_json(games, upcoming_count):
     """Update dominion_data.json with new games array."""
     if JSON_FILE.exists():
@@ -543,6 +645,8 @@ def update_json(games, upcoming_count):
     # Construct a new dict instead of mutating the loaded one
     new_data = {k: v for k, v in data.items() if k != "legacy_games"}
     new_data["games"] = games
+    if new_data.get("cards"):
+        new_data["cards"] = repair_cards(new_data["cards"], games)
     new_data["last_updated"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     new_data["upcoming_games"] = upcoming_count
 
