@@ -12525,6 +12525,106 @@
       ],
       "victory_type": "Province",
       "avg_score": 23.0
+    },
+    {
+      "game_num": 138,
+      "date": "2026-08-29",
+      "location": "Selvogsgrunn",
+      "players": [
+        "Iðunn",
+        "Skúli",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 22.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": [
+            "Ragnheiður"
+          ],
+          "score": 16.0
+        },
+        {
+          "place": 2,
+          "name": "Ragnheiður",
+          "tied_with": [
+            "Skúli"
+          ],
+          "score": 16.0
+        },
+        {
+          "place": 4,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 8.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Page",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Merchant camp",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Odysseys",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Underling",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Messenger",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Transmogrify",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Barbarian",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Contract",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Distant lands",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Storyteller",
+          "expansion": "Adventures"
+        }
+      ],
+      "events": [
+        "Inheritance"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [
+        "Market towns"
+      ],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Adventures",
+        "Allies"
+      ],
+      "victory_type": "Supply piles",
+      "avg_score": 15.5
     }
   ],
   "players": [
@@ -20725,6 +20825,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-08-29 16:17",
+  "last_updated": "2026-08-29 20:29",
   "upcoming_games": 0
 }
