@@ -12649,6 +12649,98 @@
       ],
       "victory_type": "Supply piles",
       "avg_score": 15.5
+    },
+    {
+      "game_num": 139,
+      "date": "2026-09-05",
+      "location": "Sigtún",
+      "players": [
+        "Inga María",
+        "Ragnheiður",
+        "Mummi",
+        "Kiddi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 75.0
+        },
+        {
+          "place": 2,
+          "name": "Kiddi",
+          "tied_with": null,
+          "score": 44.0
+        },
+        {
+          "place": 3,
+          "name": "Inga María",
+          "tied_with": null,
+          "score": 37.0
+        },
+        {
+          "place": 4,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 34.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Peasant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Innkeeper",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Ranger",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Sacrifice",
+          "expansion": "Empires"
+        },
+        {
+          "card": "Capital city",
+          "expansion": "Allies"
+        },
+        {
+          "card": "Graverobber",
+          "expansion": "Dark ages"
+        },
+        {
+          "card": "Wine merchant",
+          "expansion": "Adventures"
+        },
+        {
+          "card": "Grand market",
+          "expansion": "Prosperity"
+        },
+        {
+          "card": "King's court",
+          "expansion": "Prosperity"
+        }
+      ],
+      "events": [
+        "Delve"
+      ],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Prosperity",
+        "Adventures",
+        "Empires",
+        "Allies"
+      ],
+      "victory_type": "Colony",
+      "avg_score": 47.5
     }
   ],
   "players": [
@@ -14448,7 +14540,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 8,
+      "times_used": 9,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14503,7 +14595,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 10,
+      "times_used": 11,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15581,7 +15673,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15702,7 +15794,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 5,
+      "times_used": 6,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15845,7 +15937,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 5,
+      "times_used": 6,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15988,7 +16080,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 3,
+      "times_used": 4,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -16153,7 +16245,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -17407,7 +17499,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -17451,7 +17543,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 4,
+      "times_used": 5,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -18492,7 +18584,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Event",
       "isSecondEdition": false
@@ -21178,6 +21270,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-09-06 08:24",
+  "last_updated": "2026-09-06 13:25",
   "upcoming_games": 0
 }
