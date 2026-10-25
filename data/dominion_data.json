@@ -12712,6 +12712,10 @@
           "expansion": "Dark ages"
         },
         {
+          "card": "Mint",
+          "expansion": "Prosperity"
+        },
+        {
           "card": "Wine merchant",
           "expansion": "Adventures"
         },
@@ -12741,6 +12745,187 @@
       ],
       "victory_type": "Colony",
       "avg_score": 47.5
+    },
+    {
+      "game_num": 140,
+      "date": "2026-10-24",
+      "location": "Laugarás",
+      "players": [
+        "Iðunn",
+        "Skúli",
+        "Ragnheiður",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 36.0
+        },
+        {
+          "place": 2,
+          "name": "Skúli",
+          "tied_with": [
+            "Ragnheiður"
+          ],
+          "score": 38.0
+        },
+        {
+          "place": 2,
+          "name": "Ragnheiður",
+          "tied_with": [
+            "Skúli"
+          ],
+          "score": 38.0
+        },
+        {
+          "place": 4,
+          "name": "Iðunn",
+          "tied_with": null,
+          "score": 36.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Menagerie (spilið)",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Scheme",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Trader",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Trail",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Remake",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Cauldron",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Jester",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Journeyman",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Stables",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Fairgrounds",
+          "expansion": "Cornucopia & Guilds"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Hinterlands",
+        "Cornucopia & Guilds"
+      ],
+      "victory_type": "Province",
+      "avg_score": 37.0
+    },
+    {
+      "game_num": 141,
+      "date": "2026-10-25",
+      "location": "Laugarás",
+      "players": [
+        "Arnlaugur",
+        "Hallgrímur",
+        "Mummi"
+      ],
+      "results": [
+        {
+          "place": 1,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 31.0
+        },
+        {
+          "place": 2,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 30.0
+        },
+        {
+          "place": 3,
+          "name": "Arnlaugur",
+          "tied_with": null,
+          "score": 23.0
+        }
+      ],
+      "kingdom": [
+        {
+          "card": "Fool's gold",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Stonemason",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Develop",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Advisor",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Farmhands",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Trail",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Highway",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Hunting party",
+          "expansion": "Cornucopia & Guilds"
+        },
+        {
+          "card": "Stables",
+          "expansion": "Hinterlands"
+        },
+        {
+          "card": "Farmland",
+          "expansion": "Hinterlands"
+        }
+      ],
+      "events": [],
+      "landmarks": [],
+      "projects": [],
+      "ways": [],
+      "allies": [],
+      "traits": [],
+      "prophecy": [],
+      "expansions": [
+        "Hinterlands",
+        "Cornucopia & Guilds"
+      ],
+      "victory_type": "Province",
+      "avg_score": 28.0
     }
   ],
   "players": [
@@ -14452,7 +14637,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 5,
+      "times_used": 6,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14650,7 +14835,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 0,
+      "times_used": 1,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14705,7 +14890,7 @@
       "debt": null,
       "potion": false,
       "notes": "Verður að merkja sérstaklega í \"öll spil\"",
-      "times_used": 6,
+      "times_used": 7,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14727,7 +14912,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14738,7 +14923,7 @@
       "debt": null,
       "potion": false,
       "notes": "2nd edition",
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14793,7 +14978,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14914,7 +15099,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 3,
+      "times_used": 4,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14925,7 +15110,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14936,7 +15121,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -14980,7 +15165,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15013,7 +15198,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15024,7 +15209,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 3,
+      "times_used": 4,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15068,7 +15253,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15156,7 +15341,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15167,7 +15352,7 @@
       "debt": null,
       "potion": false,
       "notes": "2nd edition",
-      "times_used": 0,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15222,7 +15407,7 @@
       "debt": null,
       "potion": false,
       "notes": "2nd edition",
-      "times_used": 1,
+      "times_used": 2,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15255,7 +15440,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 2,
+      "times_used": 3,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15321,7 +15506,7 @@
       "debt": null,
       "potion": false,
       "notes": "2nd edition",
-      "times_used": 2,
+      "times_used": 4,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -15365,7 +15550,7 @@
       "debt": null,
       "potion": false,
       "notes": null,
-      "times_used": 3,
+      "times_used": 4,
       "removed": false,
       "card_type": "Kingdom"
     },
@@ -21270,6 +21455,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-10-25 12:59",
+  "last_updated": "2026-10-25 17:25",
   "upcoming_games": 0
 }
