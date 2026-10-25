@@ -12759,12 +12759,6 @@
       "results": [
         {
           "place": 1,
-          "name": "Mummi",
-          "tied_with": null,
-          "score": 36.0
-        },
-        {
-          "place": 2,
           "name": "Skúli",
           "tied_with": [
             "Ragnheiður"
@@ -12772,12 +12766,18 @@
           "score": 38.0
         },
         {
-          "place": 2,
+          "place": 1,
           "name": "Ragnheiður",
           "tied_with": [
             "Skúli"
           ],
           "score": 38.0
+        },
+        {
+          "place": 3,
+          "name": "Mummi",
+          "tied_with": null,
+          "score": 36.0
         },
         {
           "place": 4,
@@ -21455,6 +21455,6 @@
     "Laugalæk 23": 1,
     "Álfheimar": 1
   },
-  "last_updated": "2026-10-25 21:34",
+  "last_updated": "2026-10-25 23:51",
   "upcoming_games": 0
 }
