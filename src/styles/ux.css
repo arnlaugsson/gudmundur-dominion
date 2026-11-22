@@ -75,3 +75,11 @@ main:has(> .stats-grid) { padding: 2rem; }
 .exp-timeline-header { cursor: pointer; }
 .row-link { color: inherit; text-decoration: none; }
 .row-link:hover { color: var(--gold); }
+
+/* ── AFREK: compact multi-column lists ── */
+.afrek-ranking { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .4rem .6rem; }
+.afrek-rare { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: .5rem .6rem; }
+@media (max-width: 480px) {
+  .afrek-ranking { grid-template-columns: repeat(2, 1fr); }
+  .afrek-rare { grid-template-columns: 1fr; }
+}

@@ -79,7 +79,7 @@ export default function Afrek() {
       {/* Section 1 */}
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>FLEST AFREK</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '.4rem' }}>
+        <div className="afrek-ranking">
           {ranked.map(({ name, count }, i) => (
             <div
               key={name}
@@ -96,7 +96,7 @@ export default function Afrek() {
       {/* Section 2 */}
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>SJALDGÆFUSTU AFREKIN</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem' }}>
+        <div className="afrek-rare">
           {rare.map(({ ach, holders }) => (
             <div key={ach.id} style={{ display: 'flex', alignItems: 'center', gap: '.8rem', padding: '.5rem .8rem', background: 'var(--bg3)', borderRadius: 6 }}>
               <AchievementBadge achievement={ach} />
