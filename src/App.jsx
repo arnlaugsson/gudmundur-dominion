@@ -4,7 +4,6 @@ import Nav from './components/Nav'
 import { TABS } from './constants'
 import { parseRoute, navigate, openModalRoute, closeModalRoute } from './lib/route'
 import { useAuth } from './context/AuthContext'
-import LoginGate from './components/LoginGate'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
@@ -15,7 +14,7 @@ const History = lazy(() => import('./tabs/History'))
 const FunFacts = lazy(() => import('./tabs/FunFacts'))
 const Afrek = lazy(() => import('./tabs/Afrek'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
-const YearInReview = lazy(() => import('./tabs/YearInReview'))
+const YearInReviewRoute = lazy(() => import('./tabs/YearInReviewRoute'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
 // Tabs only shown to logged-in members.
@@ -42,7 +41,7 @@ function useRoute() {
 
 export default function App() {
   const { tab, sub } = useRoute()
-  const { user, loading, login, authError } = useAuth()
+  const { user } = useAuth()
   const isMember = !!user?.allowed
   const visibleTabs = isMember ? TABS : TABS.filter(t => !MEMBER_TABS.has(t.id))
   const [targetExpansion, setTargetExpansion] = useState(null)
@@ -79,11 +78,7 @@ export default function App() {
           {tab === 'funfacts' && <FunFacts onGameNav={openGame} />}
           {tab === 'afrek' && <Afrek />}
           {tab === 'suggester' && <Suggester />}
-          {tab === 'arid' && (
-            <LoginGate allowed={isMember} loading={loading} onLogin={login} error={authError} title="Árið er aðeins fyrir meðlimi">
-              <YearInReview sub={sub} />
-            </LoginGate>
-          )}
+          {tab === 'arid' && <YearInReviewRoute sub={sub} />}
         </Suspense>
       </main>
     </>

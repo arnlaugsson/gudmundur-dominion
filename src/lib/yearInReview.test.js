@@ -111,8 +111,8 @@ describe('computePlayerYear', () => {
 
   it('finds nemesis (beat me most) and victim (I beat most)', () => {
     const b = computePlayerYear(games, 2026, 'B')
-    expect(b.nemesis).toEqual({ name: 'A', count: 3 })
-    expect(b.victim).toEqual({ name: 'A', count: 1 }) // tie with C → alphabetical
+    expect(b.nemesis).toEqual({ name: 'A', count: 3, mummi: null })
+    expect(b.victim).toEqual({ name: 'A', count: 1, mummi: null }) // tie with C → alphabetical
   })
 
   it('handles games without results (no seats) without crashing', () => {
@@ -172,6 +172,12 @@ describe('Mummi plays every game: show the runner-up when he leads', () => {
   it('no comparison when someone else leads', () => {
     const other = computeClubYear(games, 2026)
     expect(other.champion.mummi).toBeNull()
+  })
+
+  it('nemesis: the toughest opponent besides Mummi, with Mummi\'s count for comparison', () => {
+    const b = computePlayerYear(mummiGames, 2026, 'B')
+    // Mummi finished above B 4 times, C twice.
+    expect(b.nemesis).toEqual({ name: 'C', count: 2, mummi: { name: 'Mummi', count: 4 } })
   })
 
   it('player story ranks excluding Mummi and gives his count', () => {

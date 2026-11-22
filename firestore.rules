@@ -28,6 +28,17 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Year-in-review stories a player chose to make public. Anyone can see
+    // who shared; only that player (or an admin) can switch it.
+    match /publicStories/{playerName} {
+      allow read: if true;
+      allow create, update: if isAllowed()
+        && (isAdmin() || callerPlayerName() == playerName)
+        && request.resource.data.keys().hasOnly(['public', 'updatedAt'])
+        && request.resource.data.public is bool;
+      allow delete: if isAllowed() && (isAdmin() || callerPlayerName() == playerName);
+    }
+
     match /allowedUsers/{userId} {
       allow read: if request.auth != null
                   && (isAdmin() || userId == request.auth.token.email);

@@ -181,7 +181,8 @@ function headToHead(myGames, name) {
       if (target) s.players.forEach(p => target.set(p, (target.get(p) || 0) + 1))
     }
   }
-  return { nemesis: ranked(beatMe, 1)[0] || null, victim: ranked(iBeat, 1)[0] || null }
+  // Mummi beats almost everyone, so show the toughest opponent besides him.
+  return { nemesis: leaderBesidesMummi(ranked(beatMe)), victim: leaderBesidesMummi(ranked(iBeat)) }
 }
 
 function longestStreak(myGames, name) {

@@ -1,6 +1,6 @@
 // Members-only content: logged-in, allowed users see `children`; guests get
 // a login prompt. Note this hides UI only — the underlying game data is public.
-export default function LoginGate({ allowed, loading, onLogin, error, title = 'Aðeins fyrir meðlimi', children }) {
+export default function LoginGate({ allowed, loading, onLogin, error, title = 'Aðeins fyrir meðlimi', children = null }) {
   if (allowed) return children
   if (loading) {
     return (
