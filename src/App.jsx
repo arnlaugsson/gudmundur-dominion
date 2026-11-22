@@ -13,6 +13,7 @@ const History = lazy(() => import('./tabs/History'))
 const FunFacts = lazy(() => import('./tabs/FunFacts'))
 const Afrek = lazy(() => import('./tabs/Afrek'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
+const YearInReview = lazy(() => import('./tabs/YearInReview'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
 const currentRoute = () => parseRoute(window.location.hash, VALID_TABS)
@@ -71,6 +72,7 @@ export default function App() {
           {tab === 'funfacts' && <FunFacts onGameNav={openGame} />}
           {tab === 'afrek' && <Afrek />}
           {tab === 'suggester' && <Suggester />}
+          {tab === 'arid' && <YearInReview sub={sub} />}
         </Suspense>
       </main>
     </>

@@ -7,6 +7,7 @@ import GameModal from '../components/GameModal'
 import LatestGameBox from '../components/LatestGameBox'
 import RandomCardBox from '../components/RandomCardBox'
 import { pressable } from '../lib/pressable'
+import YearInReviewBanner from '../components/YearInReviewBanner'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -298,6 +299,7 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
+      <YearInReviewBanner />
       <div className="dashboard-highlights">
         <LatestGameBox onGameNav={onGameNav} />
         <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />
