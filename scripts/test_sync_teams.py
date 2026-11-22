@@ -31,8 +31,11 @@ LABELS = {1: "Dagsetning", 3: "Spilarar", 7: "Kingdom spil", 8: "Sett",
           9: "Sigurtegund", 10: "Sæti", 14: "Meðalstig"}
 
 
-def make_game(players, scores=()):
-    """Build a one-game sheet and parse it.
+def make_game(players, scores=(), known=None):
+    """Build a one-game sheet (game 1) and parse it.
+
+    known: {name: {game_nums}} of players seen in the sheet's name columns,
+    as parse_spreadsheet collects it.
 
     players: [(name, partner_or_None, place_or_None)]
     scores:  [(name, partner_or_note_or_None, score_or_None)]
@@ -51,7 +54,7 @@ def make_game(players, scores=()):
             ws.cell(row=row, column=3, value=name)
             ws.cell(row=row, column=4, value=extra)
             ws.cell(row=row, column=5, value=number)
-    return parse_game(ws, 1, 3, detect_layout(ws))
+    return parse_game(ws, 1, 3, detect_layout(ws), known_players=known or {})
 
 
 def by_name(game):
@@ -169,6 +172,47 @@ class PlayersColumnBTeammateTest(unittest.TestCase):
         self.assertEqual(res["Hafliði"]["score"], 34.0)
         self.assertEqual(res["Hafliði"]["place"], 1)
         self.assertEqual(res["Hafliði"]["teammates"], ["Mummi"])
+
+
+class PlayersColumnBNoteTest(unittest.TestCase):
+    """Text beside a name in the players block is only a partner when it is a
+    plausible player: named in this game's scores block, or a player in
+    another game."""
+
+    def test_note_beside_name_is_ignored(self):
+        game = make_game(
+            [("Mummi", "nýr", 1), ("Skúli", "(gestur)", 2)],
+            [("Mummi", None, 30), ("Skúli", None, 20)],
+            known={"Mummi": {1, 2}, "Skúli": {1}},
+        )
+        self.assertEqual(game["players"], ["Mummi", "Skúli"])
+        self.assertNotIn("teammates", by_name(game)["Mummi"])
+        self.assertEqual(len(game["seats"]), 2)
+
+    def test_partner_in_scores_block_accepted(self):
+        game = make_game(
+            [("Mummi", "Bragi Valdimar", 1), ("Skúli", None, 2)],
+            [("Mummi", "Bragi Valdimar", 75), ("Skúli", None, 20)],
+        )
+        self.assertEqual(game["players"], ["Mummi", "Bragi Valdimar", "Skúli"])
+        self.assertEqual(by_name(game)["Bragi Valdimar"]["teammates"], ["Mummi"])
+
+    def test_partner_known_from_another_game_accepted(self):
+        game = make_game(
+            [("Mummi", "Hafliði", 1), ("Skúli", None, 2)],
+            [("Mummi", None, 30), ("Skúli", None, 20)],
+            known={"Hafliði": {5}},
+        )
+        self.assertEqual(game["players"], ["Mummi", "Hafliði", "Skúli"])
+        self.assertEqual(by_name(game)["Hafliði"]["score"], 30.0)
+
+    def test_name_seen_only_in_this_game_is_not_enough(self):
+        game = make_game(
+            [("Mummi", "nýr", 1), ("Skúli", None, 2)],
+            [("Mummi", None, 30), ("Skúli", None, 20)],
+            known={"nýr": {1}},
+        )
+        self.assertEqual(game["players"], ["Mummi", "Skúli"])
 
 
 class SeatRankingTest(unittest.TestCase):

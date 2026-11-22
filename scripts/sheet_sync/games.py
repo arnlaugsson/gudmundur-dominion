@@ -9,9 +9,11 @@ from .normalize import normalize_expansion, normalize_location, normalize_victor
 from .teams import (
     build_results_and_seats,
     find_number_column,
+    block_main_names,
     players_from_rows,
     read_player_rows,
     read_score_rows,
+    score_block_names,
 )
 
 SHEET_NAME = "Öll spil"
@@ -127,15 +129,42 @@ def parse_card_fields(ws, col, layout):
     }
 
 
-def parse_game(ws, game_num, col, layout):
+def collect_main_names(ws, game_columns, layout):
+    """{name: {game_nums}} for names in the main name column of the players
+    and scores blocks, across the whole sheet."""
+    seen = {}
+    for game_num, col in game_columns:
+        for key in ("players", "scores"):
+            for name in block_main_names(ws, col, layout[key]):
+                seen[name] = seen.get(name, frozenset()) | {game_num}
+    return seen
+
+
+def plausible_partner(game_num, scores_names, known_players):
+    """Predicate: is a name written beside a player a real teammate?
+
+    True when it is named in this game's scores block, or is a player in
+    some other game of the sheet.
+    """
+    def check(name):
+        return name in scores_names or bool(known_players.get(name, frozenset()) - {game_num})
+    return check
+
+
+def parse_game(ws, game_num, col, layout, known_players=None):
     """Parse a single game from its 3-column group using the detected layout.
 
     Games with players but no places or scores are still included (with empty
     results) so they count toward player stats like "biggest game".
     """
-    player_rows = read_player_rows(ws, col, layout["players"])
+    is_plausible = plausible_partner(
+        game_num, score_block_names(ws, col, layout["scores"]), known_players or {})
+    player_rows, ignored = read_player_rows(ws, col, layout["players"], is_plausible)
     if not player_rows:
         return None  # empty column: nobody has played this game yet
+    for note in ignored:
+        print(f"Warning: game {game_num}: ignored {note!r} beside a player name "
+              f"(not a known player)")
 
     players = players_from_rows(player_rows)
     score_rows = read_score_rows(ws, col, layout["scores"], players)
@@ -174,8 +203,9 @@ def parse_spreadsheet(xlsx_path):
     games = []
     skipped = 0
 
+    known_players = collect_main_names(ws, game_columns, layout)
     for game_num, col in game_columns:
-        game = parse_game(ws, game_num, col, layout)
+        game = parse_game(ws, game_num, col, layout, known_players)
         if game is None:
             skipped += 1
             continue

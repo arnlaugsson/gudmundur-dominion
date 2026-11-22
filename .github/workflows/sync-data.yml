@@ -31,11 +31,15 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Download spreadsheet
+        run: python3 scripts/sync_spreadsheet.py --download-only
+
+      # Runs against the fresh download, so the sheet-based checks run too.
       - name: Run sync tests
         run: for f in scripts/test_sync_*.py; do python3 "$f" || exit 1; done
 
-      - name: Download spreadsheet and sync data
-        run: python3 scripts/sync_spreadsheet.py
+      - name: Sync data
+        run: python3 scripts/sync_spreadsheet.py data/spreadsheet.xlsx
 
       - name: Check for changes
         id: diff

@@ -6,6 +6,7 @@ the "Oll spil" sheet into a unified games array for dominion_data.json.
 Usage:
     python3 scripts/sync_spreadsheet.py                    # download from Google
     python3 scripts/sync_spreadsheet.py path/to/local.xlsx # use local file
+    python3 scripts/sync_spreadsheet.py --download-only    # just fetch data/spreadsheet.xlsx
 
 The parsing lives in the sibling package scripts/sheet_sync/; this file is the
 entry point the GitHub Action runs, and re-exports the package's public names
@@ -31,6 +32,7 @@ SPREADSHEET_URL = (
 )
 ROOT = Path(__file__).resolve().parent.parent
 DOWNLOAD_PATH = ROOT / "data" / "spreadsheet.xlsx"
+DOWNLOAD_ONLY_FLAG = "--download-only"
 
 
 def download_spreadsheet(dest):
@@ -55,6 +57,11 @@ def count_pending(games):
 
 
 def main():
+    if sys.argv[1:] == [DOWNLOAD_ONLY_FLAG]:
+        # CI downloads first, runs the tests against the fresh sheet, and only
+        # then parses it and writes the JSON.
+        download_spreadsheet(DOWNLOAD_PATH)
+        return
     if len(sys.argv) > 1:
         xlsx_path = Path(sys.argv[1])
         if not xlsx_path.exists():

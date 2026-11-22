@@ -50,18 +50,39 @@ def _row_names(ws, row, col, number_col):
     return primary, extras
 
 
-def read_player_rows(ws, col, block):
-    """Players block -> [{'members': [...], 'place': int|None}]."""
+def read_player_rows(ws, col, block, is_plausible):
+    """Players block -> ([{'members': [...], 'place': int|None}], ignored).
+
+    Text beside a name (before the place column) is a teammate only when
+    is_plausible(name) says it is a player; anything else is a note, returned
+    in ignored so the caller can warn about it.
+    """
     place_col = find_number_column(ws, col, block, is_valid_place)
     rows = []
+    ignored = []
     for row in range(block[0], block[1] + 1):
         primary, extras = _row_names(ws, row, col, place_col)
         if not primary:
             continue
+        partners = [n for n in extras if is_plausible(n)]
+        ignored += [n for n in extras if not is_plausible(n)]
         place_val = ws.cell(row=row, column=place_col).value
         place = int(place_val) if is_valid_place(place_val) else None
-        rows.append({"members": _unique(primary + extras), "place": place})
-    return rows
+        rows.append({"members": _unique(primary + partners), "place": place})
+    return rows, ignored
+
+
+def block_main_names(ws, col, block):
+    """Names in the main name column of a block ('A & B' split)."""
+    return [n for row in range(block[0], block[1] + 1)
+            for n in split_names(read_string_cell(ws, row, col))]
+
+
+def score_block_names(ws, col, block):
+    """Every name written in the scores block's name columns."""
+    score_col = find_number_column(ws, col, block, is_number)
+    return {n for row in range(block[0], block[1] + 1)
+            for part in _row_names(ws, row, col, score_col) for n in part}
 
 
 def read_score_rows(ws, col, block, players):
