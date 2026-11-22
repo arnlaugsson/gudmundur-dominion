@@ -53,11 +53,41 @@ describe('computeRatings', () => {
   })
 })
 
+describe('team strength and rating movement', () => {
+  it('rates a team like one player of average skill, not the sum of its members', () => {
+    const { byGame } = computeRatings([game(1, [['A', 'B'], ['C']])])
+    expect(byGame.get(1).seatOdds[0]).toBeCloseTo(0.5, 2)
+  })
+
+  it('moves every team member by the same amount', () => {
+    const { byGame } = computeRatings([game(1, [['A', 'B'], ['C']])])
+    const [a, b] = byGame.get(1).players
+    expect(a.delta).toBe(b.delta)
+  })
+
+  it('never raises a rating after finishing last', () => {
+    const games = Array.from({ length: 8 }, (_, i) => game(i + 1, [['A'], ['B'], ['C']]))
+    const { byGame, players } = computeRatings(games)
+    for (const { players: changes } of byGame.values()) {
+      expect(changes.find(c => c.name === 'C').delta).toBeLessThanOrEqual(0)
+    }
+    expect(players.get('C').display).toBeLessThan(RATING_BASE)
+  })
+
+  it('a winless year is never a gain', () => {
+    const games = Array.from({ length: 4 }, (_, i) => game(i + 1, [['A'], ['B']], { date: `2026-0${i + 1}-01` }))
+    const { players } = computeRatings(games)
+    expect(ratingChangeInYear(players.get('B'), 2026)).toBeLessThan(0)
+  })
+})
+
 describe('leaderboard', () => {
   it('sorts by rating and marks players with few games as provisional', () => {
     const games = Array.from({ length: PROVISIONAL_GAMES }, (_, i) => game(i + 1, [['A'], ['B']]))
     const rows = leaderboard(computeRatings([...games, game(99, [['C'], ['B']])]).players)
     expect(rows[0].name).toBe('A')
+    // Provisional players are listed after established ones.
+    expect(rows[rows.length - 1].name).toBe('C')
     expect(rows.find(r => r.name === 'A').provisional).toBe(false)
     expect(rows.find(r => r.name === 'C').provisional).toBe(true)
   })

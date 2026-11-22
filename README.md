@@ -34,7 +34,7 @@ When 2+ people play as one seat, write them on the same row of the **Sæti** sco
 
 ### Skill rating
 
-Ratings use [OpenSkill](https://openskill.me) (Weng-Lin / Plackett-Luce, `src/lib/ratings.js`). Every seat — a solo player or a team — is one competitor ranked by its place; team members all move together. The number shown is `1000 + 40 × (μ − 3σ)`, a cautious estimate that starts near 1000. Players with fewer than 5 games are marked provisional. The game modal shows each player's rating change and every seat's pre-game win odds.
+Ratings use [OpenSkill](https://openskill.me) (Weng-Lin / Plackett-Luce, `src/lib/ratings.js`). Every seat — a solo player or a team — is one competitor ranked by its place. A team is rated as one player of its members' average skill (OpenSkill's default would add them up), and every member moves by the same amount. The number shown is `1000 + 40 × (μ − 25)`: everyone starts at 1000 and it only moves with results. Players with fewer than 5 games are marked provisional and listed last. The game modal shows each player's rating change and every seat's pre-game win odds.
 
 ### Card images
 

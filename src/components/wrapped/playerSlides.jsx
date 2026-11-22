@@ -80,7 +80,7 @@ function ratingSlide(p) {
       <span className={`delta ${up ? 'delta-up' : p.ratingChange < 0 ? 'delta-down' : ''}`}>
         {up ? '▲ +' : p.ratingChange < 0 ? '▼ −' : '±'}{Math.abs(p.ratingChange)} á árinu
       </span>
-      <Sub>Styrkleiki í lok árs, reiknaður út frá því hverja þú vannst og hverjum þú tapaðir fyrir.</Sub>
+      <Sub>Styrkleiki í lok árs. Hann hækkar þegar þú endar ofar en sterkir andstæðingar — ekki bara við sigra.</Sub>
     </Slide>
   )
 }

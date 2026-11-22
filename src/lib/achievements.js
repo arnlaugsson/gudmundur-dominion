@@ -1,3 +1,4 @@
+import { scoredSeats } from './seats'
 // Pure derivation: compute player achievement badges from games + players.
 // Single chronological pass over games. No React, no DOM, no module-level state.
 
@@ -60,26 +61,26 @@ function computeVolumeAndWins(sortedGames, byPlayer) {
 }
 
 function computeRecords(sortedGames, byPlayer) {
-  // Find the all-time record holder(s) for: max single-player score,
+  // Find the all-time record holder(s) for: max seat score,
   // max gap (1st vs last), min gap (1st vs 2nd, ≥1), min winning score.
   let maxScore = -Infinity, maxScoreEntry = null
   let maxGap = -Infinity, maxGapEntry = null
   let minNail = Infinity, minNailEntry = null
   let minWin = Infinity, minWinEntry = null
   for (const g of sortedGames) {
-    const scored = (g.results || []).filter(r => r.score != null)
+    const scored = scoredSeats(g)
     if (scored.length === 0) continue
     for (const r of scored) {
       if (r.score > maxScore) {
         maxScore = r.score
-        maxScoreEntry = { name: r.name, score: r.score, game: g }
+        maxScoreEntry = { players: r.players, score: r.score, game: g }
       }
     }
     const winners = scored.filter(r => r.place === 1)
     for (const w of winners) {
       if (w.score < minWin) {
         minWin = w.score
-        minWinEntry = { name: w.name, score: w.score, game: g }
+        minWinEntry = { players: w.players, score: w.score, game: g }
       }
     }
     if (scored.length >= 2) {
@@ -87,38 +88,42 @@ function computeRecords(sortedGames, byPlayer) {
       const gap = sorted[0].score - sorted[sorted.length - 1].score
       if (gap > maxGap) {
         maxGap = gap
-        maxGapEntry = { name: sorted[0].name, gap, game: g }
+        maxGapEntry = { players: sorted[0].players, gap, game: g }
       }
       const top2 = sorted[0].score - sorted[1].score
       if (top2 >= 1 && top2 < minNail) {
         minNail = top2
-        minNailEntry = { name: sorted[0].name, top2, game: g }
+        minNailEntry = { players: sorted[0].players, top2, game: g }
       }
     }
   }
-  if (maxScoreEntry && byPlayer.has(maxScoreEntry.name)) {
-    byPlayer.get(maxScoreEntry.name).push(buildAchievement({
+  // Team records go to every member of the seat.
+  for (const name of maxScoreEntry?.players || []) {
+    if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
       id: 'record-high-score', category: 'records', icon: '🏆', title: 'Stigamet',
       detail: `${maxScoreEntry.score} stig í leik #${maxScoreEntry.game.game_num}`,
       earnedGameNum: maxScoreEntry.game.game_num, earnedDate: maxScoreEntry.game.date || null,
     }))
   }
-  if (maxGapEntry && byPlayer.has(maxGapEntry.name)) {
-    byPlayer.get(maxGapEntry.name).push(buildAchievement({
+  // Team records go to every member of the seat.
+  for (const name of maxGapEntry?.players || []) {
+    if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
       id: 'record-largest-victory', category: 'records', icon: '🌊', title: 'Stærsti sigur',
       detail: `${maxGapEntry.gap} stiga munur í leik #${maxGapEntry.game.game_num}`,
       earnedGameNum: maxGapEntry.game.game_num, earnedDate: maxGapEntry.game.date || null,
     }))
   }
-  if (minNailEntry && byPlayer.has(minNailEntry.name)) {
-    byPlayer.get(minNailEntry.name).push(buildAchievement({
+  // Team records go to every member of the seat.
+  for (const name of minNailEntry?.players || []) {
+    if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
       id: 'record-narrowest-victory', category: 'records', icon: '😰', title: 'Spennumesti sigur',
       detail: `${minNailEntry.top2} stiga munur í leik #${minNailEntry.game.game_num}`,
       earnedGameNum: minNailEntry.game.game_num, earnedDate: minNailEntry.game.date || null,
     }))
   }
-  if (minWinEntry && byPlayer.has(minWinEntry.name)) {
-    byPlayer.get(minWinEntry.name).push(buildAchievement({
+  // Team records go to every member of the seat.
+  for (const name of minWinEntry?.players || []) {
+    if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
       id: 'record-lowest-winning-score', category: 'records', icon: '📉', title: 'Lágmarks-sigur',
       detail: `${minWinEntry.score} stig í leik #${minWinEntry.game.game_num}`,
       earnedGameNum: minWinEntry.game.game_num, earnedDate: minWinEntry.game.date || null,

@@ -17,6 +17,7 @@ export default function Players() {
   const [sortKey, setSortKey] = useState('rating')
   const ratings = useMemo(() => getRatings(games).players, [games])
   const ratingOf = name => ratings.get(name)?.display ?? null
+  const isProvisional = name => (ratings.get(name)?.games ?? 0) < PROVISIONAL_GAMES
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const { photosByPlayer } = useMemories()
 
@@ -30,7 +31,11 @@ export default function Players() {
       if (sortKey === 'afrek') {
         return (achievementsByPlayer.get(b.name)?.length || 0) - (achievementsByPlayer.get(a.name)?.length || 0)
       }
-      if (sortKey === 'rating') return (ratingOf(b.name) ?? -Infinity) - (ratingOf(a.name) ?? -Infinity)
+      if (sortKey === 'rating') {
+        // Established players first, then provisional (too few games), then unrated.
+        const tier = p => (ratingOf(p.name) == null ? 2 : isProvisional(p.name) ? 1 : 0)
+        return tier(a) - tier(b) || (ratingOf(b.name) ?? 0) - (ratingOf(a.name) ?? 0)
+      }
       if (sortKey === 'win_rate') return b.win_rate - a.win_rate
       if (sortKey === 'gpa') return (b.gpa ?? -1) - (a.gpa ?? -1)
       if (sortKey === 'first') return b.first - a.first
@@ -112,7 +117,7 @@ export default function Players() {
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Nafn</th><th title="Styrkleiki (OpenSkill). * = færri en 5 leikir">Styrkleiki</th><th>Leikir</th>
+              <th>#</th><th>Nafn</th><th title={`Styrkleiki (OpenSkill). * = færri en ${PROVISIONAL_GAMES} leikir`}>Styrkleiki</th><th>Leikir</th>
               <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
               <th>Sigurhlutfall</th><th>Meðalskor</th>
               <th onClick={() => setSortKey('afrek')} style={{ cursor: 'pointer' }}>Afrek</th>
@@ -123,7 +128,7 @@ export default function Players() {
               <tr key={p.name} style={{ cursor: 'pointer' }} onClick={() => { window.location.hash = `players/${encodeURIComponent(p.name)}` }}>
                 <td className={i < 3 ? `rank-${i + 1}` : ''}>{i + 1}</td>
                 <td style={{ fontWeight: 500 }}><a className="row-link" href={`#players/${encodeURIComponent(p.name)}`}>{p.name}</a></td>
-                <td className="rating-cell">{ratingOf(p.name) ?? '–'}{(ratings.get(p.name)?.games ?? 0) < PROVISIONAL_GAMES && ratingOf(p.name) != null && <span className="provisional" title="Færri en 5 leikir — óviss styrkleiki">*</span>}</td>
+                <td className="rating-cell">{ratingOf(p.name) ?? '–'}{isProvisional(p.name) && ratingOf(p.name) != null && <span className="provisional" title={`Færri en ${PROVISIONAL_GAMES} leikir — óviss styrkleiki`}>*</span>}</td>
                 <td>{p.games}</td>
                 <td className="rank-1">{p.first}</td>
                 <td className="rank-2">{p.second}</td>

@@ -47,9 +47,8 @@ function computeHighlights(games) {
       playerLastSeen[name] = g.game_num
     }
 
-    // Tie detection: only a true draw if multiple players share place 1
-    const firsts = g.results.filter(r => r.place === 1)
-    if (firsts.length >= 2) {
+    // A draw is two or more SEATS sharing first place (teammates don't count)
+    if (g.seats.filter(s => s.place === 1).length >= 2) {
       tags.push({ icon: '🤝', text: 'Jafntefli' })
     }
 
