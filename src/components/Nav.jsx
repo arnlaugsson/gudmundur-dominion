@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { TABS } from '../constants'
 
-export default function Nav({ active, onSelect }) {
+export default function Nav({ tabs = TABS, active, onSelect }) {
   const activeRef = useRef(null)
 
   // On phones the tab strip scrolls sideways; keep the active tab in view.
@@ -11,7 +11,7 @@ export default function Nav({ active, onSelect }) {
 
   return (
     <nav aria-label="Aðalvalmynd">
-      {TABS.map(t => (
+      {tabs.map(t => (
         <button
           key={t.id}
           ref={active === t.id ? activeRef : null}

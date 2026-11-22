@@ -8,6 +8,7 @@ import LatestGameBox from '../components/LatestGameBox'
 import RandomCardBox from '../components/RandomCardBox'
 import { pressable } from '../lib/pressable'
 import YearInReviewBanner from '../components/YearInReviewBanner'
+import { useAuth } from '../context/AuthContext'
 import { availableYears } from '../lib/yearInReview'
 
 function StatCard({ label, value, sub, className = '' }) {
@@ -22,6 +23,8 @@ function StatCard({ label, value, sub, className = '' }) {
 
 export default function Dashboard({ onGameNav }) {
   const { games, players } = DATA
+  const { user } = useAuth()
+  const isMember = !!user?.allowed
   const [selectedCard, setSelectedCard] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
 
@@ -300,7 +303,7 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
-      <YearInReviewBanner years={availableYears(DATA.games)} />
+      {isMember && <YearInReviewBanner years={availableYears(DATA.games)} />}
       <div className="dashboard-highlights">
         <LatestGameBox onGameNav={onGameNav} />
         <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />

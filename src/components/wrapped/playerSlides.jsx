@@ -1,6 +1,7 @@
 import { Slide, Sub, Delta, CardStrip, PlaceBars } from './SlideParts'
 import AchievementBadge from '../AchievementBadge'
 import { plural, joinNames, isSingular } from '../../lib/icelandic'
+import { MUMMI } from '../../lib/yearInReview'
 
 const games = n => plural(n, 'leikur', 'leikir')
 const MAX_BADGES = 6
@@ -14,11 +15,20 @@ function intro(p) {
   )
 }
 
+function winsRankText(p) {
+  if (p.rankByWins === 1) return 'Flestir sigrar í klúbbnum á árinu! 👑'
+  const base = `${p.rankByWins}. sæti af ${p.playerCount} í sigrum á árinu`
+  if (p.name === MUMMI || p.mummiWins == null) return `${base}.`
+  return p.rankExMummi === 1
+    ? `${base} — flestir sigrar utan Mumma! (Mummi: ${p.mummiWins})`
+    : `${base} — ${p.rankExMummi}. utan Mumma (Mummi: ${p.mummiWins}).`
+}
+
 function winsSlide(p) {
   return (
     <Slide kicker="Sigrar" big={p.wins} headline={`${Math.round(p.winRate)}% sigurhlutfall`}>
       <Delta now={Math.round(p.winRate)} before={p.prevYear.games ? Math.round(p.prevYear.winRate) : null} unit=" %-stig" yearBefore={p.year - 1} />
-      <Sub>{p.rankByWins === 1 ? 'Flestir sigrar í klúbbnum á árinu! 👑' : `${p.rankByWins}. sæti af ${p.playerCount} í sigrum á árinu.`}</Sub>
+      <Sub>{winsRankText(p)}</Sub>
     </Slide>
   )
 }

@@ -26,14 +26,21 @@ function calendar(c) {
   )
 }
 
+// " · Mummi: 14" when the stat's real leader was Mummi (see leaderBesidesMummi).
+const vsMummi = (entry, format) => (entry?.mummi ? ` · Mummi: ${format(entry.mummi)}` : '')
+const pct = e => `${Math.round(e.rate)}%`
+
 function champion(c) {
+  const ch = c.champion
   return (
-    <Slide kicker="Meistari ársins" big="👑" headline={c.champion.name}>
-      <Sub>{wins(c.champion.wins)} í {plural(c.champion.games, 'leik', 'leikjum')}.</Sub>
-      {c.bestWinRate && c.bestWinRate.name !== c.champion.name && (
-        <Sub>Hæsta sigurhlutfallið: {c.bestWinRate.name} með {Math.round(c.bestWinRate.rate)}%.</Sub>
+    <Slide kicker={ch.mummi ? 'Flestir sigrar utan Mumma' : 'Meistari ársins'} big="👑" headline={ch.name}>
+      <Sub>{wins(ch.wins)} í {plural(ch.games, 'leik', 'leikjum')}{vsMummi(ch, e => e.wins)}.</Sub>
+      {c.bestWinRate && c.bestWinRate.name !== ch.name && (
+        <Sub>Hæsta sigurhlutfallið{c.bestWinRate.mummi ? ' utan Mumma' : ''}: {c.bestWinRate.name} með {pct(c.bestWinRate)}{vsMummi(c.bestWinRate, pct)}.</Sub>
       )}
-      {c.mostGames && <Sub>Mætti oftast: {c.mostGames.name} ({games(c.mostGames.games)}).</Sub>}
+      {c.mostGames && (
+        <Sub>Mætti oftast{c.mostGames.mummi ? ' utan Mumma' : ''}: {c.mostGames.name} ({games(c.mostGames.games)}{vsMummi(c.mostGames, e => e.games)}).</Sub>
+      )}
     </Slide>
   )
 }
@@ -42,7 +49,12 @@ function records(c) {
   return (
     <Slide kicker="Met ársins" headline="Stærstu stundirnar">
       <ul className="slide-list">
-        {c.highestScore && <li><b>🏆 {points(c.highestScore.score)}</b> — {joinNames(c.highestScore.players)} í leik #{c.highestScore.game_num}</li>}
+        {c.highestScore && (
+          <li>
+            <b>🏆 {points(c.highestScore.score)}</b>{c.highestScore.mummi ? ' (hæst utan Mumma)' : ''} — {joinNames(c.highestScore.players)} í leik #{c.highestScore.game_num}
+            {c.highestScore.mummi && <> · Mummi: {c.highestScore.mummi.score} (#{c.highestScore.mummi.game_num})</>}
+          </li>
+        )}
         {c.closestGame && <li><b>😰 {plural(c.closestGame.margin, 'stigs', 'stiga')} munur</b> — {joinNames(c.closestGame.winners)} rétt marði {joinNames(c.closestGame.runnersUp)} (#{c.closestGame.game_num})</li>}
         {c.biggestWin && <li><b>🌊 {plural(c.biggestWin.margin, 'stigs', 'stiga')} sigur</b> — {joinNames(c.biggestWin.winners)} í leik #{c.biggestWin.game_num}</li>}
       </ul>

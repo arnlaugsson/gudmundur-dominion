@@ -103,7 +103,7 @@ function YearView({ year, story }) {
           <div className="wrapped-hero-title">Árið hjá Guðmundi</div>
           <div className="wrapped-hero-sub">
             {plural(club.totalGames, 'leikur', 'leikir')} · {plural(club.playerCount, 'spilari', 'spilarar')}
-            {club.champion && <> · meistari: {club.champion.name}</>}
+            {club.champion && <> · {club.champion.mummi ? 'flestir sigrar utan Mumma' : 'meistari'}: {club.champion.name}{club.champion.mummi && ` (Mummi: ${club.champion.mummi.wins})`}</>}
           </div>
         </div>
         <span className="wrapped-hero-play" aria-hidden="true">▶</span>

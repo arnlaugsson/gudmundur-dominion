@@ -3,6 +3,8 @@ import Header from './components/Header'
 import Nav from './components/Nav'
 import { TABS } from './constants'
 import { parseRoute, navigate, openModalRoute, closeModalRoute } from './lib/route'
+import { useAuth } from './context/AuthContext'
+import LoginGate from './components/LoginGate'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
@@ -16,6 +18,8 @@ const Suggester = lazy(() => import('./tabs/Suggester'))
 const YearInReview = lazy(() => import('./tabs/YearInReview'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
+// Tabs only shown to logged-in members.
+const MEMBER_TABS = new Set(['arid'])
 const currentRoute = () => parseRoute(window.location.hash, VALID_TABS)
 
 function TabLoading() {
@@ -38,6 +42,9 @@ function useRoute() {
 
 export default function App() {
   const { tab, sub } = useRoute()
+  const { user, loading, login, authError } = useAuth()
+  const isMember = !!user?.allowed
+  const visibleTabs = isMember ? TABS : TABS.filter(t => !MEMBER_TABS.has(t.id))
   const [targetExpansion, setTargetExpansion] = useState(null)
 
   const selectTab = useCallback(id => navigate(id), [])
@@ -54,7 +61,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <Nav active={tab} onSelect={selectTab} />
+      <Nav tabs={visibleTabs} active={tab} onSelect={selectTab} />
       <main id="main">
         <Suspense fallback={<TabLoading />}>
           {tab === 'dashboard' && <Dashboard onGameNav={openGame} />}
@@ -72,7 +79,11 @@ export default function App() {
           {tab === 'funfacts' && <FunFacts onGameNav={openGame} />}
           {tab === 'afrek' && <Afrek />}
           {tab === 'suggester' && <Suggester />}
-          {tab === 'arid' && <YearInReview sub={sub} />}
+          {tab === 'arid' && (
+            <LoginGate allowed={isMember} loading={loading} onLogin={login} error={authError} title="Árið er aðeins fyrir meðlimi">
+              <YearInReview sub={sub} />
+            </LoginGate>
+          )}
         </Suspense>
       </main>
     </>
