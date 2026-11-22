@@ -34,7 +34,7 @@ function ClubStory({ club, onClose }) {
   return <StoryDeck title={`Árið ${club.year} hjá klúbbnum`} slides={slides} onClose={onClose} />
 }
 
-function PlayerStory({ year, name, onClose }) {
+export function PlayerStory({ year, name, onClose }) {
   const { games, players } = DATA
   const summary = useMemo(() => computePlayerYear(games, year, name), [games, year, name])
   const earned = useMemo(
@@ -47,14 +47,17 @@ function PlayerStory({ year, name, onClose }) {
   return <StoryDeck title={`Árið ${year}: ${name}`} slides={slides} onClose={onClose} />
 }
 
-function PlayerGrid({ year, rows }) {
+function PlayerGrid({ year, rows, publicNames }) {
   return (
     <div className="wrapped-players">
       {rows.map(r => (
         <div key={r.name} className="wrapped-player" {...pressable(() => openStory(year, r.name))}>
           <Avatar name={r.name} size={44} />
           <div>
-            <div className="wrapped-player-name">{r.name}</div>
+            <div className="wrapped-player-name">
+              {r.name}
+              {publicNames.has(r.name) && <span className="public-mark" title="Opinbert: allir með hlekkinn geta séð árið"> 🌐</span>}
+            </div>
             <div className="wrapped-player-meta">{plural(r.games, 'leikur', 'leikir')} · {plural(r.wins, 'sigur', 'sigrar')}</div>
           </div>
         </div>
@@ -63,17 +66,35 @@ function PlayerGrid({ year, rows }) {
   )
 }
 
-export default function YearInReview({ sub }) {
+export default function YearInReview({ sub, publicNames = new Set(), myName = null, onSetPublic, shareError }) {
   const { games } = DATA
   const years = useMemo(() => availableYears(games), [games])
   const { year, story } = parseYearSub(sub, years)
   if (year == null) {
     return <section className="section active"><EmptyState icon="🎁">Engir leikir skráðir enn.</EmptyState></section>
   }
-  return <YearView year={year} story={story} />
+  return <YearView year={year} story={story} publicNames={publicNames} myName={myName} onSetPublic={onSetPublic} shareError={shareError} />
 }
 
-function YearView({ year, story }) {
+// A member's own switch for making their story public.
+function MyShareToggle({ name, isPublic, onChange, error }) {
+  return (
+    <div className="share-toggle">
+      <label>
+        <input type="checkbox" checked={isPublic} onChange={e => onChange(name, e.target.checked)} />
+        <span>
+          <b>Leyfa öllum að sjá árið mitt</b>
+          <small>{isPublic
+            ? 'Allir með hlekkinn geta séð sögurnar þínar, líka án innskráningar.'
+            : 'Aðeins innskráðir meðlimir sjá sögurnar þínar.'}</small>
+        </span>
+      </label>
+      {error && <p className="login-error" role="alert">{error}</p>}
+    </div>
+  )
+}
+
+function YearView({ year, story, publicNames, myName, onSetPublic, shareError }) {
   const { games } = DATA
   const years = useMemo(() => availableYears(games), [games])
   const club = useMemo(() => computeClubYear(games, year), [games, year])
@@ -110,8 +131,12 @@ function YearView({ year, story }) {
         <span className="wrapped-hero-play" aria-hidden="true">▶</span>
       </div>
 
+      {myName && onSetPublic && (
+        <MyShareToggle name={myName} isPublic={publicNames.has(myName)} onChange={onSetPublic} error={shareError} />
+      )}
+
       <h3 className="wrapped-subtitle">Árið hjá hverjum leikmanni</h3>
-      <PlayerGrid year={year} rows={rows} />
+      <PlayerGrid year={year} rows={rows} publicNames={publicNames} />
 
       {story === CLUB_STORY && <ClubStory key={`${year}/club`} club={club} onClose={close} />}
       {story && story !== CLUB_STORY && <PlayerStory key={`${year}/${story}`} year={year} name={story} onClose={close} />}

@@ -64,8 +64,18 @@ function rivalsSlide(p) {
   return (
     <Slide kicker="Keppinautar" headline="Vinir og óvinir">
       <ul className="slide-list">
-        {p.nemesis && <li><b>😈 Erkióvinur: {p.nemesis.name}</b>, endaði ofar en þú {plural(p.nemesis.count, 'sinni', 'sinnum')}</li>}
-        {p.victim && <li><b>🎯 Uppáhaldsfórnarlamb: {p.victim.name}</b>, þú endaðir ofar {plural(p.victim.count, 'sinni', 'sinnum')}</li>}
+        {p.nemesis && (
+          <li>
+            <b>😈 Erkióvinur{p.nemesis.mummi ? ' (utan Mumma)' : ''}: {p.nemesis.name}</b>, endaði ofar en þú {plural(p.nemesis.count, 'sinni', 'sinnum')}
+            {p.nemesis.mummi && <> · Mummi: {plural(p.nemesis.mummi.count, 'sinni', 'sinnum')}</>}
+          </li>
+        )}
+        {p.victim && (
+          <li>
+            <b>🎯 Uppáhaldsfórnarlamb{p.victim.mummi ? ' (utan Mumma)' : ''}: {p.victim.name}</b>, þú endaðir ofar {plural(p.victim.count, 'sinni', 'sinnum')}
+            {p.victim.mummi && <> · Mummi: {plural(p.victim.mummi.count, 'sinni', 'sinnum')}</>}
+          </li>
+        )}
         {p.teammates.length > 0 && <li><b>🤝 Liðsfélagar:</b> {joinNames(p.teammates)}</li>}
       </ul>
     </Slide>
