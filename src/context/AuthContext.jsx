@@ -1,32 +1,30 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import { onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, signOut } from 'firebase/auth'
-import { collection, doc, getDoc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
-import { auth, googleProvider, db } from '../firebase'
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react'
 
 const AuthContext = createContext(null)
 
-const LAST_SEEN_THROTTLE_MS = 60 * 60 * 1000
+const NO_ACCESS_MSG = 'Þú hefur ekki aðgang. Hafðu samband við stjórnanda.'
+const LOGIN_FAILED_MSG = 'Innskráning mistókst.'
+const AUTH_UNAVAILABLE_MSG = 'Innskráning er ekki tiltæk í augnablikinu.'
 
-async function loadUserRole(firebaseUser) {
-  if (!firebaseUser) return null
-  const userRef = doc(db, 'allowedUsers', firebaseUser.email)
-  const userDoc = await getDoc(userRef)
-  if (!userDoc.exists()) return null
-  const data = userDoc.data()
-  const lastSeenMs = data.lastSeen?.toMillis?.() ?? 0
-  if (Date.now() - lastSeenMs > LAST_SEEN_THROTTLE_MS) {
-    setDoc(userRef, { lastSeen: serverTimestamp() }, { merge: true })
-      .catch((err) => console.error('Failed to update lastSeen:', err))
+// Firebase is loaded lazily and only once; every caller shares the promise.
+let servicePromise = null
+function loadAuthService() {
+  if (!servicePromise) {
+    servicePromise = import('../lib/authService').catch((err) => {
+      servicePromise = null
+      throw err
+    })
   }
-  return {
-    uid: firebaseUser.uid,
-    email: firebaseUser.email,
-    displayName: firebaseUser.displayName,
-    photoURL: firebaseUser.photoURL,
-    allowed: true,
-    admin: data.admin === true,
-    playerName: data.playerName || null,
+  return servicePromise
+}
+
+async function rejectIfNotAllowed(service, firebaseUser, setAuthError) {
+  const role = await service.loadUserRole(firebaseUser)
+  if (!role) {
+    await service.logout()
+    setAuthError(NO_ACCESS_MSG)
   }
+  return role
 }
 
 export function AuthProvider({ children }) {
@@ -36,75 +34,90 @@ export function AuthProvider({ children }) {
   const [allowedUsers, setAllowedUsers] = useState(null)
 
   useEffect(() => {
-    // Handle returning from signInWithRedirect (Safari fallback)
-    getRedirectResult(auth)
-      .then(async (result) => {
-        if (!result?.user) return
-        const role = await loadUserRole(result.user)
-        if (!role) {
-          await signOut(auth)
-          setAuthError('Þú hefur ekki aðgang. Hafðu samband við stjórnanda.')
-        }
-      })
-      .catch(() => {})
+    let unsubscribe = () => {}
+    let cancelled = false
 
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      try {
-        if (firebaseUser) {
-          const role = await loadUserRole(firebaseUser)
-          setUser(role)
-        } else {
-          setUser(null)
-        }
-      } catch {
-        setUser(null)
-      }
-      setLoading(false)
-    })
-    return unsubscribe
+    loadAuthService()
+      .then((service) => {
+        if (cancelled) return
+        // Handle returning from signInWithRedirect (Safari fallback)
+        service.consumeRedirectResult()
+          .then((result) => result?.user && rejectIfNotAllowed(service, result.user, setAuthError))
+          .catch((err) => console.error('Redirect sign-in failed:', err))
+
+        unsubscribe = service.watchAuthState(async (firebaseUser) => {
+          try {
+            setUser(firebaseUser ? await service.loadUserRole(firebaseUser) : null)
+          } catch (err) {
+            console.error('Failed to load user role:', err)
+            setUser(null)
+          }
+          setLoading(false)
+        })
+      })
+      .catch((err) => {
+        console.error('Failed to load Firebase auth:', err)
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+      unsubscribe()
+    }
   }, [])
 
   useEffect(() => {
     if (!user?.admin) {
       setAllowedUsers(null)
-      return
+      return undefined
     }
-    const unsubscribe = onSnapshot(
-      collection(db, 'allowedUsers'),
-      (snap) => setAllowedUsers(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
-      (err) => console.error('Failed to subscribe to allowedUsers:', err),
-    )
-    return unsubscribe
+    let unsubscribe = () => {}
+    let cancelled = false
+    loadAuthService().then((service) => {
+      if (cancelled) return
+      unsubscribe = service.watchAllowedUsers(
+        setAllowedUsers,
+        (err) => console.error('Failed to subscribe to allowedUsers:', err),
+      )
+    })
+    return () => {
+      cancelled = true
+      unsubscribe()
+    }
   }, [user?.admin])
 
-  const login = async () => {
+  const login = useCallback(async () => {
     setAuthError(null)
+    let service
     try {
-      const result = await signInWithPopup(auth, googleProvider)
-      const role = await loadUserRole(result.user)
-      if (!role) {
-        await signOut(auth)
-        setAuthError('Þú hefur ekki aðgang. Hafðu samband við stjórnanda.')
-        return
-      }
-      setUser(role)
+      service = await loadAuthService()
+    } catch {
+      setAuthError(AUTH_UNAVAILABLE_MSG)
+      return
+    }
+    try {
+      const result = await service.loginWithPopup()
+      const role = await rejectIfNotAllowed(service, result.user, setAuthError)
+      if (role) setUser(role)
     } catch (err) {
       if (err.code === 'auth/popup-blocked') {
         // Safari blocks popups — fall back to redirect flow
-        signInWithRedirect(auth, googleProvider)
+        service.loginWithRedirect()
       } else if (err.code !== 'auth/popup-closed-by-user') {
-        setAuthError('Innskráning mistókst.')
+        console.error('Login failed:', err)
+        setAuthError(LOGIN_FAILED_MSG)
       }
     }
-  }
+  }, [])
 
-  const logout = () => signOut(auth)
+  const logout = useCallback(() => loadAuthService().then((s) => s.logout()), [])
 
-  return (
-    <AuthContext.Provider value={{ user, loading, login, logout, authError, allowedUsers }}>
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({ user, loading, login, logout, authError, allowedUsers }),
+    [user, loading, login, logout, authError, allowedUsers],
   )
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
