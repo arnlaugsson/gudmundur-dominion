@@ -3,6 +3,7 @@
 // counts as a win for every member.
 import { seatOf, placeOf, isWinner, isTeamGame } from './seats'
 import { computeAchievements } from './achievements'
+import { getRatings, ratingChangeInYear, biggestUpsets } from './ratings'
 
 const DAY_MS = 24 * 60 * 60 * 1000
 const MIN_GAMES_FOR_WIN_RATE = 5
@@ -116,6 +117,16 @@ function byWinsThenName(a, b) {
   return b.wins - a.wins || a.games - b.games || collator.compare(a.name, b.name)
 }
 
+function ratingHighlights(games, year) {
+  const { players, byGame } = getRatings(games)
+  const climber = [...players.values()]
+    .map(p => ({ name: p.name, change: ratingChangeInYear(p, year) }))
+    .filter(p => p.change != null && p.change > 0)
+    .sort((a, b) => b.change - a.change || collator.compare(a.name, b.name))[0] || null
+  const upset = biggestUpsets(gamesInYear(games, year), byGame)[0] || null
+  return { climber, upset }
+}
+
 export function computeClubYear(games, year) {
   const yearGames = gamesInYear(games, year)
   const totals = playerTotals(yearGames)
@@ -145,6 +156,7 @@ export function computeClubYear(games, year) {
     newcomers: debutsInYear(games, year, g => g.players),
     rivalry: rivalryOfYear(yearGames),
     teamGames: yearGames.filter(isTeamGame).length,
+    ...ratingHighlights(games, year),
   }
 }
 
@@ -197,6 +209,13 @@ function bestSeatScore(myGames, name) {
   }, null)
 }
 
+function playerRating(games, year, name) {
+  const p = getRatings(games).players.get(name)
+  if (!p) return { ratingEnd: null, ratingChange: null }
+  const inYear = p.history.filter(h => Number(String(h.date).slice(0, 4)) === year)
+  return { ratingEnd: inYear.length ? inYear[inYear.length - 1].display : null, ratingChange: ratingChangeInYear(p, year) }
+}
+
 export function computePlayerYear(games, year, name) {
   const yearGames = gamesInYear(games, year)
   const myGames = yearGames.filter(g => g.players.includes(name))
@@ -220,6 +239,7 @@ export function computePlayerYear(games, year, name) {
     rankByWins: 1 + rankList.filter(t => t.wins > myWins).length,
     playerCount: rankList.length,
     firstGameEver: debutsInYear(games, year, g => g.players).includes(name),
+    ...playerRating(games, year, name),
   }
 }
 

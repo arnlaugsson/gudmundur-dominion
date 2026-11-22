@@ -5,12 +5,15 @@ import MemorySection from './MemorySection'
 import MemoryEditor from './MemoryEditor'
 import DATA from '../data'
 import { detectSidePiles, detectHeirlooms } from '../lib/sidePiles'
+import SeatResults from './SeatResults'
+import { getRatings } from '../lib/ratings'
 
 const EXTRA_COLORS = { event: '#f97316', landmark: '#3fb950', project: '#58a6ff', way: '#a78bfa', ally: '#f43f5e', trait: '#06b6d4', prophecy: '#e879f9' }
 
 export default function GameModal({ game, memories, onClose, onMemorySaved }) {
   const [selectedCard, setSelectedCard] = useState(null)
   const [editing, setEditing] = useState(false)
+  const rating = useMemo(() => getRatings(DATA.games).byGame.get(game.game_num) || null, [game.game_num])
 
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose() }
@@ -84,17 +87,8 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
         {/* Results */}
         <div style={{ marginBottom: '1.25rem' }}>
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Niðurstöður</div>
-          <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
-            {game.results.map(r => (
-              <div key={r.name} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
-                <span className={`rank-${r.place}`} style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>
-                  {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}th`}
-                </span>
-                <span style={{ fontSize: '.88rem' }}>{r.name}</span>
-                {r.score != null && <span style={{ fontSize: '.8rem', color: 'var(--gold)' }}>{r.score}stig</span>}
-              </div>
-            ))}
-          </div>
+          {rating && <div className="seat-odds-head" title="Sigurlíkur hvers sætis fyrir leikinn, út frá styrkleika">Sigurlíkur fyrir leik</div>}
+          <SeatResults game={game} rating={rating} />
         </div>
 
         {/* Kingdom Cards — images load only when modal is open */}

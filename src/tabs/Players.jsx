@@ -5,11 +5,18 @@ import { PALETTE } from '../constants'
 import PlayerModal from '../components/PlayerModal'
 import { useMemories } from '../hooks/useMemories'
 import { computeAchievements } from '../lib/achievements'
+import { getRatings, PROVISIONAL_GAMES } from '../lib/ratings'
+import RatingInfo from '../components/RatingInfo'
+import { ratingHistoryChart } from '../lib/ratingCharts'
+
+const RATING_CHART_TOP = 6
 
 
 export default function Players() {
   const { players, games } = DATA
-  const [sortKey, setSortKey] = useState('games')
+  const [sortKey, setSortKey] = useState('rating')
+  const ratings = useMemo(() => getRatings(games).players, [games])
+  const ratingOf = name => ratings.get(name)?.display ?? null
   const [selectedPlayer, setSelectedPlayer] = useState(null)
   const { photosByPlayer } = useMemories()
 
@@ -23,12 +30,18 @@ export default function Players() {
       if (sortKey === 'afrek') {
         return (achievementsByPlayer.get(b.name)?.length || 0) - (achievementsByPlayer.get(a.name)?.length || 0)
       }
+      if (sortKey === 'rating') return (ratingOf(b.name) ?? -Infinity) - (ratingOf(a.name) ?? -Infinity)
       if (sortKey === 'win_rate') return b.win_rate - a.win_rate
       if (sortKey === 'gpa') return (b.gpa ?? -1) - (a.gpa ?? -1)
       if (sortKey === 'first') return b.first - a.first
       return b.games - a.games
     })
-  }, [players, sortKey, achievementsByPlayer])
+  }, [players, sortKey, achievementsByPlayer, ratings]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const ratingRef = useChart(() => {
+    const top = [...ratings.values()].filter(p => p.games >= PROVISIONAL_GAMES).sort((a, b) => b.display - a.display).slice(0, RATING_CHART_TOP)
+    return ratingHistoryChart(top, games)
+  }, [])
 
   const winrateRef = useChart(() => {
     const top = [...players].filter(p => p.games >= 3).sort((a, b) => b.win_rate - a.win_rate).slice(0, 10)
@@ -80,11 +93,17 @@ export default function Players() {
         <div className="chart-box"><h3>DREIFING SÆTA</h3><canvas ref={placementRef} /></div>
       </div>
 
+      <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
+        <h3>STYRKLEIKI YFIR TÍMA</h3>
+        <canvas ref={ratingRef} />
+        <RatingInfo />
+      </div>
+
       <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Raða eftir:</span>
-        {['games', 'win_rate', 'gpa', 'first', 'afrek'].map(key => (
+        {['rating', 'games', 'win_rate', 'gpa', 'first', 'afrek'].map(key => (
           <button key={key} className={`sort-btn${sortKey === key ? ' active' : ''}`} onClick={() => setSortKey(key)}>
-            {key === 'win_rate' ? 'Sigurhlutfall' : key === 'gpa' ? 'Meðalskor' : key === 'first' ? 'Sigrar' : key === 'afrek' ? 'Afrek' : 'Leikir'}
+            {key === 'rating' ? 'Styrkleiki' : key === 'win_rate' ? 'Sigurhlutfall' : key === 'gpa' ? 'Meðalskor' : key === 'first' ? 'Sigrar' : key === 'afrek' ? 'Afrek' : 'Leikir'}
           </button>
         ))}
       </div>
@@ -93,7 +112,7 @@ export default function Players() {
         <table>
           <thead>
             <tr>
-              <th>#</th><th>Nafn</th><th>Leikir</th>
+              <th>#</th><th>Nafn</th><th title="Styrkleiki (OpenSkill). * = færri en 5 leikir">Styrkleiki</th><th>Leikir</th>
               <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
               <th>Sigurhlutfall</th><th>Meðalskor</th>
               <th onClick={() => setSortKey('afrek')} style={{ cursor: 'pointer' }}>Afrek</th>
@@ -104,6 +123,7 @@ export default function Players() {
               <tr key={p.name} style={{ cursor: 'pointer' }} onClick={() => { window.location.hash = `players/${encodeURIComponent(p.name)}` }}>
                 <td className={i < 3 ? `rank-${i + 1}` : ''}>{i + 1}</td>
                 <td style={{ fontWeight: 500 }}><a className="row-link" href={`#players/${encodeURIComponent(p.name)}`}>{p.name}</a></td>
+                <td className="rating-cell">{ratingOf(p.name) ?? '–'}{(ratings.get(p.name)?.games ?? 0) < PROVISIONAL_GAMES && ratingOf(p.name) != null && <span className="provisional" title="Færri en 5 leikir — óviss styrkleiki">*</span>}</td>
                 <td>{p.games}</td>
                 <td className="rank-1">{p.first}</td>
                 <td className="rank-2">{p.second}</td>

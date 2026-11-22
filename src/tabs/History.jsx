@@ -4,6 +4,7 @@ import { useMemories } from '../hooks/useMemories'
 import DATA from '../data'
 import { pressable } from '../lib/pressable'
 import EmptyState from '../components/EmptyState'
+import { isTeamGame } from '../lib/seats'
 
 function computeHighlights(games) {
   const sorted = [...games].sort((a, b) => a.game_num - b.game_num)
@@ -249,15 +250,16 @@ export default function History({ gameNum, onSelectGame }) {
                     {game.ways?.length > 0 && <span className="badge badge-way">Ways</span>}
                     {game.traits?.length > 0 && <span className="badge badge-trait">Traits</span>}
                     {game.prophecy?.length > 0 && <span className="badge badge-prophecy">Prophecy</span>}
+                    {isTeamGame(game) && <span className="badge badge-team" title="Liðaleikur: tveir eða fleiri stýrðu sama stokki">Lið</span>}
                     {memoriesByGameNum.has(game.game_num) && (
                       <span className="memory-icon" title="Minningar">📷</span>
                     )}
                   </div>
                   <div className="podium">
-                    {game.results.map(r => (
-                      <span key={r.place} className={r.place <= 3 ? `p${r.place}` : ''} style={r.place >= 4 ? { color: 'var(--dim)' } : undefined}>
-                        {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`} {r.name}
-                        {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
+                    {game.seats.map(seat => (
+                      <span key={seat.players.join('+')} className={seat.place <= 3 ? `p${seat.place}` : ''} style={seat.place >= 4 ? { color: 'var(--dim)' } : undefined}>
+                        {seat.place === 1 ? '🥇' : seat.place === 2 ? '🥈' : seat.place === 3 ? '🥉' : `${seat.place}.`} {seat.players.join(' & ')}
+                        {seat.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{seat.score}stig</span>}
                       </span>
                     ))}
                   </div>

@@ -13,6 +13,8 @@ Tölfræði og gagnvirk úrvinnsla fyrir Dominionklúbbinn Guðmund — an inter
 - **Games** — full history with searchable game details, kingdom cards, results
 - **Cards** — browse all cards with usage stats, filter by expansion and type
 - **Fun Facts** — longest win streaks, highest scores, rivalries, and more
+- **Árið** — a Wrapped-style year in review for the club and every player
+- **Skill rating** — OpenSkill ratings that handle multiplayer games, ties and teams
 - **Kingdom Suggester** — generate balanced kingdoms from your owned expansions
 
 ## Data Pipeline
@@ -29,6 +31,10 @@ The JSON is served as `/data/dominion_data.json` (not bundled into the JS), so a
 ### Teams
 
 When 2+ people play as one seat, write them on the same row of the **Sæti** scores block (partner in the column next to the name, shared score in the score column), or as `Mummi & Halla` in one cell. Each game in the JSON has a `seats` array (one entry per seat, solo players included) and team members get `teammates` in `results`.
+
+### Skill rating
+
+Ratings use [OpenSkill](https://openskill.me) (Weng-Lin / Plackett-Luce, `src/lib/ratings.js`). Every seat — a solo player or a team — is one competitor ranked by its place; team members all move together. The number shown is `1000 + 40 × (μ − 3σ)`, a cautious estimate that starts near 1000. Players with fewer than 5 games are marked provisional. The game modal shows each player's rating change and every seat's pre-game win odds.
 
 ### Card images
 

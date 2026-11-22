@@ -68,6 +68,13 @@ describe('computeClubYear', () => {
     expect(club.rivalry).toMatchObject({ a: 'A', b: 'B', games: 4, aWins: 3, bWins: 1 })
   })
 
+  it('names the biggest rating climber and the upset of the year', () => {
+    expect(club.climber).toMatchObject({ name: expect.any(String) })
+    expect(club.climber.change).toBeGreaterThan(0)
+    expect(club.upset).toMatchObject({ game_num: 3, winners: ['B'] })
+    expect(club.upset.odds).toBeLessThan(0.5)
+  })
+
   it('counts team games', () => {
     expect(club.teamGames).toBe(1)
   })
@@ -107,6 +114,12 @@ describe('computePlayerYear', () => {
       rankByWins: 1,
     })
     expect(a.mostSeenCard).toEqual({ name: 'Village', count: 3 })
+  })
+
+  it('reports the rating at year end and the change during the year', () => {
+    const a = computePlayerYear(games, 2026, 'A')
+    expect(typeof a.ratingEnd).toBe('number')
+    expect(typeof a.ratingChange).toBe('number')
   })
 
   it('finds nemesis (beat me most) and victim (I beat most)', () => {

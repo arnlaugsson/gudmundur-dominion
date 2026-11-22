@@ -11,6 +11,8 @@ import PlayerBioEditor from '../components/PlayerBioEditor'
 import HeadToHeadList from '../components/HeadToHeadList'
 import AchievementBadge from '../components/AchievementBadge'
 import PlayerPhotos from '../components/PlayerPhotos'
+import PlayerRatingChart from '../components/PlayerRatingChart'
+import { getRatings, leaderboard } from '../lib/ratings'
 
 const CATEGORIES = [
   ['volume',    'Þátttaka'],
@@ -43,6 +45,12 @@ export default function PlayerPage({ playerName }) {
   )
   const firstGame = pgames[0]
 
+  const { rating, ratingRank, ratedCount } = useMemo(() => {
+    const { players: ratings } = getRatings(games)
+    const board = leaderboard(ratings)
+    return { rating: ratings.get(playerName) || null, ratingRank: board.findIndex(r => r.name === playerName) + 1, ratedCount: board.length }
+  }, [games, playerName])
+
   // Redirect home if the player doesn't exist in DATA.
   useEffect(() => {
     if (!player) window.location.hash = 'players'
@@ -50,6 +58,10 @@ export default function PlayerPage({ playerName }) {
   if (!player) return null
 
   const statItems = [
+    ...(rating ? [
+      { label: 'Styrkleiki', value: `${rating.display} (${ratingRank}.)`, title: `${ratingRank}. af ${ratedCount} í klúbbnum` },
+      { label: 'Hæsti styrkleiki', value: rating.peak.display, title: `Eftir leik #${rating.peak.game_num}` },
+    ] : []),
     { label: 'Leikir', value: player.games },
     { label: 'Sigrar', value: player.first },
     { label: 'Sigurhlutfall', value: `${player.win_rate.toFixed(0)}%` },
@@ -97,13 +109,15 @@ export default function PlayerPage({ playerName }) {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '.6rem', marginBottom: '1.25rem' }}>
-        {statItems.map(({ label, value }) => (
-          <div key={label} style={{ background: 'var(--bg3)', borderRadius: 6, padding: '.5rem .7rem' }}>
+        {statItems.map(({ label, value, title }) => (
+          <div key={label} title={title} style={{ background: 'var(--bg3)', borderRadius: 6, padding: '.5rem .7rem' }}>
             <div style={{ fontSize: '.62rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.15rem' }}>{label}</div>
             <div style={{ fontSize: '.9rem', fontWeight: 600 }}>{value}</div>
           </div>
         ))}
       </div>
+
+      {rating && rating.history.length > 1 && <PlayerRatingChart player={rating} />}
 
       <div style={{ marginBottom: '1.25rem' }}>
         <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.4rem' }}>Um mig</div>
