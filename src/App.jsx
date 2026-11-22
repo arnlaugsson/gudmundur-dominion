@@ -2,6 +2,7 @@ import { useState, useEffect, Suspense, lazy, useCallback } from 'react'
 import Header from './components/Header'
 import Nav from './components/Nav'
 import { TABS } from './constants'
+import { parseRoute, navigate, replaceRoute } from './lib/route'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
@@ -14,69 +15,62 @@ const Afrek = lazy(() => import('./tabs/Afrek'))
 const Suggester = lazy(() => import('./tabs/Suggester'))
 
 const VALID_TABS = new Set(TABS.map(t => t.id))
+const currentRoute = () => parseRoute(window.location.hash, VALID_TABS)
 
-function parseHash() {
-  const raw = window.location.hash.slice(1)
-  const [head, sub] = raw.split('/')
-  const tab = VALID_TABS.has(head) ? head : 'dashboard'
-  const playerName = head === 'players' && sub ? decodeURIComponent(sub) : null
-  return { tab, playerName }
-}
-
-function Loading() {
+function TabLoading() {
   return (
-    <section className="section active" style={{ textAlign: 'center', paddingTop: '4rem', color: 'var(--dim)' }}>
-      Loading...
+    <section className="section active" aria-busy="true">
+      <div className="skeleton-block skeleton-panel" />
     </section>
   )
 }
 
-export default function App() {
-  const [route, setRoute] = useState(parseHash)
-  const activeTab = route.tab
-  const viewPlayerName = route.playerName
-  const [targetGame, setTargetGame] = useState(null)
-  const [targetExpansion, setTargetExpansion] = useState(null)
-
-  const navigateTo = useCallback((tab) => {
-    window.location.hash = tab
-  }, [])
-
+function useRoute() {
+  const [route, setRoute] = useState(currentRoute)
   useEffect(() => {
-    const onHashChange = () => setRoute(parseHash())
+    const onHashChange = () => setRoute(currentRoute())
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
+  return route
+}
 
-  const handleGameNav = useCallback((gameNum) => {
-    setTargetGame(gameNum)
-    navigateTo('history')
-  }, [navigateTo])
+export default function App() {
+  const { tab, sub } = useRoute()
+  const [targetExpansion, setTargetExpansion] = useState(null)
 
-  const handleExpansionCards = useCallback((expansion) => {
+  const selectTab = useCallback(id => navigate(id), [])
+  // Opening a modal pushes a history entry; closing replaces it, so Back
+  // returns to wherever you were before opening it.
+  const openGame = useCallback(num => (num == null ? replaceRoute('history') : navigate('history', num)), [])
+  const openCard = useCallback(name => (name == null ? replaceRoute('cards') : navigate('cards', name)), [])
+  const openExpansionCards = useCallback((expansion) => {
     setTargetExpansion(expansion)
-    navigateTo('cards')
-  }, [navigateTo])
-
-  const clearTarget = useCallback(() => setTargetGame(null), [])
+    navigate('cards')
+  }, [])
   const clearExpansion = useCallback(() => setTargetExpansion(null), [])
 
   return (
     <>
       <Header />
-      <Nav active={activeTab} onSelect={navigateTo} />
-      <main>
-        <Suspense fallback={<Loading />}>
-          {activeTab === 'dashboard' && <Dashboard onGameNav={handleGameNav} />}
-          {activeTab === 'players' && (viewPlayerName
-            ? <PlayerPage playerName={viewPlayerName} />
-            : <Players />)}
-          {activeTab === 'cards' && <Cards initialExpansion={targetExpansion} onClearExpansion={clearExpansion} />}
-          {activeTab === 'expansions' && <Expansions onNavigateCards={handleExpansionCards} />}
-          {activeTab === 'history' && <History targetGame={targetGame} onClearTarget={clearTarget} />}
-          {activeTab === 'funfacts' && <FunFacts onGameNav={handleGameNav} />}
-          {activeTab === 'afrek' && <Afrek />}
-          {activeTab === 'suggester' && <Suggester />}
+      <Nav active={tab} onSelect={selectTab} />
+      <main id="main">
+        <Suspense fallback={<TabLoading />}>
+          {tab === 'dashboard' && <Dashboard onGameNav={openGame} />}
+          {tab === 'players' && (sub ? <PlayerPage playerName={sub} /> : <Players />)}
+          {tab === 'cards' && (
+            <Cards
+              initialExpansion={targetExpansion}
+              onClearExpansion={clearExpansion}
+              cardName={sub}
+              onSelectCard={openCard}
+            />
+          )}
+          {tab === 'expansions' && <Expansions onNavigateCards={openExpansionCards} />}
+          {tab === 'history' && <History gameNum={sub} onSelectGame={openGame} />}
+          {tab === 'funfacts' && <FunFacts onGameNav={openGame} />}
+          {tab === 'afrek' && <Afrek />}
+          {tab === 'suggester' && <Suggester />}
         </Suspense>
       </main>
     </>

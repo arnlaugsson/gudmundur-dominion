@@ -5,6 +5,11 @@ service firebase.storage {
       allow read: if true;
       allow write: if false;
     }
+    // Small WebP thumbnails of the card scans (scripts/make_card_thumbs.py)
+    match /cards-thumb/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
     match /memories/{allPaths=**} {
       // Read allowed with download URL token (URLs only served to authenticated users via Firestore)
       allow read: if true;

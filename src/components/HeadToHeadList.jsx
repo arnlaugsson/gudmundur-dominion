@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import DATA from '../data'
 import Avatar from './Avatar'
+import { pressable } from '../lib/pressable'
 
 const MIN_SHARED_GAMES = 3
 
@@ -33,7 +34,7 @@ export default function HeadToHeadList({ playerName, profilesByName }) {
         return (
           <div
             key={r.name}
-            onClick={() => { window.location.hash = `players/${encodeURIComponent(r.name)}` }}
+            {...pressable(() => { window.location.hash = `players/${encodeURIComponent(r.name)}` })}
             style={{
               display: 'flex', alignItems: 'center', gap: '.7rem',
               padding: '.4rem .6rem', background: 'var(--bg3)', borderRadius: 6, cursor: 'pointer',

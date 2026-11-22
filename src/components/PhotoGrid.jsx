@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { pressable } from '../lib/pressable'
 
 export default function PhotoGrid({ photos }) {
   const [lightboxIndex, setLightboxIndex] = useState(null)
@@ -26,7 +27,7 @@ export default function PhotoGrid({ photos }) {
           <div
             key={photo.url || i}
             className="photo-item"
-            onClick={() => setLightboxIndex(i)}
+            {...pressable(() => setLightboxIndex(i), photo.caption || 'Mynd')}
           >
             <img src={photo.url} alt={photo.caption || ''} loading="lazy" />
             {photo.taggedPlayers?.length > 0 && (

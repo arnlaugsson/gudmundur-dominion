@@ -1,12 +1,6 @@
+import { navigate } from '../lib/route'
 function navigateToGame(gameNum) {
-  // Reuse the History tab's targetGame mechanism: set hash, then App's
-  // existing handleGameNav can be triggered by listening at App-level.
-  // Simpler: just set the hash to history and open the game modal there.
-  window.location.hash = 'history'
-  // Future enhancement: pre-target the game (not in this PR).
-  // For now, navigation to History is enough; the user can find the game.
-  // To avoid silent failure, log so we know when this is used.
-  console.debug('Navigate to game #' + gameNum)
+  navigate('history', gameNum)
 }
 
 export default function PlayerBio({ bio, onEdit, canEdit }) {

@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import DATA from '../data'
 import { computeLastGameFacts } from '../lib/lastGameFacts'
+import { cardThumbUrl } from '../constants'
+import { pressable } from '../lib/pressable'
 
 const VICTORY_BADGE_CLASS = {
   Province: 'badge-province',
@@ -11,14 +13,22 @@ const VICTORY_BADGE_CLASS = {
 // Keycap emojis (4️⃣ etc.) match the medal glyph metrics so podium rows align vertically.
 const PLACE_ICON = { 1: '🥇', 2: '🥈', 3: '🥉', 4: '4️⃣', 5: '5️⃣', 6: '6️⃣', 7: '7️⃣', 8: '8️⃣', 9: '9️⃣' }
 
+// The priciest kingdom card makes the most striking backdrop art.
+function pickArtCard(game, cards) {
+  const costByName = new Map(cards.map(c => [c.name, (c.cost ?? 0) + (c.debt ? c.debt / 2 : 0)]))
+  const names = (game.kingdom || []).map(k => k.card).filter(n => costByName.has(n))
+  if (!names.length) return null
+  return names.reduce((best, n) => (costByName.get(n) > costByName.get(best) ? n : best))
+}
+
 export default function LatestGameBox({ onGameNav }) {
   const { games, players, cards } = DATA
 
-  const { latest, facts } = useMemo(() => {
+  const { latest, facts, artCard } = useMemo(() => {
     if (!games.length) return { latest: null, facts: [] }
     const latest = games[games.length - 1]
     const facts = computeLastGameFacts(latest, games, players, cards)
-    return { latest, facts }
+    return { latest, facts, artCard: pickArtCard(latest, cards) }
   }, [games, players, cards])
 
   if (!latest) return null
@@ -26,12 +36,11 @@ export default function LatestGameBox({ onGameNav }) {
   return (
     <div
       className="chart-box latest-game-box"
-      onClick={() => onGameNav?.(latest.game_num)}
-      role="button"
-      tabIndex={0}
-      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onGameNav?.(latest.game_num) } }}
-      style={{ cursor: 'pointer' }}
+      {...pressable(() => onGameNav?.(latest.game_num))}
     >
+      {artCard && (
+        <div className="latest-game-art" aria-hidden="true" style={{ backgroundImage: `url("${cardThumbUrl(artCard)}")` }} />
+      )}
       <div style={{ fontSize: '.65rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>
         Síðasti leikur
       </div>
@@ -52,7 +61,7 @@ export default function LatestGameBox({ onGameNav }) {
       {latest.results?.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem .8rem', marginBottom: '.8rem', fontSize: '.82rem', lineHeight: 1.6 }}>
           {latest.results.map(r => (
-            <span key={r.place} style={{ display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+            <span key={r.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
               <span style={{
                 color: r.place === 1 ? 'var(--gold)' : 'var(--dim)',
                 display: 'inline-block',

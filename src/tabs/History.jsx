@@ -1,7 +1,9 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import GameModal from '../components/GameModal'
 import { useMemories } from '../hooks/useMemories'
 import DATA from '../data'
+import { pressable } from '../lib/pressable'
+import EmptyState from '../components/EmptyState'
 
 function computeHighlights(games) {
   const sorted = [...games].sort((a, b) => a.game_num - b.game_num)
@@ -68,7 +70,7 @@ function computeHighlights(games) {
   return highlights
 }
 
-export default function History({ targetGame, onClearTarget }) {
+export default function History({ gameNum, onSelectGame }) {
   const { games, players, expansions } = DATA
   const [search, setSearch] = useState('')
   const [filterPlayers, setFilterPlayers] = useState([])
@@ -76,7 +78,6 @@ export default function History({ targetGame, onClearTarget }) {
   const [filterVictory, setFilterVictory] = useState('')
   const [filterLocation, setFilterLocation] = useState('')
   const [filterPlayerCount, setFilterPlayerCount] = useState('')
-  const [selectedGame, setSelectedGame] = useState(null)
 
   const sortedLocations = useMemo(() => {
     const counts = {}
@@ -93,13 +94,11 @@ export default function History({ targetGame, onClearTarget }) {
   const highlights = useMemo(() => computeHighlights(games), [games])
   const { memoriesByGameNum, refetch } = useMemories()
 
-  useEffect(() => {
-    if (targetGame != null) {
-      const game = games.find(g => g.game_num === targetGame)
-      if (game) setSelectedGame(game)
-      onClearTarget?.()
-    }
-  }, [targetGame]) // eslint-disable-line react-hooks/exhaustive-deps
+  // The open game lives in the URL (#history/141) so it can be shared.
+  const selectedGame = useMemo(
+    () => (gameNum == null ? null : games.find(g => g.game_num === Number(gameNum)) || null),
+    [games, gameNum],
+  )
 
   const sortedGames = useMemo(() => [...games].sort((a, b) => b.game_num - a.game_num), [games])
 
@@ -221,11 +220,12 @@ export default function History({ targetGame, onClearTarget }) {
       </div>
 
       <div>
+        {filtered.length === 0 && <EmptyState>Engir leikir passa við síuna. Prófaðu að fjarlægja síur eða breyta leitinni.</EmptyState>}
         {filtered.map(game => (
           <div
             key={game.game_num}
             className={`game-row ${memoriesByGameNum.get(game.game_num)?.flatMap(m => m.photos || []).find(p => p.highlight) ? 'game-row-has-highlight' : ''}`}
-            onClick={() => setSelectedGame(game)}
+            {...pressable(() => onSelectGame(game.game_num), `Leikur #${game.game_num}`)}
           >
             <div className="game-row-inner">
               <div className="game-row-content">
@@ -305,7 +305,7 @@ export default function History({ targetGame, onClearTarget }) {
         <GameModal
           game={selectedGame}
           memories={memoriesByGameNum.get(selectedGame.game_num) || []}
-          onClose={() => setSelectedGame(null)}
+          onClose={() => onSelectGame(null)}
           onMemorySaved={refetch}
         />
       )}

@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react'
 import CardImage from '../components/CardImage'
 import CardModal from '../components/CardModal'
 import DATA from '../data'
+import { pressable } from '../lib/pressable'
+import EmptyState from '../components/EmptyState'
 
 // Landscape card types (Events, Landmarks, Projects, Ways, Allies, Traits, Prophecy)
 // Loots are portrait-facing cards; the rest are landscape-oriented
@@ -60,7 +62,7 @@ function compareCost(a, b) {
 
 const TYPE_ORDER = ['Kingdom','Event','Landmark','Project','Way','Ally','Trait','Prophecy','Loot']
 
-export default function Cards({ initialExpansion, onClearExpansion }) {
+export default function Cards({ initialExpansion, onClearExpansion, cardName, onSelectCard }) {
   const { cards, expansions, cardTypes } = DATA
   const [search, setSearch] = useState('')
   const [sortBy, setSortBy] = useState('used-desc')
@@ -70,7 +72,11 @@ export default function Cards({ initialExpansion, onClearExpansion }) {
   const [hideRemoved, setHideRemoved] = useState(false)
   const [hideBaseCards, setHideBaseCards] = useState(false)
   const [activeChips, setActiveChips] = useState(initialExpansion ? [initialExpansion] : [])
-  const [selectedCard, setSelectedCard] = useState(null)
+  // The open card lives in the URL (#cards/Village) so it can be shared.
+  const selectedCard = useMemo(
+    () => (cardName ? cards.find(c => c.name === cardName) || null : null),
+    [cards, cardName],
+  )
 
   const toggleChip = (exp) => {
     setActiveChips(prev => prev.includes(exp) ? prev.filter(e => e !== exp) : [...prev, exp])
@@ -165,14 +171,14 @@ export default function Cards({ initialExpansion, onClearExpansion }) {
       </div>
 
       <div className="cards-grid">
+        {filtered.length === 0 && <EmptyState>Engin spil passa við síuna. Prófaðu að fjarlægja síur eða breyta leitinni.</EmptyState>}
         {filtered.map(card => {
           const isLandscape = LANDSCAPE_TYPES.has(card.card_type)
           return (
             <div
               key={card.name}
               className={`card-item${isLandscape ? ' card-item-landscape' : ''}`}
-              onClick={() => setSelectedCard(card)}
-              style={{ cursor: 'pointer' }}
+              {...pressable(() => onSelectCard(card.name), card.name)}
             >
               <CardImage name={card.name} className={isLandscape ? 'card-art-landscape' : 'card-art'} />
               <div style={{ padding: '.65rem .9rem' }}>
@@ -199,7 +205,7 @@ export default function Cards({ initialExpansion, onClearExpansion }) {
       </div>
 
       {selectedCard && (
-        <CardModal card={selectedCard} onClose={() => setSelectedCard(null)} />
+        <CardModal card={selectedCard} onClose={() => onSelectCard(null)} />
       )}
     </section>
   )

@@ -103,7 +103,7 @@ export default function Players() {
             {sorted.map((p, i) => (
               <tr key={p.name} style={{ cursor: 'pointer' }} onClick={() => { window.location.hash = `players/${encodeURIComponent(p.name)}` }}>
                 <td className={i < 3 ? `rank-${i + 1}` : ''}>{i + 1}</td>
-                <td style={{ fontWeight: 500 }}>{p.name}</td>
+                <td style={{ fontWeight: 500 }}><a className="row-link" href={`#players/${encodeURIComponent(p.name)}`}>{p.name}</a></td>
                 <td>{p.games}</td>
                 <td className="rank-1">{p.first}</td>
                 <td className="rank-2">{p.second}</td>

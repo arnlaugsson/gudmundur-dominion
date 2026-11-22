@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useAuth } from '../context/AuthContext'
-import UserManager from './UserManager'
+
+const UserManager = lazy(() => import('./UserManager'))
 
 export default function LoginButton() {
   const { user, loading, login, logout, authError } = useAuth()
@@ -27,14 +28,18 @@ export default function LoginButton() {
             Útskrá
           </button>
         </div>
-        {showUsers && <UserManager onClose={() => setShowUsers(false)} />}
+        {showUsers && (
+          <Suspense fallback={null}>
+            <UserManager onClose={() => setShowUsers(false)} />
+          </Suspense>
+        )}
       </>
     )
   }
 
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-      {authError && <span style={{ color: 'var(--red)', fontSize: '0.75rem' }}>{authError}</span>}
+    <span className="login-anon">
+      {authError && <span className="login-error" role="alert">{authError}</span>}
       <button className="login-btn" onClick={login}>
         Innskrá
       </button>

@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from 'react'
 import DATA from '../data'
 import EXPANSIONS from '../expansionData'
 import CardModal from '../components/CardModal'
+import { pressable } from '../lib/pressable'
 
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)]
@@ -21,8 +22,8 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
 
       <div className="exp-timeline-year">{exp.year}</div>
 
-      <div className="exp-timeline-content" onClick={() => setExpanded(v => !v)}>
-        <div className="exp-timeline-header">
+      <div className="exp-timeline-content">
+        <div className="exp-timeline-header" {...pressable(() => setExpanded(v => !v))} aria-expanded={expanded}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             {exp.coverImg && !expanded && (
               <img
@@ -71,7 +72,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
         </div>
 
         {expanded && (
-          <div className="exp-timeline-details" onClick={e => e.stopPropagation()}>
+          <div className="exp-timeline-details">
 
             <div className="exp-details-content">
             <div className="exp-detail-section">

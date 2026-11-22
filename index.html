@@ -21,6 +21,15 @@
     <meta name="twitter:image" content="https://dominion.arnlaugsson.info/og-image.png" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="theme-color" content="#0d1117" />
+    <!-- Start the data download in parallel with the JS (see src/data.js) -->
+    <link rel="preload" href="/data/dominion_data.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="/data/card_texts.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>

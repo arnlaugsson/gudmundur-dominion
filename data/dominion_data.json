@@ -65,7 +65,8 @@
         "Prosperity"
       ],
       "victory_type": null,
-      "avg_score": null
+      "avg_score": null,
+      "seats": []
     },
     {
       "game_num": 2,
@@ -84,7 +85,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Jack of all Trades",
+          "card": "Jack of All Trades",
           "expansion": "Hinterlands"
         },
         {
@@ -132,7 +133,8 @@
         "Prosperity"
       ],
       "victory_type": null,
-      "avg_score": null
+      "avg_score": null,
+      "seats": []
     },
     {
       "game_num": 3,
@@ -219,7 +221,30 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": null
+      "avg_score": null,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 80.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 2,
+          "score": null
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": null
+        }
+      ]
     },
     {
       "game_num": 4,
@@ -308,7 +333,30 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": null
+      "avg_score": null,
+      "seats": [
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 1,
+          "score": 113.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 2,
+          "score": null
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": null
+        }
+      ]
     },
     {
       "game_num": 5,
@@ -392,7 +440,30 @@
         "Hinterlands"
       ],
       "victory_type": "Province",
-      "avg_score": 46.67
+      "avg_score": 46.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 67.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 2,
+          "score": 52.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 3,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 6,
@@ -488,7 +559,37 @@
         "Adventures"
       ],
       "victory_type": "Province",
-      "avg_score": 25.75
+      "avg_score": 25.75,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 32.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 3,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 4,
+          "score": 15.0
+        }
+      ]
     },
     {
       "game_num": 7,
@@ -580,7 +681,37 @@
         "Adventures"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 27.75
+      "avg_score": 27.75,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 35.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 24.0
+        }
+      ]
     },
     {
       "game_num": 8,
@@ -658,7 +789,7 @@
       "projects": [],
       "ways": [],
       "allies": [
-        "Trappers' lodge"
+        "Trappers' Lodge"
       ],
       "traits": [],
       "prophecy": [],
@@ -666,7 +797,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 38.0
+      "avg_score": 38.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 49.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 20.0
+        }
+      ]
     },
     {
       "game_num": 9,
@@ -707,7 +861,7 @@
       "kingdom": [
         {
           "card": "Poor House",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Cellar",
@@ -715,7 +869,7 @@
         },
         {
           "card": "Hermit",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Workshop",
@@ -731,11 +885,11 @@
         },
         {
           "card": "Wandering Minstrel",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Mystic",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Witch",
@@ -743,7 +897,7 @@
         },
         {
           "card": "Hunting Grounds",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         }
       ],
       "events": [],
@@ -758,7 +912,37 @@
         "Dark Ages"
       ],
       "victory_type": "Province",
-      "avg_score": 22.25
+      "avg_score": 22.25,
+      "seats": [
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 1,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 4,
+          "score": 17.0
+        }
+      ]
     },
     {
       "game_num": 10,
@@ -850,7 +1034,37 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": null
+      "avg_score": null,
+      "seats": [
+        {
+          "players": [
+            "Helena"
+          ],
+          "place": 1,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 43.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 4,
+          "score": 37.0
+        }
+      ]
     },
     {
       "game_num": 11,
@@ -945,7 +1159,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 20.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 10.0
+        }
+      ]
     },
     {
       "game_num": 12,
@@ -985,7 +1229,7 @@
       ],
       "kingdom": [
         {
-          "card": "Coin of the Realm",
+          "card": "Coin of the realm",
           "expansion": "Adventures"
         },
         {
@@ -1041,7 +1285,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 20.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 10.0
+        }
+      ]
     },
     {
       "game_num": 13,
@@ -1126,7 +1400,30 @@
         "Intrigue"
       ],
       "victory_type": "Province",
-      "avg_score": 34.67
+      "avg_score": 34.67,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 20.0
+        }
+      ]
     },
     {
       "game_num": 14,
@@ -1225,7 +1522,37 @@
         "Adventures"
       ],
       "victory_type": "Province",
-      "avg_score": 27.5
+      "avg_score": 27.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": 23.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 24.0
+        }
+      ]
     },
     {
       "game_num": 15,
@@ -1320,7 +1647,37 @@
         "Adventures"
       ],
       "victory_type": "Province",
-      "avg_score": 26.0
+      "avg_score": 26.0,
+      "seats": [
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 1,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 4,
+          "score": 22.0
+        }
+      ]
     },
     {
       "game_num": 16,
@@ -1416,7 +1773,37 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 28.75
+      "avg_score": 28.75,
+      "seats": [
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 28.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 13.0
+        }
+      ]
     },
     {
       "game_num": 17,
@@ -1501,7 +1888,30 @@
         "Seaside"
       ],
       "victory_type": "Province",
-      "avg_score": 58.0
+      "avg_score": 58.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 83.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": 45.0
+        }
+      ]
     },
     {
       "game_num": 18,
@@ -1586,7 +1996,30 @@
         "Seaside"
       ],
       "victory_type": "Colony",
-      "avg_score": 60.33
+      "avg_score": 60.33,
+      "seats": [
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 1,
+          "score": 66.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": 53.0
+        }
+      ]
     },
     {
       "game_num": 19,
@@ -1596,7 +2029,8 @@
         "Jóel",
         "Kiddi",
         "Inga María",
-        "Mummi"
+        "Mummi",
+        "Hafliði"
       ],
       "results": [
         {
@@ -1621,7 +2055,19 @@
           "place": 4,
           "name": "Mummi",
           "tied_with": null,
-          "score": 35.0
+          "score": 35.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 4,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 35.0,
+          "teammates": [
+            "Mummi"
+          ]
         }
       ],
       "kingdom": [
@@ -1679,7 +2125,38 @@
         "Seaside"
       ],
       "victory_type": "Province",
-      "avg_score": 45.0
+      "avg_score": 45.0,
+      "seats": [
+        {
+          "players": [
+            "Jóel"
+          ],
+          "place": 1,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Kiddi"
+          ],
+          "place": 2,
+          "score": 49.0
+        },
+        {
+          "players": [
+            "Inga María"
+          ],
+          "place": 3,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Mummi",
+            "Hafliði"
+          ],
+          "place": 4,
+          "score": 35.0
+        }
+      ]
     },
     {
       "game_num": 20,
@@ -1688,21 +2165,48 @@
       "players": [
         "Jóel",
         "Kiddi",
+        "Inga María",
         "Ragnheiður",
-        "Mummi"
+        "Matthildur",
+        "Mummi",
+        "Hafliði"
       ],
       "results": [
         {
           "place": 1,
           "name": "Mummi",
           "tied_with": null,
-          "score": 34.0
+          "score": 34.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 34.0,
+          "teammates": [
+            "Mummi"
+          ]
         },
         {
           "place": 2,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": 33.0
+          "score": 33.0,
+          "teammates": [
+            "Matthildur"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Matthildur",
+          "tied_with": null,
+          "score": 33.0,
+          "teammates": [
+            "Ragnheiður"
+          ]
         },
         {
           "place": 3,
@@ -1714,7 +2218,19 @@
           "place": 4,
           "name": "Kiddi",
           "tied_with": null,
-          "score": 22.0
+          "score": 22.0,
+          "teammates": [
+            "Inga María"
+          ]
+        },
+        {
+          "place": 4,
+          "name": "Inga María",
+          "tied_with": null,
+          "score": 22.0,
+          "teammates": [
+            "Kiddi"
+          ]
         }
       ],
       "kingdom": [
@@ -1773,7 +2289,40 @@
         "Seaside"
       ],
       "victory_type": "Province",
-      "avg_score": 30.0
+      "avg_score": 30.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi",
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Ragnheiður",
+            "Matthildur"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Jóel"
+          ],
+          "place": 3,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Kiddi",
+            "Inga María"
+          ],
+          "place": 4,
+          "score": 22.0
+        }
+      ]
     },
     {
       "game_num": 21,
@@ -1858,7 +2407,30 @@
         "Intrigue"
       ],
       "victory_type": "Province",
-      "avg_score": 35.33
+      "avg_score": 35.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 22,
@@ -1943,7 +2515,30 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 58.67
+      "avg_score": 58.67,
+      "seats": [
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 1,
+          "score": 82.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 43.0
+        }
+      ]
     },
     {
       "game_num": 23,
@@ -1953,6 +2548,7 @@
         "Arnlaugur",
         "Hallgrímur",
         "Hafliði",
+        "Nói",
         "Mummi"
       ],
       "results": [
@@ -1972,7 +2568,19 @@
           "place": 3,
           "name": "Hafliði",
           "tied_with": null,
-          "score": 36.0
+          "score": 36.0,
+          "teammates": [
+            "Nói"
+          ]
+        },
+        {
+          "place": 3,
+          "name": "Nói",
+          "tied_with": null,
+          "score": 36.0,
+          "teammates": [
+            "Hafliði"
+          ]
         },
         {
           "place": 4,
@@ -2036,7 +2644,38 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 48.25
+      "avg_score": 48.25,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 69.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 55.0
+        },
+        {
+          "players": [
+            "Hafliði",
+            "Nói"
+          ],
+          "place": 3,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 4,
+          "score": 33.0
+        }
+      ]
     },
     {
       "game_num": 24,
@@ -2046,6 +2685,7 @@
         "Hafliði",
         "Nói",
         "Arnlaugur",
+        "Hallgrímur",
         "Mummi"
       ],
       "results": [
@@ -2053,7 +2693,19 @@
           "place": 1,
           "name": "Arnlaugur",
           "tied_with": null,
-          "score": 40.0
+          "score": 40.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 40.0,
+          "teammates": [
+            "Arnlaugur"
+          ]
         },
         {
           "place": 2,
@@ -2080,7 +2732,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Wishing Well",
+          "card": "Wishing well",
           "expansion": "Intrigue"
         },
         {
@@ -2088,7 +2740,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Secret Passage",
+          "card": "Secret passage",
           "expansion": "Intrigue"
         },
         {
@@ -2129,7 +2781,38 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 35.0
+      "avg_score": 35.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur",
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 40.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Nói"
+          ],
+          "place": 4,
+          "score": 30.0
+        }
+      ]
     },
     {
       "game_num": 25,
@@ -2222,7 +2905,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 52.25
+      "avg_score": 52.25,
+      "seats": [
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 1,
+          "score": 72.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 55.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 3,
+          "score": 43.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 39.0
+        }
+      ]
     },
     {
       "game_num": 26,
@@ -2230,16 +2943,30 @@
       "location": "Fossatún, Borgarfirði",
       "players": [
         "Hjödda",
+        "Nói",
         "Addý",
         "Ragnheiður",
-        "Mummi"
+        "Mummi",
+        "Hafliði"
       ],
       "results": [
         {
           "place": 1,
           "name": "Mummi",
           "tied_with": null,
-          "score": 17.0
+          "score": 17.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 17.0,
+          "teammates": [
+            "Mummi"
+          ]
         },
         {
           "place": 2,
@@ -2257,7 +2984,19 @@
           "place": 4,
           "name": "Hjödda",
           "tied_with": null,
-          "score": 5.0
+          "score": 5.0,
+          "teammates": [
+            "Nói"
+          ]
+        },
+        {
+          "place": 4,
+          "name": "Nói",
+          "tied_with": null,
+          "score": 5.0,
+          "teammates": [
+            "Hjödda"
+          ]
         }
       ],
       "kingdom": [
@@ -2314,7 +3053,39 @@
         "Prosperity"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 12.75
+      "avg_score": 12.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi",
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 17.0
+        },
+        {
+          "players": [
+            "Addý"
+          ],
+          "place": 2,
+          "score": 16.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Hjödda",
+            "Nói"
+          ],
+          "place": 4,
+          "score": 5.0
+        }
+      ]
     },
     {
       "game_num": 27,
@@ -2406,7 +3177,37 @@
         "Promo"
       ],
       "victory_type": "Province",
-      "avg_score": 22.0
+      "avg_score": 22.0,
+      "seats": [
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 1,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Addý"
+          ],
+          "place": 4,
+          "score": 15.0
+        }
+      ]
     },
     {
       "game_num": 28,
@@ -2415,6 +3216,7 @@
       "players": [
         "Arnlaugur",
         "Hallgrímur",
+        "Hafliði",
         "Mummi"
       ],
       "results": [
@@ -2422,7 +3224,19 @@
           "place": 1,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": 67.0
+          "score": 67.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 67.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
         },
         {
           "place": 2,
@@ -2491,7 +3305,31 @@
         "Prosperity"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 63.33
+      "avg_score": 63.33,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur",
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 67.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 65.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 58.0
+        }
+      ]
     },
     {
       "game_num": 29,
@@ -2501,6 +3339,7 @@
         "Arnlaugur",
         "Ragnheiður",
         "Hallgrímur",
+        "Hafliði",
         "Mummi"
       ],
       "results": [
@@ -2514,7 +3353,19 @@
           "place": 2,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": 31.0
+          "score": 31.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 31.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
         },
         {
           "place": 3,
@@ -2583,7 +3434,38 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 29.0
+      "avg_score": 29.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Hallgrímur",
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 20.0
+        }
+      ]
     },
     {
       "game_num": 30,
@@ -2591,21 +3473,47 @@
       "location": "Laugarás",
       "players": [
         "Arnlaugur",
+        "Hallgrímur",
         "Ragnheiður",
-        "Mummi"
+        "Mummi",
+        "Hafliði"
       ],
       "results": [
         {
           "place": 1,
           "name": "Arnlaugur",
           "tied_with": null,
-          "score": 117.0
+          "score": 117.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hallgrímur",
+          "tied_with": null,
+          "score": 117.0,
+          "teammates": [
+            "Arnlaugur"
+          ]
         },
         {
           "place": 2,
           "name": "Mummi",
           "tied_with": null,
-          "score": 81.0
+          "score": 81.0,
+          "teammates": [
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 81.0,
+          "teammates": [
+            "Mummi"
+          ]
         },
         {
           "place": 3,
@@ -2636,7 +3544,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Swamp Shacks",
+          "card": "Swamp shacks",
           "expansion": "Plunder"
         },
         {
@@ -2670,14 +3578,40 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 81.33
+      "avg_score": 81.33,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur",
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 117.0
+        },
+        {
+          "players": [
+            "Mummi",
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 81.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 46.0
+        }
+      ]
     },
     {
       "game_num": 31,
       "date": "2023-08-01",
-      "location": "Laugarási",
+      "location": "Laugarás",
       "players": [
         "Hafliði",
+        "Nói",
         "Ragnheiður",
         "Hjödda",
         "Mummi"
@@ -2693,7 +3627,19 @@
           "place": 2,
           "name": "Hafliði",
           "tied_with": null,
-          "score": 63.0
+          "score": 63.0,
+          "teammates": [
+            "Nói"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Nói",
+          "tied_with": null,
+          "score": 63.0,
+          "teammates": [
+            "Hafliði"
+          ]
         },
         {
           "place": 3,
@@ -2769,7 +3715,38 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 56.75
+      "avg_score": 56.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 66.0
+        },
+        {
+          "players": [
+            "Hafliði",
+            "Nói"
+          ],
+          "place": 2,
+          "score": 63.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 54.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 4,
+          "score": 44.0
+        }
+      ]
     },
     {
       "game_num": 32,
@@ -2864,7 +3841,37 @@
         "Allies"
       ],
       "victory_type": "Colony",
-      "avg_score": 52.75
+      "avg_score": 52.75,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 75.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 59.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 42.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 35.0
+        }
+      ]
     },
     {
       "game_num": 33,
@@ -2951,7 +3958,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 30.33
+      "avg_score": 30.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 3,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 34,
@@ -3037,7 +4067,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 26.33
+      "avg_score": 26.33,
+      "seats": [
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Mosi"
+          ],
+          "place": 3,
+          "score": 13.0
+        }
+      ]
     },
     {
       "game_num": 35,
@@ -3128,7 +4181,30 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 28.33
+      "avg_score": 28.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Mosi"
+          ],
+          "place": 3,
+          "score": 23.0
+        }
+      ]
     },
     {
       "game_num": 36,
@@ -3222,7 +4298,37 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 53.75
+      "avg_score": 53.75,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 60.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 53.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 40.0
+        }
+      ]
     },
     {
       "game_num": 37,
@@ -3320,7 +4426,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 21.75
+      "avg_score": 21.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 38,
@@ -3336,34 +4472,38 @@
         {
           "place": 1,
           "name": "Halla",
-          "tied_with": [
+          "tied_with": null,
+          "score": 24.0,
+          "teammates": [
             "Mummi"
-          ],
-          "score": null
+          ]
         },
         {
           "place": 1,
           "name": "Mummi",
-          "tied_with": [
+          "tied_with": null,
+          "score": 24.0,
+          "teammates": [
             "Halla"
-          ],
-          "score": 24.0
+          ]
         },
         {
           "place": 3,
           "name": "Skúli",
-          "tied_with": [
+          "tied_with": null,
+          "score": 21.0,
+          "teammates": [
             "Fúsi"
-          ],
-          "score": 21.0
+          ]
         },
         {
           "place": 3,
           "name": "Fúsi",
-          "tied_with": [
+          "tied_with": null,
+          "score": 21.0,
+          "teammates": [
             "Skúli"
-          ],
-          "score": null
+          ]
         }
       ],
       "kingdom": [
@@ -3376,7 +4516,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Flag bearer",
+          "card": "Flag Bearer",
           "expansion": "Renaissance"
         },
         {
@@ -3421,7 +4561,25 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 22.5
+      "avg_score": 22.5,
+      "seats": [
+        {
+          "players": [
+            "Halla",
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Skúli",
+            "Fúsi"
+          ],
+          "place": 2,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 39,
@@ -3429,6 +4587,7 @@
       "location": "Arnarholt",
       "players": [
         "Halla",
+        "Fúsi",
         "Skúli",
         "Ragnheiður",
         "Mummi"
@@ -3456,7 +4615,19 @@
           "place": 4,
           "name": "Halla",
           "tied_with": null,
-          "score": null
+          "score": -5.0,
+          "teammates": [
+            "Fúsi"
+          ]
+        },
+        {
+          "place": 4,
+          "name": "Fúsi",
+          "tied_with": null,
+          "score": -5.0,
+          "teammates": [
+            "Halla"
+          ]
         }
       ],
       "kingdom": [
@@ -3519,7 +4690,38 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 1.75
+      "avg_score": 1.75,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 11.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 5.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": -4.0
+        },
+        {
+          "players": [
+            "Halla",
+            "Fúsi"
+          ],
+          "place": 4,
+          "score": -5.0
+        }
+      ]
     },
     {
       "game_num": 40,
@@ -3617,7 +4819,37 @@
         "Plunder"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 15.25
+      "avg_score": 15.25,
+      "seats": [
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 1,
+          "score": 35.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 11.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 8.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 4,
+          "score": 7.0
+        }
+      ]
     },
     {
       "game_num": 41,
@@ -3662,7 +4894,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Jack of all Trades",
+          "card": "Jack of All Trades",
           "expansion": "Hinterlands"
         },
         {
@@ -3709,7 +4941,30 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 26.67
+      "avg_score": 26.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 3,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 42,
@@ -3801,7 +5056,30 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 41.67
+      "avg_score": 41.67,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 44.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 34.0
+        }
+      ]
     },
     {
       "game_num": 43,
@@ -3886,7 +5164,30 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 60.33
+      "avg_score": 60.33,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 77.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 42.0
+        }
+      ]
     },
     {
       "game_num": 44,
@@ -3978,7 +5279,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 57.0
+      "avg_score": 57.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 66.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 56.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 3,
+          "score": 55.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 51.0
+        }
+      ]
     },
     {
       "game_num": 45,
@@ -4012,11 +5343,11 @@
       "kingdom": [
         {
           "card": "Poor House",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Beggar",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Enchantress",
@@ -4028,15 +5359,15 @@
         },
         {
           "card": "Hermit",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Death Cart",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Wandering Minstrel",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Archive",
@@ -4044,7 +5375,7 @@
         },
         {
           "card": "Count",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Groundskeeper",
@@ -4052,7 +5383,7 @@
         },
         {
           "card": "Shelters",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         }
       ],
       "events": [
@@ -4071,7 +5402,30 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 48.33
+      "avg_score": 48.33,
+      "seats": [
+        {
+          "players": [
+            "Inga María"
+          ],
+          "place": 1,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Hjalti"
+          ],
+          "place": 3,
+          "score": 46.0
+        }
+      ]
     },
     {
       "game_num": 46,
@@ -4163,7 +5517,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 41.0
+      "avg_score": 41.0,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 2,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Matthildur"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 47,
@@ -4256,7 +5640,37 @@
         "Allies"
       ],
       "victory_type": "Colony",
-      "avg_score": 49.5
+      "avg_score": 49.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 61.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 52.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": 43.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 4,
+          "score": 42.0
+        }
+      ]
     },
     {
       "game_num": 48,
@@ -4342,7 +5756,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 66.67
+      "avg_score": 66.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 74.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 2,
+          "score": 67.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 59.0
+        }
+      ]
     },
     {
       "game_num": 49,
@@ -4350,6 +5787,8 @@
       "location": "Selvogsgrunn",
       "players": [
         "Ragnheiður",
+        "Matthildur",
+        "Hafliði",
         "Mummi",
         "Arnlaugur"
       ],
@@ -4358,7 +5797,31 @@
           "place": 1,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": 85.0
+          "score": 85.0,
+          "teammates": [
+            "Matthildur",
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Matthildur",
+          "tied_with": null,
+          "score": 85.0,
+          "teammates": [
+            "Ragnheiður",
+            "Hafliði"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Hafliði",
+          "tied_with": null,
+          "score": 85.0,
+          "teammates": [
+            "Ragnheiður",
+            "Matthildur"
+          ]
         },
         {
           "place": 2,
@@ -4428,7 +5891,32 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": null,
-      "avg_score": 53.0
+      "avg_score": 53.0,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður",
+            "Matthildur",
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 85.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 33.0
+        }
+      ]
     },
     {
       "game_num": 50,
@@ -4507,7 +5995,23 @@
         "Promo"
       ],
       "victory_type": "Province",
-      "avg_score": 46.5
+      "avg_score": 46.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 46.0
+        }
+      ]
     },
     {
       "game_num": 51,
@@ -4593,7 +6097,30 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 26.67
+      "avg_score": 26.67,
+      "seats": [
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 23.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 20.0
+        }
+      ]
     },
     {
       "game_num": 52,
@@ -4689,7 +6216,37 @@
         "Menagerie"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 18.5
+      "avg_score": 18.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 2,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 16.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 4,
+          "score": 14.0
+        }
+      ]
     },
     {
       "game_num": 53,
@@ -4733,7 +6290,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Guard dog",
+          "card": "Guard Dog",
           "expansion": "Hinterlands"
         },
         {
@@ -4749,7 +6306,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Mining village",
+          "card": "Mining Village",
           "expansion": "Intrigue"
         },
         {
@@ -4781,7 +6338,37 @@
         "Hinterlands"
       ],
       "victory_type": "Province",
-      "avg_score": 32.25
+      "avg_score": 32.25,
+      "seats": [
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 1,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 4,
+          "score": 23.0
+        }
+      ]
     },
     {
       "game_num": 54,
@@ -4821,7 +6408,7 @@
       ],
       "kingdom": [
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -4873,7 +6460,37 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 29.5
+      "avg_score": 29.5,
+      "seats": [
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 1,
+          "score": 42.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 55,
@@ -4949,7 +6566,7 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Treasure trove",
+          "card": "Treasure Trove",
           "expansion": "Adventures"
         },
         {
@@ -4974,7 +6591,37 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 38.25
+      "avg_score": 38.25,
+      "seats": [
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 40.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 4,
+          "score": 31.0
+        }
+      ]
     },
     {
       "game_num": 56,
@@ -5027,7 +6674,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Worker's village",
+          "card": "Worker's Village",
           "expansion": "Prosperity"
         },
         {
@@ -5035,7 +6682,7 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Council room",
+          "card": "Council Room",
           "expansion": "Base"
         },
         {
@@ -5060,7 +6707,30 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Colony",
-      "avg_score": 46.67
+      "avg_score": 46.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 69.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 35.0
+        }
+      ]
     },
     {
       "game_num": 57,
@@ -5109,7 +6779,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Nomad camp",
+          "card": "Nomad Camp",
           "expansion": "Hinterlands"
         },
         {
@@ -5146,7 +6816,30 @@
         "Hinterlands"
       ],
       "victory_type": "Province",
-      "avg_score": 40.33
+      "avg_score": 40.33,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 36.0
+        }
+      ]
     },
     {
       "game_num": 58,
@@ -5155,6 +6848,7 @@
       "players": [
         "Hafliði",
         "Hallgrímur",
+        "Ragnheiður",
         "Mummi"
       ],
       "results": [
@@ -5174,12 +6868,24 @@
           "place": 3,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": 47.0
+          "score": 47.0,
+          "teammates": [
+            "Ragnheiður"
+          ]
+        },
+        {
+          "place": 3,
+          "name": "Ragnheiður",
+          "tied_with": null,
+          "score": 47.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
         }
       ],
       "kingdom": [
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -5207,7 +6913,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Hunting party",
+          "card": "Hunting Party",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -5232,7 +6938,31 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Colony",
-      "avg_score": 59.33
+      "avg_score": 59.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 69.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Hallgrímur",
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 47.0
+        }
+      ]
     },
     {
       "game_num": 59,
@@ -5276,7 +7006,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Acting troupe",
+          "card": "Acting Troupe",
           "expansion": "Renaissance"
         },
         {
@@ -5284,7 +7014,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Bounty hunter",
+          "card": "Bounty Hunter",
           "expansion": "Menagerie"
         },
         {
@@ -5292,7 +7022,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Silk merchant",
+          "card": "Silk Merchant",
           "expansion": "Renaissance"
         },
         {
@@ -5308,7 +7038,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Animal fair",
+          "card": "Animal Fair",
           "expansion": "Menagerie"
         }
       ],
@@ -5328,7 +7058,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 20.0
+      "avg_score": 20.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 9.0
+        }
+      ]
     },
     {
       "game_num": 60,
@@ -5368,7 +7128,7 @@
       ],
       "kingdom": [
         {
-          "card": "Cargo ship",
+          "card": "Cargo Ship",
           "expansion": "Renaissance"
         },
         {
@@ -5376,11 +7136,11 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Bounty hunter",
+          "card": "Bounty Hunter",
           "expansion": "Menagerie"
         },
         {
-          "card": "Village green",
+          "card": "Village Green",
           "expansion": "Menagerie"
         },
         {
@@ -5404,7 +7164,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Animal fair",
+          "card": "Animal Fair",
           "expansion": "Menagerie"
         }
       ],
@@ -5416,7 +7176,7 @@
         "Sewers"
       ],
       "ways": [
-        "Way of the horse"
+        "Way of the Horse"
       ],
       "allies": [],
       "traits": [],
@@ -5426,7 +7186,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 22.0
+      "avg_score": 22.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 3,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 16.0
+        }
+      ]
     },
     {
       "game_num": 61,
@@ -5459,7 +7249,7 @@
       ],
       "kingdom": [
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -5511,7 +7301,30 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Colony",
-      "avg_score": 56.67
+      "avg_score": 56.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 59.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 2,
+          "score": 58.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 53.0
+        }
+      ]
     },
     {
       "game_num": 62,
@@ -5556,11 +7369,11 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Throne room",
+          "card": "Throne Room",
           "expansion": "Base"
         },
         {
-          "card": "Worker's village",
+          "card": "Worker's Village",
           "expansion": "Prosperity"
         },
         {
@@ -5580,7 +7393,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Grand market",
+          "card": "Grand Market",
           "expansion": "Prosperity"
         }
       ],
@@ -5596,7 +7409,30 @@
         "Prosperity"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 44.0
+      "avg_score": 44.0,
+      "seats": [
+        {
+          "players": [
+            "Fríða Rún"
+          ],
+          "place": 1,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 43.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 63,
@@ -5606,6 +7442,7 @@
         "Hafliði",
         "Nói",
         "Mummi",
+        "Matthildur",
         "Hjödda"
       ],
       "results": [
@@ -5613,7 +7450,19 @@
           "place": 1,
           "name": "Mummi",
           "tied_with": null,
-          "score": 74.0
+          "score": 74.0,
+          "teammates": [
+            "Matthildur"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Matthildur",
+          "tied_with": null,
+          "score": 74.0,
+          "teammates": [
+            "Mummi"
+          ]
         },
         {
           "place": 2,
@@ -5636,7 +7485,7 @@
       ],
       "kingdom": [
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -5689,7 +7538,38 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 55.25
+      "avg_score": 55.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi",
+            "Matthildur"
+          ],
+          "place": 1,
+          "score": 74.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 61.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 3,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Nói"
+          ],
+          "place": 4,
+          "score": 39.0
+        }
+      ]
     },
     {
       "game_num": 64,
@@ -5775,7 +7655,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 30.67
+      "avg_score": 30.67,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 29.0
+        }
+      ]
     },
     {
       "game_num": 65,
@@ -5816,7 +7719,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Mining village",
+          "card": "Mining Village",
           "expansion": "Intrigue"
         },
         {
@@ -5828,15 +7731,15 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Worker's village",
+          "card": "Worker's Village",
           "expansion": "Prosperity"
         },
         {
-          "card": "Trading post",
+          "card": "Trading Post",
           "expansion": "Intrigue"
         },
         {
-          "card": "War chest",
+          "card": "War Chest",
           "expansion": "Prosperity"
         },
         {
@@ -5860,7 +7763,30 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 47.67
+      "avg_score": 47.67,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 49.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 65.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 29.0
+        }
+      ]
     },
     {
       "game_num": 66,
@@ -5912,15 +7838,15 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Secluded shrine",
+          "card": "Secluded Shrine",
           "expansion": "Plunder"
         },
         {
-          "card": "Fortune hunter",
+          "card": "Fortune Hunter",
           "expansion": "Plunder"
         },
         {
-          "card": "Harbor village",
+          "card": "Harbor Village",
           "expansion": "Plunder"
         },
         {
@@ -5953,7 +7879,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 28.5
+      "avg_score": 28.5,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 17.0
+        }
+      ]
     },
     {
       "game_num": 67,
@@ -6009,15 +7965,15 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Harbor village",
+          "card": "Harbor Village",
           "expansion": "Plunder"
         },
         {
-          "card": "Horse traders",
+          "card": "Horse Traders",
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Buried treasure",
+          "card": "Buried Treasure",
           "expansion": "Plunder"
         },
         {
@@ -6047,7 +8003,37 @@
         "Plunder"
       ],
       "victory_type": "Colony",
-      "avg_score": 39.0
+      "avg_score": 39.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 46.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 42.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 32.0
+        }
+      ]
     },
     {
       "game_num": 68,
@@ -6107,7 +8093,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Mining village",
+          "card": "Mining Village",
           "expansion": "Intrigue"
         },
         {
@@ -6140,7 +8126,37 @@
         "Plunder"
       ],
       "victory_type": "Colony",
-      "avg_score": 48.25
+      "avg_score": 48.25,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 62.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 60.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 26.0
+        }
+      ]
     },
     {
       "game_num": 69,
@@ -6242,7 +8258,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 21.0
+      "avg_score": 21.0,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 2,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 17.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 4,
+          "score": 26.0
+        }
+      ]
     },
     {
       "game_num": 70,
@@ -6276,7 +8322,7 @@
       "kingdom": [
         {
           "card": "Beggar",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Develop",
@@ -6284,10 +8330,10 @@
         },
         {
           "card": "Sage",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Jack of all trades",
+          "card": "Jack of All Trades",
           "expansion": "Hinterlands"
         },
         {
@@ -6296,11 +8342,11 @@
         },
         {
           "card": "Catacombs",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Graverobber",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Margrave",
@@ -6311,7 +8357,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Witch's hut",
+          "card": "Witch's Hut",
           "expansion": "Hinterlands"
         }
       ],
@@ -6327,7 +8373,30 @@
         "Hinterlands"
       ],
       "victory_type": "Province",
-      "avg_score": 25.33
+      "avg_score": 25.33,
+      "seats": [
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 1,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 3,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 71,
@@ -6365,7 +8434,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Caravan guard",
+          "card": "Caravan Guard",
           "expansion": "Adventures"
         },
         {
@@ -6373,11 +8442,11 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Cabin boy",
+          "card": "Cabin Boy",
           "expansion": "Plunder"
         },
         {
-          "card": "Harbor village",
+          "card": "Harbor Village",
           "expansion": "Plunder"
         },
         {
@@ -6394,7 +8463,7 @@
         }
       ],
       "events": [
-        "Scouting party"
+        "Scouting Party"
       ],
       "landmarks": [],
       "projects": [],
@@ -6411,7 +8480,23 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 30.0
+      "avg_score": 30.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 35.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 25.0
+        }
+      ]
     },
     {
       "game_num": 72,
@@ -6448,11 +8533,11 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Cabin boy",
+          "card": "Cabin Boy",
           "expansion": "Plunder"
         },
         {
-          "card": "Fortune hunter",
+          "card": "Fortune Hunter",
           "expansion": "Plunder"
         },
         {
@@ -6468,15 +8553,15 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Haunted woods",
+          "card": "Haunted Woods",
           "expansion": "Adventures"
         },
         {
-          "card": "Swamp hag",
+          "card": "Swamp Hag",
           "expansion": "Adventures"
         },
         {
-          "card": "Wine merchant",
+          "card": "Wine Merchant",
           "expansion": "Adventures"
         },
         {
@@ -6498,7 +8583,30 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 27.33
+      "avg_score": 27.33,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 40.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 9.0
+        }
+      ]
     },
     {
       "game_num": 73,
@@ -6532,43 +8640,43 @@
       "kingdom": [
         {
           "card": "Aristocrat",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Change",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Ninja",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Gold mine",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Imperial envoy",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Kitsune",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Rice broker",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Ronin",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Mountain Shrine",
-          "expansion": "Rising sun"
+          "card": "Mountain shrine",
+          "expansion": "Rising Sun"
         },
         {
           "card": "Daimyo",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         }
       ],
       "events": [
@@ -6580,13 +8688,36 @@
       "allies": [],
       "traits": [],
       "prophecy": [
-        "Kind emperor"
+        "Kind Emperor"
       ],
       "expansions": [
         "Rising Sun"
       ],
       "victory_type": "Province",
-      "avg_score": 22.33
+      "avg_score": 22.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 6.0
+        }
+      ]
     },
     {
       "game_num": 74,
@@ -6620,43 +8751,43 @@
       "kingdom": [
         {
           "card": "Artist",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Fishmonger",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Craftsman",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Alley",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "River shrine",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Rustic village",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Litter",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Tea house",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Samurai",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Rice",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         }
       ],
       "events": [
@@ -6674,7 +8805,30 @@
         "Rising Sun"
       ],
       "victory_type": "Province",
-      "avg_score": 29.67
+      "avg_score": 29.67,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 3,
+          "score": 24.0
+        }
+      ]
     },
     {
       "game_num": 75,
@@ -6724,7 +8878,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Throne room",
+          "card": "Throne Room",
           "expansion": "Base"
         },
         {
@@ -6751,7 +8905,23 @@
         "Base"
       ],
       "victory_type": "Province",
-      "avg_score": 29.0
+      "avg_score": 29.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 34.0
+        },
+        {
+          "players": [
+            "Bergþór"
+          ],
+          "place": 2,
+          "score": 24.0
+        }
+      ]
     },
     {
       "game_num": 76,
@@ -6815,7 +8985,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Crystal ball",
+          "card": "Crystal Ball",
           "expansion": "Prosperity"
         },
         {
@@ -6823,7 +8993,7 @@
           "expansion": "Base"
         },
         {
-          "card": "War chest",
+          "card": "War Chest",
           "expansion": "Prosperity"
         },
         {
@@ -6843,7 +9013,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 40.5
+      "avg_score": 40.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 57.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 2,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Kristján"
+          ],
+          "place": 3,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Bergþór"
+          ],
+          "place": 4,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 77,
@@ -6903,7 +9103,7 @@
           "expansion": "Base"
         },
         {
-          "card": "Grand market",
+          "card": "Grand Market",
           "expansion": "Prosperity"
         },
         {
@@ -6915,7 +9115,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "King's court",
+          "card": "King's Court",
           "expansion": "Prosperity"
         },
         {
@@ -6935,7 +9135,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 17.75
+      "avg_score": 17.75,
+      "seats": [
+        {
+          "players": [
+            "Kristján"
+          ],
+          "place": 1,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Bergþór"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 3,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 8.0
+        }
+      ]
     },
     {
       "game_num": 78,
@@ -6969,43 +9199,43 @@
       "kingdom": [
         {
           "card": "Aristocrat",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Sage",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Alley",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Feodum",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Poet",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Rustic village",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Junk dealer",
-          "expansion": "Dark ages"
+          "card": "Junk Dealer",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Mystic",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Hunting grounds",
-          "expansion": "Dark ages"
+          "card": "Hunting Grounds",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Rice",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         }
       ],
       "events": [
@@ -7025,7 +9255,30 @@
         "Rising Sun"
       ],
       "victory_type": "Province",
-      "avg_score": 32.67
+      "avg_score": 32.67,
+      "seats": [
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 32.0
+        },
+        {
+          "players": [
+            "Bergþór"
+          ],
+          "place": 3,
+          "score": 30.0
+        }
+      ]
     },
     {
       "game_num": 79,
@@ -7058,52 +9311,52 @@
       ],
       "kingdom": [
         {
-          "card": "Poor house",
-          "expansion": "Dark ages"
+          "card": "Poor House",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Riverboat",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Root cellar",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Change",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Death cart",
-          "expansion": "Dark ages"
+          "card": "Death Cart",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Fortress",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Rats",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Ronin",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Hunting grounds",
-          "expansion": "Dark ages"
+          "card": "Hunting Grounds",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Rice",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Imperial envoy",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         }
       ],
       "events": [
-        "Sea trade"
+        "Sea Trade"
       ],
       "landmarks": [],
       "projects": [],
@@ -7116,7 +9369,30 @@
         "Rising Sun"
       ],
       "victory_type": "Province",
-      "avg_score": 29.0
+      "avg_score": 29.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Bergþór"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 3,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 80,
@@ -7157,11 +9433,11 @@
           "expansion": "Empires"
         },
         {
-          "card": "Chariot race",
+          "card": "Chariot Race",
           "expansion": "Empires"
         },
         {
-          "card": "Farmers' market",
+          "card": "Farmers' Market",
           "expansion": "Empires"
         },
         {
@@ -7204,7 +9480,30 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 59.33
+      "avg_score": 59.33,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 61.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 59.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": null
+        }
+      ]
     },
     {
       "game_num": 81,
@@ -7234,7 +9533,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Royal blacksmith",
+          "card": "Royal Blacksmith",
           "expansion": "Empires"
         },
         {
@@ -7250,7 +9549,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Farmers' market",
+          "card": "Farmers' Market",
           "expansion": "Empires"
         },
         {
@@ -7266,7 +9565,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Wild hunt",
+          "card": "Wild Hunt",
           "expansion": "Empires"
         }
       ],
@@ -7284,7 +9583,23 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 60.5
+      "avg_score": 60.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 61.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 60.0
+        }
+      ]
     },
     {
       "game_num": 82,
@@ -7365,7 +9680,7 @@
         }
       ],
       "events": [
-        "Seize the day",
+        "Seize the Day",
         "Enclave"
       ],
       "landmarks": [],
@@ -7379,7 +9694,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 25.25
+      "avg_score": 25.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 3,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 4,
+          "score": 18.0
+        }
+      ]
     },
     {
       "game_num": 83,
@@ -7439,7 +9784,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Tide pools",
+          "card": "Tide Pools",
           "expansion": "Seaside"
         },
         {
@@ -7463,7 +9808,7 @@
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the mule"
+        "Way of the Mule"
       ],
       "allies": [],
       "traits": [],
@@ -7473,7 +9818,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 24.75
+      "avg_score": 24.75,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 28.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 3,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 84,
@@ -7510,11 +9885,11 @@
           "expansion": "Empires"
         },
         {
-          "card": "City quarter",
+          "card": "City Quarter",
           "expansion": "Empires"
         },
         {
-          "card": "Royal blacksmith",
+          "card": "Royal Blacksmith",
           "expansion": "Empires"
         },
         {
@@ -7522,7 +9897,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Chariot race",
+          "card": "Chariot Race",
           "expansion": "Empires"
         },
         {
@@ -7542,7 +9917,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Wild hunt",
+          "card": "Wild Hunt",
           "expansion": "Empires"
         }
       ],
@@ -7561,7 +9936,30 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 43.33
+      "avg_score": 43.33,
+      "seats": [
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 1,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 2,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 40.0
+        }
+      ]
     },
     {
       "game_num": 85,
@@ -7594,7 +9992,7 @@
       ],
       "kingdom": [
         {
-          "card": "Border guard",
+          "card": "Border Guard",
           "expansion": "Renaissance"
         },
         {
@@ -7606,7 +10004,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Bounty hunter",
+          "card": "Bounty Hunter",
           "expansion": "Menagerie"
         },
         {
@@ -7622,15 +10020,15 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "War chest",
+          "card": "War Chest",
           "expansion": "Prosperity"
         },
         {
-          "card": "Grand market",
+          "card": "Grand Market",
           "expansion": "Prosperity"
         },
         {
-          "card": "Animal fair",
+          "card": "Animal Fair",
           "expansion": "Menagerie"
         }
       ],
@@ -7649,7 +10047,30 @@
         "Menagerie"
       ],
       "victory_type": "Colony",
-      "avg_score": 70.0
+      "avg_score": 70.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 95.0
+        },
+        {
+          "players": [
+            "Kalli"
+          ],
+          "place": 2,
+          "score": 64.0
+        },
+        {
+          "players": [
+            "Kristján"
+          ],
+          "place": 3,
+          "score": 51.0
+        }
+      ]
     },
     {
       "game_num": 86,
@@ -7677,18 +10098,20 @@
         {
           "place": 3,
           "name": "Hafliði",
-          "tied_with": [
+          "tied_with": null,
+          "score": 18.0,
+          "teammates": [
             "Hallgrímur"
-          ],
-          "score": null
+          ]
         },
         {
           "place": 3,
           "name": "Hallgrímur",
-          "tied_with": [
+          "tied_with": null,
+          "score": 18.0,
+          "teammates": [
             "Hafliði"
-          ],
-          "score": 18.0
+          ]
         }
       ],
       "kingdom": [
@@ -7701,7 +10124,7 @@
           "expansion": "Allies"
         },
         {
-          "card": "Sea chart",
+          "card": "Sea Chart",
           "expansion": "Seaside"
         },
         {
@@ -7717,7 +10140,7 @@
           "expansion": "Seaside"
         },
         {
-          "card": "Capital city",
+          "card": "Capital City",
           "expansion": "Allies"
         },
         {
@@ -7745,7 +10168,31 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 20.0
+      "avg_score": 20.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Hafliði",
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": 18.0
+        }
+      ]
     },
     {
       "game_num": 87,
@@ -7797,11 +10244,11 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Fortune hunter",
+          "card": "Fortune Hunter",
           "expansion": "Plunder"
         },
         {
-          "card": "Jack of all trades",
+          "card": "Jack of All Trades",
           "expansion": "Hinterlands"
         },
         {
@@ -7813,15 +10260,15 @@
           "expansion": "Plunder"
         },
         {
-          "card": "First mate",
+          "card": "First Mate",
           "expansion": "Plunder"
         },
         {
-          "card": "Mining road",
+          "card": "Mining Road",
           "expansion": "Plunder"
         },
         {
-          "card": "King's cache",
+          "card": "King's Cache",
           "expansion": "Plunder"
         }
       ],
@@ -7835,7 +10282,7 @@
       "traits": [
         {
           "name": "Friendly",
-          "card": "Fortune hunter"
+          "card": "Fortune Hunter"
         }
       ],
       "prophecy": [],
@@ -7844,7 +10291,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 24.25
+      "avg_score": 24.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Ásta"
+          ],
+          "place": 2,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 88,
@@ -7896,7 +10373,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Fortune hunter",
+          "card": "Fortune Hunter",
           "expansion": "Plunder"
         },
         {
@@ -7908,7 +10385,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Mining road",
+          "card": "Mining Road",
           "expansion": "Plunder"
         },
         {
@@ -7920,7 +10397,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Border village",
+          "card": "Border Village",
           "expansion": "Hinterlands"
         }
       ],
@@ -7934,7 +10411,7 @@
       "traits": [
         {
           "name": "Fawning",
-          "card": "Fortune hunter"
+          "card": "Fortune Hunter"
         }
       ],
       "prophecy": [],
@@ -7943,7 +10420,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 20.5
+      "avg_score": 20.5,
+      "seats": [
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Ásta"
+          ],
+          "place": 4,
+          "score": 17.0
+        }
+      ]
     },
     {
       "game_num": 89,
@@ -8007,7 +10514,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Silver mine",
+          "card": "Silver Mine",
           "expansion": "Plunder"
         },
         {
@@ -8015,11 +10522,11 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Sack of loot",
+          "card": "Sack of Loot",
           "expansion": "Plunder"
         },
         {
-          "card": "King's cache",
+          "card": "King's Cache",
           "expansion": "Plunder"
         }
       ],
@@ -8033,7 +10540,7 @@
       "traits": [
         {
           "name": "Inspiring",
-          "card": "King's cache"
+          "card": "King's Cache"
         }
       ],
       "prophecy": [],
@@ -8042,7 +10549,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 27.75
+      "avg_score": 27.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Ásta"
+          ],
+          "place": 3,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 15.0
+        }
+      ]
     },
     {
       "game_num": 90,
@@ -8082,7 +10619,7 @@
       ],
       "kingdom": [
         {
-          "card": "Jeweled egg",
+          "card": "Jeweled Egg",
           "expansion": "Plunder"
         },
         {
@@ -8098,7 +10635,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Silk road",
+          "card": "Silk Road",
           "expansion": "Hinterlands"
         },
         {
@@ -8118,7 +10655,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Wealthy village",
+          "card": "Wealthy Village",
           "expansion": "Plunder"
         }
       ],
@@ -8141,7 +10678,37 @@
         "Plunder"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 22.75
+      "avg_score": 22.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 2,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Ásta"
+          ],
+          "place": 3,
+          "score": 14.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 11.0
+        }
+      ]
     },
     {
       "game_num": 91,
@@ -8198,7 +10765,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Merchant guild",
+          "card": "Merchant Guild",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -8226,7 +10793,30 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 36.0
+      "avg_score": 36.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 35.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 34.0
+        }
+      ]
     },
     {
       "game_num": 92,
@@ -8259,7 +10849,7 @@
       ],
       "kingdom": [
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -8312,7 +10902,30 @@
         "Promo"
       ],
       "victory_type": "Province",
-      "avg_score": 42.0
+      "avg_score": 42.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 40.0
+        }
+      ]
     },
     {
       "game_num": 93,
@@ -8349,12 +10962,12 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Market square",
-          "expansion": "Dark ages"
+          "card": "Market Square",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Sage",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Plaza",
@@ -8362,15 +10975,15 @@
         },
         {
           "card": "Rats",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Catacombs",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Counterfeit",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Ferryman",
@@ -8378,14 +10991,14 @@
         },
         {
           "card": "Graverobber",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Horn of plenty",
+          "card": "Horn of Plenty",
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Horse traders",
+          "card": "Horse Traders",
           "expansion": "Cornucopia & Guilds"
         }
       ],
@@ -8401,7 +11014,30 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 26.33
+      "avg_score": 26.33,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 13.0
+        }
+      ]
     },
     {
       "game_num": 94,
@@ -8409,6 +11045,7 @@
       "location": "Húsafell",
       "players": [
         "Hallgrímur",
+        "Jói",
         "Hafliði",
         "Mummi"
       ],
@@ -8423,7 +11060,19 @@
           "place": 2,
           "name": "Hallgrímur",
           "tied_with": null,
-          "score": 40.0
+          "score": 40.0,
+          "teammates": [
+            "Jói"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Jói",
+          "tied_with": null,
+          "score": 40.0,
+          "teammates": [
+            "Hallgrímur"
+          ]
         },
         {
           "place": 3,
@@ -8435,23 +11084,23 @@
       "kingdom": [
         {
           "card": "Squire",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Forager",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Storeroom",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Death cart",
-          "expansion": "Dark ages"
+          "card": "Death Cart",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Fortress",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Archive",
@@ -8463,15 +11112,15 @@
         },
         {
           "card": "Counterfeit",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Wild hunt",
+          "card": "Wild Hunt",
           "expansion": "Empires"
         },
         {
           "card": "Altar",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         }
       ],
       "events": [
@@ -8490,7 +11139,31 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 39.67
+      "avg_score": 39.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Hallgrímur",
+            "Jói"
+          ],
+          "place": 2,
+          "score": 40.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 3,
+          "score": 28.0
+        }
+      ]
     },
     {
       "game_num": 95,
@@ -8555,7 +11228,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Distant lands",
+          "card": "Distant Lands",
           "expansion": "Adventures"
         },
         {
@@ -8578,7 +11251,30 @@
         "Nocturne"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 42.33
+      "avg_score": 42.33,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 34.0
+        }
+      ]
     },
     {
       "game_num": 96,
@@ -8626,7 +11322,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Chariot race",
+          "card": "Chariot Race",
           "expansion": "Empires"
         },
         {
@@ -8650,11 +11346,11 @@
           "expansion": "Empires"
         },
         {
-          "card": "Haunted woods",
+          "card": "Haunted Woods",
           "expansion": "Adventures"
         },
         {
-          "card": "Swamp hag",
+          "card": "Swamp Hag",
           "expansion": "Adventures"
         }
       ],
@@ -8674,7 +11370,37 @@
         "Empires"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 28.75
+      "avg_score": 28.75,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 26.0
+        }
+      ]
     },
     {
       "game_num": 97,
@@ -8769,7 +11495,37 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 45.5
+      "avg_score": 45.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 2,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 4,
+          "score": 42.0
+        }
+      ]
     },
     {
       "game_num": 98,
@@ -8809,7 +11565,7 @@
       ],
       "kingdom": [
         {
-          "card": "City quarter",
+          "card": "City Quarter",
           "expansion": "Empires"
         },
         {
@@ -8817,7 +11573,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Border guard",
+          "card": "Border Guard",
           "expansion": "Renaissance"
         },
         {
@@ -8825,7 +11581,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Flag bearer",
+          "card": "Flag Bearer",
           "expansion": "Renaissance"
         },
         {
@@ -8854,7 +11610,7 @@
       ],
       "landmarks": [],
       "projects": [
-        "Road network"
+        "Road Network"
       ],
       "ways": [],
       "allies": [],
@@ -8865,7 +11621,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 26.5
+      "avg_score": 26.5,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 35.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 14.0
+        }
+      ]
     },
     {
       "game_num": 99,
@@ -8913,7 +11699,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Farmers' market",
+          "card": "Farmers' Market",
           "expansion": "Empires"
         },
         {
@@ -8929,7 +11715,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Mountain village",
+          "card": "Mountain Village",
           "expansion": "Renaissance"
         },
         {
@@ -8941,7 +11727,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Wild hunt",
+          "card": "Wild Hunt",
           "expansion": "Empires"
         }
       ],
@@ -8963,7 +11749,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 47.0
+      "avg_score": 47.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 59.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 3,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 4,
+          "score": 36.0
+        }
+      ]
     },
     {
       "game_num": 100,
@@ -9007,7 +11823,7 @@
           "expansion": "Seaside"
         },
         {
-          "card": "Sea chart",
+          "card": "Sea Chart",
           "expansion": "Seaside"
         },
         {
@@ -9019,7 +11835,7 @@
           "expansion": "Seaside"
         },
         {
-          "card": "Tide pools",
+          "card": "Tide Pools",
           "expansion": "Seaside"
         },
         {
@@ -9039,7 +11855,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Animal fair",
+          "card": "Animal Fair",
           "expansion": "Menagerie"
         }
       ],
@@ -9049,7 +11865,7 @@
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the sheep"
+        "Way of the Sheep"
       ],
       "allies": [],
       "traits": [],
@@ -9059,7 +11875,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 32.75
+      "avg_score": 32.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Gunni"
+          ],
+          "place": 3,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 4,
+          "score": 26.0
+        }
+      ]
     },
     {
       "game_num": 101,
@@ -9099,7 +11945,7 @@
       ],
       "kingdom": [
         {
-          "card": "Black cat",
+          "card": "Black Cat",
           "expansion": "Menagerie"
         },
         {
@@ -9115,11 +11961,11 @@
           "expansion": "Seaside"
         },
         {
-          "card": "Bounty hunter",
+          "card": "Bounty Hunter",
           "expansion": "Menagerie"
         },
         {
-          "card": "Village green",
+          "card": "Village Green",
           "expansion": "Menagerie"
         },
         {
@@ -9131,7 +11977,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Merchant ship",
+          "card": "Merchant Ship",
           "expansion": "Seaside"
         },
         {
@@ -9145,7 +11991,7 @@
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the turtle"
+        "Way of the Turtle"
       ],
       "allies": [],
       "traits": [],
@@ -9155,7 +12001,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 22.75
+      "avg_score": 22.75,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Gunni"
+          ],
+          "place": 3,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 15.0
+        }
+      ]
     },
     {
       "game_num": 102,
@@ -9184,7 +12060,7 @@
           "place": 3,
           "name": "Hafliði",
           "tied_with": null,
-          "score": null
+          "score": 25.0
         },
         {
           "place": 4,
@@ -9203,7 +12079,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Spice merchant",
+          "card": "Spice Merchant",
           "expansion": "Hinterlands"
         },
         {
@@ -9227,7 +12103,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Silver mine",
+          "card": "Silver Mine",
           "expansion": "Plunder"
         },
         {
@@ -9250,7 +12126,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 26.5
+      "avg_score": 26.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 3,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 4,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 103,
@@ -9298,7 +12204,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Snowy village",
+          "card": "Snowy Village",
           "expansion": "Menagerie"
         },
         {
@@ -9318,7 +12224,7 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Horn of plenty",
+          "card": "Horn of Plenty",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -9326,7 +12232,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Grand market",
+          "card": "Grand Market",
           "expansion": "Prosperity"
         }
       ],
@@ -9334,7 +12240,7 @@
         "Banquet"
       ],
       "landmarks": [
-        "Wolf den"
+        "Wolf Den"
       ],
       "projects": [
         "Fair"
@@ -9350,7 +12256,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 14.0
+      "avg_score": 14.0,
+      "seats": [
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 1,
+          "score": 17.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Ásta"
+          ],
+          "place": 4,
+          "score": 11.0
+        }
+      ]
     },
     {
       "game_num": 104,
@@ -9378,18 +12314,20 @@
         {
           "place": 3,
           "name": "Iðunn",
-          "tied_with": [
+          "tied_with": null,
+          "score": 37.0,
+          "teammates": [
             "Ragnheiður"
-          ],
-          "score": null
+          ]
         },
         {
           "place": 3,
           "name": "Ragnheiður",
-          "tied_with": [
+          "tied_with": null,
+          "score": 37.0,
+          "teammates": [
             "Iðunn"
-          ],
-          "score": 37.0
+          ]
         }
       ],
       "kingdom": [
@@ -9398,7 +12336,7 @@
           "expansion": "Allies"
         },
         {
-          "card": "Candlestick maker",
+          "card": "Candlestick Maker",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -9411,7 +12349,7 @@
         },
         {
           "card": "Ironmonger",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Bishop",
@@ -9423,7 +12361,7 @@
         },
         {
           "card": "Catacombs",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Sanctuary",
@@ -9445,7 +12383,7 @@
       ],
       "ways": [],
       "allies": [
-        "Architects' guild"
+        "Architects' Guild"
       ],
       "traits": [],
       "prophecy": [],
@@ -9456,7 +12394,31 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 45.25
+      "avg_score": 45.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 56.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 51.0
+        },
+        {
+          "players": [
+            "Iðunn",
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 37.0
+        }
+      ]
     },
     {
       "game_num": 105,
@@ -9496,7 +12458,7 @@
       ],
       "kingdom": [
         {
-          "card": "Fool's gold",
+          "card": "Fool's Gold",
           "expansion": "Hinterlands"
         },
         {
@@ -9516,7 +12478,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Jack of all trades",
+          "card": "Jack of All Trades",
           "expansion": "Hinterlands"
         },
         {
@@ -9528,11 +12490,11 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Border village",
+          "card": "Border Village",
           "expansion": "Hinterlands"
         },
         {
-          "card": "Sack of loot",
+          "card": "Sack of Loot",
           "expansion": "Plunder"
         }
       ],
@@ -9553,7 +12515,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 50.5
+      "avg_score": 50.5,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 72.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 49.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 43.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 4,
+          "score": 38.0
+        }
+      ]
     },
     {
       "game_num": 106,
@@ -9601,7 +12593,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Night watchman",
+          "card": "Night Watchman",
           "expansion": "Nocturne"
         },
         {
@@ -9621,11 +12613,11 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Crystal ball",
+          "card": "Crystal Ball",
           "expansion": "Prosperity"
         },
         {
-          "card": "Cursed village",
+          "card": "Cursed Village",
           "expansion": "Nocturne"
         },
         {
@@ -9645,7 +12637,37 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 48.5
+      "avg_score": 48.5,
+      "seats": [
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 1,
+          "score": 56.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 53.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 52.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 33.0
+        }
+      ]
     },
     {
       "game_num": 107,
@@ -9685,7 +12707,7 @@
       ],
       "kingdom": [
         {
-          "card": "Sea chart",
+          "card": "Sea Chart",
           "expansion": "Seaside"
         },
         {
@@ -9701,7 +12723,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Treasure map",
+          "card": "Treasure Map",
           "expansion": "Seaside"
         },
         {
@@ -9709,7 +12731,7 @@
           "expansion": "Seaside"
         },
         {
-          "card": "Merchant ship",
+          "card": "Merchant Ship",
           "expansion": "Seaside"
         },
         {
@@ -9717,7 +12739,7 @@
           "expansion": "Seaside"
         },
         {
-          "card": "King's court",
+          "card": "King's Court",
           "expansion": "Prosperity"
         },
         {
@@ -9737,7 +12759,37 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 42.0
+      "avg_score": 42.0,
+      "seats": [
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 1,
+          "score": 59.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 3,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 4,
+          "score": 29.0
+        }
+      ]
     },
     {
       "game_num": 108,
@@ -9801,7 +12853,7 @@
           "expansion": "Empires"
         },
         {
-          "card": "Lost city",
+          "card": "Lost City",
           "expansion": "Adventures"
         },
         {
@@ -9820,7 +12872,7 @@
       "events": [],
       "landmarks": [
         "Wall",
-        "Mountain pass"
+        "Mountain Pass"
       ],
       "projects": [],
       "ways": [],
@@ -9832,7 +12884,37 @@
         "Empires"
       ],
       "victory_type": "Province",
-      "avg_score": 11.75
+      "avg_score": 11.75,
+      "seats": [
+        {
+          "players": [
+            "Gunni"
+          ],
+          "place": 1,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 2,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 3,
+          "score": 11.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 8.0
+        }
+      ]
     },
     {
       "game_num": 109,
@@ -9872,19 +12954,19 @@
       ],
       "kingdom": [
         {
-          "card": "City quarter",
+          "card": "City Quarter",
           "expansion": "Empires"
         },
         {
-          "card": "Royal blacksmith",
+          "card": "Royal Blacksmith",
           "expansion": "Empires"
         },
         {
-          "card": "Settlers/Bustling village",
+          "card": "Settlers/Bustling Village",
           "expansion": "Empires"
         },
         {
-          "card": "Farmers' market",
+          "card": "Farmers' Market",
           "expansion": "Empires"
         },
         {
@@ -9904,11 +12986,11 @@
           "expansion": "Empires"
         },
         {
-          "card": "Swamp hag",
+          "card": "Swamp Hag",
           "expansion": "Adventures"
         },
         {
-          "card": "Wild hunt",
+          "card": "Wild Hunt",
           "expansion": "Empires"
         }
       ],
@@ -9928,7 +13010,37 @@
         "Empires"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 30.25
+      "avg_score": 30.25,
+      "seats": [
+        {
+          "players": [
+            "Lúlli"
+          ],
+          "place": 1,
+          "score": 41.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 23.0
+        },
+        {
+          "players": [
+            "Gunni"
+          ],
+          "place": 4,
+          "score": 20.0
+        }
+      ]
     },
     {
       "game_num": 110,
@@ -9984,19 +13096,19 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Mountain village",
+          "card": "Mountain Village",
           "expansion": "Renaissance"
         },
         {
-          "card": "Village green",
+          "card": "Village Green",
           "expansion": "Menagerie"
         },
         {
-          "card": "Hunting lodge",
+          "card": "Hunting Lodge",
           "expansion": "Menagerie"
         },
         {
-          "card": "Old witch",
+          "card": "Old Witch",
           "expansion": "Renaissance"
         },
         {
@@ -10004,7 +13116,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Animal fair",
+          "card": "Animal Fair",
           "expansion": "Menagerie"
         }
       ],
@@ -10020,7 +13132,37 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 25.0
+      "avg_score": 25.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 16.0
+        }
+      ]
     },
     {
       "game_num": 111,
@@ -10064,7 +13206,7 @@
       ],
       "kingdom": [
         {
-          "card": "Faithful hound",
+          "card": "Faithful Hound",
           "expansion": "Nocturne"
         },
         {
@@ -10076,7 +13218,7 @@
           "expansion": "Intrigue"
         },
         {
-          "card": "Mining village",
+          "card": "Mining Village",
           "expansion": "Intrigue"
         },
         {
@@ -10096,7 +13238,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Sacred grove",
+          "card": "Sacred Grove",
           "expansion": "Nocturne"
         },
         {
@@ -10116,7 +13258,37 @@
         "Nocturne"
       ],
       "victory_type": "Province",
-      "avg_score": 26.75
+      "avg_score": 26.75,
+      "seats": [
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 18.0
+        }
+      ]
     },
     {
       "game_num": 112,
@@ -10188,11 +13360,11 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Sacred grove",
+          "card": "Sacred Grove",
           "expansion": "Nocturne"
         },
         {
-          "card": "Trading post",
+          "card": "Trading Post",
           "expansion": "Intrigue"
         },
         {
@@ -10212,7 +13384,37 @@
         "Nocturne"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 20.75,
+      "seats": [
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 14.0
+        }
+      ]
     },
     {
       "game_num": 113,
@@ -10272,11 +13474,11 @@
           "expansion": "Base"
         },
         {
-          "card": "Throne room",
+          "card": "Throne Room",
           "expansion": "Base"
         },
         {
-          "card": "Council room",
+          "card": "Council Room",
           "expansion": "Base"
         },
         {
@@ -10303,7 +13505,37 @@
         "Base"
       ],
       "victory_type": "Province",
-      "avg_score": 26.0
+      "avg_score": 26.0,
+      "seats": [
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 29.0
+        },
+        {
+          "players": [
+            "Matthildur"
+          ],
+          "place": 3,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 18.0
+        }
+      ]
     },
     {
       "game_num": 114,
@@ -10398,7 +13630,37 @@
         "Empires"
       ],
       "victory_type": "Colony",
-      "avg_score": 60.5
+      "avg_score": 60.5,
+      "seats": [
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 1,
+          "score": 79.0
+        },
+        {
+          "players": [
+            "Matthildur"
+          ],
+          "place": 2,
+          "score": 60.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 55.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 4,
+          "score": 48.0
+        }
+      ]
     },
     {
       "game_num": 115,
@@ -10476,7 +13738,7 @@
       "projects": [],
       "ways": [],
       "allies": [
-        "Mountain folk"
+        "Mountain Folk"
       ],
       "traits": [],
       "prophecy": [],
@@ -10484,7 +13746,30 @@
         "Allies"
       ],
       "victory_type": "Province",
-      "avg_score": 29.33
+      "avg_score": 29.33,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 3,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 116,
@@ -10560,7 +13845,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Swamp hag",
+          "card": "Swamp Hag",
           "expansion": "Adventures"
         }
       ],
@@ -10579,7 +13864,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 22.0
+      "avg_score": 22.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 32.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 14.0
+        }
+      ]
     },
     {
       "game_num": 117,
@@ -10620,7 +13935,7 @@
       "kingdom": [
         {
           "card": "Artist",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Coin of the realm",
@@ -10631,16 +13946,16 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Caravan guard",
+          "card": "Caravan Guard",
           "expansion": "Adventures"
         },
         {
           "card": "Craftsman",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Riverboat",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Duplicate",
@@ -10648,18 +13963,18 @@
         },
         {
           "card": "Poet",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Bridge troll",
+          "card": "Bridge Troll",
           "expansion": "Adventures"
         },
         {
           "card": "Tea house",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
-          "card": "Wine merchant",
+          "card": "Wine Merchant",
           "expansion": "Adventures"
         }
       ],
@@ -10673,14 +13988,44 @@
       "allies": [],
       "traits": [],
       "prophecy": [
-        "Biding time"
+        "Biding Time"
       ],
       "expansions": [
         "Adventures",
         "Rising Sun"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 32.5
+      "avg_score": 32.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 32.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Mosi"
+          ],
+          "place": 4,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 118,
@@ -10720,7 +14065,7 @@
       ],
       "kingdom": [
         {
-          "card": "City quarter",
+          "card": "City Quarter",
           "expansion": "Empires"
         },
         {
@@ -10732,7 +14077,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Farmers' market",
+          "card": "Farmers' Market",
           "expansion": "Empires"
         },
         {
@@ -10752,11 +14097,11 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Bridge troll",
+          "card": "Bridge Troll",
           "expansion": "Adventures"
         },
         {
-          "card": "Royal carriage",
+          "card": "Royal Carriage",
           "expansion": "Adventures"
         }
       ],
@@ -10764,7 +14109,7 @@
         "Pilgrimage"
       ],
       "landmarks": [
-        "Wolf den"
+        "Wolf Den"
       ],
       "projects": [],
       "ways": [],
@@ -10776,7 +14121,37 @@
         "Empires"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 3.0
+      "avg_score": 3.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 16.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 3.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 2.0
+        },
+        {
+          "players": [
+            "Mosi"
+          ],
+          "place": 4,
+          "score": -9.0
+        }
+      ]
     },
     {
       "game_num": 119,
@@ -10820,7 +14195,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Ghost town",
+          "card": "Ghost Town",
           "expansion": "Nocturne"
         },
         {
@@ -10828,11 +14203,11 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Night watchman",
+          "card": "Night Watchman",
           "expansion": "Nocturne"
         },
         {
-          "card": "Secret cave",
+          "card": "Secret Cave",
           "expansion": "Nocturne"
         },
         {
@@ -10844,7 +14219,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Sacred grove",
+          "card": "Sacred Grove",
           "expansion": "Nocturne"
         },
         {
@@ -10867,7 +14242,37 @@
         "Nocturne"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 20.75,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 2,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 3,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 4,
+          "score": 18.0
+        }
+      ]
     },
     {
       "game_num": 120,
@@ -10909,7 +14314,7 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Hunting party",
+          "card": "Hunting Party",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -10917,7 +14322,7 @@
           "expansion": "Cornucopia & Guilds"
         },
         {
-          "card": "Merchant guild",
+          "card": "Merchant Guild",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -10945,7 +14350,23 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 31.0
+      "avg_score": 31.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 40.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 22.0
+        }
+      ]
     },
     {
       "game_num": 121,
@@ -10971,12 +14392,12 @@
       ],
       "kingdom": [
         {
-          "card": "Poor house",
-          "expansion": "Dark ages"
+          "card": "Poor House",
+          "expansion": "Dark Ages"
         },
         {
           "card": "Beggar",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Herbalist",
@@ -10991,20 +14412,20 @@
           "expansion": "Alchemy"
         },
         {
-          "card": "Philosopher's stone",
+          "card": "Philosopher's Stone",
           "expansion": "Alchemy"
         },
         {
           "card": "Catacombs",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Count",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Knights",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Possession",
@@ -11023,7 +14444,23 @@
         "Dark Ages"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 33.5
+      "avg_score": 33.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 29.0
+        }
+      ]
     },
     {
       "game_num": 122,
@@ -11063,12 +14500,12 @@
       ],
       "kingdom": [
         {
-          "card": "Mountain Shrine",
-          "expansion": "Rising sun"
+          "card": "Mountain shrine",
+          "expansion": "Rising Sun"
         },
         {
           "card": "Aristocrat",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Improve",
@@ -11076,7 +14513,7 @@
         },
         {
           "card": "Poet",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Recruiter",
@@ -11084,7 +14521,7 @@
         },
         {
           "card": "Ronin",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         },
         {
           "card": "Scholar",
@@ -11100,7 +14537,7 @@
         },
         {
           "card": "Rice",
-          "expansion": "Rising sun"
+          "expansion": "Rising Sun"
         }
       ],
       "events": [],
@@ -11119,7 +14556,37 @@
         "Rising Sun"
       ],
       "victory_type": "Province",
-      "avg_score": 20.75
+      "avg_score": 20.75,
+      "seats": [
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 25.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 12.0
+        }
+      ]
     },
     {
       "game_num": 123,
@@ -11152,7 +14619,7 @@
       ],
       "kingdom": [
         {
-          "card": "Black cat",
+          "card": "Black Cat",
           "expansion": "Menagerie"
         },
         {
@@ -11164,7 +14631,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Harbor village",
+          "card": "Harbor Village",
           "expansion": "Plunder"
         },
         {
@@ -11172,7 +14639,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Village green",
+          "card": "Village Green",
           "expansion": "Menagerie"
         },
         {
@@ -11203,7 +14670,7 @@
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the mouse"
+        "Way of the Mouse"
       ],
       "allies": [],
       "traits": [
@@ -11218,7 +14685,30 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 22.0
+      "avg_score": 22.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 18.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 12.0
+        }
+      ]
     },
     {
       "game_num": 124,
@@ -11251,11 +14741,11 @@
       ],
       "kingdom": [
         {
-          "card": "Native village",
+          "card": "Native Village",
           "expansion": "Seaside"
         },
         {
-          "card": "Shanty town",
+          "card": "Shanty Town",
           "expansion": "Intrigue"
         },
         {
@@ -11279,7 +14769,7 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Sea witch",
+          "card": "Sea Witch",
           "expansion": "Seaside"
         },
         {
@@ -11303,7 +14793,30 @@
         "Seaside"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 7.67
+      "avg_score": 7.67,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 14.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 7.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 2.0
+        }
+      ]
     },
     {
       "game_num": 125,
@@ -11356,11 +14869,11 @@
           "expansion": "Menagerie"
         },
         {
-          "card": "Distant lands",
+          "card": "Distant Lands",
           "expansion": "Adventures"
         },
         {
-          "card": "Hunting lodge",
+          "card": "Hunting Lodge",
           "expansion": "Menagerie"
         },
         {
@@ -11368,7 +14881,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Wine merchant",
+          "card": "Wine Merchant",
           "expansion": "Adventures"
         },
         {
@@ -11377,12 +14890,12 @@
         }
       ],
       "events": [
-        "Travelling fair"
+        "Travelling Fair"
       ],
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the sheep"
+        "Way of the Sheep"
       ],
       "allies": [],
       "traits": [],
@@ -11392,7 +14905,30 @@
         "Menagerie"
       ],
       "victory_type": "Province",
-      "avg_score": 31.33
+      "avg_score": 31.33,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 25.0
+        }
+      ]
     },
     {
       "game_num": 126,
@@ -11432,7 +14968,7 @@
       ],
       "kingdom": [
         {
-          "card": "Fishing village",
+          "card": "Fishing Village",
           "expansion": "Seaside"
         },
         {
@@ -11464,7 +15000,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Royal seal",
+          "card": "Royal Seal",
           "expansion": "Prosperity"
         },
         {
@@ -11484,7 +15020,37 @@
         "Prosperity"
       ],
       "victory_type": "Colony",
-      "avg_score": 47.5
+      "avg_score": 47.5,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 50.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 47.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 45.0
+        }
+      ]
     },
     {
       "game_num": 127,
@@ -11576,7 +15142,37 @@
         "Prosperity"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 14.0
+      "avg_score": 14.0,
+      "seats": [
+        {
+          "players": [
+            "Guðrún"
+          ],
+          "place": 1,
+          "score": 20.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Hrafnkell"
+          ],
+          "place": 3,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Matti"
+          ],
+          "place": 4,
+          "score": 10.0
+        }
+      ]
     },
     {
       "game_num": 128,
@@ -11632,11 +15228,11 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Lost city",
+          "card": "Lost City",
           "expansion": "Adventures"
         },
         {
-          "card": "Royal carriage",
+          "card": "Royal Carriage",
           "expansion": "Adventures"
         },
         {
@@ -11670,7 +15266,37 @@
         "Prosperity"
       ],
       "victory_type": "Province",
-      "avg_score": 30.25
+      "avg_score": 30.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 48.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Halla"
+          ],
+          "place": 3,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 4,
+          "score": 7.0
+        }
+      ]
     },
     {
       "game_num": 129,
@@ -11718,7 +15344,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Jeweled egg",
+          "card": "Jeweled Egg",
           "expansion": "Plunder"
         },
         {
@@ -11730,7 +15356,7 @@
           "expansion": "Promo"
         },
         {
-          "card": "Landing party",
+          "card": "Landing Party",
           "expansion": "Plunder"
         },
         {
@@ -11750,7 +15376,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "King's cache",
+          "card": "King's Cache",
           "expansion": "Plunder"
         }
       ],
@@ -11772,7 +15398,37 @@
         "Plunder"
       ],
       "victory_type": "Province",
-      "avg_score": 23.5
+      "avg_score": 23.5,
+      "seats": [
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 1,
+          "score": 28.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 24.0
+        },
+        {
+          "players": [
+            "Fúsi"
+          ],
+          "place": 3,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 21.0
+        }
+      ]
     },
     {
       "game_num": 130,
@@ -11820,11 +15476,11 @@
           "expansion": "Plunder"
         },
         {
-          "card": "Worker's village",
+          "card": "Worker's Village",
           "expansion": "Prosperity"
         },
         {
-          "card": "Buried treasure",
+          "card": "Buried Treasure",
           "expansion": "Plunder"
         },
         {
@@ -11832,7 +15488,7 @@
           "expansion": "Plunder"
         },
         {
-          "card": "First mate",
+          "card": "First Mate",
           "expansion": "Plunder"
         },
         {
@@ -11844,7 +15500,7 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Silver mine",
+          "card": "Silver Mine",
           "expansion": "Plunder"
         },
         {
@@ -11872,7 +15528,37 @@
         "Plunder"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 33.25
+      "avg_score": 33.25,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 45.0
+        },
+        {
+          "players": [
+            "Arnór"
+          ],
+          "place": 2,
+          "score": 33.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 3,
+          "score": 28.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 4,
+          "score": 27.0
+        }
+      ]
     },
     {
       "game_num": 131,
@@ -11944,15 +15630,15 @@
           "expansion": "Plunder"
         },
         {
-          "card": "War chest",
+          "card": "War Chest",
           "expansion": "Prosperity"
         },
         {
-          "card": "Sack of loot",
+          "card": "Sack of Loot",
           "expansion": "Plunder"
         },
         {
-          "card": "King's court",
+          "card": "King's Court",
           "expansion": "Prosperity"
         }
       ],
@@ -11975,7 +15661,37 @@
         "Plunder"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 22.5
+      "avg_score": 22.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Arnór"
+          ],
+          "place": 4,
+          "score": 9.0
+        }
+      ]
     },
     {
       "game_num": 132,
@@ -12015,12 +15731,12 @@
       ],
       "kingdom": [
         {
-          "card": "Border guard",
+          "card": "Border Guard",
           "expansion": "Renaissance"
         },
         {
           "card": "Vagrant",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Experiment",
@@ -12036,30 +15752,30 @@
         },
         {
           "card": "Scavenger",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Cultist",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
-          "card": "Old witch",
+          "card": "Old Witch",
           "expansion": "Renaissance"
         },
         {
           "card": "Rogue",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Altar",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         }
       ],
       "events": [],
       "landmarks": [],
       "projects": [
         "Canal",
-        "City gate"
+        "City Gate"
       ],
       "ways": [],
       "allies": [],
@@ -12074,7 +15790,37 @@
         "Renaissance"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 12.5
+      "avg_score": 12.5,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Arnór"
+          ],
+          "place": 2,
+          "score": 15.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 13.0
+        },
+        {
+          "players": [
+            "Krissi"
+          ],
+          "place": 4,
+          "score": 7.0
+        }
+      ]
     },
     {
       "game_num": 133,
@@ -12130,11 +15876,11 @@
           "expansion": "Prosperity"
         },
         {
-          "card": "Throne room",
+          "card": "Throne Room",
           "expansion": "Base"
         },
         {
-          "card": "Worker's village",
+          "card": "Worker's Village",
           "expansion": "Prosperity"
         },
         {
@@ -12167,7 +15913,37 @@
         "Menagerie"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 13.75
+      "avg_score": 13.75,
+      "seats": [
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 1,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 8.0
+        },
+        {
+          "players": [
+            "Rakel"
+          ],
+          "place": 4,
+          "score": 6.0
+        }
+      ]
     },
     {
       "game_num": 134,
@@ -12207,7 +15983,7 @@
       ],
       "kingdom": [
         {
-          "card": "Snowy village",
+          "card": "Snowy Village",
           "expansion": "Menagerie"
         },
         {
@@ -12253,7 +16029,7 @@
       "landmarks": [],
       "projects": [],
       "ways": [
-        "Way of the butterfly"
+        "Way of the Butterfly"
       ],
       "allies": [],
       "traits": [],
@@ -12264,7 +16040,37 @@
         "Menagerie"
       ],
       "victory_type": "Colony",
-      "avg_score": 37.25
+      "avg_score": 37.25,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 52.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 2,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 3,
+          "score": 39.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 135,
@@ -12308,7 +16114,7 @@
       ],
       "kingdom": [
         {
-          "card": "Border guard",
+          "card": "Border Guard",
           "expansion": "Renaissance"
         },
         {
@@ -12316,11 +16122,11 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Acting troupe",
+          "card": "Acting Troupe",
           "expansion": "Renaissance"
         },
         {
-          "card": "Flag bearer",
+          "card": "Flag Bearer",
           "expansion": "Renaissance"
         },
         {
@@ -12336,11 +16142,11 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Scrying pool",
+          "card": "Scrying Pool",
           "expansion": "Alchemy"
         },
         {
-          "card": "Philosopher's stone",
+          "card": "Philosopher's Stone",
           "expansion": "Alchemy"
         },
         {
@@ -12360,7 +16166,37 @@
         "Renaissance"
       ],
       "victory_type": "Province",
-      "avg_score": 21.0
+      "avg_score": 21.0,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 2,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 4,
+          "score": 15.0
+        }
+      ]
     },
     {
       "game_num": 136,
@@ -12408,7 +16244,7 @@
           "expansion": "Renaissance"
         },
         {
-          "card": "Cargo ship",
+          "card": "Cargo Ship",
           "expansion": "Renaissance"
         },
         {
@@ -12456,7 +16292,37 @@
         "Renaissance"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 20.0
+      "avg_score": 20.0,
+      "seats": [
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 27.0
+        },
+        {
+          "players": [
+            "Hjödda"
+          ],
+          "place": 2,
+          "score": 19.0
+        },
+        {
+          "players": [
+            "Helgi"
+          ],
+          "place": 3,
+          "score": 17.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 17.0
+        }
+      ]
     },
     {
       "game_num": 137,
@@ -12496,7 +16362,7 @@
       ],
       "kingdom": [
         {
-          "card": "Native village",
+          "card": "Native Village",
           "expansion": "Seaside"
         },
         {
@@ -12528,7 +16394,7 @@
           "expansion": "Nocturne"
         },
         {
-          "card": "Cursed village",
+          "card": "Cursed Village",
           "expansion": "Nocturne"
         },
         {
@@ -12548,7 +16414,37 @@
         "Nocturne"
       ],
       "victory_type": "Province",
-      "avg_score": 23.0
+      "avg_score": 23.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Hafliði"
+          ],
+          "place": 2,
+          "score": 26.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 3,
+          "score": 21.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 4,
+          "score": 19.0
+        }
+      ]
     },
     {
       "game_num": 138,
@@ -12596,7 +16492,7 @@
           "expansion": "Adventures"
         },
         {
-          "card": "Merchant camp",
+          "card": "Merchant Camp",
           "expansion": "Allies"
         },
         {
@@ -12624,7 +16520,7 @@
           "expansion": "Allies"
         },
         {
-          "card": "Distant lands",
+          "card": "Distant Lands",
           "expansion": "Adventures"
         },
         {
@@ -12639,7 +16535,7 @@
       "projects": [],
       "ways": [],
       "allies": [
-        "Market towns"
+        "Market Towns"
       ],
       "traits": [],
       "prophecy": [],
@@ -12648,7 +16544,37 @@
         "Allies"
       ],
       "victory_type": "Supply piles",
-      "avg_score": 15.5
+      "avg_score": 15.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 22.0
+        },
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 2,
+          "score": 16.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 2,
+          "score": 16.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 8.0
+        }
+      ]
     },
     {
       "game_num": 139,
@@ -12656,34 +16582,86 @@
       "location": "Sigtún",
       "players": [
         "Inga María",
+        "Heiða",
         "Ragnheiður",
+        "Fríða",
         "Mummi",
-        "Kiddi"
+        "Bragi Valdimar",
+        "Kiddi",
+        "Viktor"
       ],
       "results": [
         {
           "place": 1,
           "name": "Mummi",
           "tied_with": null,
-          "score": 75.0
+          "score": 75.0,
+          "teammates": [
+            "Bragi Valdimar"
+          ]
+        },
+        {
+          "place": 1,
+          "name": "Bragi Valdimar",
+          "tied_with": null,
+          "score": 75.0,
+          "teammates": [
+            "Mummi"
+          ]
         },
         {
           "place": 2,
           "name": "Kiddi",
           "tied_with": null,
-          "score": 44.0
+          "score": 44.0,
+          "teammates": [
+            "Viktor"
+          ]
+        },
+        {
+          "place": 2,
+          "name": "Viktor",
+          "tied_with": null,
+          "score": 44.0,
+          "teammates": [
+            "Kiddi"
+          ]
         },
         {
           "place": 3,
           "name": "Inga María",
           "tied_with": null,
-          "score": 37.0
+          "score": 37.0,
+          "teammates": [
+            "Heiða"
+          ]
+        },
+        {
+          "place": 3,
+          "name": "Heiða",
+          "tied_with": null,
+          "score": 37.0,
+          "teammates": [
+            "Inga María"
+          ]
         },
         {
           "place": 4,
           "name": "Ragnheiður",
           "tied_with": null,
-          "score": 34.0
+          "score": 34.0,
+          "teammates": [
+            "Fríða"
+          ]
+        },
+        {
+          "place": 4,
+          "name": "Fríða",
+          "tied_with": null,
+          "score": 34.0,
+          "teammates": [
+            "Ragnheiður"
+          ]
         }
       ],
       "kingdom": [
@@ -12704,27 +16682,27 @@
           "expansion": "Empires"
         },
         {
-          "card": "Capital city",
+          "card": "Capital City",
           "expansion": "Allies"
         },
         {
           "card": "Graverobber",
-          "expansion": "Dark ages"
+          "expansion": "Dark Ages"
         },
         {
           "card": "Mint",
           "expansion": "Prosperity"
         },
         {
-          "card": "Wine merchant",
+          "card": "Wine Merchant",
           "expansion": "Adventures"
         },
         {
-          "card": "Grand market",
+          "card": "Grand Market",
           "expansion": "Prosperity"
         },
         {
-          "card": "King's court",
+          "card": "King's Court",
           "expansion": "Prosperity"
         }
       ],
@@ -12744,7 +16722,41 @@
         "Allies"
       ],
       "victory_type": "Colony",
-      "avg_score": 47.5
+      "avg_score": 47.5,
+      "seats": [
+        {
+          "players": [
+            "Mummi",
+            "Bragi Valdimar"
+          ],
+          "place": 1,
+          "score": 75.0
+        },
+        {
+          "players": [
+            "Kiddi",
+            "Viktor"
+          ],
+          "place": 2,
+          "score": 44.0
+        },
+        {
+          "players": [
+            "Inga María",
+            "Heiða"
+          ],
+          "place": 3,
+          "score": 37.0
+        },
+        {
+          "players": [
+            "Ragnheiður",
+            "Fríða"
+          ],
+          "place": 4,
+          "score": 34.0
+        }
+      ]
     },
     {
       "game_num": 140,
@@ -12840,7 +16852,37 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 37.0
+      "avg_score": 37.0,
+      "seats": [
+        {
+          "players": [
+            "Skúli"
+          ],
+          "place": 1,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Ragnheiður"
+          ],
+          "place": 1,
+          "score": 38.0
+        },
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 3,
+          "score": 36.0
+        },
+        {
+          "players": [
+            "Iðunn"
+          ],
+          "place": 4,
+          "score": 36.0
+        }
+      ]
     },
     {
       "game_num": 141,
@@ -12873,7 +16915,7 @@
       ],
       "kingdom": [
         {
-          "card": "Fool's gold",
+          "card": "Fool's Gold",
           "expansion": "Hinterlands"
         },
         {
@@ -12901,7 +16943,7 @@
           "expansion": "Hinterlands"
         },
         {
-          "card": "Hunting party",
+          "card": "Hunting Party",
           "expansion": "Cornucopia & Guilds"
         },
         {
@@ -12925,7 +16967,30 @@
         "Cornucopia & Guilds"
       ],
       "victory_type": "Province",
-      "avg_score": 28.0
+      "avg_score": 28.0,
+      "seats": [
+        {
+          "players": [
+            "Mummi"
+          ],
+          "place": 1,
+          "score": 31.0
+        },
+        {
+          "players": [
+            "Hallgrímur"
+          ],
+          "place": 2,
+          "score": 30.0
+        },
+        {
+          "players": [
+            "Arnlaugur"
+          ],
+          "place": 3,
+          "score": 23.0
+        }
+      ]
     }
   ],
   "players": [

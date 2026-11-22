@@ -10,17 +10,17 @@ export default function Header() {
     <header>
       <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
       <p>Tölfræði og gagnvirk úrvinnsla</p>
-      <div style={{ fontSize: '.7rem', color: 'var(--dim)', marginTop: '.3rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+      <div className="header-meta">
         {lastUpdated && <span>Gögn uppfærð: {lastUpdated}</span>}
         {upcomingGames > 0 && (
-          <span style={{ color: 'var(--gold)' }}>
+          <span className="highlight">
             {upcomingGames} {upcomingGames === 1 ? 'leikur' : 'leikir'} í bið
           </span>
         )}
-        <a href={SPREADSHEET_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
+        <a href={SPREADSHEET_URL} target="_blank" rel="noopener noreferrer">
           Gögn <span className="external-icon">↗</span>
         </a>
-        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none' }}>
+        <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
           Facebook <span className="external-icon">↗</span>
         </a>
       </div>

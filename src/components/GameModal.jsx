@@ -65,7 +65,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
   return (
     <>
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box modal-game" onClick={e => e.stopPropagation()}>
+      <div className="modal-box modal-game" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <div style={{ marginBottom: '1.25rem' }}>
@@ -86,7 +86,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Niðurstöður</div>
           <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
             {game.results.map(r => (
-              <div key={r.place} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+              <div key={r.name} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
                 <span className={`rank-${r.place}`} style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>
                   {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}th`}
                 </span>
