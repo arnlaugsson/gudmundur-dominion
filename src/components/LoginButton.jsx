@@ -1,4 +1,5 @@
 import { useState, lazy, Suspense } from 'react'
+import { createPortal } from 'react-dom'
 import { useAuth } from '../context/AuthContext'
 
 const UserManager = lazy(() => import('./UserManager'))
@@ -28,10 +29,13 @@ export default function LoginButton() {
             Útskrá
           </button>
         </div>
-        {showUsers && (
+        {/* Portal: the header is its own stacking context (z-index 1), which
+            would trap the modal under the sticky nav. */}
+        {showUsers && createPortal(
           <Suspense fallback={null}>
             <UserManager onClose={() => setShowUsers(false)} />
-          </Suspense>
+          </Suspense>,
+          document.body,
         )}
       </>
     )
