@@ -1,3 +1,5 @@
+import ClubTitle from './ClubTitle'
+
 // Shown while the data and app code load. Mirrors the header + nav + stat
 // grid layout so the page doesn't jump when the real content arrives.
 const STAT_PLACEHOLDERS = 6
@@ -6,7 +8,11 @@ export default function AppSkeleton() {
   return (
     <div aria-busy="true" aria-label="Hleður gögnum">
       <header>
-        <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
+        <div className="header-top">
+          <span className="header-spacer" aria-hidden="true" />
+          <ClubTitle />
+          <span className="header-spacer" aria-hidden="true" />
+        </div>
         <p>Tölfræði og gagnvirk úrvinnsla</p>
       </header>
       <div className="skeleton-nav" />
