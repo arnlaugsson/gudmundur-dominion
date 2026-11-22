@@ -28,7 +28,7 @@ export default function AvatarPicker({ playerName, photosByPlayer, onChange }) {
   if (photos.length === 0) {
     return (
       <div style={{ fontSize: '.85rem', color: 'var(--dim)', padding: '.75rem 0' }}>
-        Engar myndir til að velja úr. Bættu þér við sem tag á einhverri mynd fyrst.
+        Engar myndir til að velja úr. Merktu þig fyrst á einhverja mynd.
       </div>
     )
   }

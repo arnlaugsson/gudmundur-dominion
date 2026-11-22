@@ -6,13 +6,13 @@ export default function RatingInfo() {
       <summary>Hvernig virkar styrkleikinn?</summary>
       <p>
         Styrkleikinn er reiknaður með <a href="https://openskill.me" target="_blank" rel="noopener noreferrer">OpenSkill</a>,
-        sem ræður við fjölspilaraleiki, jafntefli og lið. Eftir hvern leik hækka þau sem enda ofar en búist var við
-        og lækka þau sem enda neðar — að vinna sterka andstæðinga gefur meira en að vinna veikari.
+        sem ræður vel við leiki með mörgum leikmönnum, jafntefli og lið. Eftir hvern leik hækkar styrkleiki þeirra sem
+        enda ofar en búist var við og lækkar hjá þeim sem enda neðar. Það gefur meira að vinna sterka andstæðinga en veika.
       </p>
       <p>
-        Lið (tvö eða fleiri sem stýra sama stokki) teljast sem einn keppandi með meðalstyrk liðsmanna, og allir
-        í liðinu færast jafnt upp eða niður. Allir byrja í {RATING_BASE}. * merkir færri en {PROVISIONAL_GAMES} leiki —
-        þá er styrkleikinn enn óviss og viðkomandi raðast neðst í töflunni.
+        Lið (tveir eða fleiri sem stýra sama stokki) teljast sem einn keppandi með meðalstyrk liðsmanna, og allir í
+        liðinu hækka eða lækka jafnt. Allir byrja í {RATING_BASE}. Stjarna (*) merkir færri en {PROVISIONAL_GAMES} leiki.
+        Þá er styrkleikinn enn óviss og viðkomandi raðast neðst í töflunni.
       </p>
     </details>
   )

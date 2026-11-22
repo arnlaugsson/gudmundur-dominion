@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import DATA from '../data'
 import Avatar from './Avatar'
 import { pressable } from '../lib/pressable'
+import { plural } from '../lib/icelandic'
 
 const MIN_SHARED_GAMES = 3
 
@@ -43,7 +44,7 @@ export default function HeadToHeadList({ playerName, profilesByName }) {
             <Avatar name={r.name} src={profile?.avatarUrl} size={32} />
             <span style={{ flex: 1, fontSize: '.88rem' }}>{r.name}</span>
             <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>
-              {r.total} leikir · {r.wins}-{r.losses} ({r.pct}%)
+              {plural(r.total, 'leikur', 'leikir')} · {r.wins}-{r.losses} ({r.pct}%)
             </span>
             <span style={{ color: 'var(--gold)' }}>→</span>
           </div>

@@ -4,7 +4,7 @@ const STAT_PLACEHOLDERS = 6
 
 export default function AppSkeleton() {
   return (
-    <div aria-busy="true" aria-label="Hleð gögnum">
+    <div aria-busy="true" aria-label="Hleður gögnum">
       <header>
         <h1>♛ Dominionklúbburinn Guðmundur ♛</h1>
         <p>Tölfræði og gagnvirk úrvinnsla</p>

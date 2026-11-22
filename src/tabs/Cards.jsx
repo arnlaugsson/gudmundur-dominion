@@ -110,13 +110,13 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
 
   return (
     <section className="section active">
-      <h2 className="section-title">Kortaskoðari</h2>
+      <h2 className="section-title">Spilasafnið</h2>
 
       <div className="cards-filter">
         <input
           type="text"
           className="search-bar"
-          placeholder="Leita að spili..."
+          placeholder="Leita að spili…"
           value={search}
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
@@ -148,7 +148,7 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
         </label>
         <label style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.82rem', cursor: 'pointer' }}>
           <input type="checkbox" checked={hideBaseCards} onChange={e => setHideBaseCards(e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
-          Fela grunnkort
+          Fela grunnspil
         </label>
       </div>
 
@@ -184,8 +184,8 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
               <div style={{ padding: '.65rem .9rem' }}>
                 <div className="cn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
                   {card.name}
-                  {card.removed && <span className="tag tag-removed">Removed</span>}
-                  {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
+                  {card.removed && <span className="tag tag-removed">Fjarlægt</span>}
+                  {card.isSecondEdition && <span className="tag tag-2nd">2. útg.</span>}
                 </div>
                 <div className="ce">{card.expansion}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexWrap: 'wrap' }}>
@@ -193,7 +193,7 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
                   {card.times_used > 0 && (
                     <>
                       <span className={`usage-dot ${usageDotClass(card.times_used)}`}></span>
-                      <span style={{ fontSize: '.8rem', color: 'var(--dim)' }}>{card.times_used}x</span>
+                      <span style={{ fontSize: '.8rem', color: 'var(--dim)' }}>{card.times_used}×</span>
                     </>
                   )}
                   <CostBadge card={card} />

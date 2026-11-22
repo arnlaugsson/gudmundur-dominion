@@ -2,6 +2,8 @@ import { scoredSeats } from './seats'
 // Pure derivation: compute player achievement badges from games + players.
 // Single chronological pass over games. No React, no DOM, no module-level state.
 
+import { plural } from './icelandic'
+
 const GAMES_TIERS = [10, 25, 50, 100]
 const WIN_TIERS = [1, 5, 10, 25, 50]
 const STREAK_TIERS = [3, 5, 10]
@@ -109,22 +111,22 @@ function computeRecords(sortedGames, byPlayer) {
   for (const name of maxGapEntry?.players || []) {
     if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
       id: 'record-largest-victory', category: 'records', icon: '🌊', title: 'Stærsti sigur',
-      detail: `${maxGapEntry.gap} stiga munur í leik #${maxGapEntry.game.game_num}`,
+      detail: `${plural(maxGapEntry.gap, 'stigs', 'stiga')} munur í leik #${maxGapEntry.game.game_num}`,
       earnedGameNum: maxGapEntry.game.game_num, earnedDate: maxGapEntry.game.date || null,
     }))
   }
   // Team records go to every member of the seat.
   for (const name of minNailEntry?.players || []) {
     if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
-      id: 'record-narrowest-victory', category: 'records', icon: '😰', title: 'Spennumesti sigur',
-      detail: `${minNailEntry.top2} stiga munur í leik #${minNailEntry.game.game_num}`,
+      id: 'record-narrowest-victory', category: 'records', icon: '😰', title: 'Naumasti sigurinn',
+      detail: `${plural(minNailEntry.top2, 'stigs', 'stiga')} munur í leik #${minNailEntry.game.game_num}`,
       earnedGameNum: minNailEntry.game.game_num, earnedDate: minNailEntry.game.date || null,
     }))
   }
   // Team records go to every member of the seat.
   for (const name of minWinEntry?.players || []) {
     if (byPlayer.has(name)) byPlayer.get(name).push(buildAchievement({
-      id: 'record-lowest-winning-score', category: 'records', icon: '📉', title: 'Lágmarks-sigur',
+      id: 'record-lowest-winning-score', category: 'records', icon: '📉', title: 'Sigur með fæstum stigum',
       detail: `${minWinEntry.score} stig í leik #${minWinEntry.game.game_num}`,
       earnedGameNum: minWinEntry.game.game_num, earnedDate: minWinEntry.game.date || null,
     }))
@@ -206,8 +208,8 @@ function computeVariety(sortedGames, byPlayer, totalsForVariety) {
           if (commonVenues.size > 0 && [...commonVenues].every(v => venues[name].has(v))) {
             emitOnce(name, buildAchievement({
               id: 'variety-venues-all', category: 'variety', icon: '📍',
-              title: 'Spilað á öllum venjulegum stöðum',
-              detail: `${commonVenues.size} staðir`,
+              title: 'Spilað á öllum helstu stöðunum',
+              detail: plural(commonVenues.size, 'staður', 'staðir'),
               earnedGameNum: g.game_num, earnedDate: g.date || null,
             }))
           }
@@ -229,8 +231,8 @@ function computeVariety(sortedGames, byPlayer, totalsForVariety) {
         if (activePlayers.size > 0 && [...activePlayers].every(p => p === name || opponents[name].has(p))) {
           emitOnce(name, buildAchievement({
             id: 'variety-opponents-all', category: 'variety', icon: '🤝',
-            title: 'Spilað við alla virka klúbbmeðlimi',
-            detail: `${activePlayers.size} leikmenn`,
+            title: 'Spilað við alla virka meðlimi',
+            detail: plural(activePlayers.size, 'leikmaður', 'leikmenn'),
             earnedGameNum: g.game_num, earnedDate: g.date || null,
           }))
         }
@@ -247,7 +249,7 @@ function computeVariety(sortedGames, byPlayer, totalsForVariety) {
           if (c >= tier) {
             emitOnce(winnerName, buildAchievement({
               id: `variety-expansions-${tier}`, category: 'variety', icon: '🎲',
-              title: `Sigur með ${tier} viðbótum`,
+              title: `Sigrar með ${tier} ólíkum viðbótum`,
               earnedGameNum: g.game_num, earnedDate: g.date || null,
             }))
           }
@@ -255,8 +257,8 @@ function computeVariety(sortedGames, byPlayer, totalsForVariety) {
         if (allExpansions.size > 0 && [...allExpansions].every(e => wonExp[winnerName].has(e))) {
           emitOnce(winnerName, buildAchievement({
             id: 'variety-expansions-all', category: 'variety', icon: '🎲',
-            title: 'Sigur með öllum viðbótum',
-            detail: `${allExpansions.size} viðbætur`,
+            title: 'Sigrar með öllum viðbótum',
+            detail: plural(allExpansions.size, 'viðbót', 'viðbætur'),
             earnedGameNum: g.game_num, earnedDate: g.date || null,
           }))
         }
@@ -327,8 +329,8 @@ function computeRivalries(sortedGames, byPlayer) {
         id: `rivalry-leader-${b}`,
         category: 'rivalries',
         icon: '⚔️',
-        title: `Forskot gegn ${b}`,
-        detail: `${stat.wins}-${stat.total - stat.wins} í ${stat.total} leikjum`,
+        title: `Betri en ${b}`,
+        detail: `${stat.wins}-${stat.total - stat.wins} í ${plural(stat.total, 'leik', 'leikjum')}`,
       }))
     }
   }

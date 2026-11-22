@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computeClubYear, computePlayerYear, availableYears, earnedInYear } from './yearInReview'
+import { computeClubYear, computePlayerYear, availableYears, earnedInYear, leaderBesidesMummi } from './yearInReview'
 import { parseGames } from './buildData'
 
 // g(num, date, seats) where seats = [[players..., score], ...] best-first.
@@ -152,5 +152,54 @@ describe('earnedInYear', () => {
   it('returns achievements present at year end but not at the previous year end', () => {
     const compute = gs => new Map([['A', gs.length >= 3 ? [{ id: 'x' }, { id: 'y' }] : [{ id: 'x' }]]])
     expect(earnedInYear(games, 2026, ['A'], compute).get('A').map(a => a.id)).toEqual(['y'])
+  })
+})
+
+describe('Mummi plays every game: show the runner-up when he leads', () => {
+  const mummiGames = parseGames([
+    g(11, '2026-02-01', [['Mummi', 60], ['B', 40], ['C', 30]]),
+    g(12, '2026-02-08', [['Mummi', 45], ['C', 44], ['B', 20]]),
+    g(13, '2026-02-15', [['B', 50], ['Mummi', 30], ['C', 10]]),
+    g(14, '2026-02-22', [['Mummi', 'C', 55], ['B', 25]]),
+    g(15, '2026-03-01', [['Mummi', 35], ['B', 34], ['C', 1]]),
+  ])
+  const club = computeClubYear(mummiGames, 2026)
+
+  it('champion: best non-Mummi player, with Mummi for comparison', () => {
+    // B and C both have 1 win in 5 games; ties go alphabetically.
+    expect(club.champion).toMatchObject({ name: 'B', wins: 1, mummi: { name: 'Mummi', wins: 4 } })
+  })
+
+  it('most games: best non-Mummi player, with Mummi for comparison', () => {
+    expect(club.mostGames).toMatchObject({ name: 'B', games: 5, mummi: { name: 'Mummi', games: 5 } })
+  })
+
+  it('best win rate: best non-Mummi player, with Mummi for comparison', () => {
+    expect(club.bestWinRate).toMatchObject({ name: 'B', rate: 20, mummi: { name: 'Mummi', rate: 80 } })
+  })
+
+  it('highest score: best seat without Mummi, with Mummi\'s best for comparison', () => {
+    expect(club.highestScore).toMatchObject({ players: ['B'], score: 50, game_num: 13, mummi: { score: 60, game_num: 11 } })
+  })
+
+  it('no comparison when someone else leads', () => {
+    const other = computeClubYear(games, 2026)
+    expect(other.champion.mummi).toBeNull()
+  })
+
+  it('leaderBesidesMummi: runner-up when Mummi leads, Mummi himself when nobody else qualifies', () => {
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }, { name: 'B', v: 5 }])).toEqual({ name: 'B', v: 5, mummi: { name: 'Mummi', v: 9 } })
+    expect(leaderBesidesMummi([{ name: 'B', v: 9 }, { name: 'Mummi', v: 5 }])).toEqual({ name: 'B', v: 9, mummi: null })
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }])).toEqual({ name: 'Mummi', v: 9, mummi: null })
+    expect(leaderBesidesMummi([])).toBeNull()
+  })
+
+  it('biggest climber is never Mummi when someone else also climbed', () => {
+    if (club.climber && club.climber.name === 'Mummi') expect(club.climber.mummi).toBeNull()
+  })
+
+  it('player story ranks excluding Mummi and gives his count', () => {
+    const b = computePlayerYear(mummiGames, 2026, 'B')
+    expect(b).toMatchObject({ rankByWins: 2, rankExMummi: 1, mummiWins: 4 })
   })
 })

@@ -18,7 +18,7 @@ const CATEGORIES = [
   ['volume',    'Þátttaka'],
   ['wins',      'Sigrar'],
   ['records',   'Met'],
-  ['streaks',   'Sigurraðir'],
+  ['streaks',   'Sigurgöngur'],
   ['variety',   'Fjölbreytni'],
   ['rivalries', 'Keppinautar'],
 ]
@@ -65,7 +65,7 @@ export default function PlayerPage({ playerName }) {
     { label: 'Leikir', value: player.games },
     { label: 'Sigrar', value: player.first },
     { label: 'Sigurhlutfall', value: `${player.win_rate.toFixed(0)}%` },
-    { label: 'Meðalskor', value: player.avg_score ?? '—' },
+    { label: 'Meðalskor', value: player.avg_score ?? '–' },
     { label: '2. sæti', value: player.second },
     { label: '3. sæti', value: player.third },
   ]
@@ -88,7 +88,7 @@ export default function PlayerPage({ playerName }) {
           <h2 className="cinzel gold" style={{ fontSize: '1.5rem', marginBottom: '.2rem' }}>{playerName}</h2>
           {firstGame && (
             <div style={{ fontSize: '.82rem', color: 'var(--dim)', marginBottom: '.4rem' }}>
-              Meðlimur síðan {firstGame.date ?? `leikur #${firstGame.game_num}`}
+              Meðlimur síðan {firstGame.date ?? `leik #${firstGame.game_num}`}
             </div>
           )}
           {canEdit && (

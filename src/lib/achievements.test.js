@@ -43,7 +43,7 @@ describe('team records', () => {
     expect(ids(result.get('A'))).toContain('record-high-score')
     expect(ids(result.get('B'))).toContain('record-high-score')
     const facts = computeLastGameFacts(games[0], games, [], [])
-    expect(facts.map(f => f.text).join(' ')).toContain('A & B vann með 60 stigum (30 yfir C)')
+    expect(facts.map(f => f.text).join(' ')).toContain('A & B vann með 60 stigum, C var 30 stigum á eftir')
   })
 })
 
@@ -56,6 +56,6 @@ describe('computeLastGameFacts', () => {
     const games = parseGames([makeGame(1, ['A', 'B'], { scores: [30, 20] }), makeGame(2, ['B', 'A'], { scores: [33, 31] })])
     const facts = computeLastGameFacts(games[1], games, [], [])
     expect(facts.length).toBeLessThanOrEqual(5)
-    expect(facts.map(f => f.text).join(' ')).toContain('B vann með 33 stigum (2 yfir A)')
+    expect(facts.map(f => f.text).join(' ')).toContain('B vann með 33 stigum, A var 2 stigum á eftir')
   })
 })

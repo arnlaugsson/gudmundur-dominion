@@ -66,7 +66,7 @@ describe('buildPlayers', () => {
       makeGame(3, ['A', 'B'], { scores: [40, 10] }),
     ])
     const a = buildPlayers(games).find(p => p.name === 'A')
-    expect(a).toMatchObject({ games: 3, first: 2, second: 1, win_rate: (2 / 3) * 100, avg_score: '28.3' })
+    expect(a).toMatchObject({ games: 3, first: 2, second: 1, win_rate: (2 / 3) * 100, avg_score: '28,3' })
   })
 
   it('ignores result rows for names not in the players list', () => {

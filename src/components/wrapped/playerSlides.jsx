@@ -1,6 +1,7 @@
 import { Slide, Sub, Delta, CardStrip, PlaceBars } from './SlideParts'
 import AchievementBadge from '../AchievementBadge'
 import { plural, joinNames, isSingular } from '../../lib/icelandic'
+import { MUMMI } from '../../lib/yearInReview'
 
 const games = n => plural(n, 'leikur', 'leikir')
 const MAX_BADGES = 6
@@ -8,17 +9,26 @@ const MAX_BADGES = 6
 function intro(p) {
   return (
     <Slide kicker={`Árið ${p.year}`} headline={p.name} big={p.games}>
-      <Sub>{isSingular(p.games) ? 'leikur spilaður' : 'leikir spilaðir'}{p.firstGameEver ? ' — fyrsta árið þitt í klúbbnum! 🎉' : '.'}</Sub>
+      <Sub>{isSingular(p.games) ? 'leikur spilaður' : 'leikir spilaðir'}{p.firstGameEver ? '. Fyrsta árið þitt í klúbbnum! 🎉' : '.'}</Sub>
       <Delta now={p.games} before={p.prevYear.games || null} yearBefore={p.year - 1} />
     </Slide>
   )
+}
+
+function winsRankText(p) {
+  if (p.rankByWins === 1) return 'Flestir sigrar í klúbbnum á árinu! 👑'
+  const base = `${p.rankByWins}. sæti af ${p.playerCount} í sigrum á árinu`
+  if (p.name === MUMMI || p.mummiWins == null) return `${base}.`
+  return p.rankExMummi === 1
+    ? `${base}. Flestir sigrar utan Mumma! (Mummi: ${p.mummiWins})`
+    : `${base}, ${p.rankExMummi}. sæti utan Mumma (Mummi: ${p.mummiWins}).`
 }
 
 function winsSlide(p) {
   return (
     <Slide kicker="Sigrar" big={p.wins} headline={`${Math.round(p.winRate)}% sigurhlutfall`}>
       <Delta now={Math.round(p.winRate)} before={p.prevYear.games ? Math.round(p.prevYear.winRate) : null} unit=" %-stig" yearBefore={p.year - 1} />
-      <Sub>{p.rankByWins === 1 ? 'Flestir sigrar í klúbbnum á árinu! 👑' : `${p.rankByWins}. sæti af ${p.playerCount} í sigrum á árinu.`}</Sub>
+      <Sub>{winsRankText(p)}</Sub>
     </Slide>
   )
 }
@@ -27,7 +37,7 @@ function placesSlide(p) {
   return (
     <Slide kicker="Sætin" headline="Svona endaðir þú">
       <PlaceBars places={p.places} />
-      {p.longestWinStreak >= 2 && <Sub>Lengsta sigurröð: {plural(p.longestWinStreak, 'sigur', 'sigrar')} í röð 🔥</Sub>}
+      {p.longestWinStreak >= 2 && <Sub>Lengsta sigurganga: {plural(p.longestWinStreak, 'sigur', 'sigrar')} í röð 🔥</Sub>}
     </Slide>
   )
 }
@@ -36,7 +46,7 @@ function scoreSlide(p) {
   return (
     <Slide kicker="Stigin" big={p.bestScore.score} headline="Besta skor ársins">
       <Sub>Í leik #{p.bestScore.game_num}.</Sub>
-      {p.avgScore != null && <Sub>Meðalskor: {p.avgScore.toFixed(1)} stig.</Sub>}
+      {p.avgScore != null && <Sub>Meðalskor: {p.avgScore.toFixed(1).replace('.', ',')} stig.</Sub>}
     </Slide>
   )
 }
@@ -54,8 +64,8 @@ function rivalsSlide(p) {
   return (
     <Slide kicker="Keppinautar" headline="Vinir og óvinir">
       <ul className="slide-list">
-        {p.nemesis && <li><b>😈 Erkióvinur: {p.nemesis.name}</b> — endaði ofar en þú {plural(p.nemesis.count, 'sinni', 'sinnum')}</li>}
-        {p.victim && <li><b>🎯 Uppáhaldsfórnarlamb: {p.victim.name}</b> — þú endaðir ofar {plural(p.victim.count, 'sinni', 'sinnum')}</li>}
+        {p.nemesis && <li><b>😈 Erkióvinur: {p.nemesis.name}</b>, endaði ofar en þú {plural(p.nemesis.count, 'sinni', 'sinnum')}</li>}
+        {p.victim && <li><b>🎯 Uppáhaldsfórnarlamb: {p.victim.name}</b>, þú endaðir ofar {plural(p.victim.count, 'sinni', 'sinnum')}</li>}
         {p.teammates.length > 0 && <li><b>🤝 Liðsfélagar:</b> {joinNames(p.teammates)}</li>}
       </ul>
     </Slide>
@@ -80,7 +90,7 @@ function ratingSlide(p) {
       <span className={`delta ${up ? 'delta-up' : p.ratingChange < 0 ? 'delta-down' : ''}`}>
         {up ? '▲ +' : p.ratingChange < 0 ? '▼ −' : '±'}{Math.abs(p.ratingChange)} á árinu
       </span>
-      <Sub>Styrkleiki í lok árs. Hann hækkar þegar þú endar ofar en sterkir andstæðingar — ekki bara við sigra.</Sub>
+      <Sub>Styrkleiki í lok árs. Hann hækkar þegar þú endar ofar en sterkir andstæðingar, ekki bara þegar þú vinnur.</Sub>
     </Slide>
   )
 }

@@ -69,7 +69,7 @@ export const TABS = [
   { id: 'players',     label: '🏆 Leikmenn' },
   { id: 'cards',       label: '♣ Spil' },
   { id: 'expansions',  label: '📦 Viðbætur' },
-  { id: 'funfacts',    label: '🌟 Skemmtilegt' },
+  { id: 'funfacts',    label: '🌟 Fróðleikur' },
   { id: 'afrek',       label: '🎖️ Afrek' },
   { id: 'suggester',   label: '🎲 Ríkistillögur' },
 ]

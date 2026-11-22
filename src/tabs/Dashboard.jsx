@@ -8,7 +8,9 @@ import LatestGameBox from '../components/LatestGameBox'
 import RandomCardBox from '../components/RandomCardBox'
 import { pressable } from '../lib/pressable'
 import YearInReviewBanner from '../components/YearInReviewBanner'
+import { useAuth } from '../context/AuthContext'
 import { availableYears } from '../lib/yearInReview'
+import { plural, victoryLabel } from '../lib/icelandic'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -22,6 +24,8 @@ function StatCard({ label, value, sub, className = '' }) {
 
 export default function Dashboard({ onGameNav }) {
   const { games, players } = DATA
+  const { user } = useAuth()
+  const isMember = !!user?.allowed
   const [selectedCard, setSelectedCard] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
 
@@ -68,7 +72,7 @@ export default function Dashboard({ onGameNav }) {
     const totalPlayers = players.length
     const locations = new Set(games.map(g => g.location)).size
     const allScores = games.flatMap(g => g.results.filter(r => r.score != null).map(r => r.score))
-    const avgScore = allScores.length > 0 ? (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1) : '—'
+    const avgScore = allScores.length > 0 ? (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1).replace('.', ',') : '–'
     const topWinner = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.first - a.first)[0]
     const mummi = players.find(p => p.name === 'Mummi')
     const mostGames = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.games - a.games)[0]
@@ -80,7 +84,7 @@ export default function Dashboard({ onGameNav }) {
     games.forEach(g => {
       if (g.victory_type) counts[g.victory_type] = (counts[g.victory_type] || 0) + 1
     })
-    const labels = Object.keys(counts)
+    const labels = Object.keys(counts).map(victoryLabel)
     const data = Object.values(counts)
     return {
       type: 'doughnut',
@@ -145,7 +149,7 @@ export default function Dashboard({ onGameNav }) {
     const big = sorted.filter(([, v]) => v >= MIN)
     const small = sorted.filter(([, v]) => v < MIN)
     const otherTotal = small.reduce((sum, [, v]) => sum + v, 0)
-    const otherLabel = `Annað (${small.length} staðir)`
+    const otherLabel = `Aðrir staðir (${small.length})`
     const slices = otherTotal > 0 ? [...big, [otherLabel, otherTotal]] : big
     const colors = slices.map((_, i) => `hsl(${Math.round(i * 360 / slices.length)}, 60%, 55%)`)
     return {
@@ -165,9 +169,9 @@ export default function Dashboard({ onGameNav }) {
                 const label = ctx.label || ''
                 const value = ctx.parsed
                 if (label === otherLabel) {
-                  return [`${value} leikir alls`, ...small.map(([n, v]) => `  ${n}: ${v}`)]
+                  return [`${plural(value, 'leikur', 'leikir')} samtals`, ...small.map(([n, v]) => `  ${n}: ${v}`)]
                 }
-                return `${value} leikir`
+                return plural(value, 'leikur', 'leikir')
               },
             },
           },
@@ -300,7 +304,7 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
-      <YearInReviewBanner years={availableYears(DATA.games)} />
+      {isMember && <YearInReviewBanner years={availableYears(DATA.games)} />}
       <div className="dashboard-highlights">
         <LatestGameBox onGameNav={onGameNav} />
         <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />
@@ -309,31 +313,31 @@ export default function Dashboard({ onGameNav }) {
 
       <div className="stats-grid">
         <StatCard label="Leikir alls" value={stats.totalGames} />
-        <StatCard label="Virk í leik" value={stats.totalPlayers} />
+        <StatCard label="Leikmenn" value={stats.totalPlayers} />
         <StatCard label="Staðir" value={stats.locations} />
-        <StatCard label="Meðalskor" value={stats.avgScore} sub="per leik" />
-        <StatCard className="span-2" label="Sigursælastur utan Mumma" value={stats.topWinner?.name} sub={`${stats.topWinner?.first} sigrar${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
-        <StatCard className="span-2" label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${stats.mostGames?.games} leikir${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
+        <StatCard label="Meðalskor" value={stats.avgScore} sub="í leik" />
+        <StatCard className="span-2" label="Flestir sigrar utan Mumma" value={stats.topWinner?.name} sub={`${plural(stats.topWinner?.first, 'sigur', 'sigrar')}${stats.mummi ? ` · Mummi: ${stats.mummi.first}` : ''}`} />
+        <StatCard className="span-2" label="Flestir leikir utan Mumma" value={stats.mostGames?.name} sub={`${plural(stats.mostGames?.games, 'leikur', 'leikir')}${stats.mummi ? ` · Mummi: ${stats.mummi.games}` : ''}`} />
       </div>
 
       {playerOfDay && (
         <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
-          <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Spilari dagsins</div>
+          <div style={{ fontSize: '.7rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Leikmaður dagsins</div>
           <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: 180 }}>
               <div style={{ fontFamily: 'Cinzel, serif', fontSize: '1.3rem', color: 'var(--gold)', marginBottom: '.2rem' }}>{playerOfDay.player.name}</div>
               <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '.8rem' }}>
-                {playerOfDay.firstGame ? `Meðlimur síðan ${playerOfDay.firstGame.date ?? `leikur #${playerOfDay.firstGame.game_num}`}` : ''}
+                {playerOfDay.firstGame ? `Meðlimur síðan ${playerOfDay.firstGame.date ?? `leik #${playerOfDay.firstGame.game_num}`}` : ''}
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '.6rem' }}>
                 {[
                   { label: 'Leikir',        value: playerOfDay.player.games },
                   { label: 'Sigrar',         value: playerOfDay.player.first },
                   { label: 'Sigurhlutfall',  value: `${playerOfDay.player.win_rate.toFixed(0)}%` },
-                  { label: 'Meðalskor',      value: playerOfDay.player.avg_score ?? '—' },
+                  { label: 'Meðalskor',      value: playerOfDay.player.avg_score ?? '–' },
                   playerOfDay.bestScore != null && { label: 'Besta skor',  value: playerOfDay.bestScore },
                   playerOfDay.topOpponent && { label: 'Mest spilað við', value: `${playerOfDay.topOpponent[0]} (${playerOfDay.topOpponent[1]}×)` },
-                  playerOfDay.favExp && { label: 'Uppáhalds viðbót', value: playerOfDay.favExp[0] },
+                  playerOfDay.favExp && { label: 'Uppáhaldsviðbót', value: playerOfDay.favExp[0] },
                 ].filter(Boolean).map(({ label, value }) => (
                   <div key={label} style={{ background: 'var(--bg3)', borderRadius: 6, padding: '.4rem .6rem' }}>
                     <div style={{ fontSize: '.62rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.15rem' }}>{label}</div>
@@ -351,7 +355,7 @@ export default function Dashboard({ onGameNav }) {
                     <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: 4, padding: '.28rem .6rem', display: 'flex', gap: '.5rem', alignItems: 'center', cursor: 'pointer' }} {...pressable(() => setSelectedGame(g), `Leikur #${g.game_num}`)}>
                       <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
                       <span style={{ color: 'var(--dim)' }}>{g.date}</span>
-                      {result && <span style={{ color: result.place === 1 ? 'var(--gold)' : 'var(--dim)', marginLeft: 'auto' }}>{result.place}. sæti{result.score != null ? ` · ${result.score}stig` : ''}</span>}
+                      {result && <span style={{ color: result.place === 1 ? 'var(--gold)' : 'var(--dim)', marginLeft: 'auto' }}>{result.place}. sæti{result.score != null ? ` · ${result.score} stig` : ''}</span>}
                     </div>
                   )
                 })}
@@ -362,7 +366,7 @@ export default function Dashboard({ onGameNav }) {
       )}
 
       <div className="charts-row">
-        <div className="chart-box"><h3>SIGURTEGUNDIR</h3><canvas ref={victoryRef} /></div>
+        <div className="chart-box"><h3>LEIKSLOK</h3><canvas ref={victoryRef} /></div>
       </div>
       <div className="chart-box" style={{ marginBottom: '1.5rem' }}>
         <h3>VINSÆLUSTU VIÐBÆTUR</h3>
@@ -378,12 +382,12 @@ export default function Dashboard({ onGameNav }) {
       </div>
       <div className="charts-row">
         <div className="chart-box">
-          <h3>MEÐALSKOR &amp; LEIKIR Á MÁNUÐI</h3>
+          <h3>MEÐALSKOR OG LEIKIR EFTIR MÁNUÐUM</h3>
           <div style={{ height: '300px', position: 'relative' }}>
             <canvas ref={scoresRef} />
           </div>
         </div>
-        <div className="chart-box"><h3>ÞÁTTTAKA LEIKENDA</h3><canvas ref={participationRef} /></div>
+        <div className="chart-box"><h3>ÞÁTTTAKA LEIKMANNA</h3><canvas ref={participationRef} /></div>
       </div>
 
 

@@ -2,20 +2,20 @@
 
 **[dominion.arnlaugsson.info](https://dominion.arnlaugsson.info)**
 
-Tölfræði og gagnvirk úrvinnsla fyrir Dominionklúbbinn Guðmund — an interactive statistics dashboard for our [Dominion](https://boardgamegeek.com/boardgame/36218/dominion) board game club.
+Tölfræði og gagnvirk úrvinnsla fyrir Dominionklúbbinn Guðmund. An interactive statistics dashboard for our [Dominion](https://boardgamegeek.com/boardgame/36218/dominion) board game club.
 
 ![OG Preview](public/og-image.png)
 
 ## Features
 
-- **Dashboard** — club stats, random card of the day, player of the day
-- **Players** — win rates, head-to-head records, score trends
-- **Games** — full history with searchable game details, kingdom cards, results
-- **Cards** — browse all cards with usage stats, filter by expansion and type
-- **Fun Facts** — longest win streaks, highest scores, rivalries, and more
-- **Árið** — a Wrapped-style year in review for the club and every player
-- **Skill rating** — OpenSkill ratings that handle multiplayer games, ties and teams
-- **Kingdom Suggester** — generate balanced kingdoms from your owned expansions
+- **Dashboard**: club stats, random card of the day, player of the day
+- **Players**: win rates, head-to-head records, score trends
+- **Games**: full history with searchable game details, kingdom cards, results
+- **Cards**: browse all cards with usage stats, filter by expansion and type
+- **Fun Facts**: longest win streaks, highest scores, rivalries, and more
+- **Árið**: a Wrapped-style year in review for the club and every player
+- **Skill rating**: OpenSkill ratings that handle multiplayer games, ties and teams
+- **Kingdom Suggester**: generate balanced kingdoms from your owned expansions
 
 ## Data Pipeline
 
@@ -23,7 +23,7 @@ Game data lives in a [Google Spreadsheet](https://docs.google.com/spreadsheets/d
 
 1. Downloads the spreadsheet as XLSX every 2 hours
 2. Parses all games with `openpyxl` (`scripts/sync_spreadsheet.py` + `scripts/sheet_sync/`), normalizing player, card, expansion and location names
-3. Writes `data/dominion_data.json` — only when the data actually changed
+3. Writes `data/dominion_data.json`, only when the data actually changed
 4. Commits changes and deploys to Firebase Hosting
 
 The JSON is served as `/data/dominion_data.json` (not bundled into the JS), so a data sync doesn't invalidate the browser's cached app code.
