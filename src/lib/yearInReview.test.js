@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computeClubYear, computePlayerYear, availableYears, earnedInYear } from './yearInReview'
+import { computeClubYear, computePlayerYear, availableYears, earnedInYear, leaderBesidesMummi } from './yearInReview'
 import { parseGames } from './buildData'
 
 // g(num, date, seats) where seats = [[players..., score], ...] best-first.
@@ -172,6 +172,12 @@ describe('Mummi plays every game: show the runner-up when he leads', () => {
   it('no comparison when someone else leads', () => {
     const other = computeClubYear(games, 2026)
     expect(other.champion.mummi).toBeNull()
+  })
+
+  it('leaderBesidesMummi: runner-up when Mummi leads, Mummi himself when nobody else qualifies', () => {
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }, { name: 'B', v: 5 }])).toEqual({ name: 'B', v: 5, mummi: { name: 'Mummi', v: 9 } })
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }])).toEqual({ name: 'Mummi', v: 9, mummi: null })
+    expect(leaderBesidesMummi([])).toBeNull()
   })
 
   it('nemesis: the toughest opponent besides Mummi, with Mummi\'s count for comparison', () => {

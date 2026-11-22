@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
+import { vi } from 'vitest'
 import YearInReviewBanner, { reviewYearFor } from './YearInReviewBanner'
 
 describe('reviewYearFor', () => {
@@ -13,7 +14,7 @@ describe('reviewYearFor', () => {
 
 describe('YearInReviewBanner', () => {
   it('renders in season and hides out of season', () => {
-    const { unmount } = render(<YearInReviewBanner years={[2026]} now={new Date(2026, 11, 1)} />)
+    const { unmount } = render(<YearInReviewBanner isMember years={[2026]} now={new Date(2026, 11, 1)} />)
     expect(screen.getByRole('button', { name: /Árið 2026 er komið/ })).toBeInTheDocument()
     unmount()
     const { container } = render(<YearInReviewBanner years={[2026]} now={new Date(2026, 5, 1)} />)
@@ -22,6 +23,21 @@ describe('YearInReviewBanner', () => {
 
   it('hides when the review year has no games', () => {
     const { container } = render(<YearInReviewBanner years={[2026]} now={new Date(2027, 10, 20)} />)
+    expect(container).toBeEmptyDOMElement()
+  })
+})
+
+describe('YearInReviewBanner for guests', () => {
+  it('asks guests to sign in and calls onLogin when pressed', () => {
+    const onLogin = vi.fn()
+    render(<YearInReviewBanner isMember={false} onLogin={onLogin} years={[2026]} now={new Date(2026, 10, 22)} />)
+    const banner = screen.getByRole('button', { name: /Skráðu þig inn/ })
+    fireEvent.click(banner)
+    expect(onLogin).toHaveBeenCalled()
+  })
+
+  it('follows the same season as the members banner', () => {
+    const { container } = render(<YearInReviewBanner isMember={false} onLogin={() => {}} years={[2026]} now={new Date(2026, 5, 1)} />)
     expect(container).toBeEmptyDOMElement()
   })
 })

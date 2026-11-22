@@ -67,7 +67,8 @@ export function leaderBesidesMummi(sorted) {
   if (!top) return null
   if (!involvesMummi(top)) return { ...top, mummi: null }
   const other = sorted.find(e => !involvesMummi(e))
-  return other ? { ...other, mummi: top } : null
+  // Nobody else qualifies (e.g. Mummi won every game): show Mummi himself.
+  return other ? { ...other, mummi: top } : { ...top, mummi: null }
 }
 
 function scoreRecords(yearGames) {

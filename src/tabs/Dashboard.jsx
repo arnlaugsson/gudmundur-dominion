@@ -24,7 +24,7 @@ function StatCard({ label, value, sub, className = '' }) {
 
 export default function Dashboard({ onGameNav }) {
   const { games, players } = DATA
-  const { user } = useAuth()
+  const { user, loading: authLoading, login } = useAuth()
   const isMember = !!user?.allowed
   const [selectedCard, setSelectedCard] = useState(null)
   const [selectedGame, setSelectedGame] = useState(null)
@@ -304,7 +304,7 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
-      {isMember && <YearInReviewBanner years={availableYears(DATA.games)} />}
+      {!authLoading && <YearInReviewBanner years={availableYears(DATA.games)} isMember={isMember} onLogin={login} />}
       <div className="dashboard-highlights">
         <LatestGameBox onGameNav={onGameNav} />
         <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />
