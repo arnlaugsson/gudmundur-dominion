@@ -5,6 +5,7 @@ import { PALETTE } from '../constants'
 import PlayerModal from '../components/PlayerModal'
 import { useMemories } from '../hooks/useMemories'
 import { computeAchievements } from '../lib/achievements'
+import { pressable } from '../lib/pressable'
 
 
 export default function Players() {
@@ -101,7 +102,7 @@ export default function Players() {
           </thead>
           <tbody>
             {sorted.map((p, i) => (
-              <tr key={p.name} style={{ cursor: 'pointer' }} onClick={() => { window.location.hash = `players/${encodeURIComponent(p.name)}` }}>
+              <tr key={p.name} style={{ cursor: 'pointer' }} {...pressable(() => { window.location.hash = `players/${encodeURIComponent(p.name)}` }, p.name)}>
                 <td className={i < 3 ? `rank-${i + 1}` : ''}>{i + 1}</td>
                 <td style={{ fontWeight: 500 }}>{p.name}</td>
                 <td>{p.games}</td>

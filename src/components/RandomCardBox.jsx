@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import DATA from '../data'
 import CardImage from './CardImage'
 import { SPLIT_PILE_MEMBERS } from '../constants'
+import { pressable } from '../lib/pressable'
 
 const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
 
@@ -75,7 +76,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
       <div style={{ display: 'flex', gap: '.85rem', alignItems: 'flex-start' }}>
         <div
           style={{ flexShrink: 0, width: imgWidth, borderRadius: 6, overflow: 'hidden', background: 'var(--bg3)', border: '1px solid var(--border)', cursor: 'pointer' }}
-          onClick={() => onCardClick?.(card)}
+          {...pressable(() => onCardClick?.(card), card.name)}
         >
           <CardImage name={card.name} style={{ width: '100%', display: 'block' }} />
         </div>
@@ -113,7 +114,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
             <span
               key={g.game_num}
               style={{ fontSize: '.72rem', background: 'var(--bg3)', borderRadius: '4px', padding: '.2rem .5rem', cursor: 'pointer', whiteSpace: 'nowrap' }}
-              onClick={() => onGameClick?.(g)}
+              {...pressable(() => onGameClick?.(g))}
             >
               <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>{' '}
               <span style={{ color: 'var(--dim)' }}>{g.date}</span>

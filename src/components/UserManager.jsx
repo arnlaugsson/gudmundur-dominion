@@ -87,7 +87,7 @@ export default function UserManager({ onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '640px' }}>
+      <div className="modal-box" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '640px' }}>
         <button className="modal-close" onClick={onClose}>✕</button>
         <h2 className="cinzel gold" style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
           Notendur

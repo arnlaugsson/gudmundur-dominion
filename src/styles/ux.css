@@ -1,0 +1,74 @@
+/* ── NAV: sticky, with edge fades hinting that the strip scrolls ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+}
+
+/* ── FOCUS: visible keyboard focus everywhere, no ring on mouse click ── */
+:focus-visible {
+  outline: 2px solid var(--gold-l);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.clickable { cursor: pointer; }
+
+/* ── SKELETON + ERROR ── */
+.skeleton-nav { height: 2.9rem; background: var(--bg2); border-bottom: 1px solid var(--border); }
+.skeleton-block {
+  min-height: 6.5rem;
+  background: linear-gradient(90deg, var(--bg2) 0%, var(--bg3) 50%, var(--bg2) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 12px;
+}
+.skeleton-panel { min-height: 18rem; margin-top: 1.5rem; }
+main > .stats-grid, main > .skeleton-panel { max-width: 1400px; margin-inline: auto; }
+main:has(> .stats-grid) { padding: 2rem; }
+@keyframes skeleton-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+.error-screen { max-width: 32rem; margin: 5rem auto; padding: 2rem; text-align: center; }
+.error-screen h2 { color: var(--gold); margin-bottom: .75rem; }
+.error-screen p { color: var(--dim); margin-bottom: 1.25rem; }
+
+.empty-state { text-align: center; color: var(--dim); padding: 3rem 1rem; }
+.empty-state .empty-icon { font-size: 2rem; display: block; margin-bottom: .5rem; }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+.cards-grid > .empty-state { grid-column: 1 / -1; }
+
+/* ── HEADER META (was inline styles) ── */
+.header-meta {
+  font-size: .7rem; color: var(--dim); margin-top: .3rem;
+  display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; align-items: center;
+  position: relative;
+}
+.header-meta .highlight { color: var(--gold); }
+.header-meta a { color: var(--gold); text-decoration: none; }
+.header-meta a:hover { text-decoration: underline; }
+.login-error { color: var(--red); font-size: .75rem; }
+.login-anon { display: inline-flex; align-items: center; gap: .5rem; }
+
+/* ── LATEST GAME: faded card art from the kingdom ── */
+.latest-game-box { position: relative; overflow: hidden; isolation: isolate; }
+.latest-game-art {
+  position: absolute; inset: 0 0 0 auto; width: 55%; z-index: -1;
+  /* Zoom into the illustration band so the card's rules text stays hidden. */
+  background-size: 170% auto; background-position: center 18%;
+  opacity: .13;
+  filter: saturate(.8);
+  -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 90%), linear-gradient(to bottom, #000 40%, transparent 75%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to left, #000 0%, transparent 90%), linear-gradient(to bottom, #000 40%, transparent 75%);
+  mask-composite: intersect;
+}

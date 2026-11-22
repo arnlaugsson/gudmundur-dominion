@@ -1,0 +1,218 @@
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.modal-game {
+  max-width: 860px;
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+  font-family: inherit;
+}
+.modal-close:hover { background: var(--border); }
+
+/* Card modal layout */
+.modal-card-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.modal-card-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg3);
+}
+.modal-card-img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.modal-card-info { display: flex; flex-direction: column; }
+
+/* Game modal kingdom grid */
+.kingdom-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: .6rem;
+}
+.kingdom-card-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+  text-decoration: none;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  transition: border-color .2s, transform .2s;
+}
+.kingdom-card-thumb:hover { border-color: var(--gold); transform: translateY(-2px); }
+.kingdom-card-img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.kingdom-card-name {
+  font-size: .65rem;
+  color: var(--text);
+  text-align: center;
+  padding: .25rem .3rem .35rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+/* Kingdom card with a Trait attached: cyan ring + matching name pill */
+.kingdom-card-thumb.kingdom-card-trait { border-color: #06b6d4; }
+.kingdom-card-thumb.kingdom-card-trait:hover { border-color: #06b6d4; box-shadow: 0 0 0 1px #06b6d4; }
+.trait-pill {
+  display: inline-block;
+  align-self: center;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  background: #06b6d4;
+  color: #0d1117;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  margin-bottom: .35rem;
+  white-space: nowrap;
+}
+/* Heirloom pill (gold) and Bane pill (red), same shape as trait-pill */
+.heirloom-pill, .bane-pill {
+  display: inline-block;
+  align-self: center;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  margin-bottom: .35rem;
+  white-space: nowrap;
+  color: #0d1117;
+}
+.heirloom-pill { background: #f0cb6c; }
+.bane-pill { background: #f43f5e; color: #fff; }
+.kingdom-card-thumb.kingdom-card-heirloom { border-color: #f0cb6c; }
+.kingdom-card-thumb.kingdom-card-heirloom:hover { border-color: #f0cb6c; box-shadow: 0 0 0 1px #f0cb6c; }
+.kd-card.kd-card-heirloom { border-color: #f0cb6c; }
+.kd-card.kd-card-heirloom:hover { border-color: #f0cb6c; box-shadow: 0 0 0 1px #f0cb6c; }
+.kd-card.kd-card-bane { border-color: #f43f5e; }
+.kd-card.kd-card-bane:hover { border-color: #f43f5e; box-shadow: 0 0 0 1px #f43f5e; }
+/* ── ACHIEVEMENT BADGES ── */
+.achievement-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .7rem .35rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg2);
+  font-size: .78rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.achievement-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.achievement-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.achievement-title {
+  color: var(--text);
+  font-weight: 600;
+}
+.achievement-detail {
+  color: var(--dim);
+  font-size: .68rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18ch;
+}
+.achievement-group {
+  margin-top: 1rem;
+}
+.achievement-group-label {
+  font-size: .7rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .4rem;
+}
+.achievement-group-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+/* Fallback when a card image fails to load (typo, homebrew, missing upload) */
+.card-image-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg3);
+  border: 1px dashed var(--border);
+  color: var(--dim);
+  aspect-ratio: 5 / 7;
+  width: 100%;
+  padding: .4rem .3rem;
+  box-sizing: border-box;
+}
+.card-image-fallback-name {
+  font-size: .65rem;
+  font-weight: 600;
+  line-height: 1.2;
+  word-break: break-word;
+}
+/* Side-pile chips (text + icon, no card image) */
+.side-pile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .78rem;
+  font-weight: 600;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .3rem .7rem;
+  color: var(--text);
+}
+.side-pile-icon { font-size: 1rem; line-height: 1; }
+

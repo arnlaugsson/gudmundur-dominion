@@ -1,0 +1,50 @@
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .section { padding: 1.25rem; }
+  header { padding: 1rem 1.25rem; }
+  .charts-row { grid-template-columns: 1fr; }
+  .chart-box canvas { max-height: 220px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card.span-2 { grid-column: span 2; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 540px; }
+  .facts-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .cards-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .kingdom-display { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .modal-box { padding: 1.25rem; border-radius: 12px; }
+  .kingdom-cards-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: .4rem; }
+  .exp-checkboxes { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .mode-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .player-detail { padding: 1rem; }
+  .charts-row[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+  .dashboard-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 1rem; }
+  header { padding: .85rem 1rem; }
+  .tab-btn { padding: .75rem .9rem; font-size: .8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card.span-2 { grid-column: span 2; }
+  .stat-card .value { font-size: 1.6rem; }
+  .facts-grid { grid-template-columns: 1fr; }
+  .cards-filter { gap: .5rem; }
+  .search-bar { max-width: 100%; }
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal-box { border-bottom-left-radius: 0; border-bottom-right-radius: 0; max-height: 92vh; max-height: 92dvh; border-radius: 16px 16px 0 0; }
+  .modal-card-layout { grid-template-columns: 1fr; }
+  .modal-card-img-wrap { max-width: 160px; margin: 0 auto; }
+  .kingdom-cards-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: .3rem; }
+  .game-row { padding: .75rem 1rem; }
+  .game-row .gh { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .section-title { font-size: 1.2rem; }
+  .gen-btn { width: 100%; }
+  .sug-section { padding: 1rem; }
+  .chips { gap: .35rem; }
+  .chip { padding: .3rem .65rem; font-size: .74rem; }
+  .exp-timeline-year { font-size: .85rem; min-width: 2.5rem; }
+  .exp-timeline-name { font-size: .95rem; }
+}
+

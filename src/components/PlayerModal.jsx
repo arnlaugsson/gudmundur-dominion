@@ -90,7 +90,7 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={e => e.stopPropagation()}>
+      <div className="modal-box" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <button

@@ -4,6 +4,7 @@ import { computeAchievements } from '../lib/achievements'
 import AchievementBadge from '../components/AchievementBadge'
 import PlayerModal from '../components/PlayerModal'
 import { useMemories } from '../hooks/useMemories'
+import { pressable } from '../lib/pressable'
 
 const ACTIVE_PLAYER_MIN_GAMES = 10
 
@@ -82,7 +83,7 @@ export default function Afrek() {
           {ranked.map(({ name, count }, i) => (
             <div
               key={name}
-              onClick={() => setSelectedPlayer(name)}
+              {...pressable(() => setSelectedPlayer(name))}
               style={{ display: 'flex', justifyContent: 'space-between', padding: '.4rem .8rem', background: 'var(--bg3)', borderRadius: 6, cursor: 'pointer' }}
             >
               <span><span style={{ color: 'var(--dim)', marginRight: '.5rem' }}>{i + 1}.</span>{name}</span>

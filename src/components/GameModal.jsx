@@ -65,7 +65,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
   return (
     <>
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box modal-game" onClick={e => e.stopPropagation()}>
+      <div className="modal-box modal-game" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <div style={{ marginBottom: '1.25rem' }}>

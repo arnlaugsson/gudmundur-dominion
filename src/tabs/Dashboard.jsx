@@ -6,6 +6,7 @@ import CardModal from '../components/CardModal'
 import GameModal from '../components/GameModal'
 import LatestGameBox from '../components/LatestGameBox'
 import RandomCardBox from '../components/RandomCardBox'
+import { pressable } from '../lib/pressable'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -344,7 +345,7 @@ export default function Dashboard({ onGameNav }) {
                 {playerOfDay.pgames.slice(-5).reverse().map(g => {
                   const result = g.results.find(r => r.name === playerOfDay.player.name)
                   return (
-                    <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: 4, padding: '.28rem .6rem', display: 'flex', gap: '.5rem', alignItems: 'center', cursor: 'pointer' }} onClick={() => setSelectedGame(g)}>
+                    <div key={g.game_num} style={{ fontSize: '.78rem', background: 'var(--bg3)', borderRadius: 4, padding: '.28rem .6rem', display: 'flex', gap: '.5rem', alignItems: 'center', cursor: 'pointer' }} {...pressable(() => setSelectedGame(g), `Leikur #${g.game_num}`)}>
                       <span style={{ color: 'var(--gold)' }}>#{g.game_num}</span>
                       <span style={{ color: 'var(--dim)' }}>{g.date}</span>
                       {result && <span style={{ color: result.place === 1 ? 'var(--gold)' : 'var(--dim)', marginLeft: 'auto' }}>{result.place}. sæti{result.score != null ? ` · ${result.score}stig` : ''}</span>}
