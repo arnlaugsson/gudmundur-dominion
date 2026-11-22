@@ -1,6 +1,6 @@
 import { Slide, Sub, Delta, CardStrip, PlaceBars } from './SlideParts'
 import AchievementBadge from '../AchievementBadge'
-import { plural, joinNames, isSingular } from '../../lib/icelandic'
+import { plural, joinNames, isSingular, expansionLabel } from '../../lib/icelandic'
 import { MUMMI } from '../../lib/yearInReview'
 
 const games = n => plural(n, 'leikur', 'leikir')
@@ -53,7 +53,7 @@ function scoreSlide(p) {
 
 function tasteSlide(p) {
   return (
-    <Slide kicker="Smekkurinn" headline={p.favoriteExpansion ? `Uppáhaldsviðbót: ${p.favoriteExpansion.name}` : 'Smekkurinn'}>
+    <Slide kicker="Smekkurinn" headline={p.favoriteExpansion ? `Uppáhaldsviðbót: ${expansionLabel(p.favoriteExpansion.name)}` : 'Smekkurinn'}>
       {p.mostSeenCard && <CardStrip items={[p.mostSeenCard]} />}
       {p.mostSeenCard && <Sub>{p.mostSeenCard.name} var í ríkinu í {plural(p.mostSeenCard.count, 'leik', 'leikjum')} hjá þér.</Sub>}
     </Slide>

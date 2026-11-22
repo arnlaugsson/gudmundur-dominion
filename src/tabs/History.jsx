@@ -4,7 +4,7 @@ import { useMemories } from '../hooks/useMemories'
 import DATA from '../data'
 import { pressable } from '../lib/pressable'
 import EmptyState from '../components/EmptyState'
-import { plural, victoryLabel } from '../lib/icelandic'
+import { plural, victoryLabel, expansionLabel } from '../lib/icelandic'
 
 function computeHighlights(games) {
   const sorted = [...games].sort((a, b) => a.game_num - b.game_num)
@@ -167,7 +167,7 @@ export default function History({ gameNum, onSelectGame }) {
         </select>
         <select value={filterExp} onChange={e => setFilterExp(e.target.value)}>
           <option value="">Allar viðbætur</option>
-          {expansions.map(e => <option key={e} value={e}>{e}</option>)}
+          {expansions.map(e => <option key={e} value={e}>{expansionLabel(e)}</option>)}
         </select>
         <select value={filterVictory} onChange={e => setFilterVictory(e.target.value)}>
           <option value="">Öll leikslok</option>
@@ -266,7 +266,7 @@ export default function History({ gameNum, onSelectGame }) {
                 {game.expansions?.length > 0 && (
                   <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
                     {game.expansions.map(exp => (
-                      <span key={exp} className="exp-chip">{exp}</span>
+                      <span key={exp} className="exp-chip">{expansionLabel(exp)}</span>
                     ))}
                   </div>
                 )}

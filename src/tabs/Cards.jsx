@@ -4,6 +4,7 @@ import CardModal from '../components/CardModal'
 import DATA from '../data'
 import { pressable } from '../lib/pressable'
 import EmptyState from '../components/EmptyState'
+import { expansionLabel } from '../lib/icelandic'
 
 // Landscape card types (Events, Landmarks, Projects, Ways, Allies, Traits, Prophecy)
 // Loots are portrait-facing cards; the rest are landscape-oriented
@@ -140,7 +141,7 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
         </select>
         <select value={filterExp} onChange={e => { setFilterExp(e.target.value); setActiveChips([]) }}>
           <option value="">Allar viðbætur</option>
-          {expansions.map(e => <option key={e} value={e}>{e}</option>)}
+          {expansions.map(e => <option key={e} value={e}>{expansionLabel(e)}</option>)}
         </select>
         <label style={{ display: 'flex', alignItems: 'center', gap: '.4rem', fontSize: '.82rem', cursor: 'pointer' }}>
           <input type="checkbox" checked={hideRemoved} onChange={e => setHideRemoved(e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
@@ -160,7 +161,7 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
               className={`chip${activeChips.includes(e) ? ' active' : ''}`}
               onClick={() => toggleChip(e)}
             >
-              {e}
+              {expansionLabel(e)}
             </button>
           ))}
         </div>
@@ -187,7 +188,7 @@ export default function Cards({ initialExpansion, onClearExpansion, cardName, on
                   {card.removed && <span className="tag tag-removed">Fjarlægt</span>}
                   {card.isSecondEdition && <span className="tag tag-2nd">2. útg.</span>}
                 </div>
-                <div className="ce">{card.expansion}</div>
+                <div className="ce">{expansionLabel(card.expansion)}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexWrap: 'wrap' }}>
                   <TypeBadge type={card.card_type} />
                   {card.times_used > 0 && (

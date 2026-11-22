@@ -26,3 +26,12 @@ describe('isSingular', () => {
     expect([0, 2, 11, 111, 12].some(isSingular)).toBe(false)
   })
 })
+
+describe('expansionLabel', () => {
+  it('shows promo cards as "Promo spil" and leaves real expansions alone', async () => {
+    const { expansionLabel } = await import('./icelandic')
+    expect(expansionLabel('Promo')).toBe('Promo spil')
+    expect(expansionLabel('Seaside')).toBe('Seaside')
+    expect(expansionLabel(null)).toBe('')
+  })
+})

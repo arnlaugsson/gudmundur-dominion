@@ -4,6 +4,7 @@ import CardImage from './CardImage'
 import { SPLIT_PILE_MEMBERS } from '../constants'
 import { pressable } from '../lib/pressable'
 import { gameUsesCard } from '../lib/buildData'
+import { expansionLabel } from '../lib/icelandic'
 
 
 // Landscape (wide) card types — render their image bigger to stay readable.
@@ -91,7 +92,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
             )}
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.3rem .8rem', marginTop: '.2rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{card.expansion}</span>
+            <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{expansionLabel(card.expansion)}</span>
             {hasCost && <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.2rem' }}>{renderCost()}</span>}
             {usageText && <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{usageText}</span>}
             {pool === 'unplayed' && <span style={{ fontSize: '.75rem', color: 'var(--dim)', fontStyle: 'italic' }}>Aldrei spilað</span>}

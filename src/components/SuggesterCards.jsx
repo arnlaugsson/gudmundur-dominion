@@ -1,6 +1,7 @@
 import CardImage from './CardImage'
 import { pressable } from '../lib/pressable'
 import { TYPE_COLOR } from '../lib/suggester'
+import { expansionLabel } from '../lib/icelandic'
 
 
 export function CostBadge({ card }) {
@@ -29,7 +30,7 @@ export function KingdomCard({ card, attachedTrait, attachedHeirloom, baneOf, onC
           {attachedHeirloom && <span className="heirloom-pill">🎁 {attachedHeirloom}</span>}
           {baneOf && <span className="bane-pill">🧙 Bane</span>}
         </div>
-        <div className="ke">{card.expansion}</div>
+        <div className="ke">{expansionLabel(card.expansion)}</div>
         <div style={{ display: 'flex', gap: '.4rem', alignItems: 'center' }}>
           <CostBadge card={card} />
           <span className="kt">{card.times_used}× notað</span>
@@ -46,7 +47,7 @@ export function ExtraCard({ card, onClick }) {
       <CardImage name={card.name} className="card-art" />
       <div style={{ padding: '.5rem .6rem' }}>
         <div className="kn">{card.name}</div>
-        <div className="ke">{card.expansion}</div>
+        <div className="ke">{expansionLabel(card.expansion)}</div>
         <div style={{ fontSize: '.72rem', fontWeight: 600, color }}>{card.card_type}</div>
       </div>
     </div>

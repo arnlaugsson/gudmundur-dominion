@@ -1,5 +1,5 @@
 import { Slide, Sub, Delta, MonthBars, CardStrip } from './SlideParts'
-import { plural, MONTHS_LONG, joinNames } from '../../lib/icelandic'
+import { plural, MONTHS_LONG, joinNames, expansionLabel } from '../../lib/icelandic'
 
 const games = n => plural(n, 'leikur', 'leikir')
 const wins = n => plural(n, 'sigur', 'sigrar')
@@ -67,7 +67,7 @@ function cards(c) {
     <Slide kicker="Spil ársins" headline={`${c.topCards[0].name} var oftast í ríkinu`}>
       <CardStrip items={c.topCards.slice(0, 3)} />
       <Sub>{plural(c.newCards.length, 'spil sást', 'spil sáust')} í fyrsta sinn í sögu klúbbsins.</Sub>
-      {c.debutExpansions.length > 0 && <Sub>Nýjar viðbætur á borðinu: {joinNames(c.debutExpansions)}.</Sub>}
+      {c.debutExpansions.length > 0 && <Sub>Nýjar viðbætur á borðinu: {joinNames(c.debutExpansions.map(expansionLabel))}.</Sub>}
     </Slide>
   )
 }

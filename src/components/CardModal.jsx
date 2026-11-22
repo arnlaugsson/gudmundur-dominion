@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { cardImgUrl, wikiUrl } from '../constants'
 import DATA from '../data'
 import { gameUsesCard } from '../lib/buildData'
+import { expansionLabel } from '../lib/icelandic'
 
 export default function CardModal({ card: rawCard, onClose }) {
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function CardModal({ card: rawCard, onClose }) {
           <div className="modal-card-info">
             <h2 className="cinzel gold" style={{ fontSize: '1.4rem', marginBottom: '.5rem' }}>{card.name}</h2>
             <div style={{ fontSize: '.85rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
-              {card.expansion}
+              {expansionLabel(card.expansion)}
               {card.removed && <span className="tag tag-removed" style={{ marginLeft: '.5rem' }}>Fjarlægt</span>}
               {card.isSecondEdition && <span className="tag tag-2nd" style={{ marginLeft: '.5rem' }}>2. útg.</span>}
             </div>

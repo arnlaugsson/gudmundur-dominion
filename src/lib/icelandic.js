@@ -29,3 +29,12 @@ export const VICTORY_LABEL = {
 export function victoryLabel(type) {
   return VICTORY_LABEL[type] || type
 }
+
+// Display names for expansion values in the data. The data value stays as is
+// (code compares against it); only what's shown changes.
+const EXPANSION_LABELS = { Promo: 'Promo spil' }
+
+export function expansionLabel(name) {
+  if (!name) return ''
+  return EXPANSION_LABELS[name] || name
+}

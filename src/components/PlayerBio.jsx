@@ -1,4 +1,5 @@
 import { navigate } from '../lib/route'
+import { expansionLabel } from '../lib/icelandic'
 function navigateToGame(gameNum) {
   navigate('history', gameNum)
 }
@@ -31,7 +32,7 @@ export default function PlayerBio({ bio, onEdit, canEdit }) {
         <div>{bio.shortBio}</div>
       )}
       {bio.favoriteExpansion && (
-        <div><span style={{ color: 'var(--dim)' }}>Uppáhaldsviðbót: </span>{bio.favoriteExpansion}</div>
+        <div><span style={{ color: 'var(--dim)' }}>Uppáhaldsviðbót: </span>{expansionLabel(bio.favoriteExpansion)}</div>
       )}
       {bio.favoriteCard && (
         <div><span style={{ color: 'var(--dim)' }}>Uppáhaldsspil: </span>{bio.favoriteCard}</div>

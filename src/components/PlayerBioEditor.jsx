@@ -3,6 +3,7 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
 import DATA from '../data'
+import { expansionLabel } from '../lib/icelandic'
 
 const MAX_TEXT = 280
 
@@ -112,7 +113,7 @@ export default function PlayerBioEditor({ playerName, profile, onCancel, onSave 
           style={inputStyle}
         >
           <option value="">Engin valin</option>
-          {expansions.map(x => <option key={x} value={x}>{x}</option>)}
+          {expansions.map(x => <option key={x} value={x}>{expansionLabel(x)}</option>)}
         </select>
       </div>
 

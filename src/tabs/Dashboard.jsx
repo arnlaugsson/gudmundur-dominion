@@ -10,7 +10,7 @@ import { pressable } from '../lib/pressable'
 import YearInReviewBanner from '../components/YearInReviewBanner'
 import { useAuth } from '../context/AuthContext'
 import { availableYears } from '../lib/yearInReview'
-import { plural, victoryLabel } from '../lib/icelandic'
+import { plural, victoryLabel, expansionLabel } from '../lib/icelandic'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -110,7 +110,7 @@ export default function Dashboard({ onGameNav }) {
     return {
       type: 'bar',
       data: {
-        labels: sorted.map(([e]) => EXP_YEAR[e] ? `${e} (${EXP_YEAR[e]})` : e),
+        labels: sorted.map(([e]) => EXP_YEAR[e] ? `${expansionLabel(e)} (${EXP_YEAR[e]})` : expansionLabel(e)),
         datasets: [{ data: sorted.map(([, v]) => v), backgroundColor: PALETTE.gold + '99', borderColor: PALETTE.gold, borderWidth: 1 }],
       },
       options: {

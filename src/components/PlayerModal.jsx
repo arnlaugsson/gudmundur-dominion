@@ -3,7 +3,7 @@ import DATA from '../data'
 import PlayerPhotos from './PlayerPhotos'
 import AchievementBadge from './AchievementBadge'
 import { computeAchievements } from '../lib/achievements'
-import { plural } from '../lib/icelandic'
+import { plural, expansionLabel } from '../lib/icelandic'
 
 export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
   useEffect(() => {
@@ -85,7 +85,7 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
     { label: '3. sæti', value: p.third },
     details.maxStreak > 1 && { label: 'Lengsta sigurganga', value: plural(details.maxStreak, 'sigur', 'sigrar') },
     details.topOpponent && { label: 'Mest spilað við', value: `${details.topOpponent[0]} (${details.topOpponent[1]}×)` },
-    details.favExp && { label: 'Uppáhaldsviðbót', value: details.favExp[0] },
+    details.favExp && { label: 'Uppáhaldsviðbót', value: expansionLabel(details.favExp[0]) },
     details.favCard && { label: 'Uppáhaldsspil í sigrum', value: `${details.favCard[0]} (${details.favCard[1]}×)` },
   ].filter(Boolean)
 
