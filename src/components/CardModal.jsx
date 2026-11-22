@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { cardImgUrl, wikiUrl } from '../constants'
 import DATA from '../data'
 import { gameUsesCard } from '../lib/buildData'
+import { expansionLabel } from '../lib/icelandic'
 
 export default function CardModal({ card: rawCard, onClose }) {
   useEffect(() => {
@@ -41,9 +42,9 @@ export default function CardModal({ card: rawCard, onClose }) {
           <div className="modal-card-info">
             <h2 className="cinzel gold" style={{ fontSize: '1.4rem', marginBottom: '.5rem' }}>{card.name}</h2>
             <div style={{ fontSize: '.85rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
-              {card.expansion}
-              {card.removed && <span className="tag tag-removed" style={{ marginLeft: '.5rem' }}>Removed</span>}
-              {card.isSecondEdition && <span className="tag tag-2nd" style={{ marginLeft: '.5rem' }}>2nd Ed.</span>}
+              {expansionLabel(card.expansion)}
+              {card.removed && <span className="tag tag-removed" style={{ marginLeft: '.5rem' }}>Fjarlægt</span>}
+              {card.isSecondEdition && <span className="tag tag-2nd" style={{ marginLeft: '.5rem' }}>2. útg.</span>}
             </div>
             {hasCost && <div style={{ marginBottom: '1rem', display: 'flex', gap: '.5rem', alignItems: 'center' }}>
               <span style={{ fontSize: '.82rem', color: 'var(--dim)' }}>Verð:</span>
@@ -55,12 +56,12 @@ export default function CardModal({ card: rawCard, onClose }) {
               </div>
             )}
             <div style={{ marginBottom: '1rem' }}>
-              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.3rem' }}>Skipti spiluð</div>
+              <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.3rem' }}>Fjöldi leikja</div>
               <div style={{ fontSize: '2rem', fontFamily: 'Cinzel, serif', color: 'var(--gold)' }}>{card.times_used}</div>
             </div>
             {gamesWithCard.length > 0 && (
               <div>
-                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Nýlegir leikir</div>
+                <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem' }}>Síðustu leikir</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '.3rem', maxHeight: '160px', overflowY: 'auto' }}>
                   {gamesWithCard.slice(-6).reverse().map(g => (
                     <div key={g.game_num} style={{ fontSize: '.8rem', color: 'var(--text)', background: 'var(--bg3)', borderRadius: '4px', padding: '.3rem .6rem' }}>

@@ -303,9 +303,9 @@ export default function Suggester() {
 
       {!(showAdvanced && selectedPlayers.length > 0) && (
         <div className="sug-section">
-          <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>— skildu eftir ómerkt til að nota allar</span></h3>
+          <h3>VIÐBÆTUR <span style={{ color: 'var(--dim)', fontWeight: 400, textTransform: 'none' }}>(engin valin = allar)</span></h3>
           <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center', marginBottom: '.75rem' }}>
-            <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Handahófskenndar:</span>
+            <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>Af handahófi:</span>
             <input
               type="number"
               min={1}
@@ -349,7 +349,7 @@ export default function Suggester() {
           {selectedExps.length >= 2 && (
             <div style={{ marginTop: '.75rem' }}>
               <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginBottom: '.4rem' }}>
-                Fjöldi korta per viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
+                Fjöldi spila úr hverri viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
               </div>
               <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
                 {selectedExps.map(exp => (
@@ -388,7 +388,7 @@ export default function Suggester() {
           </label>
           <label className="exp-check" style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
             <input type="checkbox" checked={noTokens} onChange={() => setNoTokens(v => !v)} />
-            <span>Engin souls</span>
+            <span>Engin tákn eða mottur</span>
           </label>
         </div>
       </div>
@@ -409,7 +409,7 @@ export default function Suggester() {
         {showAdvanced && (
           <div style={{ marginTop: '.75rem' }}>
             <div style={{ fontSize: '.78rem', color: 'var(--dim)', marginBottom: '.5rem' }}>
-              Veldu 1–4 sem taka þátt — veldu svo viðbætur og tegund
+              Veldu 1–4 leikmenn og svo viðbætur og tegund
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem', marginBottom: '.75rem' }}>
@@ -429,7 +429,7 @@ export default function Suggester() {
             {selectedPlayers.length > 0 && (
               <>
                 <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.5rem', marginTop: '1rem' }}>
-                  Viðbætur — raðað eftir minnstri reynslu
+                  Viðbætur, minnst spilaðar efst
                 </div>
                 <div className="exp-checkboxes" style={{ marginBottom: '.75rem' }}>
                   {expStatsForPlayers.map(({ exp, cardCount, totalPlayed, unseenByAny, perPlayer }) => (
@@ -444,7 +444,7 @@ export default function Suggester() {
                         <span>{exp}</span>
                         <span style={{ fontSize: '.7rem', color: 'var(--dim)' }}>
                           {unseenByAny}/{cardCount} óséð · {perPlayer.map(pp =>
-                            `${pp.name.split(' ')[0]} ${pp.played}x`
+                            `${pp.name.split(' ')[0]} ${pp.played}×`
                           ).join(', ')}
                         </span>
                       </span>
@@ -455,7 +455,7 @@ export default function Suggester() {
                 {selectedExps.length >= 2 && (
                   <div style={{ marginBottom: '.75rem' }}>
                     <div style={{ fontSize: '.72rem', color: 'var(--dim)', marginBottom: '.4rem' }}>
-                      Fjöldi korta per viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
+                      Fjöldi spila úr hverri viðbót (samtals: <span style={{ color: ratioTotal === 10 ? 'var(--green, #3fb950)' : 'var(--red, #f85149)', fontWeight: 600 }}>{ratioTotal}/10</span>)
                     </div>
                     <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
                       {selectedExps.map(exp => (
@@ -535,7 +535,7 @@ export default function Suggester() {
           {showPotions && (
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
-                Seyðabrunnur — 16 í birgðum
+                Potion: 16 í bunka
               </div>
             </div>
           )}
@@ -545,8 +545,8 @@ export default function Suggester() {
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
                 {showAdvanced && selectedPlayers.length >= 2
-                  ? `Bölvanir — ${(selectedPlayers.length - 1) * 10} í birgðum (${selectedPlayers.length} í leik)`
-                  : 'Bölvanir — 2 í leik: 10 · 3 í leik: 20 · 4 í leik: 30'}
+                  ? `Curse: ${(selectedPlayers.length - 1) * 10} í bunka (${selectedPlayers.length} leikmenn)`
+                  : 'Curse: 10 fyrir 2 leikmenn · 20 fyrir 3 · 30 fyrir 4'}
               </div>
             </div>
           )}
@@ -555,14 +555,14 @@ export default function Suggester() {
           {colonyPlatinum && colonyCard && platinumCard && (
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
-                Velmegun — {formatColonyPlatinumLabel(showAdvanced ? selectedPlayers.length : 0)}
+                Prosperity: {formatColonyPlatinumLabel(showAdvanced ? selectedPlayers.length : 0)}
               </div>
             </div>
           )}
 
           {/* 10 Kingdom Cards */}
           <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-            Ríkið — {kingdom.length} spil
+            Ríkið ({kingdom.length} spil)
           </div>
           <div className="kingdom-display">
             {kingdom.map(card => {
@@ -584,7 +584,7 @@ export default function Suggester() {
           {extras.length > 0 && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Aukaleg — {extras.length} {extras.length === 1 ? 'spil' : 'spil'}
+                Aukaspil ({extras.length})
               </div>
               <div className="kingdom-display">
                 {extras.map(card => (
@@ -598,7 +598,7 @@ export default function Suggester() {
           {sidePiles.length > 0 && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Aukabunkar — {sidePiles.length}
+                Aukabunkar ({sidePiles.length})
               </div>
               <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
                 {sidePiles.map(p => (
@@ -615,7 +615,7 @@ export default function Suggester() {
           {namedTargets.length > 0 && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Auka kort — {namedTargets.length}
+                Nefnd spil ({namedTargets.length})
               </div>
               <div className="kingdom-display">
                 {namedTargets.map(nt => (
@@ -641,7 +641,7 @@ export default function Suggester() {
           {colonyPlatinum && colonyCard && platinumCard && (
             <div style={{ marginTop: '1.5rem' }}>
               <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-                Velmegun — Colony &amp; Platinum
+                Prosperity: Colony og Platinum
               </div>
               <div className="kingdom-display">
                 {[colonyCard, platinumCard].map(card => (

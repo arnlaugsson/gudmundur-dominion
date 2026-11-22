@@ -36,3 +36,20 @@ export function replaceRoute(tab, sub) {
   window.history.replaceState(window.history.state, '', url)
   window.dispatchEvent(new HashChangeEvent('hashchange'))
 }
+
+const MODAL_STATE = { modal: true }
+
+// Open a modal route (#history/141) and mark the entry as opened in-app, so
+// closing can step back instead of stacking another entry.
+export function openModalRoute(tab, sub) {
+  const url = `${window.location.pathname}${window.location.search}#${buildHash(tab, sub)}`
+  window.history.pushState(MODAL_STATE, '', url)
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+}
+
+// Close a modal: go back if we opened it in-app, otherwise (deep link) replace
+// the entry with the parent route. Either way Back won't reopen the modal.
+export function closeModalRoute(tab, sub) {
+  if (window.history.state?.modal) window.history.back()
+  else replaceRoute(tab, sub)
+}

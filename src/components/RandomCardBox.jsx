@@ -4,6 +4,7 @@ import CardImage from './CardImage'
 import { SPLIT_PILE_MEMBERS } from '../constants'
 import { pressable } from '../lib/pressable'
 import { gameUsesCard } from '../lib/buildData'
+import { expansionLabel } from '../lib/icelandic'
 
 
 // Landscape (wide) card types — render their image bigger to stay readable.
@@ -13,7 +14,7 @@ const LANDSCAPE_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 
 const COSTLESS_TYPES = new Set(['Landmark', 'Way', 'Ally', 'Trait', 'Prophecy'])
 
 const LABELS = {
-  played: 'Handahófskennt spil',
+  played: 'Spil af handahófi',
   unplayed: 'Óspilað spil',
 }
 
@@ -40,7 +41,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
           {LABELS.unplayed}
         </div>
         <div style={{ fontSize: '.85rem', color: 'var(--dim)', textAlign: 'center', padding: '1.5rem 0' }}>
-          Allt spilað! 🎉
+          Öll spil hafa verið spiluð! 🎉
         </div>
       </div>
     )
@@ -48,7 +49,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
   if (!card) return null
 
   const usageText = pool === 'played'
-    ? `${card.times_used}× spiluð (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
+    ? `${card.times_used}× í ríki (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
     : null
 
   const isLandscape = LANDSCAPE_TYPES.has(card.card_type)
@@ -91,7 +92,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
             )}
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.3rem .8rem', marginTop: '.2rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{card.expansion}</span>
+            <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{expansionLabel(card.expansion)}</span>
             {hasCost && <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.2rem' }}>{renderCost()}</span>}
             {usageText && <span style={{ fontSize: '.75rem', color: 'var(--dim)' }}>{usageText}</span>}
             {pool === 'unplayed' && <span style={{ fontSize: '.75rem', color: 'var(--dim)', fontStyle: 'italic' }}>Aldrei spilað</span>}

@@ -4,6 +4,7 @@ import { useMemories } from '../hooks/useMemories'
 import DATA from '../data'
 import { pressable } from '../lib/pressable'
 import EmptyState from '../components/EmptyState'
+import { plural, victoryLabel, expansionLabel } from '../lib/icelandic'
 
 function computeHighlights(games) {
   const sorted = [...games].sort((a, b) => a.game_num - b.game_num)
@@ -40,7 +41,7 @@ function computeHighlights(games) {
       } else {
         const gap = g.game_num - prev
         if (gap >= 30) {
-          tags.push({ icon: '👋', text: `${name} aftur eftir ${gap} leiki` })
+          tags.push({ icon: '👋', text: `${name} kom aftur eftir ${plural(gap, 'leik', 'leiki')}` })
         }
       }
       playerLastSeen[name] = g.game_num
@@ -58,12 +59,12 @@ function computeHighlights(games) {
   // Mark record games
   if (bestScoreGame != null) {
     const arr = highlights[bestScoreGame] || []
-    arr.push({ icon: '🏆', text: `Hæsta skor: ${bestScore}` })
+    arr.push({ icon: '🏆', text: `Stigamet: ${bestScore}` })
     highlights[bestScoreGame] = arr
   }
   if (lowestWinGame != null) {
     const arr = highlights[lowestWinGame] || []
-    arr.push({ icon: '📉', text: `Lægsta sigur: ${lowestWin}` })
+    arr.push({ icon: '📉', text: `Lægsta vinningsskor: ${lowestWin}` })
     highlights[lowestWinGame] = arr
   }
 
@@ -151,7 +152,7 @@ export default function History({ gameNum, onSelectGame }) {
         <input
           type="text"
           className="search-bar"
-          placeholder="Leita eftir nafni, korti, stað..."
+          placeholder="Leita að nafni, spili eða stað…"
           value={search}
           onChange={e => setSearch(e.target.value)}
           style={{ marginBottom: 0 }}
@@ -161,26 +162,26 @@ export default function History({ gameNum, onSelectGame }) {
           onChange={e => { addPlayer(e.target.value); e.target.value = '' }}
           style={{ minWidth: '130px' }}
         >
-          <option value="">Sía eftir nafni…</option>
+          <option value="">Velja leikmann…</option>
           {availablePlayers.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
         </select>
         <select value={filterExp} onChange={e => setFilterExp(e.target.value)}>
           <option value="">Allar viðbætur</option>
-          {expansions.map(e => <option key={e} value={e}>{e}</option>)}
+          {expansions.map(e => <option key={e} value={e}>{expansionLabel(e)}</option>)}
         </select>
         <select value={filterVictory} onChange={e => setFilterVictory(e.target.value)}>
-          <option value="">Allar sigurtegundir</option>
-          <option value="Province">Héraðið</option>
-          <option value="Colony">Nýlendur</option>
-          <option value="Supply piles">Birgðahrúgar</option>
+          <option value="">Öll leikslok</option>
+          <option value="Province">{victoryLabel('Province')}</option>
+          <option value="Colony">{victoryLabel('Colony')}</option>
+          <option value="Supply piles">{victoryLabel('Supply piles')}</option>
         </select>
         <select value={filterLocation} onChange={e => setFilterLocation(e.target.value)}>
           <option value="">Allir staðir</option>
           {sortedLocations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
         </select>
         <select value={filterPlayerCount} onChange={e => setFilterPlayerCount(e.target.value)}>
-          <option value="">Allir leikmannafjöldar</option>
-          {playerCounts.map(n => <option key={n} value={n}>{n}-manna</option>)}
+          <option value="">Allur fjöldi leikmanna</option>
+          {playerCounts.map(n => <option key={n} value={n}>{n} leikmenn</option>)}
         </select>
       </div>
 
@@ -215,8 +216,8 @@ export default function History({ gameNum, onSelectGame }) {
       )}
 
       <div style={{ fontSize: '.82rem', color: 'var(--dim)', marginBottom: '.75rem' }}>
-        {filtered.length} leik{filtered.length !== 1 ? 'ir' : 'ur'}
-        {filterPlayers.length > 1 && <span style={{ marginLeft: '.4rem' }}>með alla {filterPlayers.length} leikendur</span>}
+        {plural(filtered.length, 'leikur', 'leikir')}
+        {filterPlayers.length > 1 && <span style={{ marginLeft: '.4rem' }}>þar sem öll {filterPlayers.length} spiluðu</span>}
       </div>
 
       <div>
@@ -236,7 +237,7 @@ export default function History({ gameNum, onSelectGame }) {
                     <span className="gd">{game.location}</span>
                     {game.victory_type && (
                       <span className={`badge ${victoryBadgeClass[game.victory_type] || 'badge-province'}`}>
-                        {game.victory_type}
+                        {victoryLabel(game.victory_type)}
                       </span>
                     )}
                     {game.expansions?.includes('Prosperity') && (
@@ -257,7 +258,7 @@ export default function History({ gameNum, onSelectGame }) {
                     {game.results.map(r => (
                       <span key={r.place} className={r.place <= 3 ? `p${r.place}` : ''} style={r.place >= 4 ? { color: 'var(--dim)' } : undefined}>
                         {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`} {r.name}
-                        {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score}stig</span>}
+                        {r.score != null && <span style={{ color: 'var(--dim)', fontSize: '.78rem', marginLeft: '.3rem' }}>{r.score} stig</span>}
                       </span>
                     ))}
                   </div>
@@ -265,7 +266,7 @@ export default function History({ gameNum, onSelectGame }) {
                 {game.expansions?.length > 0 && (
                   <div style={{ display: 'flex', gap: '.3rem', flexWrap: 'wrap', marginTop: '.4rem' }}>
                     {game.expansions.map(exp => (
-                      <span key={exp} className="exp-chip">{exp}</span>
+                      <span key={exp} className="exp-chip">{expansionLabel(exp)}</span>
                     ))}
                   </div>
                 )}

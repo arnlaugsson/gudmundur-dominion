@@ -52,3 +52,29 @@ describe('replaceRoute', () => {
     expect(fired).toBe(1)
   })
 })
+
+describe('openModalRoute / closeModalRoute', () => {
+  const waitForHash = () => new Promise(resolve => setTimeout(resolve, 20))
+
+  it('closing a modal opened in-app goes back instead of adding an entry', async () => {
+    const { openModalRoute, closeModalRoute } = await import('./route')
+    window.location.hash = '#history'
+    await waitForHash()
+    const length = window.history.length
+    openModalRoute('history', 141)
+    expect(window.location.hash).toBe('#history/141')
+    closeModalRoute('history')
+    await waitForHash()
+    expect(window.location.hash).toBe('#history')
+    expect(window.history.length).toBe(length + 1) // the forward entry remains, no extra entry
+  })
+
+  it('closing a deep-linked modal replaces the entry', async () => {
+    const { closeModalRoute } = await import('./route')
+    window.history.replaceState(null, '', '#cards/Village')
+    const length = window.history.length
+    closeModalRoute('cards')
+    expect(window.location.hash).toBe('#cards')
+    expect(window.history.length).toBe(length)
+  })
+})

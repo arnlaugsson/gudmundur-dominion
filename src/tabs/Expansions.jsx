@@ -3,6 +3,7 @@ import DATA from '../data'
 import EXPANSIONS from '../expansionData'
 import CardModal from '../components/CardModal'
 import { pressable } from '../lib/pressable'
+import { plural } from '../lib/icelandic'
 
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)]
@@ -43,7 +44,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                 )}
                 {(exp.mergedInto || exp.isSmallBox) && (
                   <span style={{ marginLeft: '.5rem', fontSize: '.65rem', color: 'var(--dim)', fontWeight: 400 }}>
-                    smákassi
+                    lítill kassi
                   </span>
                 )}
                 {exp.isMergedEdition && (
@@ -63,7 +64,7 @@ function ExpansionCard({ exp, stats, allCards, onCardClick, onFilterCards }) {
                   {Object.entries(stats.extraTypes).map(([type, count]) => (
                     <span key={type}> + {count} {type}</span>
                   ))}
-                  {' '}&middot; {stats.gameCount} {stats.gameCount === 1 ? 'leikur' : 'leikir'}
+                  {' '}&middot; {plural(stats.gameCount, 'leikur', 'leikir')}
                 </div>
               )}
             </div>

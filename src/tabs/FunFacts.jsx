@@ -1,11 +1,22 @@
 import { useMemo } from 'react'
 import DATA from '../data'
+import { MONTHS_LONG, isSingular, plural } from '../lib/icelandic'
+import { scoredSeats } from '../lib/seats'
 
-const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const TIMES_WORD = { 1: 'einu sinni', 2: 'tvisvar', 3: 'þrisvar' }
 
 function formatMonth(yyyyMM) {
   const [y, m] = yyyyMM.split(/[-.]/)
-  return `${MONTH_NAMES[parseInt(m, 10) - 1]} ${y}`
+  return `${MONTHS_LONG[parseInt(m, 10) - 1]} ${y}`
+}
+
+function timesText(n) {
+  return TIMES_WORD[n] || plural(n, 'sinni', 'sinnum')
+}
+
+// Icelandic decimal comma: 34.5 -> "34,5"
+function decimal(n) {
+  return n.toFixed(1).replace('.', ',')
 }
 
 function Fact({ icon, title, value, desc, gameNums, onGameNav }) {
@@ -42,26 +53,28 @@ export default function FunFacts({ onGameNav }) {
   const facts = useMemo(() => {
     const CLUB_OWNER = 'Mummi'
     const gamesByNum = [...games].sort((a, b) => a.game_num - b.game_num)
+    // One entry per seat ("Arnlaugur & Hallgrímur" for a team), not per person.
+    const isOwner = s => !!s?.players.includes(CLUB_OWNER)
     const allScores = games.flatMap(g =>
-      g.results.filter(r => r.score != null).map(r => ({ ...r, date: g.date, game: g.game_num }))
+      scoredSeats(g).map(s => ({ ...s, date: g.date, game: g.game_num }))
     )
 
     // ── Scores ──────────────────────────────────────────────────────────────
     const allHighScores = [...allScores].sort((a, b) => b.score - a.score)
     const highScoreOwner = allHighScores[0] || null
-    const highScore = highScoreOwner?.name === CLUB_OWNER
-      ? allHighScores.find(s => s.name !== CLUB_OWNER) || highScoreOwner
+    const highScore = isOwner(highScoreOwner)
+      ? allHighScores.find(s => !isOwner(s)) || highScoreOwner
       : highScoreOwner
-    const highScoreNote = highScoreOwner?.name === CLUB_OWNER && highScore !== highScoreOwner
+    const highScoreNote = isOwner(highScoreOwner) && highScore !== highScoreOwner
       ? ` (${CLUB_OWNER}: ${highScoreOwner.score} stig)`
       : ''
 
     const allLowScores = [...allScores].sort((a, b) => a.score - b.score)
     const lowScoreOwner = allLowScores[0] || null
-    const lowScore = lowScoreOwner?.name === CLUB_OWNER
-      ? allLowScores.find(s => s.name !== CLUB_OWNER) || lowScoreOwner
+    const lowScore = isOwner(lowScoreOwner)
+      ? allLowScores.find(s => !isOwner(s)) || lowScoreOwner
       : lowScoreOwner
-    const lowScoreNote = lowScoreOwner?.name === CLUB_OWNER && lowScore !== lowScoreOwner
+    const lowScoreNote = isOwner(lowScoreOwner) && lowScore !== lowScoreOwner
       ? ` (${CLUB_OWNER}: ${lowScoreOwner.score} stig)`
       : ''
 
@@ -73,13 +86,13 @@ export default function FunFacts({ onGameNav }) {
     let tiedGames = []
 
     games.forEach(g => {
-      const scored = g.results.filter(r => r.score != null).sort((a, b) => a.place - b.place)
+      const scored = scoredSeats(g)
       if (scored.length < 2) return
       const gap = scored[0].score - scored[scored.length - 1].score
       const blowoutEntry = { gap, winner: scored[0].name, loser: scored[scored.length - 1].name,
         winnerScore: scored[0].score, loserScore: scored[scored.length - 1].score, game: g.game_num, date: g.date }
       if (!biggestBlowoutOwner || gap > biggestBlowoutOwner.gap) biggestBlowoutOwner = blowoutEntry
-      if (scored[0].name !== CLUB_OWNER && (!biggestBlowout || gap > biggestBlowout.gap)) biggestBlowout = blowoutEntry
+      if (!isOwner(scored[0]) && (!biggestBlowout || gap > biggestBlowout.gap)) biggestBlowout = blowoutEntry
 
       const r1 = scored.find(r => r.place === 1)
       const r2 = scored.find(r => r.place === 2)
@@ -87,7 +100,7 @@ export default function FunFacts({ onGameNav }) {
         const top2gap = r1.score - r2.score
         const nbEntry = { gap: top2gap, winner: r1.name, runnerUp: r2.name, game: g.game_num, date: g.date }
         if (!nailBiterOwner || top2gap < nailBiterOwner.gap) nailBiterOwner = nbEntry
-        if (r1.name !== CLUB_OWNER && (!nailBiter || top2gap < nailBiter.gap)) nailBiter = nbEntry
+        if (!isOwner(r1) && (!nailBiter || top2gap < nailBiter.gap)) nailBiter = nbEntry
         if (top2gap === 0) tiedGames.push(g)
       }
     })
@@ -95,10 +108,10 @@ export default function FunFacts({ onGameNav }) {
     if (!biggestBlowout) biggestBlowout = biggestBlowoutOwner
     if (!nailBiter) nailBiter = nailBiterOwner
     const blowoutNote = biggestBlowoutOwner && biggestBlowout !== biggestBlowoutOwner
-      ? ` (${CLUB_OWNER}: ${biggestBlowoutOwner.gap} stiga munur í leik #${biggestBlowoutOwner.game})`
+      ? ` (${CLUB_OWNER}: ${plural(biggestBlowoutOwner.gap, 'stigs', 'stiga')} munur í leik #${biggestBlowoutOwner.game})`
       : ''
     const nailBiterNote = nailBiterOwner && nailBiter !== nailBiterOwner
-      ? ` (${CLUB_OWNER}: ${nailBiterOwner.gap} stiga munur í leik #${nailBiterOwner.game})`
+      ? ` (${CLUB_OWNER}: ${plural(nailBiterOwner.gap, 'stigs', 'stiga')} munur í leik #${nailBiterOwner.game})`
       : ''
 
     // ── Cards ────────────────────────────────────────────────────────────────
@@ -208,7 +221,7 @@ export default function FunFacts({ onGameNav }) {
       ? sortedScorers.find(p => p.name !== CLUB_OWNER) || bestScorerOwner
       : bestScorerOwner
     const bestScorerNote = bestScorerOwner?.name === CLUB_OWNER && bestScorer !== bestScorerOwner
-      ? ` (${CLUB_OWNER}: ${bestScorerOwner.gpa.toFixed(1)} stig)`
+      ? ` (${CLUB_OWNER}: ${decimal(bestScorerOwner.gpa)} stig)`
       : ''
 
     // Expansion variety per player
@@ -259,10 +272,11 @@ export default function FunFacts({ onGameNav }) {
     })
     const busiestMonth = Object.entries(monthCounts).sort((a, b) => b[1] - a[1])[0]
 
-    // Highest single-game total score
+    // Highest single-game total score (each seat once: a team's shared
+    // score is not counted per teammate)
     let maxTotalScore = null
     games.forEach(g => {
-      const scores = g.results.filter(r => r.score != null).map(r => r.score)
+      const scores = scoredSeats(g).map(s => s.score)
       if (scores.length >= 2) {
         const total = scores.reduce((a, b) => a + b, 0)
         if (!maxTotalScore || total > maxTotalScore.total) {
@@ -277,8 +291,8 @@ export default function FunFacts({ onGameNav }) {
 
     // Average players per game
     const avgPlayers = games.length
-      ? (games.reduce((a, g) => a + g.players.length, 0) / games.length).toFixed(1)
-      : '—'
+      ? decimal(games.reduce((a, g) => a + g.players.length, 0) / games.length)
+      : '–'
 
     // Most expansions in one game
     const mostExpGame = games.length
@@ -293,19 +307,21 @@ export default function FunFacts({ onGameNav }) {
     return [
       // Saga & tímamörk
       missingCount > 0 && {
-        icon: '📜', title: 'Glatað í sögunni',
-        value: `${missingCount} leik${missingCount === 1 ? 'ur' : 'ir'} óskráðir`,
-        desc: `Færslur hefjast á leik #${firstKnownGame}. Fyrstu ${missingCount} leikirnir voru spilaðir áður en nokkur hugðist halda utan um þá — glataðir í sögunni!`,
+        icon: '📜', title: 'Týnt í sögunni',
+        value: isSingular(missingCount) ? `${missingCount} leikur óskráður` : `${missingCount} leikir óskráðir`,
+        desc: missingCount === 1
+          ? `Skráningin hefst á leik #${firstKnownGame}. Fyrsti leikurinn var spilaður áður en nokkur fór að halda utan um úrslitin.`
+          : `Skráningin hefst á leik #${firstKnownGame}. Fyrstu ${missingCount} leikirnir voru spilaðir áður en nokkur fór að halda utan um úrslitin.`,
       },
       topLocationEntry && {
-        icon: '🏠', title: 'Heimavöllur',
+        icon: '🏠', title: 'Heimavöllurinn',
         value: topLocationEntry[0],
-        desc: `Uppáhaldsstaðurinn — ${topLocationEntry[1]} leikir spilaðir þar. Ekkert eins og heimavöllur!`,
+        desc: `Uppáhaldsstaður klúbbsins, ${plural(topLocationEntry[1], 'leikur', 'leikir')} til þessa. Ekkert jafnast á við heimavöllinn!`,
       },
       busiestMonth && {
-        icon: '📅', title: 'Fjölmennastur mánuður',
+        icon: '📅', title: 'Annasamasti mánuðurinn',
         value: formatMonth(busiestMonth[0]),
-        desc: `Fjölmennasti mánuður klúbbsins með ${busiestMonth[1]} leiki. Sumarleg Dominion er sérstök!`,
+        desc: `Flestir leikir á einum mánuði: ${busiestMonth[1]}.`,
       },
 
       // Stigamet
@@ -316,137 +332,137 @@ export default function FunFacts({ onGameNav }) {
         gameNums: [highScore.game],
       },
       maxTotalScore && {
-        icon: '💥', title: 'Stigaríkasti leikurinn',
-        value: `${maxTotalScore.total} stig alls`,
-        desc: `Leikur #${maxTotalScore.game}${maxTotalScore.date ? ` (${maxTotalScore.date})` : ''} — flestu stig á einum leik`,
+        icon: '💥', title: 'Stigahæsti leikurinn',
+        value: `${maxTotalScore.total} stig samtals`,
+        desc: `Leikur #${maxTotalScore.game}${maxTotalScore.date ? ` (${maxTotalScore.date})` : ''}. Flest stig samtals í einum leik.`,
         gameNums: [maxTotalScore.game],
       },
       lowScore && {
         icon: '😬', title: 'Lægsta skor',
         value: `${lowScore.score} stig`,
-        desc: `${lowScore.name} í leik #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''} — við tölum ekki um þetta${lowScoreNote}`,
+        desc: `${lowScore.name} í leik #${lowScore.game}${lowScore.date ? ` (${lowScore.date})` : ''}${lowScoreNote}. Við ræðum það ekki frekar.`,
         gameNums: [lowScore.game],
       },
       biggestBlowout && {
         icon: '🌊', title: 'Stærsti sigur',
-        value: `${biggestBlowout.gap} stiga munur`,
-        desc: `Leikur #${biggestBlowout.game}: ${biggestBlowout.winner} (${biggestBlowout.winnerScore}) bræðdi ${biggestBlowout.loser} (${biggestBlowout.loserScore})${blowoutNote}`,
+        value: `${plural(biggestBlowout.gap, 'stigs', 'stiga')} munur`,
+        desc: `Leikur #${biggestBlowout.game}: ${biggestBlowout.winner} fékk ${biggestBlowout.winnerScore} stig en ${biggestBlowout.loser} aðeins ${biggestBlowout.loserScore}${blowoutNote}`,
         gameNums: [biggestBlowout.game],
       },
       tiedGames.length > 0 && {
-        icon: '🤝', title: 'Jafnar lokur',
-        value: `${tiedGames.length} jafn${tiedGames.length === 1 ? 'ur leikur' : 'ir leikir'}`,
-        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')} — 1. og 2. sæti enduðu með sömu stig. Þurfti að skoða betur til að ráða úrslitum!`,
+        icon: '🤝', title: 'Jafnt á toppnum',
+        value: plural(tiedGames.length, 'jafn leikur', 'jafnir leikir'),
+        desc: `${tiedGames.map(g => `#${g.game_num}`).join(', ')}: 1. og 2. sæti enduðu með jafnmörg stig. Þá þurfti að skera úr á annan hátt!`,
         gameNums: tiedGames.map(g => g.game_num),
       },
       nailBiter && nailBiter.gap > 0 && {
-        icon: '😰', title: 'Spennumesti leikurinn',
-        value: `${nailBiter.gap} stiga munur`,
-        desc: `Leikur #${nailBiter.game}: ${nailBiter.winner} vann yfir ${nailBiter.runnerUp} með aðeins ${nailBiter.gap} stigi${nailBiter.gap !== 1 ? 'um' : ''}${nailBiter.date ? ` (${nailBiter.date})` : ''}${nailBiterNote}`,
+        icon: '😰', title: 'Æsispennandi leikur',
+        value: `${plural(nailBiter.gap, 'stigs', 'stiga')} munur`,
+        desc: `Leikur #${nailBiter.game}${nailBiter.date ? ` (${nailBiter.date})` : ''}: ${nailBiter.winner} vann með aðeins ${plural(nailBiter.gap, 'stigs', 'stiga')} mun og ${nailBiter.runnerUp} endaði í 2. sæti${nailBiterNote}`,
         gameNums: [nailBiter.game],
       },
       bestScorer && {
         icon: '💰', title: 'Hæsta meðalskor',
-        value: `${bestScorer.gpa.toFixed(1)} stig`,
-        desc: `${bestScorer.name} er með ${bestScorer.gpa.toFixed(1)} meðalstig á leik (min. 5 metin leikir)${bestScorerNote}`,
+        value: `${decimal(bestScorer.gpa)} stig`,
+        desc: `${bestScorer.name} fær að meðaltali ${decimal(bestScorer.gpa)} stig í leik (minnst 5 leikir með skráð stig)${bestScorerNote}`,
       },
 
-      // Leikendamet
+      // Leikmannamet
       topStreak && topStreak.streak > 1 && {
-        icon: '🔥', title: 'Lengsta sigurröð',
+        icon: '🔥', title: 'Lengsta sigurganga',
         value: `${topStreak.streak} í röð`,
-        desc: `${topStreak.name} fór á óstöðvanlegt skrið — ${topStreak.streak} sigurleikar í röð${streakNote}`,
+        desc: `${topStreak.name} var óstöðvandi: ${plural(topStreak.streak, 'sigur', 'sigrar')} í röð${streakNote}`,
       },
       longestGap && {
-        icon: '⏳', title: 'Lengsta bið milli spila',
-        value: `${longestGap.gap} leikir`,
-        desc: `${longestGap.name} mætti aftur eftir ${longestGap.gap} leiki (leikur #${longestGap.fromGame} → #${longestGap.toGame})`,
+        icon: '⏳', title: 'Lengsta hléið',
+        value: plural(longestGap.gap, 'leikur', 'leikir'),
+        desc: `${longestGap.name} mætti aftur eftir ${plural(longestGap.gap, 'leiks', 'leikja')} hlé (leikur #${longestGap.fromGame} → #${longestGap.toGame})`,
         gameNums: [longestGap.toGame],
       },
       runnerUp && {
         icon: '🥈', title: 'Eilíft silfur',
         value: `${runnerUp.second}× í 2. sæti`,
-        desc: `${runnerUp.name} hefur lokið í 2. sæti fleiri sinnum en nokkuð annað. Svo nálægt, svo oft — silfursætisgengni!${runnerUpNote}`,
+        desc: `${runnerUp.name} hefur oftar en nokkur annar endað í 2. sæti${runnerUpNote}. Svo nálægt, svo oft!`,
       },
       lastPlaceKing && {
-        icon: '🎯', title: 'Eilíft botnsæti',
-        value: `${lastPlaceKing[1]} síðustu sæti`,
-        desc: `${lastPlaceKing[0]} hefur gjöfult lagt ${lastPlaceKing[1]} síðustu sæti til tölfræðinnar. Sérhver klúbbur þarf einhver til að halda egóinu í skefjum.${lastPlaceNote}`,
+        icon: '🎯', title: 'Fastagestur á botninum',
+        value: `${timesText(lastPlaceKing[1])} neðst`,
+        desc: `${lastPlaceKing[0]} hefur ${timesText(lastPlaceKing[1])} endað í neðsta sæti${lastPlaceNote}. Einhver þarf að halda egóinu hjá hinum í skefjum!`,
       },
       neverWon.length > 0 && {
-        icon: '🌱', title: 'Enn í leit að dýrðinni',
-        value: `${neverWon.length} ${neverWon.length !== 1 ? 'leikmenn' : 'í leik'}`,
-        desc: `${neverWon.map(p => `${p.name} (${p.games} leikir)`).join(', ')} — hefur ekki unnið enn. Allir byrja einhvers staðar!`,
+        icon: '🌱', title: 'Fyrsti sigurinn bíður',
+        value: plural(neverWon.length, 'leikmaður', 'leikmenn'),
+        desc: `${neverWon.map(p => `${p.name} (${plural(p.games, 'leikur', 'leikir')})`).join(', ')}. Enginn sigur enn, en öll byrja einhvers staðar!`,
       },
       expExplorer && {
-        icon: '🗺️', title: 'Viðbótar-rannsakandi',
+        icon: '🗺️', title: 'Landkönnuðurinn',
         value: `${expExplorer.name}`,
-        desc: `Hefur spilað í leikjum með ${expExplorer.count} mismunandi viðbætur — mest fjölbreytni í viðbótum${expExplorerNote}`,
+        desc: `Hefur spilað með ${plural(expExplorer.count, 'viðbót', 'viðbótum')}, fleiri en nokkur annar${expExplorerNote}`,
       },
 
       // Spil
       topCards.length > 0 && {
-        icon: '♣', title: 'Uppáhaldskortin',
-        value: topCards.length === 1 ? topCards[0].name : `${topCards.length} spil jafnt`,
+        icon: '♣', title: 'Vinsælustu spilin',
+        value: topCards.length === 1 ? topCards[0].name : `${topCards.length} spil jöfn`,
         desc: topCards.length === 1
-          ? `Kom fyrir í ${maxUsage} ríkjum — uppáhald klúbbsins`
-          : `${topCards.slice(0, 3).map(c => c.name).join(', ')}${topCards.length > 3 ? ` … og ${topCards.length - 3} til viðbótar` : ''} — hvert kom fyrir í ${maxUsage} ríkjum`,
+          ? `Hefur verið í ${plural(maxUsage, 'ríki', 'ríkjum')}. Uppáhald klúbbsins!`
+          : `${topCards.slice(0, 3).map(c => c.name).join(', ')}${topCards.length > 3 ? ` og ${topCards.length - 3} til viðbótar` : ''}. Hvert þeirra hefur verið í ${plural(maxUsage, 'ríki', 'ríkjum')}.`,
       },
       topPairs.length > 0 && {
-        icon: '🔗', title: 'Kraftapar',
+        icon: '🔗', title: 'Óaðskiljanleg spil',
         value: topPairs.length === 1
           ? `${topPairs[0].cards[0]} + ${topPairs[0].cards[1]}`
-          : `${topPairs.length} pör jafnt`,
+          : `${topPairs.length} pör jöfn`,
         desc: topPairs.length === 1
-          ? `Þessi tvö spil hafa verið í sama ríki ${maxPairCount} sinnum — skapaðar fyrir hvort annað`
-          : `${topPairs.slice(0, 2).map(p => `${p.cards[0]} + ${p.cards[1]}`).join(', ')}${topPairs.length > 2 ? ` … og ${topPairs.length - 2} til viðbótar` : ''} — hvert par hefur verið saman í ${maxPairCount} ríkjum`,
+          ? `Þessi tvö spil hafa ${timesText(maxPairCount)} verið saman í ríki. Sköpuð hvort fyrir annað!`
+          : `${topPairs.slice(0, 2).map(p => `${p.cards[0]} + ${p.cards[1]}`).join(', ')}${topPairs.length > 2 ? ` og ${topPairs.length - 2} til viðbótar` : ''}. Hvert par hefur ${timesText(maxPairCount)} verið saman í ríki.`,
       },
       leastUsedCards.length > 0 && {
         icon: '🦗', title: 'Gleymdu spilin',
-        value: leastUsedCards.length === 1 ? leastUsedCards[0].name : `${leastUsedCards.length} spil jafnt`,
+        value: leastUsedCards.length === 1 ? leastUsedCards[0].name : `${leastUsedCards.length} spil jöfn`,
         desc: leastUsedCards.length === 1
-          ? `Kom aðeins fyrir ${minUsage} sinni${minUsage !== 1 ? 'um' : ''} — greinilega ekki vinsælt`
-          : `${leastUsedCards.slice(0, 3).map(c => c.name).join(', ')}${leastUsedCards.length > 3 ? ` … og ${leastUsedCards.length - 3} til viðbótar` : ''} — hvert spilað aðeins ${minUsage} sinni${minUsage !== 1 ? 'um' : ''}`,
+          ? `Hefur aðeins ${timesText(minUsage)} verið í ríki. Greinilega ekki vinsælt!`
+          : `${leastUsedCards.slice(0, 3).map(c => c.name).join(', ')}${leastUsedCards.length > 3 ? ` og ${leastUsedCards.length - 3} til viðbótar` : ''}. Hvert þeirra hefur aðeins ${timesText(minUsage)} verið í ríki.`,
       },
       neverUsed.length > 0 && {
         icon: '👻', title: 'Ósnert spil',
-        value: `${neverUsed.length} af ${kingdomCards.length} spilum`,
-        desc: `${neverUsed.slice(0, 3).map(c => c.name).join(', ')}${neverUsed.length > 3 ? `… og ${neverUsed.length - 3} til viðbótar` : ''} — hafa aldrei komið í ríki`,
+        value: `${neverUsed.length} af ${plural(kingdomCards.length, 'spili', 'spilum')}`,
+        desc: `${neverUsed.slice(0, 3).map(c => c.name).join(', ')}${neverUsed.length > 3 ? ` og ${neverUsed.length - 3} til viðbótar` : ''} ${neverUsed.length === 1 ? 'hefur' : 'hafa'} aldrei verið í ríki.`,
       },
 
       // Leiksnið
       biggestGame && {
-        icon: '🎉', title: 'Stærsti leikurinn',
-        value: `${biggestGame.players.length} í leik`,
-        desc: `Leikur #${biggestGame.game_num} — ${biggestGame.players.join(', ')}`,
+        icon: '🎉', title: 'Fjölmennasti leikurinn',
+        value: plural(biggestGame.players.length, 'leikmaður', 'leikmenn'),
+        desc: `Leikur #${biggestGame.game_num}: ${biggestGame.players.join(', ')}`,
         gameNums: [biggestGame.game_num],
       },
       biggestKingdom && biggestKingdom.kingdom.length > 10 && {
         icon: '👑', title: 'Stærsta ríkið',
         value: `${biggestKingdom.kingdom.length} spil`,
-        desc: `Leikur #${biggestKingdom.game_num} var með flest ríkiskort`,
+        desc: `Leikur #${biggestKingdom.game_num} var með flest spil í ríkinu`,
         gameNums: [biggestKingdom.game_num],
       },
       mostCommonCount && {
-        icon: '👥', title: 'Uppáhalds snið',
-        value: `${mostCommonCount[0]}-manns`,
-        desc: `${mostCommonCount[1]} af ${games.length} leikjum (${Math.round(mostCommonCount[1] / games.length * 100)}%) eru ${mostCommonCount[0]}-manns leikir. Uppáhalds sniðið.`,
+        icon: '👥', title: 'Algengasti fjöldinn',
+        value: `${mostCommonCount[0]} leikmenn`,
+        desc: `${mostCommonCount[1]} af ${plural(games.length, 'leik', 'leikjum')} (${Math.round(mostCommonCount[1] / games.length * 100)}%) eru ${mostCommonCount[0]} manna leikir.`,
       },
       {
-        icon: '📊', title: 'Meðalstærð leiks',
+        icon: '📊', title: 'Meðalfjöldi leikmanna',
         value: `${avgPlayers} í leik`,
-        desc: 'Meðalfjöldi per leik',
+        desc: 'Að meðaltali við borðið í hverjum leik',
       },
       provinceGames + colonyGames > 0 && {
-        icon: '🏛️', title: 'Héraðið vs Nýlendur',
-        value: `${provinceGames} vs ${colonyGames}`,
+        icon: '🏛️', title: 'Province eða Colony',
+        value: `${provinceGames} gegn ${colonyGames}`,
         desc: provinceGames > colonyGames
-          ? 'Héraðssigrar eru ríkjandi — Nýlenduríki eru sjaldgæf!'
-          : 'Nýlenduleikir eru óvænt algengir!',
+          ? 'Flestum leikjum lýkur á Province. Colony-leikir eru sjaldgæfir!'
+          : 'Colony-leikir eru óvænt algengir!',
       },
       mostExpGame && mostExpGame.expansions.length > 2 && {
         icon: '📦', title: 'Flestar viðbætur í einum leik',
-        value: `${mostExpGame.expansions.length} viðbætur`,
+        value: plural(mostExpGame.expansions.length, 'viðbót', 'viðbætur'),
         desc: `Leikur #${mostExpGame.game_num}: ${mostExpGame.expansions.join(', ')}`,
         gameNums: [mostExpGame.game_num],
       },
@@ -455,7 +471,7 @@ export default function FunFacts({ onGameNav }) {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Skemmtilegar staðreyndir &amp; met klúbbsins</h2>
+      <h2 className="section-title">Fróðleikur og met klúbbsins</h2>
       <div className="facts-grid">
         {facts.map((f, i) => (
           <Fact key={i} {...f} onGameNav={onGameNav} />

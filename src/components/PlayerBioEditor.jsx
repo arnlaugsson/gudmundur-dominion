@@ -3,6 +3,7 @@ import { doc, setDoc, Timestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
 import DATA from '../data'
+import { expansionLabel } from '../lib/icelandic'
 
 const MAX_TEXT = 280
 
@@ -95,7 +96,7 @@ export default function PlayerBioEditor({ playerName, profile, onCancel, onSave 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '.7rem' }}>
       <div style={fieldStyle}>
-        <label style={labelStyle}>Stutt bio ({form.shortBio.length}/{MAX_TEXT})</label>
+        <label style={labelStyle}>Stutt lýsing ({form.shortBio.length}/{MAX_TEXT})</label>
         <textarea
           value={form.shortBio}
           maxLength={MAX_TEXT}
@@ -105,14 +106,14 @@ export default function PlayerBioEditor({ playerName, profile, onCancel, onSave 
       </div>
 
       <div style={fieldStyle}>
-        <label style={labelStyle}>Uppáhalds viðbót</label>
+        <label style={labelStyle}>Uppáhaldsviðbót</label>
         <select
           value={form.favoriteExpansion}
           onChange={e => setForm({ ...form, favoriteExpansion: e.target.value })}
           style={inputStyle}
         >
           <option value="">Engin valin</option>
-          {expansions.map(x => <option key={x} value={x}>{x}</option>)}
+          {expansions.map(x => <option key={x} value={x}>{expansionLabel(x)}</option>)}
         </select>
       </div>
 
@@ -136,7 +137,7 @@ export default function PlayerBioEditor({ playerName, profile, onCancel, onSave 
             onChange={e => setForm({ ...form, memorableVictory: { ...form.memorableVictory, gameNum: e.target.value } })}
             style={{ ...inputStyle, width: '8rem' }}
           >
-            <option value="">— leikur —</option>
+            <option value="">Veldu leik</option>
             {winningGames.map(n => <option key={n} value={n}>#{n}</option>)}
           </select>
           <input
@@ -162,7 +163,7 @@ export default function PlayerBioEditor({ playerName, profile, onCancel, onSave 
             onChange={e => setForm({ ...form, memorableLoss: { ...form.memorableLoss, gameNum: e.target.value } })}
             style={{ ...inputStyle, width: '8rem' }}
           >
-            <option value="">— leikur —</option>
+            <option value="">Veldu leik</option>
             {allGames.map(n => <option key={n} value={n}>#{n}</option>)}
           </select>
           <input

@@ -65,12 +65,12 @@ const HEIRLOOMS = {
 // the current kingdom. Returns null when no eligible candidate exists.
 const NAMED_TARGETS = {
   'Way of the Mouse': {
-    label: 'Mús-spil',
+    label: 'Mouse-spil',
     icon: '🐭',
     pool: c => [2, 3].includes(c.cost) && !c.isDuration,
   },
   'Riverboat': {
-    label: 'Bátsmaður-spil',
+    label: 'Riverboat-spil',
     icon: '🚣',
     pool: c => c.cost === 5 && !c.isDuration,
   },

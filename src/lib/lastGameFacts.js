@@ -1,6 +1,9 @@
 // Pure derivation: compute fun facts for a single game in the context
 // of all known games. No React imports, no DOM access.
 
+import { plural } from './icelandic'
+import { scoredSeats } from './seats'
+
 const ROUND_GAME_MILESTONES = new Set([10, 25, 50, 100, 150, 200, 250, 300])
 const ROUND_WIN_MILESTONES = new Set([5, 10, 25, 50, 100])
 const RETURN_GAP_THRESHOLD = 30
@@ -10,10 +13,16 @@ const MAX_FACTS = 5
 // Standard Dominion games hit these ceilings; only call out as a "record" when above the norm.
 const KINGDOM_RECORD_MIN = 10
 const EXPANSIONS_RECORD_MIN = 2
+const TIMES_WORD = { 1: 'einu sinni', 2: 'tvisvar', 3: 'þrisvar' }
+const GAME_END_TEXT = {
+  Province: 'Province-bunkinn kláraðist',
+  Colony: 'Colony-bunkinn kláraðist',
+  'Supply piles': 'Leiknum lauk þegar bunkar tæmdust',
+}
 
 function buildRecordFacts(game, allGames) {
   const facts = []
-  const scored = (game.results || []).filter(r => r.score != null)
+  const scored = scoredSeats(game)
   if (scored.length === 0) return [...facts, ...buildSetupRecords(game, allGames)]
 
   // All historical scores (single-player), max kingdom size, max expansions, max gap, etc.
@@ -26,7 +35,7 @@ function buildRecordFacts(game, allGames) {
 
   for (const g of allGames) {
     if (g === game) continue // exclude current game from the "previous" max
-    const s = (g.results || []).filter(r => r.score != null)
+    const s = scoredSeats(g)
     if (s.length > 0) {
       for (const r of s) if (r.score > maxScore) maxScore = r.score
       const total = s.reduce((a, b) => a + b.score, 0)
@@ -58,24 +67,23 @@ function buildRecordFacts(game, allGames) {
 
   if (thisMaxScore >= maxScore && thisMaxScore !== -Infinity) {
     const top = scored.find(r => r.score === thisMaxScore)
-    facts.push({ icon: '🏆', title: 'Stigamet', text: `${top.name} skoraði ${thisMaxScore} stig — met klúbbsins` })
+    facts.push({ icon: '🏆', title: 'Stigamet', text: `${top.name} setti klúbbmet með ${plural(thisMaxScore, 'stigi', 'stigum')}` })
   }
   if (thisTotal >= maxTotal && maxTotal !== -Infinity) {
-    facts.push({ icon: '💥', title: 'Stigaríkasti leikurinn', text: `${thisTotal} stig samtals — met` })
+    facts.push({ icon: '💥', title: 'Stigahæsti leikurinn', text: `${thisTotal} stig samtals. Klúbbmet!` })
   }
   if (thisGap != null && thisGap >= maxGap && maxGap !== -Infinity) {
     const winner = sortedScored[0]
-    const loser = sortedScored[sortedScored.length - 1]
-    facts.push({ icon: '🌊', title: 'Stærsti sigur', text: `${winner.name} vann ${loser.name} með ${thisGap} stiga mun — met` })
+    facts.push({ icon: '🌊', title: 'Stærsti sigur', text: `${winner.name} vann neðsta sætið með ${plural(thisGap, 'stigs', 'stiga')} mun. Klúbbmet!` })
   }
   if (thisTop2 != null && thisTop2 >= 1 && thisTop2 <= minNailbiter && minNailbiter !== Infinity) {
-    facts.push({ icon: '😰', title: 'Spennumesti leikurinn', text: `Aðeins ${thisTop2} stiga munur á 1. og 2. sæti — met` })
+    facts.push({ icon: '😰', title: 'Æsispennandi leikur', text: `Aðeins ${plural(thisTop2, 'stigs', 'stiga')} munur á 1. og 2. sæti. Klúbbmet!` })
   }
   if (thisKingdom > KINGDOM_RECORD_MIN && thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
-    facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} ríkiskort — met` })
+    facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} spil í ríkinu. Klúbbmet!` })
   }
   if (thisExpansions > EXPANSIONS_RECORD_MIN && thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
-    facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik — met` })
+    facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik. Klúbbmet!` })
   }
   return facts
 }
@@ -93,10 +101,10 @@ function buildSetupRecords(game, allGames) {
   const thisKingdom = game.kingdom?.length ?? 0
   const thisExpansions = game.expansions?.length ?? 0
   if (thisKingdom > KINGDOM_RECORD_MIN && thisKingdom >= maxKingdom && maxKingdom !== -Infinity) {
-    facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} ríkiskort — met` })
+    facts.push({ icon: '👑', title: 'Stærsta ríkið', text: `${thisKingdom} spil í ríkinu. Klúbbmet!` })
   }
   if (thisExpansions > EXPANSIONS_RECORD_MIN && thisExpansions >= maxExpansions && maxExpansions !== -Infinity) {
-    facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik — met` })
+    facts.push({ icon: '📦', title: 'Flestar viðbætur', text: `${thisExpansions} viðbætur í einum leik. Klúbbmet!` })
   }
   return facts
 }
@@ -124,7 +132,7 @@ function buildMilestoneFacts(game, allGames) {
   // First appearance ever
   for (const name of (game.players || [])) {
     if (!seenPlayers.has(name) && (gamesPlayed[name] || 0) === 0) {
-      facts.push({ icon: '🌟', title: 'Fyrsti leikur', text: `${name} spilaði sinn fyrsta leik` })
+      facts.push({ icon: '🌟', title: 'Fyrsti leikur', text: `${name} spilaði sinn fyrsta leik í klúbbnum` })
       seenPlayers.add(name)
     }
   }
@@ -133,7 +141,7 @@ function buildMilestoneFacts(game, allGames) {
   for (const r of (game.results || [])) {
     if (r.place !== 1 || seenPlayers.has(r.name)) continue
     if ((winsCount[r.name] || 0) === 0 && (gamesPlayed[r.name] || 0) > 0) {
-      facts.push({ icon: '🥇', title: 'Fyrsti sigur', text: `${r.name} vann í fyrsta sinn (eftir ${gamesPlayed[r.name]} leiki)` })
+      facts.push({ icon: '🥇', title: 'Fyrsti sigur', text: `${r.name} vann í fyrsta sinn, eftir ${plural(gamesPlayed[r.name], 'leik', 'leiki')}` })
       seenPlayers.add(r.name)
     }
   }
@@ -143,7 +151,7 @@ function buildMilestoneFacts(game, allGames) {
     if (seenPlayers.has(name)) continue
     const total = (gamesPlayed[name] || 0) + 1 // include this game
     if (ROUND_GAME_MILESTONES.has(total)) {
-      facts.push({ icon: '🎯', title: `${total}. leikur`, text: `${name} náði ${total} leikjum í klúbbnum` })
+      facts.push({ icon: '🎯', title: `${total}. leikur`, text: `${name} hefur nú spilað ${plural(total, 'leik', 'leiki')} í klúbbnum` })
       seenPlayers.add(name)
     }
   }
@@ -153,7 +161,7 @@ function buildMilestoneFacts(game, allGames) {
     if (r.place !== 1 || seenPlayers.has(r.name)) continue
     const total = (winsCount[r.name] || 0) + 1
     if (ROUND_WIN_MILESTONES.has(total)) {
-      facts.push({ icon: '🎖️', title: `${total}. sigur`, text: `${r.name} náði ${total} sigrum` })
+      facts.push({ icon: '🎖️', title: `${total}. sigur`, text: `${r.name} hefur nú unnið ${plural(total, 'leik', 'leiki')}` })
       seenPlayers.add(r.name)
     }
   }
@@ -170,7 +178,7 @@ function buildMilestoneFacts(game, allGames) {
       else break
     }
     if (streak >= STREAK_THRESHOLD) {
-      facts.push({ icon: '🔥', title: 'Sigurröð', text: `${winner.name} hefur unnið ${streak} leiki í röð` })
+      facts.push({ icon: '🔥', title: 'Sigurganga', text: `${winner.name} hefur unnið ${plural(streak, 'leik', 'leiki')} í röð` })
       seenPlayers.add(winner.name)
     }
   }
@@ -182,7 +190,7 @@ function buildMilestoneFacts(game, allGames) {
     if (last == null) continue // first-timer (already covered)
     const gap = thisIdx - last
     if (gap >= RETURN_GAP_THRESHOLD) {
-      facts.push({ icon: '👋', title: 'Aftur eftir hlé', text: `${name} mætti aftur eftir ${gap} leiki` })
+      facts.push({ icon: '👋', title: 'Aftur eftir hlé', text: `${name} mætti aftur eftir ${plural(gap, 'leiks', 'leikja')} hlé` })
       seenPlayers.add(name)
     }
   }
@@ -206,7 +214,7 @@ function buildSpotlightFact(game, allGames, cards) {
   // Frumraun: any card with prior usage 0
   const debutCard = kingdom.find(k => (priorUsage[k.card] || 0) === 0)
   if (debutCard) {
-    return { icon: '✨', title: 'Frumraun', text: `${debutCard.card} kom í ríki í fyrsta sinn` }
+    return { icon: '✨', title: 'Frumraun', text: `${debutCard.card} var í ríkinu í fyrsta sinn` }
   }
 
   // Sjaldgæft: card with the lowest prior usage among kingdom cards, if ≤ SPOTLIGHT_RARE_MAX
@@ -218,9 +226,8 @@ function buildSpotlightFact(game, allGames, cards) {
     }
   }
   if (rare) {
-    const desc = rare.count === 1
-      ? `${rare.card} hafði aðeins komið einu sinni áður í ríki`
-      : `${rare.card} hafði aðeins komið ${rare.count} sinnum áður í ríki`
+    const times = TIMES_WORD[rare.count] || `${rare.count} sinnum`
+    const desc = `${rare.card} hafði aðeins verið ${times} áður í ríkinu`
     return { icon: '🦗', title: 'Sjaldgæft spil', text: desc }
   }
 
@@ -228,25 +235,28 @@ function buildSpotlightFact(game, allGames, cards) {
 }
 
 function buildResultSnippet(game) {
-  const scored = (game.results || []).filter(r => r.score != null).sort((a, b) => a.place - b.place)
+  const scored = scoredSeats(game)
   if (scored.length === 0) {
     // No scores recorded — fall back to listing players
     const players = (game.players || []).join(', ')
     return players
-      ? { icon: '🎲', title: 'Niðurstaða', text: `Spilarar: ${players}` }
+      ? { icon: '🎲', title: 'Niðurstaða', text: `Leikmenn: ${players}` }
       : null
   }
   const winner = scored[0]
   const runnerUp = scored[1]
   const gap = runnerUp ? winner.score - runnerUp.score : null
-  const victory = game.victory_type ? ` — ${game.victory_type} sigur` : ''
-  const gapText = runnerUp != null
-    ? ` (${gap} yfir ${runnerUp.name})`
-    : ''
+  const endText = GAME_END_TEXT[game.victory_type]
+  const victory = endText ? `. ${endText}.` : ''
+  const gapText = runnerUp == null
+    ? ''
+    : gap === 0
+      ? `. ${runnerUp.name} var með jafnmörg stig`
+      : `, ${runnerUp.name} var ${plural(gap, 'stigi', 'stigum')} á eftir`
   return {
     icon: '🎲',
     title: 'Niðurstaða',
-    text: `${winner.name} vann með ${winner.score} stigum${gapText}${victory}`,
+    text: `${winner.name} vann með ${plural(winner.score, 'stigi', 'stigum')}${gapText}${victory}`,
   }
 }
 

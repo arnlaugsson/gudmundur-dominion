@@ -36,7 +36,7 @@ export default function Players() {
       type: 'bar',
       data: {
         labels: top.map(p => p.name),
-        datasets: [{ data: top.map(p => +p.win_rate.toFixed(1)), backgroundColor: PALETTE.gold + '88', borderColor: PALETTE.gold, borderWidth: 1, label: 'Win Rate %' }],
+        datasets: [{ data: top.map(p => +p.win_rate.toFixed(1)), backgroundColor: PALETTE.gold + '88', borderColor: PALETTE.gold, borderWidth: 1, label: 'Sigurhlutfall %' }],
       },
       options: {
         plugins: { legend: { display: false } },
@@ -55,10 +55,10 @@ export default function Players() {
       data: {
         labels: top.map(p => p.name),
         datasets: [
-          { label: '1st', data: top.map(p => p.first), backgroundColor: PALETTE.gold + 'bb' },
-          { label: '2nd', data: top.map(p => p.second), backgroundColor: '#9ca3af88' },
-          { label: '3rd', data: top.map(p => p.third), backgroundColor: '#b4530988' },
-          { label: '4th+', data: top.map(p => p.fourth), backgroundColor: PALETTE.dim + '55' },
+          { label: '1. sæti', data: top.map(p => p.first), backgroundColor: PALETTE.gold + 'bb' },
+          { label: '2. sæti', data: top.map(p => p.second), backgroundColor: '#9ca3af88' },
+          { label: '3. sæti', data: top.map(p => p.third), backgroundColor: '#b4530988' },
+          { label: '4.+ sæti', data: top.map(p => p.fourth), backgroundColor: PALETTE.dim + '55' },
         ],
       },
       options: {
@@ -73,10 +73,10 @@ export default function Players() {
 
   return (
     <section className="section active">
-      <h2 className="section-title">Röðun leikenda</h2>
+      <h2 className="section-title">Röðun leikmanna</h2>
 
       <div className="charts-row" style={{ marginBottom: '1.5rem' }}>
-        <div className="chart-box"><h3>SAMANBURÐUR Á SIGURHLUTFALLI</h3><canvas ref={winrateRef} /></div>
+        <div className="chart-box"><h3>SIGURHLUTFALL</h3><canvas ref={winrateRef} /></div>
         <div className="chart-box"><h3>DREIFING SÆTA</h3><canvas ref={placementRef} /></div>
       </div>
 
@@ -94,7 +94,7 @@ export default function Players() {
           <thead>
             <tr>
               <th>#</th><th>Nafn</th><th>Leikir</th>
-              <th>1.</th><th>2.</th><th>3.</th><th>4.</th>
+              <th>1.</th><th>2.</th><th>3.</th><th>4.+</th>
               <th>Sigurhlutfall</th><th>Meðalskor</th>
               <th onClick={() => setSortKey('afrek')} style={{ cursor: 'pointer' }}>Afrek</th>
             </tr>
@@ -115,7 +115,7 @@ export default function Players() {
                     <span style={{ fontSize: '.78rem', color: 'var(--dim)', minWidth: '36px' }}>{p.win_rate.toFixed(0)}%</span>
                   </div>
                 </td>
-                <td style={{ color: 'var(--gold)' }}>{p.avg_score ?? '—'}</td>
+                <td style={{ color: 'var(--gold)' }}>{p.avg_score ?? '–'}</td>
                 <td>🏆 {achievementsByPlayer.get(p.name)?.length || 0}</td>
               </tr>
             ))}

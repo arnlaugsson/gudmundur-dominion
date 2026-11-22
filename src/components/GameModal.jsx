@@ -5,6 +5,7 @@ import MemorySection from './MemorySection'
 import MemoryEditor from './MemoryEditor'
 import DATA from '../data'
 import { detectSidePiles, detectHeirlooms } from '../lib/sidePiles'
+import { victoryLabel } from '../lib/icelandic'
 
 const EXTRA_COLORS = { event: '#f97316', landmark: '#3fb950', project: '#58a6ff', way: '#a78bfa', ally: '#f43f5e', trait: '#06b6d4', prophecy: '#e879f9' }
 
@@ -76,7 +77,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
             <span>{game.date}</span>
             <span>{game.location}</span>
             {game.victory_type && (
-              <span className={`badge ${victoryBadgeClass}`}>{game.victory_type}</span>
+              <span className={`badge ${victoryBadgeClass}`}>{victoryLabel(game.victory_type)}</span>
             )}
           </div>
         </div>
@@ -88,10 +89,10 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
             {game.results.map(r => (
               <div key={r.name} style={{ display: 'flex', alignItems: 'center', gap: '.4rem' }}>
                 <span className={`rank-${r.place}`} style={{ fontFamily: 'Cinzel, serif', fontWeight: 700 }}>
-                  {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}th`}
+                  {r.place === 1 ? '🥇' : r.place === 2 ? '🥈' : r.place === 3 ? '🥉' : `${r.place}.`}
                 </span>
                 <span style={{ fontSize: '.88rem' }}>{r.name}</span>
-                {r.score != null && <span style={{ fontSize: '.8rem', color: 'var(--gold)' }}>{r.score}stig</span>}
+                {r.score != null && <span style={{ fontSize: '.8rem', color: 'var(--gold)' }}>{r.score} stig</span>}
               </div>
             ))}
           </div>
@@ -101,14 +102,14 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
         {game.kingdom.length > 0 && (
           <div style={{ marginBottom: '1.25rem' }}>
             <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>
-              Ríki ({game.kingdom.length} spil)
+              Ríkið ({game.kingdom.length} spil)
             </div>
             <div className="kingdom-cards-grid">
               {game.kingdom.map(k => {
                 const trait = game.traits.find(t => t.card === k.card)
                 const heirloom = heirlooms.find(h => h.kingdomCard === k.card)?.heirloom
                 const cls = trait ? 'kingdom-card-trait' : heirloom ? 'kingdom-card-heirloom' : ''
-                const title = trait ? `${k.card} — Trait: ${trait.name}` : heirloom ? `${k.card} — Heirloom: ${heirloom}` : k.card
+                const title = trait ? `${k.card} (Trait: ${trait.name})` : heirloom ? `${k.card} (Heirloom: ${heirloom})` : k.card
                 return (
                   <div
                     key={k.card}
@@ -131,7 +132,7 @@ export default function GameModal({ game, memories, onClose, onMemorySaved }) {
         {/* Extras */}
         {extras.length > 0 && (
           <div>
-            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Aukaleg ({extras.length})</div>
+            <div style={{ fontSize: '.75rem', color: 'var(--dim)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: '.75rem' }}>Aukaspil ({extras.length})</div>
             <div className="kingdom-cards-grid">
               {extras.map(ex => (
                 <div
