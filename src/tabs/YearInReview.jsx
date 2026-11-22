@@ -9,19 +9,20 @@ import Avatar from '../components/Avatar'
 import EmptyState from '../components/EmptyState'
 import StoryDeck from '../components/wrapped/StoryDeck'
 import { Slide, Sub, ShareButton } from '../components/wrapped/SlideParts'
+import { clubCardContent, playerCardContent } from '../lib/shareCard'
 import { buildClubSlides } from '../components/wrapped/clubSlides'
 import { buildPlayerSlides } from '../components/wrapped/playerSlides'
 
 const go = hash => { window.location.hash = hash }
 const openStory = (year, story) => openModalRoute('arid', `${year}/${story}`)
 
-function Outro({ year, url, text, onPlayers }) {
+function Outro({ year, url, text, card, fileName, onPlayers }) {
   return (
     <Slide kicker={`Árið ${year}`} big="♛" headline="Takk fyrir spilin!">
       <Sub>Sjáumst við borðið á næsta ári.</Sub>
       <div className="story-actions">
-        <ShareButton url={url} text={text} />
-        {onPlayers && <button className="story-cta story-cta-ghost" onClick={onPlayers}>Sjá árið hjá hverjum spilara</button>}
+        <ShareButton url={url} text={text} card={card} fileName={fileName} />
+        {onPlayers && <button className="story-cta story-cta-ghost" onClick={onPlayers}>Sjá árið hjá hverjum leikmanni</button>}
       </div>
     </Slide>
   )
@@ -29,8 +30,8 @@ function Outro({ year, url, text, onPlayers }) {
 
 function ClubStory({ club, onClose }) {
   const url = `${window.location.origin}/#${yearHash(club.year, CLUB_STORY)}`
-  const slides = buildClubSlides(club, <Outro year={club.year} url={url} text={`Árið ${club.year} hjá Guðmundi`} onPlayers={onClose} />)
-  return <StoryDeck title={`Árið ${club.year} — klúbburinn`} slides={slides} onClose={onClose} />
+  const slides = buildClubSlides(club, <Outro year={club.year} url={url} text={`Árið ${club.year} hjá Guðmundi`} card={clubCardContent(club)} fileName={`gudmundur-${club.year}.png`} onPlayers={onClose} />)
+  return <StoryDeck title={`Árið ${club.year} hjá klúbbnum`} slides={slides} onClose={onClose} />
 }
 
 function PlayerStory({ year, name, onClose }) {
@@ -42,8 +43,8 @@ function PlayerStory({ year, name, onClose }) {
   )
   if (!summary) return null
   const url = `${window.location.origin}/#${yearHash(year, name)}`
-  const slides = buildPlayerSlides(summary, earned, <Outro year={year} url={url} text={`Árið ${year} hjá ${name}`} />)
-  return <StoryDeck title={`Árið ${year} — ${name}`} slides={slides} onClose={onClose} />
+  const slides = buildPlayerSlides(summary, earned, <Outro year={year} url={url} text={`Árið ${year}: ${name}`} card={playerCardContent(summary)} fileName={`gudmundur-${year}-${name}.png`} />)
+  return <StoryDeck title={`Árið ${year}: ${name}`} slides={slides} onClose={onClose} />
 }
 
 function PlayerGrid({ year, rows }) {
@@ -102,14 +103,14 @@ function YearView({ year, story }) {
         <div>
           <div className="wrapped-hero-title">Árið hjá Guðmundi</div>
           <div className="wrapped-hero-sub">
-            {plural(club.totalGames, 'leikur', 'leikir')} · {plural(club.playerCount, 'spilari', 'spilarar')}
+            {plural(club.totalGames, 'leikur', 'leikir')} · {plural(club.playerCount, 'leikmaður', 'leikmenn')}
             {club.champion && <> · {club.champion.mummi ? 'flestir sigrar utan Mumma' : 'meistari'}: {club.champion.name}{club.champion.mummi && ` (Mummi: ${club.champion.mummi.wins})`}</>}
           </div>
         </div>
         <span className="wrapped-hero-play" aria-hidden="true">▶</span>
       </div>
 
-      <h3 className="wrapped-subtitle">Árið hjá hverjum spilara</h3>
+      <h3 className="wrapped-subtitle">Árið hjá hverjum leikmanni</h3>
       <PlayerGrid year={year} rows={rows} />
 
       {story === CLUB_STORY && <ClubStory key={`${year}/club`} club={club} onClose={close} />}

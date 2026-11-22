@@ -74,39 +74,37 @@ export function PlaceBars({ places }) {
   )
 }
 
-const FEEDBACK_MS = 2000
+const FEEDBACK_MS = 2500
 
-async function shareOrCopy(url, text) {
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: text, url })
-      return 'shared'
-    } catch (err) {
-      if (err?.name === 'AbortError') return 'cancelled'
-      // Fall through to the clipboard (e.g. NotAllowedError on desktop).
-    }
-  }
-  await navigator.clipboard.writeText(url)
-  return 'copied'
+const SHARE_LABELS = {
+  idle: '↗ Deila mynd',
+  working: 'Bý til mynd…',
+  downloaded: '✓ Mynd vistuð og hlekkur afritaður',
+  failed: 'Tókst ekki að deila',
 }
 
-const SHARE_LABELS = { idle: '↗ Deila', copied: '✓ Hlekkur afritaður', failed: 'Tókst ekki að deila' }
-
-export function ShareButton({ url, text }) {
+// Shares a story image (see lib/shareCard + lib/share).
+export function ShareButton({ url, text, card, fileName }) {
   const [state, setState] = useState('idle')
   useEffect(() => {
-    if (state === 'idle') return undefined
+    if (state === 'idle' || state === 'working') return undefined
     const timer = setTimeout(() => setState('idle'), FEEDBACK_MS)
     return () => clearTimeout(timer)
   }, [state])
   const share = async () => {
+    setState('working')
     try {
-      const result = await shareOrCopy(url, text)
-      if (result === 'copied') setState('copied')
+      const [{ shareStory }, { renderShareCard }] = await Promise.all([import('../../lib/share'), import('../../lib/shareCard')])
+      const result = await shareStory({ url, text, fileName, render: () => renderShareCard(card) })
+      setState(result === 'downloaded' ? 'downloaded' : 'idle')
     } catch (err) {
       console.error('Share failed:', err)
       setState('failed')
     }
   }
-  return <button className="story-cta" onClick={share}>{SHARE_LABELS[state]}</button>
+  return (
+    <button className="story-cta" onClick={share} disabled={state === 'working'} aria-live="polite">
+      {SHARE_LABELS[state]}
+    </button>
+  )
 }
