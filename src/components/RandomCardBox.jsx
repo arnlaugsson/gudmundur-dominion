@@ -13,7 +13,7 @@ const LANDSCAPE_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 
 const COSTLESS_TYPES = new Set(['Landmark', 'Way', 'Ally', 'Trait', 'Prophecy'])
 
 const LABELS = {
-  played: 'Handahófskennt spil',
+  played: 'Spil af handahófi',
   unplayed: 'Óspilað spil',
 }
 
@@ -40,7 +40,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
           {LABELS.unplayed}
         </div>
         <div style={{ fontSize: '.85rem', color: 'var(--dim)', textAlign: 'center', padding: '1.5rem 0' }}>
-          Allt spilað! 🎉
+          Öll spil hafa verið spiluð! 🎉
         </div>
       </div>
     )
@@ -48,7 +48,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
   if (!card) return null
 
   const usageText = pool === 'played'
-    ? `${card.times_used}× spiluð (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
+    ? `${card.times_used}× í ríki (${games.length > 0 ? Math.round(card.times_used / games.length * 100) : 0}%)`
     : null
 
   const isLandscape = LANDSCAPE_TYPES.has(card.card_type)

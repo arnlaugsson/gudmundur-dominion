@@ -3,6 +3,7 @@ import DATA from '../data'
 import { computeLastGameFacts } from '../lib/lastGameFacts'
 import { cardThumbUrl } from '../constants'
 import { pressable } from '../lib/pressable'
+import { victoryLabel } from '../lib/icelandic'
 
 const VICTORY_BADGE_CLASS = {
   Province: 'badge-province',
@@ -52,7 +53,7 @@ export default function LatestGameBox({ onGameNav }) {
         {latest.location && <span style={{ fontSize: '.78rem', color: 'var(--dim)' }}>{latest.location}</span>}
         {latest.victory_type && (
           <span className={`badge ${VICTORY_BADGE_CLASS[latest.victory_type] || 'badge-province'}`}>
-            {latest.victory_type}
+            {victoryLabel(latest.victory_type)}
           </span>
         )}
       </div>
@@ -72,7 +73,7 @@ export default function LatestGameBox({ onGameNav }) {
                 {PLACE_ICON[r.place] || `${r.place}.`}
               </span>
               <span>{r.name}</span>
-              {r.score != null && <span style={{ color: 'var(--dim)' }}>{r.score}stig</span>}
+              {r.score != null && <span style={{ color: 'var(--dim)' }}>{r.score} stig</span>}
             </span>
           ))}
         </div>
@@ -85,7 +86,7 @@ export default function LatestGameBox({ onGameNav }) {
             <span style={{ flexShrink: 0 }}>{f.icon}</span>
             <span>
               <span style={{ color: 'var(--gold)', fontWeight: 600 }}>{f.title}</span>
-              <span style={{ color: 'var(--dim)' }}> — {f.text}</span>
+              <span style={{ color: 'var(--dim)' }}>: {f.text}</span>
             </span>
           </div>
         ))}

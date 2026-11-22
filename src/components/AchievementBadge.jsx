@@ -10,7 +10,7 @@ const CATEGORY_COLOR = {
 export default function AchievementBadge({ achievement }) {
   const color = CATEGORY_COLOR[achievement.category] || 'var(--gold)'
   const tooltip = achievement.earnedGameNum != null
-    ? `Náði í leik #${achievement.earnedGameNum}${achievement.earnedDate ? ` þann ${achievement.earnedDate}` : ''}`
+    ? `Náðist í leik #${achievement.earnedGameNum}${achievement.earnedDate ? ` (${achievement.earnedDate})` : ''}`
     : (achievement.detail || achievement.title)
   return (
     <div className="achievement-pill" title={tooltip} style={{ borderColor: color }}>

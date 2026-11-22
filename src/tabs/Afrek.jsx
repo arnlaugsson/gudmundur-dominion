@@ -12,7 +12,7 @@ const CATEGORY_ORDER = [
   ['volume',    'Þátttaka'],
   ['wins',      'Sigrar'],
   ['records',   'Met'],
-  ['streaks',   'Sigurraðir'],
+  ['streaks',   'Sigurgöngur'],
   ['variety',   'Fjölbreytni'],
   ['rivalries', 'Keppinautar'],
 ]

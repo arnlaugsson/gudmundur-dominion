@@ -134,7 +134,7 @@ export function buildPlayers(games) {
         first: places[0], second: places[1], third: places[2], fourth: places[3],
         win_rate: (places[0] / p.games) * 100,
         gpa,
-        avg_score: gpa == null ? null : gpa.toFixed(1),
+        avg_score: gpa == null ? null : gpa.toFixed(1).replace('.', ','),
       }
     })
 }

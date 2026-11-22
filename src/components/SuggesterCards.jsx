@@ -24,7 +24,7 @@ export function KingdomCard({ card, attachedTrait, attachedHeirloom, baneOf, onC
       <div style={{ padding: '.5rem .6rem' }}>
         <div className="kn" style={{ display: 'flex', alignItems: 'center', gap: '.4rem', flexWrap: 'wrap' }}>
           {card.name}
-          {card.isSecondEdition && <span className="tag tag-2nd">2nd Ed.</span>}
+          {card.isSecondEdition && <span className="tag tag-2nd">2. útg.</span>}
           {attachedTrait && <span className="trait-pill">✨ {attachedTrait.name}</span>}
           {attachedHeirloom && <span className="heirloom-pill">🎁 {attachedHeirloom}</span>}
           {baneOf && <span className="bane-pill">🧙 Bane</span>}

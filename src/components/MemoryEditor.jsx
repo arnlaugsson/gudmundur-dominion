@@ -233,7 +233,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Athugasemdir frá leiknum..."
+        placeholder="Athugasemdir frá leiknum…"
       />
 
       {/* Existing photos */}
@@ -277,7 +277,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                   <button
                     onClick={() => setHighlight('existing', i)}
-                    title={photo.highlight ? 'Fjarlægja úr korti' : 'Sýna á korti'}
+                    title={photo.highlight ? 'Hætta að sýna sem aðalmynd' : 'Sýna sem aðalmynd leiksins'}
                     style={{
                       background: 'none', border: '1px solid var(--border)',
                       color: photo.highlight ? 'var(--gold)' : 'var(--dim)',
@@ -355,7 +355,7 @@ export default function MemoryEditor({ game, existingMemory, onSave, onCancel })
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
                   <button
                     onClick={() => setHighlight('new', i)}
-                    title={f.highlight ? 'Fjarlægja úr korti' : 'Sýna á korti'}
+                    title={f.highlight ? 'Hætta að sýna sem aðalmynd' : 'Sýna sem aðalmynd leiksins'}
                     style={{
                       background: 'none', border: '1px solid var(--border)',
                       color: f.highlight ? 'var(--gold)' : 'var(--dim)',

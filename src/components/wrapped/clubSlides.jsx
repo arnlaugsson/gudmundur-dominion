@@ -7,16 +7,16 @@ const points = n => plural(n, 'stig', 'stig')
 
 function intro(c) {
   return (
-    <Slide kicker="Dominionklúbburinn Guðmundur" big={c.year} headline={`${games(c.totalGames)} spilaðir`}>
+    <Slide kicker="Dominionklúbburinn Guðmundur" big={c.year} headline={plural(c.totalGames, 'leikur spilaður', 'leikir spilaðir')}>
       <Delta now={c.totalGames} before={c.prevYearGames || null} yearBefore={c.year - 1} />
-      <Sub>{plural(c.playerCount, 'spilari', 'spilarar')} settust við borðið á árinu.</Sub>
+      <Sub>{plural(c.playerCount, 'leikmaður settist', 'leikmenn settust')} við borðið á árinu.</Sub>
     </Slide>
   )
 }
 
 function calendar(c) {
   return (
-    <Slide kicker="Spiladagatalið" headline={c.busiestMonth ? `${MONTHS_LONG[c.busiestMonth.month]} var heitastur` : 'Spiladagatalið'}>
+    <Slide kicker="Spiladagatalið" headline={c.busiestMonth ? `Mest spilað í ${MONTHS_LONG[c.busiestMonth.month]}` : 'Spiladagatalið'}>
       <MonthBars counts={c.gamesByMonth} highlight={c.busiestMonth?.month} />
       {c.busiestMonth && <Sub>{games(c.busiestMonth.count)} í {MONTHS_LONG[c.busiestMonth.month]}.</Sub>}
       {c.longestGap && c.longestGap.days > 0 && (
@@ -51,12 +51,12 @@ function records(c) {
       <ul className="slide-list">
         {c.highestScore && (
           <li>
-            <b>🏆 {points(c.highestScore.score)}</b>{c.highestScore.mummi ? ' (hæst utan Mumma)' : ''} — {joinNames(c.highestScore.players)} í leik #{c.highestScore.game_num}
+            <b>🏆 {points(c.highestScore.score)}</b>{c.highestScore.mummi ? ' (hæst utan Mumma)' : ''}: {joinNames(c.highestScore.players)} í leik #{c.highestScore.game_num}
             {c.highestScore.mummi && <> · Mummi: {c.highestScore.mummi.score} (#{c.highestScore.mummi.game_num})</>}
           </li>
         )}
-        {c.closestGame && <li><b>😰 {plural(c.closestGame.margin, 'stigs', 'stiga')} munur</b> — {joinNames(c.closestGame.winners)} rétt marði {joinNames(c.closestGame.runnersUp)} (#{c.closestGame.game_num})</li>}
-        {c.biggestWin && <li><b>🌊 {plural(c.biggestWin.margin, 'stigs', 'stiga')} sigur</b> — {joinNames(c.biggestWin.winners)} í leik #{c.biggestWin.game_num}</li>}
+        {c.closestGame && <li><b>😰 {plural(c.closestGame.margin, 'stigs', 'stiga')} munur</b>: {joinNames(c.closestGame.winners)} í 1. sæti, {joinNames(c.closestGame.runnersUp)} í 2. sæti (#{c.closestGame.game_num})</li>}
+        {c.biggestWin && <li><b>🌊 {plural(c.biggestWin.margin, 'stigs', 'stiga')} sigur</b>: {joinNames(c.biggestWin.winners)} í leik #{c.biggestWin.game_num}</li>}
       </ul>
     </Slide>
   )
@@ -64,9 +64,9 @@ function records(c) {
 
 function cards(c) {
   return (
-    <Slide kicker="Spil ársins" headline={`${c.topCards[0].name} sást oftast`}>
+    <Slide kicker="Spil ársins" headline={`${c.topCards[0].name} var oftast í ríkinu`}>
       <CardStrip items={c.topCards.slice(0, 3)} />
-      <Sub>{plural(c.newCards.length, 'spil', 'spil')} sáust í fyrsta sinn í sögu klúbbsins.</Sub>
+      <Sub>{plural(c.newCards.length, 'spil sást', 'spil sáust')} í fyrsta sinn í sögu klúbbsins.</Sub>
       {c.debutExpansions.length > 0 && <Sub>Nýjar viðbætur á borðinu: {joinNames(c.debutExpansions)}.</Sub>}
     </Slide>
   )
@@ -76,7 +76,7 @@ function places(c) {
   const top = c.topLocations[0]
   return (
     <Slide kicker="Spilastaðir" big="📍" headline={top.name}>
-      <Sub>{games(top.count)} spilaðir þar.</Sub>
+      <Sub>{plural(top.count, 'leikur spilaður', 'leikir spilaðir')} þar.</Sub>
       {c.topLocations.length > 1 && <Sub>Einnig: {joinNames(c.topLocations.slice(1).map(l => `${l.name} (${l.count})`))}.</Sub>}
     </Slide>
   )
@@ -84,9 +84,9 @@ function places(c) {
 
 function people(c) {
   return (
-    <Slide kicker="Fólkið" headline={c.newcomers.length ? `Velkomin ${joinNames(c.newcomers)}!` : 'Kunnugleg andlit'}>
-      {c.newcomers.length > 0 && <Sub>{plural(c.newcomers.length, 'nýliði', 'nýliðar')} spiluðu sinn fyrsta leik á árinu.</Sub>}
-      {c.teamGames > 0 && <Sub>{plural(c.teamGames, 'liðaleikur', 'liðaleikir')} — þar sem fleiri en einn stýrðu sama stokknum.</Sub>}
+    <Slide kicker="Fólkið" headline={c.newcomers.length ? 'Ný andlit við borðið' : 'Kunnugleg andlit'}>
+      {c.newcomers.length > 0 && <Sub>{joinNames(c.newcomers)} {c.newcomers.length === 1 ? 'spilaði' : 'spiluðu'} sinn fyrsta leik á árinu.</Sub>}
+      {c.teamGames > 0 && <Sub>{plural(c.teamGames, 'liðaleikur', 'liðaleikir')}, þar sem fleiri en einn spiluðu saman á einum stokki.</Sub>}
     </Slide>
   )
 }
@@ -96,7 +96,7 @@ function rivalry(c) {
   return (
     <Slide kicker="Keppinautar ársins" headline={`${r.a} gegn ${r.b}`}>
       <div className="rivalry-score"><span>{r.aWins}</span><small>–</small><span>{r.bWins}</span></div>
-      <Sub>Mættust í {plural(r.games, 'leik', 'leikjum')}. Talan sýnir hvor endaði ofar.</Sub>
+      <Sub>Mættust í {plural(r.games, 'leik', 'leikjum')}. Talan sýnir hve oft hvort þeirra endaði ofar.</Sub>
     </Slide>
   )
 }

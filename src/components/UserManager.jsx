@@ -48,7 +48,7 @@ export default function UserManager({ onClose }) {
 
   const removeUser = async (email) => {
     if (email === user.email) {
-      alert('Þú getur ekki fjarlægt sjálfan þig.')
+      alert('Þú getur ekki fjarlægt eigin aðgang.')
       return
     }
     if (!confirm(`Fjarlægja ${email}?`)) return
@@ -94,7 +94,7 @@ export default function UserManager({ onClose }) {
         </h2>
 
         {loading ? (
-          <div style={{ color: 'var(--dim)', fontSize: '0.85rem' }}>Hleður...</div>
+          <div style={{ color: 'var(--dim)', fontSize: '0.85rem' }}>Hleður…</div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginBottom: '1.25rem' }}>
             {users.map((u) => (
@@ -116,7 +116,7 @@ export default function UserManager({ onClose }) {
                   }}
                   title={u.lastSeen ? formatAbsolute(u.lastSeen.toDate()) : 'Hefur ekki skráð sig inn'}
                 >
-                  {u.lastSeen ? formatRelative(u.lastSeen.toDate()) : '—'}
+                  {u.lastSeen ? formatRelative(u.lastSeen.toDate()) : '–'}
                 </div>
                 <select
                   value={u.playerName || ''}
@@ -128,7 +128,7 @@ export default function UserManager({ onClose }) {
                     fontSize: '0.75rem', fontFamily: 'inherit', maxWidth: '110px',
                   }}
                 >
-                  <option value="">(óvalinn)</option>
+                  <option value="">(enginn)</option>
                   {playerNames.map((n) => (
                     <option key={n} value={n}>{n}</option>
                   ))}
@@ -136,7 +136,7 @@ export default function UserManager({ onClose }) {
                 <button
                   className={u.admin ? 'memory-tag' : 'memory-add-tag'}
                   onClick={() => toggleAdmin(u)}
-                  title={u.admin ? 'Stjórnandi — smelltu til að breyta' : 'Smelltu til að gera stjórnanda'}
+                  title={u.admin ? 'Stjórnandi (smelltu til að breyta)' : 'Smelltu til að gera stjórnanda'}
                 >
                   {u.admin ? 'Stjórnandi' : 'Lesandi'}
                 </button>
@@ -195,7 +195,7 @@ export default function UserManager({ onClose }) {
             disabled={saving || !newEmail.trim()}
             style={{ alignSelf: 'flex-start', padding: '0.4rem 1rem' }}
           >
-            {saving ? 'Bæti við...' : 'Bæta við'}
+            {saving ? 'Bæti við…' : 'Bæta við'}
           </button>
         </div>
       </div>

@@ -42,6 +42,6 @@ describe('computeLastGameFacts', () => {
     const games = [makeGame(1, ['A', 'B'], { scores: [30, 20] }), makeGame(2, ['B', 'A'], { scores: [33, 31] })]
     const facts = computeLastGameFacts(games[1], games, [], [])
     expect(facts.length).toBeLessThanOrEqual(5)
-    expect(facts.map(f => f.text).join(' ')).toContain('B vann með 33 stigum (2 yfir A)')
+    expect(facts.map(f => f.text).join(' ')).toContain('B vann með 33 stigum, A var 2 stigum á eftir')
   })
 })

@@ -9,7 +9,7 @@ export default function PlayerBio({ bio, onEdit, canEdit }) {
   if (!filled) {
     return (
       <div style={{ color: 'var(--dim)', fontSize: '.85rem', padding: '.4rem 0' }}>
-        Engar prófíl-upplýsingar enn.
+        Ekkert skráð enn.
         {canEdit && (
           <button
             onClick={onEdit}
@@ -31,7 +31,7 @@ export default function PlayerBio({ bio, onEdit, canEdit }) {
         <div>{bio.shortBio}</div>
       )}
       {bio.favoriteExpansion && (
-        <div><span style={{ color: 'var(--dim)' }}>Uppáhalds viðbót: </span>{bio.favoriteExpansion}</div>
+        <div><span style={{ color: 'var(--dim)' }}>Uppáhaldsviðbót: </span>{bio.favoriteExpansion}</div>
       )}
       {bio.favoriteCard && (
         <div><span style={{ color: 'var(--dim)' }}>Uppáhaldsspil: </span>{bio.favoriteCard}</div>
@@ -45,7 +45,7 @@ export default function PlayerBio({ bio, onEdit, canEdit }) {
           >
             leikur #{bio.memorableVictory.gameNum}
           </button>
-          {bio.memorableVictory.text && <span> — "{bio.memorableVictory.text}"</span>}
+          {bio.memorableVictory.text && <span>: „{bio.memorableVictory.text}“</span>}
         </div>
       )}
       {bio.memorableLoss?.gameNum != null && (
@@ -57,7 +57,7 @@ export default function PlayerBio({ bio, onEdit, canEdit }) {
           >
             leikur #{bio.memorableLoss.gameNum}
           </button>
-          {bio.memorableLoss.text && <span> — "{bio.memorableLoss.text}"</span>}
+          {bio.memorableLoss.text && <span>: „{bio.memorableLoss.text}“</span>}
         </div>
       )}
     </div>

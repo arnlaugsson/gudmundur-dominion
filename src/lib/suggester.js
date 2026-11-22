@@ -1,10 +1,10 @@
 // Pure helpers for the kingdom suggester (no React).
 
 export const MODES = [
-  { id: 'random',    icon: '🎲', name: 'Hrein tilviljun', desc: 'Algjörlega handahófskennt ríki' },
-  { id: 'least',     icon: '🦗', name: 'Gleymdu kortin',  desc: 'Kortin sem eru sjaldnast í ríkinu' },
-  { id: 'favorites', icon: '⭐', name: 'Uppáhald allra',  desc: 'Vinsælustu kortin í sögu klúbbsins' },
-  { id: 'balanced',  icon: '⚖️', name: 'Jafnvægt',        desc: 'Blanda af nýjum og kunnuglegum kortum' },
+  { id: 'random',    icon: '🎲', name: 'Hrein tilviljun', desc: 'Ríki valið algjörlega af handahófi' },
+  { id: 'least',     icon: '🦗', name: 'Gleymdu spilin',  desc: 'Spilin sem hafa sjaldnast verið í ríkinu' },
+  { id: 'favorites', icon: '⭐', name: 'Uppáhald allra',  desc: 'Vinsælustu spilin í sögu klúbbsins' },
+  { id: 'balanced',  icon: '⚖️', name: 'Í jafnvægi',      desc: 'Blanda af nýjum og kunnuglegum spilum' },
 ]
 
 export const SPECIAL_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 'Trait', 'Prophecy'])
@@ -80,9 +80,9 @@ export function pickLandscapeCards(extrasPool, kingdom) {
 }
 
 export const PLAYER_MODES = [
-  { id: 'unseen',    name: 'Óspilað',    desc: 'Spil sem valdir hafa aldrei séð' },
-  { id: 'rare',      name: 'Sjaldséð',   desc: 'Spil sem valdir hafa sjaldnast spilað' },
-  { id: 'favorites', name: 'Uppáhald',   desc: 'Spil sem valdir spila oftast' },
+  { id: 'unseen',    name: 'Óspilað',    desc: 'Spil sem valdir leikmenn hafa aldrei spilað' },
+  { id: 'rare',      name: 'Sjaldséð',   desc: 'Spil sem valdir leikmenn hafa sjaldnast spilað' },
+  { id: 'favorites', name: 'Uppáhald',   desc: 'Spil sem valdir leikmenn spila oftast' },
 ]
 
 export function formatCost(card) {
@@ -94,7 +94,7 @@ export function formatCost(card) {
 
 export function formatColonyPlatinumLabel(playerCount) {
   const colonyCount = playerCount >= 2 ? (playerCount === 2 ? 8 : 12) : null
-  const colonyLabel = colonyCount != null ? `Colony (${colonyCount})` : 'Colony (2 í leik: 8, 3-4 í leik: 12)'
+  const colonyLabel = colonyCount != null ? `Colony (${colonyCount})` : 'Colony (8 fyrir 2 leikmenn, annars 12)'
   return `${colonyLabel} & Platinum (12)`
 }
 
@@ -103,14 +103,14 @@ export function buildExportText(kingdom, extras, sidePiles, heirlooms, namedTarg
   lines.push('Ríkið:')
   for (const c of [...kingdom].sort((a, b) => (a.cost ?? 0) - (b.cost ?? 0))) {
     const cost = formatCost(c)
-    lines.push(`  ${c.name}${cost ? ` (${cost})` : ''} — ${c.expansion}`)
+    lines.push(`  ${c.name}${cost ? ` (${cost})` : ''} · ${c.expansion}`)
   }
   if (extras.length > 0) {
     lines.push('')
-    lines.push('Aukaleg:')
+    lines.push('Aukaspil:')
     for (const c of extras) {
       const attached = c._attachedCard ? ` → ${c._attachedCard}` : ''
-      lines.push(`  ${c.name} [${c.card_type}]${attached} — ${c.expansion}`)
+      lines.push(`  ${c.name} [${c.card_type}]${attached} · ${c.expansion}`)
     }
   }
   if (sidePiles.length > 0) {
@@ -125,12 +125,12 @@ export function buildExportText(kingdom, extras, sidePiles, heirlooms, namedTarg
   }
   if (namedTargets.length > 0) {
     lines.push('')
-    lines.push('Auka kort:')
+    lines.push('Nefnd spil:')
     for (const nt of namedTargets) lines.push(`  ${nt.label} fyrir ${nt.source.name}: ${nt.target.name}`)
   }
   if (colonyPlatinum && colonyCard && platinumCard) {
     lines.push('')
-    lines.push(`Velmegun: ${formatColonyPlatinumLabel(playerCount)}`)
+    lines.push(`Prosperity: ${formatColonyPlatinumLabel(playerCount)}`)
   }
   return lines.join('\n')
 }

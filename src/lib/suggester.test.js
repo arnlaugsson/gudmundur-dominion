@@ -61,8 +61,8 @@ describe('buildExportText', () => {
       { name: 'Village', cost: 3, expansion: 'Base' },
     ]
     const text = buildExportText(kingdom, [], [], [], [], true, {}, {}, 2)
-    expect(text.split('\n').slice(0, 3)).toEqual(['Ríkið:', '  Village (3) — Base', '  Market (5) — Base'])
-    expect(text).toContain(`Velmegun: ${formatColonyPlatinumLabel(2)}`)
+    expect(text.split('\n').slice(0, 3)).toEqual(['Ríkið:', '  Village (3) · Base', '  Market (5) · Base'])
+    expect(text).toContain(`Prosperity: ${formatColonyPlatinumLabel(2)}`)
   })
 })
 

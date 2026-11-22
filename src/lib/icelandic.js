@@ -18,3 +18,14 @@ export function joinNames(names) {
   if (names.length <= 1) return names.join('')
   return `${names.slice(0, -1).join(', ')} og ${names[names.length - 1]}`
 }
+
+// Display labels for game.victory_type data values (the data keeps the English keys).
+export const VICTORY_LABEL = {
+  Province: 'Province',
+  Colony: 'Colony',
+  'Supply piles': 'Bunkar tæmdust',
+}
+
+export function victoryLabel(type) {
+  return VICTORY_LABEL[type] || type
+}

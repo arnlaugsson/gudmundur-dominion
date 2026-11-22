@@ -3,6 +3,7 @@ import DATA from '../data'
 import PlayerPhotos from './PlayerPhotos'
 import AchievementBadge from './AchievementBadge'
 import { computeAchievements } from '../lib/achievements'
+import { plural } from '../lib/icelandic'
 
 export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
   useEffect(() => {
@@ -78,14 +79,14 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
     { label: 'Leikir', value: p.games },
     { label: 'Sigrar', value: p.first },
     { label: 'Sigurhlutfall', value: `${p.win_rate.toFixed(0)}%` },
-    { label: 'Meðalskor', value: p.avg_score ?? '—' },
+    { label: 'Meðalskor', value: p.avg_score ?? '–' },
     details.bestScore != null && { label: 'Besta skor', value: details.bestScore },
     { label: '2. sæti', value: p.second },
     { label: '3. sæti', value: p.third },
-    details.maxStreak > 1 && { label: 'Lengsta sigursería', value: `${details.maxStreak} leikir` },
+    details.maxStreak > 1 && { label: 'Lengsta sigurganga', value: plural(details.maxStreak, 'sigur', 'sigrar') },
     details.topOpponent && { label: 'Mest spilað við', value: `${details.topOpponent[0]} (${details.topOpponent[1]}×)` },
-    details.favExp && { label: 'Uppáhalds viðbót', value: details.favExp[0] },
-    details.favCard && { label: 'Uppáhaldskort í sigrum', value: `${details.favCard[0]} (${details.favCard[1]}×)` },
+    details.favExp && { label: 'Uppáhaldsviðbót', value: details.favExp[0] },
+    details.favCard && { label: 'Uppáhaldsspil í sigrum', value: `${details.favCard[0]} (${details.favCard[1]}×)` },
   ].filter(Boolean)
 
   return (
@@ -107,7 +108,7 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
         <h2 className="cinzel gold" style={{ fontSize: '1.4rem', marginBottom: '.2rem' }}>{p.name}</h2>
         {details.firstGame && (
           <div style={{ fontSize: '.8rem', color: 'var(--dim)', marginBottom: '1rem' }}>
-            Meðlimur síðan {details.firstGame.date ?? `leikur #${details.firstGame.game_num}`}
+            Meðlimur síðan {details.firstGame.date ?? `leik #${details.firstGame.game_num}`}
           </div>
         )}
 
@@ -151,7 +152,7 @@ export default function PlayerModal({ playerName, photosByPlayer, onClose }) {
               ['volume',    'Þátttaka'],
               ['wins',      'Sigrar'],
               ['records',   'Met'],
-              ['streaks',   'Sigurraðir'],
+              ['streaks',   'Sigurgöngur'],
               ['variety',   'Fjölbreytni'],
               ['rivalries', 'Keppinautar'],
             ].map(([cat, label]) => {
