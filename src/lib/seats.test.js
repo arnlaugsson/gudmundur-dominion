@@ -34,3 +34,14 @@ describe('seats helpers', () => {
     expect(isTeamGame({})).toBe(false)
   })
 })
+
+describe('scoredSeats', () => {
+  it('returns scored seats by place with a joined display name', async () => {
+    const { scoredSeats } = await import('./seats')
+    const game = { seats: [{ players: ['C'], place: 2, score: 21 }, { players: ['A', 'B'], place: 1, score: 24 }, { players: ['D'], place: 3, score: null }] }
+    expect(scoredSeats(game)).toEqual([
+      { name: 'A & B', players: ['A', 'B'], place: 1, score: 24 },
+      { name: 'C', players: ['C'], place: 2, score: 21 },
+    ])
+  })
+})

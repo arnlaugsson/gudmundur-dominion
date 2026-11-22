@@ -93,6 +93,18 @@ function achievementsSlide(p, earned) {
   )
 }
 
+function ratingSlide(p) {
+  const up = p.ratingChange > 0
+  return (
+    <Slide kicker="Styrkleiki" big={p.ratingEnd} headline={up ? 'Á uppleið!' : p.ratingChange < 0 ? 'Erfitt ár á borðinu' : 'Stöðugt ár'}>
+      <span className={`delta ${up ? 'delta-up' : p.ratingChange < 0 ? 'delta-down' : ''}`}>
+        {up ? '▲ +' : p.ratingChange < 0 ? '▼ −' : '±'}{Math.abs(p.ratingChange)} á árinu
+      </span>
+      <Sub>Styrkleiki í lok árs. Hann hækkar þegar þú endar ofar en sterkir andstæðingar, ekki bara þegar þú vinnur.</Sub>
+    </Slide>
+  )
+}
+
 export function buildPlayerSlides(p, earned, outro) {
   if (!p) return []
   const slides = [
@@ -100,6 +112,7 @@ export function buildPlayerSlides(p, earned, outro) {
     ['wins', () => winsSlide(p)],
     ['places', p.places.length > 0 && (() => placesSlide(p))],
     ['score', p.bestScore && (() => scoreSlide(p))],
+    ['rating', p.ratingEnd != null && p.ratingChange != null && (() => ratingSlide(p))],
     ['taste', (p.favoriteExpansion || p.mostSeenCard) && (() => tasteSlide(p))],
     ['rivals', (p.nemesis || p.victim || p.teammates.length) && (() => rivalsSlide(p))],
     ['achievements', earned.length > 0 && (() => achievementsSlide(p, earned))],

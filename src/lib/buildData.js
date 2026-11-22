@@ -40,17 +40,31 @@ function seatsFromResults(results) {
     .map(r => ({ players: [r.name], place: r.place, score: r.score ?? null }))
 }
 
+// Every stat reads results[].place, so make it the place of the player's seat:
+// a team counts as one competitor (the sheet numbers places per person, e.g.
+// the second of two 2-person teams is "3"). The sheet value is kept.
+function alignPlacesWithSeats(results, seats) {
+  const seatPlace = new Map(seats.flatMap(s => s.players.map(p => [p, s.place])))
+  return results.map(r => ({ ...r, sheet_place: r.place, place: seatPlace.get(r.name) ?? r.place }))
+}
+
+function parseGame(g) {
+  const results = g.results || []
+  // Older JSON (before team support) has no seats; every player is a seat.
+  const seats = g.seats || seatsFromResults(results)
+  return {
+    ...g,
+    results: alignPlacesWithSeats(results, seats),
+    expansions: g.expansions || [],
+    kingdom: g.kingdom || [],
+    seats,
+  }
+}
+
 export function parseGames(rawGames) {
   return rawGames
     .filter(g => g.game_num != null && Array.isArray(g.players) && g.players.length > 0)
-    .map(g => ({
-      ...g,
-      results: g.results || [],
-      expansions: g.expansions || [],
-      kingdom: g.kingdom || [],
-      // Older JSON (before team support) has no seats; every player is a seat.
-      seats: g.seats || seatsFromResults(g.results || []),
-    }))
+    .map(parseGame)
     .sort((a, b) => a.game_num - b.game_num)
 }
 

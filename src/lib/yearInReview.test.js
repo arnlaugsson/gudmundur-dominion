@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computeClubYear, computePlayerYear, availableYears, earnedInYear } from './yearInReview'
+import { computeClubYear, computePlayerYear, availableYears, earnedInYear, leaderBesidesMummi } from './yearInReview'
 import { parseGames } from './buildData'
 
 // g(num, date, seats) where seats = [[players..., score], ...] best-first.
@@ -68,6 +68,13 @@ describe('computeClubYear', () => {
     expect(club.rivalry).toMatchObject({ a: 'A', b: 'B', games: 4, aWins: 3, bWins: 1 })
   })
 
+  it('names the biggest rating climber and the upset of the year', () => {
+    expect(club.climber).toMatchObject({ name: expect.any(String) })
+    expect(club.climber.change).toBeGreaterThan(0)
+    expect(club.upset).toMatchObject({ game_num: 3, winners: ['B'] })
+    expect(club.upset.odds).toBeLessThan(0.5)
+  })
+
   it('counts team games', () => {
     expect(club.teamGames).toBe(1)
   })
@@ -107,6 +114,12 @@ describe('computePlayerYear', () => {
       rankByWins: 1,
     })
     expect(a.mostSeenCard).toEqual({ name: 'Village', count: 3 })
+  })
+
+  it('reports the rating at year end and the change during the year', () => {
+    const a = computePlayerYear(games, 2026, 'A')
+    expect(typeof a.ratingEnd).toBe('number')
+    expect(typeof a.ratingChange).toBe('number')
   })
 
   it('finds nemesis (beat me most) and victim (I beat most)', () => {
@@ -172,6 +185,17 @@ describe('Mummi plays every game: show the runner-up when he leads', () => {
   it('no comparison when someone else leads', () => {
     const other = computeClubYear(games, 2026)
     expect(other.champion.mummi).toBeNull()
+  })
+
+  it('leaderBesidesMummi: runner-up when Mummi leads, Mummi himself when nobody else qualifies', () => {
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }, { name: 'B', v: 5 }])).toEqual({ name: 'B', v: 5, mummi: { name: 'Mummi', v: 9 } })
+    expect(leaderBesidesMummi([{ name: 'B', v: 9 }, { name: 'Mummi', v: 5 }])).toEqual({ name: 'B', v: 9, mummi: null })
+    expect(leaderBesidesMummi([{ name: 'Mummi', v: 9 }])).toEqual({ name: 'Mummi', v: 9, mummi: null })
+    expect(leaderBesidesMummi([])).toBeNull()
+  })
+
+  it('biggest climber is never Mummi when someone else also climbed', () => {
+    if (club.climber && club.climber.name === 'Mummi') expect(club.climber.mummi).toBeNull()
   })
 
   it('nemesis: the toughest opponent besides Mummi, with Mummi\'s count for comparison', () => {

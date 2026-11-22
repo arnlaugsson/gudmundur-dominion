@@ -75,3 +75,28 @@ main:has(> .stats-grid) { padding: 2rem; }
 .exp-timeline-header { cursor: pointer; }
 .row-link { color: inherit; text-decoration: none; }
 .row-link:hover { color: var(--gold); }
+
+/* ── SEAT RESULTS (teams as one row, rating deltas, odds) ── */
+.seat-results { list-style: none; display: flex; flex-direction: column; gap: .35rem; }
+.seat-row { display: flex; align-items: center; gap: .6rem; padding: .4rem .6rem; background: var(--bg3); border-radius: 8px; font-size: .88rem; }
+.seat-row.place-1 { background: rgba(201,168,76,.12); }
+.seat-medal { width: 1.6em; text-align: center; flex-shrink: 0; }
+.seat-names { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: .15rem .35rem; }
+.seat-amp { color: var(--dim); }
+.seat-team-tag { font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; color: var(--blue); border: 1px solid rgba(88,166,255,.4); border-radius: 99px; padding: 0 .4rem; margin-left: .2rem; }
+.seat-score { color: var(--gold); font-size: .82rem; white-space: nowrap; }
+.seat-odds { color: var(--dim); font-size: .75rem; min-width: 2.6rem; text-align: right; }
+.seat-delta { font-size: .7rem; margin-left: .25rem; color: var(--dim); font-variant-numeric: tabular-nums; }
+.seat-delta.up { color: var(--green); }
+.seat-delta.down { color: var(--red); }
+.seat-results.compact .seat-row { background: none; padding: .1rem 0; }
+.seat-odds-head { display: flex; justify-content: flex-end; font-size: .65rem; color: var(--dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .2rem; }
+
+/* ── RATINGS ── */
+.rating-cell { font-family: 'Cinzel', serif; color: var(--gold); font-variant-numeric: tabular-nums; }
+.provisional { color: var(--dim); margin-left: .15rem; }
+.rating-info { margin-top: .9rem; font-size: .82rem; color: var(--dim); }
+.rating-info summary { cursor: pointer; color: var(--gold); }
+.rating-info p { margin-top: .5rem; line-height: 1.55; max-width: 70ch; }
+.rating-info a { color: var(--gold); }
+.badge-team { background: rgba(88,166,255,.12); color: var(--blue); border: 1px solid rgba(88,166,255,.35); }

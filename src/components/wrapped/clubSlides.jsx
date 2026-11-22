@@ -101,6 +101,18 @@ function rivalry(c) {
   )
 }
 
+function ratingsSlide(c) {
+  return (
+    <Slide kicker={c.climber?.mummi ? 'Styrkleiki: mesta framförin utan Mumma' : 'Styrkleiki: mesta framförin'} headline={c.climber ? c.climber.name : 'Óvæntasti sigurinn'}>
+      {c.climber && <div className="slide-big">+{c.climber.change}</div>}
+      {c.climber && <Sub>styrkleikastig á árinu{vsMummi(c.climber, e => `+${e.change}`)}.</Sub>}
+      {c.upset && (
+        <Sub>Óvæntasti sigurinn: {joinNames(c.upset.winners)} í leik #{c.upset.game_num}, með aðeins {Math.round(c.upset.odds * 100)}% sigurlíkur fyrir leik.</Sub>
+      )}
+    </Slide>
+  )
+}
+
 export function buildClubSlides(c, outro) {
   if (!c.totalGames) return []
   const slides = [
@@ -112,6 +124,7 @@ export function buildClubSlides(c, outro) {
     ['places', c.topLocations.length > 0 && places],
     ['people', people],
     ['rivalry', c.rivalry && rivalry],
+    ['ratings', (c.climber || c.upset) && ratingsSlide],
   ]
   return [
     ...slides.filter(([, render]) => render).map(([key, render]) => ({ key, content: render(c) })),

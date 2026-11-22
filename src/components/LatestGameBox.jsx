@@ -3,6 +3,8 @@ import DATA from '../data'
 import { computeLastGameFacts } from '../lib/lastGameFacts'
 import { cardThumbUrl } from '../constants'
 import { pressable } from '../lib/pressable'
+import SeatResults from './SeatResults'
+import { getRatings } from '../lib/ratings'
 import { victoryLabel } from '../lib/icelandic'
 
 const VICTORY_BADGE_CLASS = {
@@ -11,8 +13,6 @@ const VICTORY_BADGE_CLASS = {
   'Supply piles': 'badge-supply',
 }
 
-// Keycap emojis (4️⃣ etc.) match the medal glyph metrics so podium rows align vertically.
-const PLACE_ICON = { 1: '🥇', 2: '🥈', 3: '🥉', 4: '4️⃣', 5: '5️⃣', 6: '6️⃣', 7: '7️⃣', 8: '8️⃣', 9: '9️⃣' }
 
 // The priciest kingdom card makes the most striking backdrop art.
 function pickArtCard(game, cards) {
@@ -25,11 +25,11 @@ function pickArtCard(game, cards) {
 export default function LatestGameBox({ onGameNav }) {
   const { games, players, cards } = DATA
 
-  const { latest, facts, artCard } = useMemo(() => {
+  const { latest, facts, artCard, rating } = useMemo(() => {
     if (!games.length) return { latest: null, facts: [] }
     const latest = games[games.length - 1]
     const facts = computeLastGameFacts(latest, games, players, cards)
-    return { latest, facts, artCard: pickArtCard(latest, cards) }
+    return { latest, facts, artCard: pickArtCard(latest, cards), rating: getRatings(games).byGame.get(latest.game_num) || null }
   }, [games, players, cards])
 
   if (!latest) return null
@@ -58,26 +58,10 @@ export default function LatestGameBox({ onGameNav }) {
         )}
       </div>
 
-      {/* Podium */}
-      {latest.results?.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem .8rem', marginBottom: '.8rem', fontSize: '.82rem', lineHeight: 1.6 }}>
-          {latest.results.map(r => (
-            <span key={r.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-              <span style={{
-                color: r.place === 1 ? 'var(--gold)' : 'var(--dim)',
-                display: 'inline-block',
-                width: '1.4em',
-                textAlign: 'center',
-                lineHeight: 1,
-              }}>
-                {PLACE_ICON[r.place] || `${r.place}.`}
-              </span>
-              <span>{r.name}</span>
-              {r.score != null && <span style={{ color: 'var(--dim)' }}>{r.score} stig</span>}
-            </span>
-          ))}
-        </div>
-      )}
+      {/* Podium: one row per seat, with rating changes */}
+      <div style={{ marginBottom: '.8rem' }}>
+        <SeatResults game={latest} rating={rating} compact />
+      </div>
 
       {/* Facts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>

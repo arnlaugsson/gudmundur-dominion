@@ -23,3 +23,13 @@ export function opponentsOf(game, name) {
 export function isTeamGame(game) {
   return (game.seats || []).some(s => s.players.length > 1)
 }
+
+// Seats that have a score, best place first, with a display name for teams
+// ("Mummi & Halla"). Use for winner/runner-up/margin logic so a teammate is
+// never mistaken for the runner-up.
+export function scoredSeats(game) {
+  return (game.seats || [])
+    .filter(s => s.score != null)
+    .sort((a, b) => a.place - b.place)
+    .map(s => ({ name: s.players.join(' & '), players: s.players, place: s.place, score: s.score }))
+}

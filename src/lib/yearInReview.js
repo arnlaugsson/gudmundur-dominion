@@ -3,6 +3,7 @@
 // counts as a win for every member.
 import { seatOf, placeOf, isWinner, isTeamGame } from './seats'
 import { computeAchievements } from './achievements'
+import { getRatings, ratingChangeInYear, biggestUpsets } from './ratings'
 
 // Mummi plays (and usually wins) every game, so wherever he tops a list the
 // story shows the best of everyone else, with Mummi's number for comparison.
@@ -61,13 +62,14 @@ function scoredMargin(game) {
 const involvesMummi = entry => entry.name === MUMMI || (entry.players || []).includes(MUMMI)
 
 // First entry of a best-first list; if that's Mummi, the best entry without
-// him instead, carrying Mummi's entry as `mummi` for comparison.
+// him instead, carrying Mummi's entry as `mummi` for comparison. If nobody
+// else qualifies (e.g. Mummi won every game), Mummi himself is the leader.
 export function leaderBesidesMummi(sorted) {
   const top = sorted[0]
   if (!top) return null
   if (!involvesMummi(top)) return { ...top, mummi: null }
   const other = sorted.find(e => !involvesMummi(e))
-  return other ? { ...other, mummi: top } : null
+  return other ? { ...other, mummi: top } : { ...top, mummi: null }
 }
 
 function scoreRecords(yearGames) {
@@ -128,6 +130,16 @@ function byWinsThenName(a, b) {
   return b.wins - a.wins || a.games - b.games || collator.compare(a.name, b.name)
 }
 
+function ratingHighlights(games, year) {
+  const { players, byGame } = getRatings(games)
+  const climber = leaderBesidesMummi([...players.values()]
+    .map(p => ({ name: p.name, change: ratingChangeInYear(p, year) }))
+    .filter(p => p.change != null && p.change > 0)
+    .sort((a, b) => b.change - a.change || collator.compare(a.name, b.name)))
+  const upset = biggestUpsets(gamesInYear(games, year), byGame)[0] || null
+  return { climber, upset }
+}
+
 export function computeClubYear(games, year) {
   const yearGames = gamesInYear(games, year)
   const totals = playerTotals(yearGames)
@@ -160,6 +172,7 @@ export function computeClubYear(games, year) {
     newcomers: debutsInYear(games, year, g => g.players),
     rivalry: rivalryOfYear(yearGames),
     teamGames: yearGames.filter(isTeamGame).length,
+    ...ratingHighlights(games, year),
   }
 }
 
@@ -213,6 +226,13 @@ function bestSeatScore(myGames, name) {
   }, null)
 }
 
+function playerRating(games, year, name) {
+  const p = getRatings(games).players.get(name)
+  if (!p) return { ratingEnd: null, ratingChange: null }
+  const inYear = p.history.filter(h => Number(String(h.date).slice(0, 4)) === year)
+  return { ratingEnd: inYear.length ? inYear[inYear.length - 1].display : null, ratingChange: ratingChangeInYear(p, year) }
+}
+
 export function computePlayerYear(games, year, name) {
   const yearGames = gamesInYear(games, year)
   const myGames = yearGames.filter(g => g.players.includes(name))
@@ -238,6 +258,7 @@ export function computePlayerYear(games, year, name) {
     mummiWins: rankList.find(t => t.name === MUMMI)?.wins ?? null,
     playerCount: rankList.length,
     firstGameEver: debutsInYear(games, year, g => g.players).includes(name),
+    ...playerRating(games, year, name),
   }
 }
 
