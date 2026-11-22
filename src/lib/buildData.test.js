@@ -100,3 +100,14 @@ describe('buildData on the real synced data', () => {
     expect([...new Set(unknown)]).toEqual([])
   })
 })
+
+describe('gameUsesCard', () => {
+  it('matches kingdom cards, plain landscape names and trait objects', async () => {
+    const { gameUsesCard } = await import('./buildData')
+    const game = { kingdom: [{ card: 'Village' }], events: ['Alms'], traits: [{ name: 'Friendly', card: 'Village' }] }
+    expect(gameUsesCard(game, 'Village')).toBe(true)
+    expect(gameUsesCard(game, 'Alms')).toBe(true)
+    expect(gameUsesCard(game, 'Friendly')).toBe(true)
+    expect(gameUsesCard(game, 'Moat')).toBe(false)
+  })
+})

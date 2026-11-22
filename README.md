@@ -44,6 +44,10 @@ Code changes pushed to `main` also trigger a build and deploy.
 - **Data sync**: Python 3 + openpyxl, GitHub Actions
 - **CI/CD**: GitHub Actions (cron sync + push deploy)
 
+## Browser support
+
+The app uses top-level `await` to load its data (ES2022), so it needs Safari/iOS 15+, Chrome/Edge 89+ or Firefox 89+.
+
 ## Development
 
 ```bash

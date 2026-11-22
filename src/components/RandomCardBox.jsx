@@ -3,8 +3,8 @@ import DATA from '../data'
 import CardImage from './CardImage'
 import { SPLIT_PILE_MEMBERS } from '../constants'
 import { pressable } from '../lib/pressable'
+import { gameUsesCard } from '../lib/buildData'
 
-const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
 
 // Landscape (wide) card types — render their image bigger to stay readable.
 const LANDSCAPE_TYPES = new Set(['Event', 'Landmark', 'Project', 'Way', 'Ally', 'Trait', 'Prophecy'])
@@ -28,10 +28,7 @@ export default function RandomCardBox({ pool, onCardClick, onGameClick }) {
     if (candidates.length === 0) return { card: null, recentGames: [] }
     const card = candidates[Math.floor(Math.random() * candidates.length)]
     if (pool === 'unplayed') return { card, recentGames: [] }
-    const using = games.filter(g =>
-      g.kingdom.some(k => k.card === card.name) ||
-      EXTRA_FIELDS.some(f => g[f]?.includes(card.name))
-    )
+    const using = games.filter(g => gameUsesCard(g, card.name))
     return { card, recentGames: [...using].slice(-5).reverse() }
   }, [games, cards, pool])
 

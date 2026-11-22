@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense, lazy, useCallback } from 'react'
 import Header from './components/Header'
 import Nav from './components/Nav'
 import { TABS } from './constants'
-import { parseRoute, navigate } from './lib/route'
+import { parseRoute, navigate, replaceRoute } from './lib/route'
 
 const Dashboard = lazy(() => import('./tabs/Dashboard'))
 const Players = lazy(() => import('./tabs/Players'))
@@ -40,8 +40,10 @@ export default function App() {
   const [targetExpansion, setTargetExpansion] = useState(null)
 
   const selectTab = useCallback(id => navigate(id), [])
-  const openGame = useCallback(num => navigate('history', num), [])
-  const openCard = useCallback(name => navigate('cards', name), [])
+  // Opening a modal pushes a history entry; closing replaces it, so Back
+  // returns to wherever you were before opening it.
+  const openGame = useCallback(num => (num == null ? replaceRoute('history') : navigate('history', num)), [])
+  const openCard = useCallback(name => (name == null ? replaceRoute('cards') : navigate('cards', name)), [])
   const openExpansionCards = useCallback((expansion) => {
     setTargetExpansion(expansion)
     navigate('cards')

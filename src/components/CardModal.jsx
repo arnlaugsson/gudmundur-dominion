@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { cardImgUrl, wikiUrl } from '../constants'
 import DATA from '../data'
+import { gameUsesCard } from '../lib/buildData'
 
 export default function CardModal({ card: rawCard, onClose }) {
   useEffect(() => {
@@ -14,11 +15,7 @@ export default function CardModal({ card: rawCard, onClose }) {
   // Resolve full card from DATA to ensure card_text is available
   const card = DATA.cards.find(c => c.name === rawCard.name) || rawCard
 
-  const EXTRA_FIELDS = ['events', 'landmarks', 'projects', 'ways', 'allies', 'traits', 'prophecy']
-  const gamesWithCard = DATA.games.filter(g =>
-    g.kingdom.some(k => k.card === card.name) ||
-    EXTRA_FIELDS.some(f => g[f]?.includes(card.name))
-  )
+  const gamesWithCard = DATA.games.filter(g => gameUsesCard(g, card.name))
 
   const hasCost = card.cost != null || card.debt != null || card.potion
 

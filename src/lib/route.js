@@ -28,3 +28,11 @@ export function buildHash(tab, sub) {
 export function navigate(tab, sub) {
   window.location.hash = buildHash(tab, sub)
 }
+
+// Like navigate(), but replaces the current history entry. Used when closing
+// a modal (#history/141 → #history) so Back doesn't reopen it.
+export function replaceRoute(tab, sub) {
+  const url = `${window.location.pathname}${window.location.search}#${buildHash(tab, sub)}`
+  window.history.replaceState(window.history.state, '', url)
+  window.dispatchEvent(new HashChangeEvent('hashchange'))
+}

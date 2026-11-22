@@ -36,7 +36,7 @@ export default function LatestGameBox({ onGameNav }) {
   return (
     <div
       className="chart-box latest-game-box"
-      {...pressable(() => onGameNav?.(latest.game_num), `Síðasti leikur, #${latest.game_num}`)}
+      {...pressable(() => onGameNav?.(latest.game_num))}
     >
       {artCard && (
         <div className="latest-game-art" aria-hidden="true" style={{ backgroundImage: `url("${cardThumbUrl(artCard)}")` }} />

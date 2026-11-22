@@ -73,13 +73,15 @@ export function AuthProvider({ children }) {
     }
     let unsubscribe = () => {}
     let cancelled = false
-    loadAuthService().then((service) => {
-      if (cancelled) return
-      unsubscribe = service.watchAllowedUsers(
-        setAllowedUsers,
-        (err) => console.error('Failed to subscribe to allowedUsers:', err),
-      )
-    })
+    loadAuthService()
+      .then((service) => {
+        if (cancelled) return
+        unsubscribe = service.watchAllowedUsers(
+          setAllowedUsers,
+          (err) => console.error('Failed to subscribe to allowedUsers:', err),
+        )
+      })
+      .catch((err) => console.error('Failed to load Firebase for allowedUsers:', err))
     return () => {
       cancelled = true
       unsubscribe()
@@ -110,7 +112,15 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
-  const logout = useCallback(() => loadAuthService().then((s) => s.logout()), [])
+  const logout = useCallback(async () => {
+    try {
+      const service = await loadAuthService()
+      await service.logout()
+    } catch (err) {
+      console.error('Logout failed:', err)
+      setAuthError('Útskráning mistókst. Reyndu aftur.')
+    }
+  }, [])
 
   const value = useMemo(
     () => ({ user, loading, login, logout, authError, allowedUsers }),

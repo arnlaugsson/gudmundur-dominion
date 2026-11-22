@@ -58,6 +58,13 @@ function extraNames(game, field) {
   return (game[field] || []).map(x => (typeof x === 'string' ? x : x?.name)).filter(Boolean)
 }
 
+// True if the card is in the game's kingdom or any landscape field
+// (traits are { name, card } objects, the other fields plain names).
+export function gameUsesCard(game, name) {
+  return (game.kingdom || []).some(k => k.card === name)
+    || EXTRA_FIELDS.some(f => extraNames(game, f).includes(name))
+}
+
 export function countCardUsage(games) {
   const counts = {}
   const bump = name => { counts[name] = (counts[name] || 0) + 1 }

@@ -36,3 +36,19 @@ describe('buildHash', () => {
     expect(parseRoute('#' + hash, TABS)).toEqual({ tab: 'cards', sub: 'Way of the Ox/Horse' })
   })
 })
+
+describe('replaceRoute', () => {
+  it('changes the hash without adding a history entry and notifies listeners', async () => {
+    const { replaceRoute } = await import('./route')
+    window.location.hash = '#history/141'
+    const before = window.history.length
+    let fired = 0
+    const onChange = () => { fired += 1 }
+    window.addEventListener('hashchange', onChange)
+    replaceRoute('history')
+    window.removeEventListener('hashchange', onChange)
+    expect(window.location.hash).toBe('#history')
+    expect(window.history.length).toBe(before)
+    expect(fired).toBe(1)
+  })
+})
