@@ -11,6 +11,7 @@ import YearInReviewBanner from '../components/YearInReviewBanner'
 import { useAuth } from '../context/AuthContext'
 import { availableYears } from '../lib/yearInReview'
 import { plural, victoryLabel, expansionLabel } from '../lib/icelandic'
+import { scoredSeats } from '../lib/seats'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -71,7 +72,8 @@ export default function Dashboard({ onGameNav }) {
     const totalGames = games.length
     const totalPlayers = players.length
     const locations = new Set(games.map(g => g.location)).size
-    const allScores = games.flatMap(g => g.results.filter(r => r.score != null).map(r => r.score))
+    // One score per seat: a team's shared score counts once.
+    const allScores = games.flatMap(g => scoredSeats(g).map(s => s.score))
     const avgScore = allScores.length > 0 ? (allScores.reduce((a, b) => a + b, 0) / allScores.length).toFixed(1).replace('.', ',') : '–'
     const topWinner = [...players].filter(p => p.name !== 'Mummi').sort((a, b) => b.first - a.first)[0]
     const mummi = players.find(p => p.name === 'Mummi')
@@ -219,7 +221,7 @@ export default function Dashboard({ onGameNav }) {
       const m = g.date?.slice(0, 7)
       if (!m) continue
       counts[m] = (counts[m] || 0) + 1
-      const scores = g.results.filter(r => r.score != null).map(r => r.score)
+      const scores = scoredSeats(g).map(s => s.score)
       if (scores.length) {
         const gameAvg = scores.reduce((a, b) => a + b, 0) / scores.length
         if (!monthAvgs[m]) monthAvgs[m] = []

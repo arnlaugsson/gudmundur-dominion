@@ -2,6 +2,7 @@
 // of all known games. No React imports, no DOM access.
 
 import { plural } from './icelandic'
+import { scoredSeats } from './seats'
 
 const ROUND_GAME_MILESTONES = new Set([10, 25, 50, 100, 150, 200, 250, 300])
 const ROUND_WIN_MILESTONES = new Set([5, 10, 25, 50, 100])
@@ -21,7 +22,7 @@ const GAME_END_TEXT = {
 
 function buildRecordFacts(game, allGames) {
   const facts = []
-  const scored = (game.results || []).filter(r => r.score != null)
+  const scored = scoredSeats(game)
   if (scored.length === 0) return [...facts, ...buildSetupRecords(game, allGames)]
 
   // All historical scores (single-player), max kingdom size, max expansions, max gap, etc.
@@ -34,7 +35,7 @@ function buildRecordFacts(game, allGames) {
 
   for (const g of allGames) {
     if (g === game) continue // exclude current game from the "previous" max
-    const s = (g.results || []).filter(r => r.score != null)
+    const s = scoredSeats(g)
     if (s.length > 0) {
       for (const r of s) if (r.score > maxScore) maxScore = r.score
       const total = s.reduce((a, b) => a + b.score, 0)
@@ -234,7 +235,7 @@ function buildSpotlightFact(game, allGames, cards) {
 }
 
 function buildResultSnippet(game) {
-  const scored = (game.results || []).filter(r => r.score != null).sort((a, b) => a.place - b.place)
+  const scored = scoredSeats(game)
   if (scored.length === 0) {
     // No scores recorded — fall back to listing players
     const players = (game.players || []).join(', ')

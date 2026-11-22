@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import DATA from '../data'
 import { MONTHS_LONG, isSingular, plural } from '../lib/icelandic'
+import { scoredSeats } from '../lib/seats'
 
 const TIMES_WORD = { 1: 'einu sinni', 2: 'tvisvar', 3: 'þrisvar' }
 
@@ -52,26 +53,28 @@ export default function FunFacts({ onGameNav }) {
   const facts = useMemo(() => {
     const CLUB_OWNER = 'Mummi'
     const gamesByNum = [...games].sort((a, b) => a.game_num - b.game_num)
+    // One entry per seat ("Arnlaugur & Hallgrímur" for a team), not per person.
+    const isOwner = s => !!s?.players.includes(CLUB_OWNER)
     const allScores = games.flatMap(g =>
-      g.results.filter(r => r.score != null).map(r => ({ ...r, date: g.date, game: g.game_num }))
+      scoredSeats(g).map(s => ({ ...s, date: g.date, game: g.game_num }))
     )
 
     // ── Scores ──────────────────────────────────────────────────────────────
     const allHighScores = [...allScores].sort((a, b) => b.score - a.score)
     const highScoreOwner = allHighScores[0] || null
-    const highScore = highScoreOwner?.name === CLUB_OWNER
-      ? allHighScores.find(s => s.name !== CLUB_OWNER) || highScoreOwner
+    const highScore = isOwner(highScoreOwner)
+      ? allHighScores.find(s => !isOwner(s)) || highScoreOwner
       : highScoreOwner
-    const highScoreNote = highScoreOwner?.name === CLUB_OWNER && highScore !== highScoreOwner
+    const highScoreNote = isOwner(highScoreOwner) && highScore !== highScoreOwner
       ? ` (${CLUB_OWNER}: ${highScoreOwner.score} stig)`
       : ''
 
     const allLowScores = [...allScores].sort((a, b) => a.score - b.score)
     const lowScoreOwner = allLowScores[0] || null
-    const lowScore = lowScoreOwner?.name === CLUB_OWNER
-      ? allLowScores.find(s => s.name !== CLUB_OWNER) || lowScoreOwner
+    const lowScore = isOwner(lowScoreOwner)
+      ? allLowScores.find(s => !isOwner(s)) || lowScoreOwner
       : lowScoreOwner
-    const lowScoreNote = lowScoreOwner?.name === CLUB_OWNER && lowScore !== lowScoreOwner
+    const lowScoreNote = isOwner(lowScoreOwner) && lowScore !== lowScoreOwner
       ? ` (${CLUB_OWNER}: ${lowScoreOwner.score} stig)`
       : ''
 
@@ -83,13 +86,13 @@ export default function FunFacts({ onGameNav }) {
     let tiedGames = []
 
     games.forEach(g => {
-      const scored = g.results.filter(r => r.score != null).sort((a, b) => a.place - b.place)
+      const scored = scoredSeats(g)
       if (scored.length < 2) return
       const gap = scored[0].score - scored[scored.length - 1].score
       const blowoutEntry = { gap, winner: scored[0].name, loser: scored[scored.length - 1].name,
         winnerScore: scored[0].score, loserScore: scored[scored.length - 1].score, game: g.game_num, date: g.date }
       if (!biggestBlowoutOwner || gap > biggestBlowoutOwner.gap) biggestBlowoutOwner = blowoutEntry
-      if (scored[0].name !== CLUB_OWNER && (!biggestBlowout || gap > biggestBlowout.gap)) biggestBlowout = blowoutEntry
+      if (!isOwner(scored[0]) && (!biggestBlowout || gap > biggestBlowout.gap)) biggestBlowout = blowoutEntry
 
       const r1 = scored.find(r => r.place === 1)
       const r2 = scored.find(r => r.place === 2)
@@ -97,7 +100,7 @@ export default function FunFacts({ onGameNav }) {
         const top2gap = r1.score - r2.score
         const nbEntry = { gap: top2gap, winner: r1.name, runnerUp: r2.name, game: g.game_num, date: g.date }
         if (!nailBiterOwner || top2gap < nailBiterOwner.gap) nailBiterOwner = nbEntry
-        if (r1.name !== CLUB_OWNER && (!nailBiter || top2gap < nailBiter.gap)) nailBiter = nbEntry
+        if (!isOwner(r1) && (!nailBiter || top2gap < nailBiter.gap)) nailBiter = nbEntry
         if (top2gap === 0) tiedGames.push(g)
       }
     })
@@ -269,10 +272,11 @@ export default function FunFacts({ onGameNav }) {
     })
     const busiestMonth = Object.entries(monthCounts).sort((a, b) => b[1] - a[1])[0]
 
-    // Highest single-game total score
+    // Highest single-game total score (each seat once: a team's shared
+    // score is not counted per teammate)
     let maxTotalScore = null
     games.forEach(g => {
-      const scores = g.results.filter(r => r.score != null).map(r => r.score)
+      const scores = scoredSeats(g).map(s => s.score)
       if (scores.length >= 2) {
         const total = scores.reduce((a, b) => a + b, 0)
         if (!maxTotalScore || total > maxTotalScore.total) {
