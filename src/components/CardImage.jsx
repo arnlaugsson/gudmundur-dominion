@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import { cardImgUrl } from '../constants'
+import { cardImgUrl, cardThumbUrl } from '../constants'
 
-export default function CardImage({ name, className = '', style = {}, loading = 'lazy' }) {
-  const [failed, setFailed] = useState(false)
+// Tries the small thumbnail first, then the full scan (e.g. a card added after
+// thumbnails were generated), then a text placeholder.
+const SOURCES = { thumb: [cardThumbUrl, cardImgUrl], full: [cardImgUrl] }
 
-  if (failed) {
+export default function CardImage({ name, className = '', style = {}, loading = 'lazy', size = 'thumb' }) {
+  const sources = SOURCES[size] || SOURCES.thumb
+  const [attempt, setAttempt] = useState(0)
+
+  if (attempt >= sources.length) {
     return (
-      <div
-        className={`card-image-fallback ${className}`}
-        style={style}
-        title={`Engin mynd: ${name}`}
-      >
+      <div className={`card-image-fallback ${className}`} style={style} title={`Engin mynd: ${name}`}>
         <span className="card-image-fallback-name">{name}</span>
       </div>
     )
@@ -18,12 +19,13 @@ export default function CardImage({ name, className = '', style = {}, loading = 
 
   return (
     <img
-      src={cardImgUrl(name)}
+      src={sources[attempt](name)}
       alt={name}
       loading={loading}
+      decoding="async"
       className={className}
       style={style}
-      onError={() => setFailed(true)}
+      onError={() => setAttempt(a => a + 1)}
     />
   )
 }

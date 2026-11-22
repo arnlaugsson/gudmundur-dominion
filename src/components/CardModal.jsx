@@ -30,7 +30,7 @@ export default function CardModal({ card: rawCard, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={e => e.stopPropagation()}>
+      <div className="modal-box" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
         <div className="modal-card-layout">
           <div className="modal-card-img-wrap">
