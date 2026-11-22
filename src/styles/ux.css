@@ -83,3 +83,18 @@ main:has(> .stats-grid) { padding: 2rem; }
   .afrek-ranking { grid-template-columns: repeat(2, 1fr); }
   .afrek-rare { grid-template-columns: 1fr; }
 }
+
+/* ── Text card: stand-in when a card scan is missing ── */
+.text-card {
+  flex-direction: column; justify-content: space-between; align-items: stretch; gap: .3rem;
+  padding: .45rem .5rem; border: 1px solid var(--type-color); border-top-width: 4px; border-style: solid;
+  background: linear-gradient(180deg, var(--bg3), var(--bg2)); color: var(--text); text-align: left; overflow: hidden;
+}
+.text-card.landscape { aspect-ratio: 7 / 5; }
+.text-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: .3rem; }
+.text-card-name { font-family: 'Cinzel', serif; font-weight: 700; font-size: .72rem; line-height: 1.2; color: var(--gold-l); }
+.text-card-text {
+  font-size: .6rem; line-height: 1.35; color: var(--dim);
+  display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden;
+}
+.text-card-foot { font-size: .55rem; text-transform: uppercase; letter-spacing: .08em; color: var(--type-color); }
