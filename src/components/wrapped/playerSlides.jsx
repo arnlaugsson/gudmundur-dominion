@@ -33,6 +33,58 @@ function winsSlide(p) {
   )
 }
 
+// Shown instead of the wins slide when there were no wins this year.
+function nearlySlide(p) {
+  const cw = p.closestToWin
+  return (
+    <Slide kicker="Sigrar" big={p.bestPlace ? `${p.bestPlace}.` : '🎲'} headline="Næstum því!">
+      {p.bestPlace && <Sub>Besti árangur ársins: {p.bestPlace}. sæti.</Sub>}
+      {cw && cw.gap <= 5 && <Sub>Aðeins {plural(cw.gap, 'stigi', 'stigum')} frá sigri í leik #{cw.game_num}. Næsti sigur liggur í loftinu.</Sub>}
+      {(!cw || cw.gap > 5) && <Sub>Sigurinn bíður þín á næsta ári.</Sub>}
+    </Slide>
+  )
+}
+
+function honoursSlide(titles) {
+  return (
+    <Slide kicker="Heiðursverðlaun" headline={titles.length > 1 ? 'Þínar viðurkenningar' : titles[0].title} big={titles.length > 1 ? null : titles[0].icon}>
+      {titles.length > 1 ? (
+        <ul className="slide-list">
+          {titles.map(t => <li key={t.id}><b>{t.icon} {t.title}</b>. {t.text}</li>)}
+        </ul>
+      ) : <Sub>{titles[0].text}</Sub>}
+    </Slide>
+  )
+}
+
+function discoveriesSlide(p) {
+  const shown = p.cardsDiscovered.slice(0, 3).map(name => ({ name }))
+  return (
+    <Slide kicker="Ævintýrin" big={p.cardsDiscovered.length} headline={isSingular(p.cardsDiscovered.length) ? 'nýtt spil uppgötvað' : 'ný spil uppgötvuð'}>
+      {shown.length > 0 && <CardStrip items={shown} />}
+      <Sub>
+        {plural(p.expansionsPlayed, 'viðbót', 'viðbætur')} prófaðar
+        {p.venues > 1 ? ` og spilað á ${plural(p.venues, 'stað', 'stöðum')}` : ''}.
+      </Sub>
+    </Slide>
+  )
+}
+
+function gamesSlide(p) {
+  return (
+    <Slide kicker="Leikirnir þínir" headline={p.games === 1 ? 'Leikurinn þinn' : 'Hver leikur telur'}>
+      <ul className="slide-list">
+        {p.gameList.map(g => (
+          <li key={g.game_num}>
+            <b>#{g.game_num}</b> · {g.date}{g.location ? ` · ${g.location}` : ''}
+            {g.place != null && <> · <b>{g.place}. sæti</b></>}{g.score != null && <> · {g.score} stig</>}
+          </li>
+        ))}
+      </ul>
+    </Slide>
+  )
+}
+
 function placesSlide(p) {
   return (
     <Slide kicker="Sætin" headline="Svona endaðir þú">
@@ -93,14 +145,19 @@ function achievementsSlide(p, earned) {
   )
 }
 
-export function buildPlayerSlides(p, earned, outro) {
+const FEW_GAMES = 3
+
+export function buildPlayerSlides(p, earned, outro, titles = []) {
   if (!p) return []
   const slides = [
     ['intro', () => intro(p)],
-    ['wins', () => winsSlide(p)],
+    ['games', p.games <= FEW_GAMES && (() => gamesSlide(p))],
+    ['wins', () => (p.wins > 0 ? winsSlide(p) : nearlySlide(p))],
+    ['honours', titles.length > 0 && (() => honoursSlide(titles))],
     ['places', p.places.length > 0 && (() => placesSlide(p))],
     ['score', p.bestScore && (() => scoreSlide(p))],
     ['taste', (p.favoriteExpansion || p.mostSeenCard) && (() => tasteSlide(p))],
+    ['discoveries', p.cardsDiscovered.length > 0 && (() => discoveriesSlide(p))],
     ['rivals', (p.nemesis || p.victim || p.teammates.length) && (() => rivalsSlide(p))],
     ['achievements', earned.length > 0 && (() => achievementsSlide(p, earned))],
   ]

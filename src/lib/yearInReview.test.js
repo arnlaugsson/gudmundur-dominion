@@ -191,3 +191,56 @@ describe('Mummi plays every game: show the runner-up when he leads', () => {
     expect(b).toMatchObject({ rankByWins: 2, rankExMummi: 1, mummiWins: 4 })
   })
 })
+
+describe('stats that are fun without wins', () => {
+  // C never wins in 2026; Z plays once.
+  const luckless = parseGames([
+    g(21, '2025-06-01', [['A', 40], ['C', 30]], { kingdom: ['Village'], expansions: ['Base'], location: 'Laugarás' }),
+    g(22, '2026-01-05', [['A', 40], ['C', 38], ['B', 20]], { kingdom: ['Village', 'Moat'], expansions: ['Base'], location: 'Laugarás' }),
+    g(23, '2026-02-05', [['B', 50], ['C', 49]], { kingdom: ['Witch', 'Moat'], expansions: ['Base', 'Seaside'], location: 'Húsafell' }),
+    g(24, '2026-03-05', [['A', 60], ['B', 30], ['C', 10]], { kingdom: ['Cellar'], expansions: ['Intrigue'], location: 'Arnarholt' }),
+    g(25, '2026-04-05', [['A', 33], ['Z', 31]], { kingdom: ['Village'], expansions: ['Base'] }),
+  ])
+
+  it('best place and the closest call to a win', () => {
+    const c = computePlayerYear(luckless, 2026, 'C')
+    expect(c.wins).toBe(0)
+    expect(c.bestPlace).toBe(2)
+    expect(c.closestToWin).toEqual({ game_num: 23, gap: 1 })
+    expect(c.closeCalls).toBe(2) // lost by ≤ 3 points in #22 and #23
+  })
+
+  it('discoveries: cards seen for the first time, expansions, venues', () => {
+    const c = computePlayerYear(luckless, 2026, 'C')
+    expect(c.cardsDiscovered).toEqual(['Moat', 'Witch', 'Cellar']) // Village was seen in 2025
+    expect(c.expansionsPlayed).toBe(3)
+    expect(c.venues).toBe(3)
+  })
+
+  it('flags a personal all-time best score set this year', () => {
+    expect(computePlayerYear(luckless, 2026, 'C').allTimeBest).toBe(true) // 49 > 30 in 2025
+    expect(computePlayerYear(luckless, 2026, 'A').allTimeBest).toBe(true) // 60
+  })
+
+  it('lists the games for players with few games', () => {
+    const z = computePlayerYear(luckless, 2026, 'Z')
+    expect(z.gameList).toEqual([{ game_num: 25, date: '2026-04-05', place: 2, score: 31, location: 'Laugarás' }])
+  })
+})
+
+describe('funTitles', () => {
+  it('gives every player at least one title, with club-relative honours', async () => {
+    const { funTitles } = await import('./yearInReview')
+    const luckless = parseGames([
+      g(31, '2026-01-05', [['A', 40], ['C', 38], ['B', 20]], { kingdom: ['Moat'] }),
+      g(32, '2026-02-05', [['B', 50], ['C', 49]], { kingdom: ['Witch'] }),
+      g(33, '2026-03-05', [['A', 60], ['Z', 59]], { kingdom: ['Cellar'] }),
+    ])
+    const all = ['A', 'B', 'C', 'Z'].map(n => computePlayerYear(luckless, 2026, n))
+    const titles = Object.fromEntries(all.map(p => [p.name, funTitles(p, all).map(t => t.id)]))
+    expect(titles.C).toContain('silver')        // two 2nd places, most in the club
+    expect(titles.C).toContain('close-calls')   // two near-wins
+    for (const name of ['A', 'B', 'C', 'Z']) expect(titles[name].length).toBeGreaterThan(0)
+    expect(titles.Z).toContain('newcomer')
+  })
+})

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import DATA from '../data'
-import { availableYears, computeClubYear, computePlayerYear, earnedInYear, gamesInYear } from '../lib/yearInReview'
+import { availableYears, computeClubYear, computePlayerYear, earnedInYear, gamesInYear, funTitles } from '../lib/yearInReview'
 import { plural } from '../lib/icelandic'
 import { pressable } from '../lib/pressable'
 import { openModalRoute, closeModalRoute } from '../lib/route'
@@ -37,13 +37,19 @@ function ClubStory({ club, onClose }) {
 export function PlayerStory({ year, name, onClose }) {
   const { games, players } = DATA
   const summary = useMemo(() => computePlayerYear(games, year, name), [games, year, name])
+  // Honorary titles are relative to everyone who played that year.
+  const titles = useMemo(() => {
+    if (!summary) return []
+    const names = [...new Set(gamesInYear(games, year).flatMap(g => g.players))]
+    return funTitles(summary, names.map(n => computePlayerYear(games, year, n)))
+  }, [games, year, summary])
   const earned = useMemo(
     () => (summary ? earnedInYear(games, year, players.map(p => p.name)).get(name) || [] : []),
     [games, players, year, name, summary],
   )
   if (!summary) return null
   const url = `${window.location.origin}/#${yearHash(year, name)}`
-  const slides = buildPlayerSlides(summary, earned, <Outro year={year} url={url} text={`Árið ${year}: ${name}`} card={playerCardContent(summary)} fileName={`gudmundur-${year}-${name}.png`} />)
+  const slides = buildPlayerSlides(summary, earned, <Outro year={year} url={url} text={`Árið ${year}: ${name}`} card={playerCardContent(summary, titles[0])} fileName={`gudmundur-${year}-${name}.png`} />, titles)
   return <StoryDeck title={`Árið ${year}: ${name}`} slides={slides} onClose={onClose} />
 }
 
@@ -56,7 +62,7 @@ function PlayerGrid({ year, rows, publicNames }) {
           <div>
             <div className="wrapped-player-name">
               {r.name}
-              {publicNames.has(r.name) && <span className="public-mark" title="Opinbert: allir með hlekkinn geta séð árið"> 🌐</span>}
+              {publicNames.has(r.name) && <span className="public-mark" title="Opinbert: öll með hlekkinn geta séð árið"> 🌐</span>}
             </div>
             <div className="wrapped-player-meta">{plural(r.games, 'leikur', 'leikir')} · {plural(r.wins, 'sigur', 'sigrar')}</div>
           </div>
@@ -85,7 +91,7 @@ function MyShareToggle({ name, isPublic, onChange, error }) {
         <span>
           <b>Leyfa öllum að sjá árið mitt</b>
           <small>{isPublic
-            ? 'Allir með hlekkinn geta séð sögurnar þínar, líka án innskráningar.'
+            ? 'Öll með hlekkinn geta séð sögurnar þínar, líka án innskráningar.'
             : 'Aðeins innskráðir meðlimir sjá sögurnar þínar.'}</small>
         </span>
       </label>

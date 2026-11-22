@@ -47,3 +47,23 @@ describe('clubCardContent', () => {
     ])
   })
 })
+
+describe('playerCardContent without wins', () => {
+  const unlucky = {
+    name: 'Krissi', year: 2026, games: 7, wins: 0, winRate: 0, bestPlace: 2,
+    bestScore: { score: 41, game_num: 131 }, cardsDiscovered: ['Moat', 'Witch', 'Cellar'],
+    rankByWins: 9, rankExMummi: 8, mummiWins: 14, playerCount: 27,
+  }
+
+  it('shows best finish and discoveries instead of zero wins', () => {
+    const c = playerCardContent(unlucky, { icon: '🤏', title: 'Hársbreidd frá sigri' })
+    expect(c.stats).toEqual([
+      { value: '7', label: 'leikir' },
+      { value: '2.', label: 'besta sæti' },
+      { value: '41', label: 'besta skor' },
+      { value: '3', label: 'ný spil' },
+    ])
+    expect(c.subtitle).toBe('🤏 Hársbreidd frá sigri')
+    expect(c.footnote).toBeNull()
+  })
+})

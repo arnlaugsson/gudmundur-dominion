@@ -114,7 +114,7 @@ const EXPANSIONS = [
     ],
     funFacts: [
       'Lítil viðbót sem verðlaunar fjölbreytni í stokknum. Sameinuð Guilds í einn kassa árið 2023.',
-      'Þegar Province er sýnt fyrir Tournament er það ein dramatískasta stundin í Dominion. Allir bíða spenntir.',
+      'Þegar Province er sýnt fyrir Tournament er það ein dramatískasta stundin í Dominion. Öll bíða spennt.',
       'Fairgrounds gefur 2 stig fyrir hver 5 ólík spil í stokknum. Fjölbreytnin borgar sig.',
     ],
     has2ndEdition: false,
@@ -286,7 +286,7 @@ const EXPANSIONS = [
       'Liaisons (spil sem tengjast Ally-spilinu)',
     ],
     funFacts: [
-      'Í hverjum leik er eitt handahófskennt Ally-spil sem allir deila og það breytir allri stefnunni.',
+      'Í hverjum leik er eitt handahófskennt Ally-spil sem öll deila og það breytir allri stefnunni.',
       'Í snúningsbunkum skiptast nokkur ólík spil á að vera efst, svo það sem þú færð fer eftir því hvað aðrir gera.',
       'Ally-spilin tryggja að engir tveir leikir verði eins, jafnvel með sama ríki.',
     ],

@@ -15,18 +15,34 @@ function winsFootnote(p) {
   return p.rankExMummi === 1 ? `Flestir sigrar utan Mumma (Mummi: ${p.mummiWins})` : `${base}, ${p.rankExMummi}. utan Mumma`
 }
 
-export function playerCardContent(p) {
-  const footnote = winsFootnote(p)
+// A winless year leads with best finish and discoveries rather than zeros.
+function playerStats(p) {
+  const best = p.bestScore ? [{ value: String(p.bestScore.score), label: 'besta skor' }] : []
+  const games = { value: String(p.games), label: word(p.games, 'leikur', 'leikir') }
+  if (p.wins === 0) {
+    const found = p.cardsDiscovered?.length || 0
+    return [
+      games,
+      ...(p.bestPlace ? [{ value: `${p.bestPlace}.`, label: 'besta sæti' }] : []),
+      ...best,
+      ...(found ? [{ value: String(found), label: word(found, 'nýtt spil', 'ný spil') }] : []),
+    ]
+  }
+  return [
+    games,
+    { value: String(p.wins), label: word(p.wins, 'sigur', 'sigrar') },
+    { value: `${Math.round(p.winRate)}%`, label: 'sigurhlutfall' },
+    ...best,
+  ]
+}
+
+export function playerCardContent(p, topTitle = null) {
   return {
     year: p.year,
     title: p.name,
-    stats: [
-      { value: String(p.games), label: word(p.games, 'leikur', 'leikir') },
-      { value: String(p.wins), label: word(p.wins, 'sigur', 'sigrar') },
-      { value: `${Math.round(p.winRate)}%`, label: 'sigurhlutfall' },
-      ...(p.bestScore ? [{ value: String(p.bestScore.score), label: 'besta skor' }] : []),
-    ],
-    footnote,
+    subtitle: topTitle ? `${topTitle.icon} ${topTitle.title}` : null,
+    stats: playerStats(p),
+    footnote: p.wins === 0 ? null : winsFootnote(p),
   }
 }
 
@@ -34,6 +50,7 @@ export function clubCardContent(c) {
   return {
     year: c.year,
     title: 'Árið hjá Guðmundi',
+    subtitle: null,
     stats: [
       { value: String(c.totalGames), label: word(c.totalGames, 'leikur', 'leikir') },
       { value: String(c.playerCount), label: word(c.playerCount, 'spilari', 'spilarar') },
@@ -101,6 +118,11 @@ export function drawShareCard(ctx, content) {
   ctx.fillStyle = TEXT
   fitText(ctx, content.title, 700, 'Cinzel, serif', 96, CARD_WIDTH - 200)
   ctx.fillText(content.title, CARD_WIDTH / 2, 530)
+  if (content.subtitle) {
+    ctx.fillStyle = GOLD_LIGHT
+    fitText(ctx, content.subtitle, 600, 'Inter, sans-serif', 44, CARD_WIDTH - 200)
+    ctx.fillText(content.subtitle, CARD_WIDTH / 2, 610)
+  }
   drawStats(ctx, content.stats, 760)
   if (content.footnote) {
     ctx.fillStyle = TEXT

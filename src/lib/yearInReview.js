@@ -3,6 +3,9 @@
 // counts as a win for every member.
 import { seatOf, placeOf, isWinner, isTeamGame } from './seats'
 import { computeAchievements } from './achievements'
+import { playerHighlights, funTitles } from './playerHighlights'
+
+export { funTitles }
 
 // Mummi plays (and usually wins) every game, so wherever he tops a list the
 // story shows the best of everyone else, with Mummi's number for comparison.
@@ -239,6 +242,7 @@ export function computePlayerYear(games, year, name) {
     mummiWins: rankList.find(t => t.name === MUMMI)?.wins ?? null,
     playerCount: rankList.length,
     firstGameEver: debutsInYear(games, year, g => g.players).includes(name),
+    ...playerHighlights(games, myGames, name, year),
   }
 }
 

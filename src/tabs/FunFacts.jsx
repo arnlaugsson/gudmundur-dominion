@@ -388,7 +388,7 @@ export default function FunFacts({ onGameNav }) {
       neverWon.length > 0 && {
         icon: '🌱', title: 'Fyrsti sigurinn bíður',
         value: plural(neverWon.length, 'leikmaður', 'leikmenn'),
-        desc: `${neverWon.map(p => `${p.name} (${plural(p.games, 'leikur', 'leikir')})`).join(', ')}. Enginn sigur enn, en allir byrja einhvers staðar!`,
+        desc: `${neverWon.map(p => `${p.name} (${plural(p.games, 'leikur', 'leikir')})`).join(', ')}. Enginn sigur enn, en öll byrja einhvers staðar!`,
       },
       expExplorer && {
         icon: '🗺️', title: 'Landkönnuðurinn',
