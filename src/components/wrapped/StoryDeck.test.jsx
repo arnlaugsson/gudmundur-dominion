@@ -46,4 +46,30 @@ describe('StoryDeck', () => {
     render(<StoryDeck title="Árið 2026" slides={slides} onClose={() => {}} />)
     expect(screen.getByRole('dialog', { name: 'Árið 2026' })).toHaveAttribute('aria-modal', 'true')
   })
+  it('clamps to the last slide when the deck shrinks under it', () => {
+    const { rerender } = render(<StoryDeck title="Árið" slides={slides} onClose={() => {}} />)
+    fireEvent.keyDown(document, { key: 'ArrowRight' })
+    fireEvent.keyDown(document, { key: 'ArrowRight' })
+    rerender(<StoryDeck title="Árið" slides={slides.slice(0, 1)} onClose={() => {}} />)
+    expect(screen.getByText('Fyrsta')).toBeInTheDocument()
+  })
+
+  it('renders nothing for an empty deck', () => {
+    const { container } = render(<StoryDeck title="Árið" slides={[]} onClose={() => {}} />)
+    expect(container).toBeEmptyDOMElement()
+  })
+
+  it('keeps Tab focus inside the dialog and restores focus on close', () => {
+    const opener = document.createElement('button')
+    document.body.appendChild(opener)
+    opener.focus()
+    const { unmount } = render(<StoryDeck title="Árið" slides={slides} onClose={() => {}} />)
+    const close = screen.getByRole('button', { name: 'Loka' })
+    expect(document.activeElement).toBe(close)
+    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true })
+    expect(screen.getByRole('dialog').contains(document.activeElement)).toBe(true)
+    unmount()
+    expect(document.activeElement).toBe(opener)
+    opener.remove()
+  })
 })

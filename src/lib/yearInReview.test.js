@@ -72,6 +72,23 @@ describe('computeClubYear', () => {
     expect(club.teamGames).toBe(1)
   })
 
+  it('crowns no champion when nobody won a game that year', () => {
+    const unscored = parseGames([{ game_num: 9, date: '2027-01-05', players: ['A', 'B'], results: [], seats: [], kingdom: [], expansions: [] }])
+    const c = computeClubYear(unscored, 2027)
+    expect(c.champion).toBeNull()
+    expect(c.bestWinRate).toBeNull()
+  })
+
+  it('uses the two best-placed seats for margins and skips games where either lacks a score', () => {
+    const odd = parseGames([{
+      game_num: 7, date: '2026-05-01', players: ['A', 'B', 'C'], results: [], kingdom: [], expansions: [],
+      seats: [{ players: ['A'], place: 1, score: 40 }, { players: ['B'], place: 2, score: null }, { players: ['C'], place: 3, score: 39 }],
+    }])
+    const c = computeClubYear(odd, 2026)
+    expect(c.closestGame).toBeNull()
+    expect(c.biggestWin).toBeNull()
+  })
+
   it('returns an empty summary for a year without games', () => {
     expect(computeClubYear(games, 2019).totalGames).toBe(0)
   })
@@ -101,6 +118,16 @@ describe('computePlayerYear', () => {
   it('handles games without results (no seats) without crashing', () => {
     const unscored = parseGames([{ game_num: 9, date: '2024-05-01', players: ['A', 'B'], results: [], seats: [], kingdom: [], expansions: [] }])
     expect(computePlayerYear(unscored, 2024, 'A')).toMatchObject({ games: 1, wins: 0, teammates: [], places: [] })
+  })
+
+  it('ignores games where the player has no seat in head-to-head stats', () => {
+    const partial = parseGames([{
+      game_num: 8, date: '2026-06-01', players: ['A', 'B', 'C'], results: [], kingdom: [], expansions: [],
+      seats: [{ players: ['A'], place: 1, score: 30 }, { players: ['B'], place: 2, score: 20 }],
+    }])
+    const c = computePlayerYear(partial, 2026, 'C')
+    expect(c.victim).toBeNull()
+    expect(c.nemesis).toBeNull()
   })
 
   it('returns null for a player who did not play that year', () => {

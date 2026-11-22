@@ -3,27 +3,17 @@ import DATA from '../data'
 import { availableYears, computeClubYear, computePlayerYear, earnedInYear, gamesInYear } from '../lib/yearInReview'
 import { plural } from '../lib/icelandic'
 import { pressable } from '../lib/pressable'
-import { replaceRoute } from '../lib/route'
+import { openModalRoute, closeModalRoute } from '../lib/route'
+import { CLUB_STORY, yearHash, parseYearSub } from '../lib/yearRoute'
 import Avatar from '../components/Avatar'
+import EmptyState from '../components/EmptyState'
 import StoryDeck from '../components/wrapped/StoryDeck'
 import { Slide, Sub, ShareButton } from '../components/wrapped/SlideParts'
 import { buildClubSlides } from '../components/wrapped/clubSlides'
 import { buildPlayerSlides } from '../components/wrapped/playerSlides'
 
-export const CLUB_STORY = 'klubburinn'
-
-export function yearHash(year, story) {
-  return story ? `arid/${year}/${encodeURIComponent(story)}` : `arid/${year}`
-}
-
-// sub is "2026", "2026/klubburinn" or "2026/<player>" (already decoded).
-export function parseYearSub(sub, years) {
-  const [rawYear, ...rest] = (sub || '').split('/')
-  const year = years.includes(Number(rawYear)) ? Number(rawYear) : years[0]
-  return { year, story: rest.join('/') || null }
-}
-
 const go = hash => { window.location.hash = hash }
+const openStory = (year, story) => openModalRoute('arid', `${year}/${story}`)
 
 function Outro({ year, url, text, onPlayers }) {
   return (
@@ -60,7 +50,7 @@ function PlayerGrid({ year, rows }) {
   return (
     <div className="wrapped-players">
       {rows.map(r => (
-        <div key={r.name} className="wrapped-player" {...pressable(() => go(yearHash(year, r.name)))}>
+        <div key={r.name} className="wrapped-player" {...pressable(() => openStory(year, r.name))}>
           <Avatar name={r.name} size={44} />
           <div>
             <div className="wrapped-player-name">{r.name}</div>
@@ -76,6 +66,15 @@ export default function YearInReview({ sub }) {
   const { games } = DATA
   const years = useMemo(() => availableYears(games), [games])
   const { year, story } = parseYearSub(sub, years)
+  if (year == null) {
+    return <section className="section active"><EmptyState icon="🎁">Engir leikir skráðir enn.</EmptyState></section>
+  }
+  return <YearView year={year} story={story} />
+}
+
+function YearView({ year, story }) {
+  const { games } = DATA
+  const years = useMemo(() => availableYears(games), [games])
   const club = useMemo(() => computeClubYear(games, year), [games, year])
   const rows = useMemo(() => {
     const yearGames = gamesInYear(games, year)
@@ -85,8 +84,7 @@ export default function YearInReview({ sub }) {
       .sort((a, b) => b.games - a.games || b.wins - a.wins || a.name.localeCompare(b.name, 'is'))
   }, [games, year])
 
-  // Replace (not push) so Back after closing a story doesn't reopen it.
-  const close = () => replaceRoute('arid', String(year))
+  const close = () => closeModalRoute('arid', String(year))
 
   return (
     <section className="section active">
@@ -99,7 +97,7 @@ export default function YearInReview({ sub }) {
         ))}
       </div>
 
-      <div className="wrapped-hero" {...pressable(() => go(yearHash(year, CLUB_STORY)))}>
+      <div className="wrapped-hero" {...pressable(() => openStory(year, CLUB_STORY))}>
         <div className="wrapped-hero-year">{year}</div>
         <div>
           <div className="wrapped-hero-title">Árið hjá Guðmundi</div>
@@ -114,8 +112,8 @@ export default function YearInReview({ sub }) {
       <h3 className="wrapped-subtitle">Árið hjá hverjum spilara</h3>
       <PlayerGrid year={year} rows={rows} />
 
-      {story === CLUB_STORY && <ClubStory club={club} onClose={close} />}
-      {story && story !== CLUB_STORY && <PlayerStory year={year} name={story} onClose={close} />}
+      {story === CLUB_STORY && <ClubStory key={`${year}/club`} club={club} onClose={close} />}
+      {story && story !== CLUB_STORY && <PlayerStory key={`${year}/${story}`} year={year} name={story} onClose={close} />}
     </section>
   )
 }

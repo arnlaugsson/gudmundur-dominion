@@ -8,9 +8,10 @@ export function reviewYearFor(date) {
   return date.getMonth() === 0 ? date.getFullYear() - 1 : date.getFullYear()
 }
 
-export default function YearInReviewBanner({ now = new Date() }) {
+// `years` = years that have games; no teaser for a year with nothing to show.
+export default function YearInReviewBanner({ years, now = new Date() }) {
   const year = reviewYearFor(now)
-  if (!year) return null
+  if (!year || !years.includes(year)) return null
   const open = () => { window.location.hash = `arid/${year}/klubburinn` }
   return (
     <div className="wrapped-banner" {...pressable(open)}>

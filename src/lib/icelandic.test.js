@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { plural, joinNames } from './icelandic'
+import { plural, joinNames, isSingular } from './icelandic'
 
 describe('plural', () => {
   it('uses singular for numbers ending in 1 except 11', () => {
@@ -17,5 +17,12 @@ describe('joinNames', () => {
     expect(joinNames(['A'])).toBe('A')
     expect(joinNames(['A', 'B'])).toBe('A og B')
     expect(joinNames(['A', 'B', 'C'])).toBe('A, B og C')
+  })
+})
+
+describe('isSingular', () => {
+  it('follows the ends-in-1-except-11 rule', () => {
+    expect([1, 21, 31, 101].every(isSingular)).toBe(true)
+    expect([0, 2, 11, 111, 12].some(isSingular)).toBe(false)
   })
 })

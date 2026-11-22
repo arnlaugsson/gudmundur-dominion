@@ -1,6 +1,6 @@
 import { Slide, Sub, Delta, CardStrip, PlaceBars } from './SlideParts'
 import AchievementBadge from '../AchievementBadge'
-import { plural, joinNames } from '../../lib/icelandic'
+import { plural, joinNames, isSingular } from '../../lib/icelandic'
 
 const games = n => plural(n, 'leikur', 'leikir')
 const MAX_BADGES = 6
@@ -8,8 +8,8 @@ const MAX_BADGES = 6
 function intro(p) {
   return (
     <Slide kicker={`Árið ${p.year}`} headline={p.name} big={p.games}>
-      <Sub>{p.games === 1 ? 'leikur spilaður' : 'leikir spilaðir'}{p.firstGameEver ? ' — fyrsta árið þitt í klúbbnum! 🎉' : '.'}</Sub>
-      <Delta now={p.games} before={p.prevYear.games} yearBefore={p.year - 1} />
+      <Sub>{isSingular(p.games) ? 'leikur spilaður' : 'leikir spilaðir'}{p.firstGameEver ? ' — fyrsta árið þitt í klúbbnum! 🎉' : '.'}</Sub>
+      <Delta now={p.games} before={p.prevYear.games || null} yearBefore={p.year - 1} />
     </Slide>
   )
 }
@@ -64,7 +64,7 @@ function rivalsSlide(p) {
 
 function achievementsSlide(p, earned) {
   return (
-    <Slide kicker="Afrek ársins" big={earned.length} headline={earned.length === 1 ? 'nýtt afrek' : 'ný afrek'}>
+    <Slide kicker="Afrek ársins" big={earned.length} headline={isSingular(earned.length) ? 'nýtt afrek' : 'ný afrek'}>
       <div className="slide-badges">
         {earned.slice(0, MAX_BADGES).map(a => <AchievementBadge key={a.id} achievement={a} />)}
       </div>

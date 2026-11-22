@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CardImage from '../CardImage'
 import { MONTHS_SHORT } from '../../lib/icelandic'
 
@@ -17,9 +17,10 @@ export function Sub({ children }) {
   return <p className="slide-sub">{children}</p>
 }
 
-// Change vs last year, e.g. "▲ +3 frá 2025".
+// Change vs last year, e.g. "▲ +3 frá 2025". Pass before={null} when there
+// is no baseline (0 is a real baseline, e.g. a winless year).
 export function Delta({ now, before, unit = '', yearBefore }) {
-  if (before == null || before === 0) return null
+  if (before == null) return null
   const diff = Math.round((now - before) * 10) / 10
   if (diff === 0) return <span className="delta">Sama og {yearBefore}</span>
   const up = diff > 0
@@ -73,24 +74,39 @@ export function PlaceBars({ places }) {
   )
 }
 
-export function ShareButton({ url, text }) {
-  const [copied, setCopied] = useState(false)
-  const share = async () => {
+const FEEDBACK_MS = 2000
+
+async function shareOrCopy(url, text) {
+  if (navigator.share) {
     try {
-      if (navigator.share) {
-        await navigator.share({ title: text, url })
-        return
-      }
-      await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      await navigator.share({ title: text, url })
+      return 'shared'
     } catch (err) {
-      if (err?.name !== 'AbortError') console.error('Share failed:', err)
+      if (err?.name === 'AbortError') return 'cancelled'
+      // Fall through to the clipboard (e.g. NotAllowedError on desktop).
     }
   }
-  return (
-    <button className="story-cta" onClick={share}>
-      {copied ? '✓ Hlekkur afritaður' : '↗ Deila'}
-    </button>
-  )
+  await navigator.clipboard.writeText(url)
+  return 'copied'
+}
+
+const SHARE_LABELS = { idle: '↗ Deila', copied: '✓ Hlekkur afritaður', failed: 'Tókst ekki að deila' }
+
+export function ShareButton({ url, text }) {
+  const [state, setState] = useState('idle')
+  useEffect(() => {
+    if (state === 'idle') return undefined
+    const timer = setTimeout(() => setState('idle'), FEEDBACK_MS)
+    return () => clearTimeout(timer)
+  }, [state])
+  const share = async () => {
+    try {
+      const result = await shareOrCopy(url, text)
+      if (result === 'copied') setState('copied')
+    } catch (err) {
+      console.error('Share failed:', err)
+      setState('failed')
+    }
+  }
+  return <button className="story-cta" onClick={share}>{SHARE_LABELS[state]}</button>
 }

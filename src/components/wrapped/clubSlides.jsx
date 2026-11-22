@@ -8,7 +8,7 @@ const points = n => plural(n, 'stig', 'stig')
 function intro(c) {
   return (
     <Slide kicker="Dominionklúbburinn Guðmundur" big={c.year} headline={`${games(c.totalGames)} spilaðir`}>
-      <Delta now={c.totalGames} before={c.prevYearGames} yearBefore={c.year - 1} />
+      <Delta now={c.totalGames} before={c.prevYearGames || null} yearBefore={c.year - 1} />
       <Sub>{plural(c.playerCount, 'spilari', 'spilarar')} settust við borðið á árinu.</Sub>
     </Slide>
   )

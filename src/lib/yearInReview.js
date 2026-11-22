@@ -46,9 +46,11 @@ function debutsInYear(games, year, namesOf) {
 const kingdomNames = g => g.kingdom.map(k => k.card)
 
 function scoredMargin(game) {
-  const scored = (game.seats || []).filter(s => s.score != null)
-  if (scored.length < 2) return null
-  const [first, second] = [...scored].sort((a, b) => a.place - b.place || b.score - a.score)
+  const seats = [...(game.seats || [])].sort((a, b) => a.place - b.place)
+  if (seats.length < 2) return null
+  const [first, second] = seats
+  // Both top seats need a score, or the "runner-up" could be the wrong seat.
+  if (first.score == null || second.score == null) return null
   return { game_num: game.game_num, margin: first.score - second.score, winners: first.players, runnersUp: second.players }
 }
 
@@ -118,7 +120,8 @@ export function computeClubYear(games, year) {
   const yearGames = gamesInYear(games, year)
   const totals = playerTotals(yearGames)
   const qualified = totals.filter(t => t.games >= MIN_GAMES_FOR_WIN_RATE)
-  const bestWinRate = [...qualified].sort((a, b) => b.wins / b.games - a.wins / a.games || byWinsThenName(a, b))[0] || null
+  const bestWinRate = [...qualified].filter(t => t.wins > 0).sort((a, b) => b.wins / b.games - a.wins / a.games || byWinsThenName(a, b))[0] || null
+  const topByWins = [...totals].sort(byWinsThenName)[0]
   const gamesByMonth = Array.from({ length: 12 }, (_, m) => yearGames.filter(g => Number(g.date.slice(5, 7)) === m + 1).length)
   const busiest = Math.max(0, ...gamesByMonth)
   return {
@@ -128,7 +131,8 @@ export function computeClubYear(games, year) {
     gamesByMonth,
     busiestMonth: busiest ? { month: gamesByMonth.indexOf(busiest), count: busiest } : null,
     longestGap: longestGap(yearGames),
-    champion: [...totals].sort(byWinsThenName)[0] || null,
+    // No champion in a year where nobody has won yet (e.g. unscored games).
+    champion: topByWins && topByWins.wins > 0 ? topByWins : null,
     bestWinRate: bestWinRate && { ...bestWinRate, rate: (bestWinRate.wins / bestWinRate.games) * 100 },
     mostGames: [...totals].sort((a, b) => b.games - a.games || byWinsThenName(a, b))[0] || null,
     playerCount: totals.length,
@@ -155,6 +159,7 @@ function headToHead(myGames, name) {
   const iBeat = new Map()
   for (const g of myGames) {
     const myPlace = placeOf(g, name)
+    if (myPlace == null) continue
     for (const s of g.seats) {
       if (s.players.includes(name)) continue
       const target = s.place < myPlace ? beatMe : s.place > myPlace ? iBeat : null

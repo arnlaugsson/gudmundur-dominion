@@ -8,6 +8,7 @@ import LatestGameBox from '../components/LatestGameBox'
 import RandomCardBox from '../components/RandomCardBox'
 import { pressable } from '../lib/pressable'
 import YearInReviewBanner from '../components/YearInReviewBanner'
+import { availableYears } from '../lib/yearInReview'
 
 function StatCard({ label, value, sub, className = '' }) {
   return (
@@ -299,7 +300,7 @@ export default function Dashboard({ onGameNav }) {
 
   return (
     <section className="section active">
-      <YearInReviewBanner />
+      <YearInReviewBanner years={availableYears(DATA.games)} />
       <div className="dashboard-highlights">
         <LatestGameBox onGameNav={onGameNav} />
         <RandomCardBox pool="played" onCardClick={setSelectedCard} onGameClick={setSelectedGame} />
